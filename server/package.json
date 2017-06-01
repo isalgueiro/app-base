@@ -1,7 +1,7 @@
 {
-  "name": "server-reserva-escola-hostelaria",
-  "version": "0.3.0",
-  "description": "Servidor Reservas para Escolas de Hostelaría",
+  "name": "server-angular-base",
+  "version": "0.1.0",
+  "description": "Server with Angular Base Technology",
   "main": "index.js",
   "scripts": {
     "start:prod": "gulp && NODE_ENV=prod && node index.js",
@@ -9,16 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AgoraBinaria/reserva-escola.git"
+    "url": "git+https://github.com/AgoraBinaria/angular-base.git"
   },
   "author": {
     "name": "Ágora Binaria S.L."
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AgoraBinaria/reserva-escola/issues"
+    "url": "https://github.com/AgoraBinaria/angular-base/issues"
   },
-  "homepage": "https://github.com/AgoraBinaria/reserva-escola#readme",
+  "homepage": "https://github.com/AgoraBinaria/angular-base#readme",
   "dependencies": {
     "@nestjs/common": "^2.1.2",
     "@nestjs/core": "^2.1.2",
