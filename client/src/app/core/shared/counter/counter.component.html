@@ -1,0 +1,8 @@
+<ab-tile [title]="counter + ' ' + title"
+         [subtitle]="subtitle"
+         icon="icon-flag">
+      <a [routerLink]="link"
+         class="btn btn-link">
+              <span class="badge"
+                    [attr.data-badge]=" counter ">{{label}}</span></a>
+</ab-tile>

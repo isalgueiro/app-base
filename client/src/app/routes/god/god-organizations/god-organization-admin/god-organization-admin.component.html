@@ -1,0 +1,18 @@
+<ab-modal [title]="organization?.name"
+          [active]="active"
+          (close)="onClose()">
+  <modal-content>
+    <ab-form [formGroup]="form"
+             submitLabel="Asignar Administrador"
+             (send)="onSetAdmin()">
+      <ab-input label="Nombre"
+                [formGroup]="form"
+                [formControlName]="schemma[0]"
+                type="text"></ab-input>
+      <ab-input label="Email"
+                [formGroup]="form"
+                [formControlName]="schemma[1]"
+                type="email"></ab-input>
+    </ab-form>
+  </modal-content>
+</ab-modal>

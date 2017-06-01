@@ -1,0 +1,8 @@
+<aside>
+  <div *ngIf="show"
+       [class]="'toast ' + level">
+    <button *ngIf="closeButton"
+            (click)="onCloseClick()"
+            class="btn btn-clear float-right"></button> {{ text }}
+  </div>
+</aside>

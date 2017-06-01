@@ -1,0 +1,14 @@
+<ab-form [formGroup]="loginForm"
+         submitLabel="Log In"
+         (send)="onSend()">
+  <ab-input label="Email"
+            [formGroup]="loginForm"
+            [formControlName]="schemma[0]"
+            type="email">
+  </ab-input>
+  <ab-input label="Password"
+            [formGroup]="loginForm"
+            [formControlName]="schemma[1]"
+            type="password">
+  </ab-input>
+</ab-form>

@@ -1,0 +1,14 @@
+<div class="tile">
+  <div *ngIf="icon"
+       class="tile-icon">
+    <i [class]="'icon centered ' + icon"></i>
+  </div>
+  <div class="tile-content">
+    <p class="tile-title">{{title}}</p>
+    <p class="tile-subtitle">{{subtitle}}</p>
+  </div>
+  <div class="tile-action">
+    <ng-content>
+    </ng-content>
+  </div>
+</div>
