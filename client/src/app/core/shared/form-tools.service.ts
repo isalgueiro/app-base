@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
+import { IValidator } from 'app/core/shared/schema';
 
 @Injectable()
 export class FormToolsService {
@@ -23,4 +24,13 @@ export class FormToolsService {
     return (control.touched || control.dirty);
   }
 
+  getValidator(validation: IValidator) {
+    switch (validation.key) {
+      case 'required':
+        return Validators.required
+      default:
+        break;
+    }
+
+  }
 }

@@ -1,18 +1,13 @@
-<ab-modal title="New Organization"
+<ab-modal [title]="form.schema.title"
           [active]="active"
           (close)="onClose()">
   <modal-content>
-    <ab-form [formGroup]="form"
-             submitLabel="Guardar Nueva Organización"
+    <ab-form [form]="form"
              (send)="onPostOrganization()">
-      <ab-input label="Nombre"
-                [formGroup]="form"
-                [formControlName]="schemma[0]"
-                type="text"></ab-input>
-      <ab-input label="Email"
-                [formGroup]="form"
-                [formControlName]="schemma[1]"
-                type="email"></ab-input>
+      <section *ngFor="let control of form.schema.controls">
+        <ab-input [form]="form.group"
+                  [control]="control"></ab-input>
+      </section>
     </ab-form>
   </modal-content>
 </ab-modal>

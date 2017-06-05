@@ -1,10 +1,8 @@
-<form [formGroup]="form"
-      (ngSubmit)="onSubmit()"
+<form [formGroup]="form.group"
       class="container">
   <ng-content>
   </ng-content>
   <button type="submit"
-          class="btn btn-primary"
-          [disabled]="form.invalid">{{ submitLabel}}</button>
+          (click)="onClick()"
+          [disabled]="form.Group.invalid">{{ form.schema.submitLabel}}</button>
 </form>
-{{ this.formGroup.controls | json }}

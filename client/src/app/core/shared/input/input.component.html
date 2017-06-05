@@ -1,11 +1,11 @@
-<section [formGroup]="formGroup"
+<section [formGroup]="form.group"
          class="form-group">
-  <label [for]="formControlName"
-         class="form-label">{{ label }}:</label>
-  <input [formControlName]="formControlName"
+  <label [for]="control.key"
+         class="form-label">{{ control.label }}:</label>
+  <input [formControlName]="control.key"
          class="form-input"
-         [type]="type" />
-  <ab-control-error [formGroup]="formGroup"
-                    [field]="formControlName">
+         [type]="control.type" />
+  <ab-control-error [form]="form"
+                    [control]="control">
   </ab-control-error>
 </section>
