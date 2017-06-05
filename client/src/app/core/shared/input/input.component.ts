@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IForm, IFormControl } from 'app/core/shared/schema';
 
@@ -7,7 +7,7 @@ import { IForm, IFormControl } from 'app/core/shared/schema';
   templateUrl: './input.component.html',
   styles: []
 })
-export class InputComponent implements OnInit, OnChanges {
+export class InputComponent implements OnInit {
 
   @Input() control: IFormControl;
   @Input() form: IForm;
@@ -15,17 +15,5 @@ export class InputComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('input.ngOnChanges: ');
-    if (changes.control.currentValue) {
-      console.log('input.ngOnChanges.control: ');
-      console.table(changes.control.currentValue);
-    }
-    if (changes.form.currentValue) {
-      console.log('input.ngOnChanges.form: ');
-      console.table(changes.form.currentValue);
-    }
   }
 }

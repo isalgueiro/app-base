@@ -1,5 +1,4 @@
-<form *ngIf="form && form.group && form.schema && form.schema.controls"
-      [formGroup]="form.group"
+<form [formGroup]="form.group"
       class="container">
   <section *ngFor="let control of form.schema.controls">
     <ab-input [form]="form"

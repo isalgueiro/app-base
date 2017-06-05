@@ -1,5 +1,4 @@
-<section *ngIf="form && control"
-         [formGroup]="form.group"
+<section [formGroup]="form.group"
          class="form-group">
   <label [for]="control.key"
          class="form-label">{{ control.label }}:</label>
