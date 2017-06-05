@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
+import { IFormSchema } from 'app/core/shared/schema';
 
 @Component({
   selector: 'ab-login',
@@ -10,31 +10,42 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm: FormGroup
-  public schemma: any[];
+  public formSchema: IFormSchema = {
+    title: 'Log In',
+    submitLabel: 'Send',
+    controls: [
+      {
+        key: 'email',
+        type: 'email',
+        label: 'Email',
+        defaultValue: 'admin@agorabinaria.com',
+        validators: [{ key: 'required', errorMessage: 'Email is required' }]
+      },
+      {
+        key: 'password',
+        type: 'password',
+        label: 'Password',
+        defaultValue: '1234',
+        validators: [{ key: 'required', errorMessage: 'Password is required' }]
+      }
+    ]
+  };
 
-  constructor(public http: Http, public formBuilder: FormBuilder, public router: Router) { }
+  constructor(public http: Http, public router: Router) { }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: ['admin@agorabinaria.com', Validators.required],
-      password: ['secret', Validators.required]
-    });
-    this.schemma = ['email', 'password'];
   }
 
-  onSend() {
-    const credentials = this.loginForm.value;
+  onSend(credentials) {
     this.http
       .post('http://localhost:3000/credentials', credentials)
       .subscribe(r => {
         const userToken: IUserToken = r.json().access_token;
         localStorage.setItem('token', JSON.stringify(userToken));
         console.log(JSON.stringify(userToken));
-        if (userToken.roles.findIndex(r => r === ROLE.GOD) >= 0) {
+        if (userToken.roles.findIndex(r2 => r2 === ROLE.GOD) >= 0) {
           this.router.navigate(['/god']);
-        }
-        else {
+        } else {
           this.router.navigate(['/']);
         }
       });

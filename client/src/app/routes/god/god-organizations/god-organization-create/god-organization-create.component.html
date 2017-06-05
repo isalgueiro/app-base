@@ -1,13 +1,9 @@
-<ab-modal [title]="form.schema.title"
+<ab-modal [title]="formSchema.title"
           [active]="active"
           (close)="onClose()">
   <modal-content>
-    <ab-form [form]="form"
-             (send)="onPostOrganization()">
-      <section *ngFor="let control of form.schema.controls">
-        <ab-input [form]="form.group"
-                  [control]="control"></ab-input>
-      </section>
+    <ab-form [formSchema]="formSchema"
+             (send)="onPostOrganization($event)">
     </ab-form>
   </modal-content>
 </ab-modal>

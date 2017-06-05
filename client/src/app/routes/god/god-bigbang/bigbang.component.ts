@@ -1,39 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Http } from '@angular/http';
+import { IFormSchema } from 'app/core/shared/schema';
 
 @Component({
   selector: 'ab-god-bigbang',
   template: `
-    <ab-form [formGroup]="form"
-          submitLabel="Create!!!"
-          (send)="onSend()">
-      <ab-input label="Secret"
-        [formGroup]="form"
-        [formControlName]="schemma[0]"
-        type="password"
-      ></ab-input>
+    <header>{{formSchema.title}}</header>
+    <ab-form [formSchema]="formSchema"
+             (send)="onSend($event)">
     </ab-form>
   `,
   styles: []
 })
 export class GodBigbangComponent implements OnInit {
 
-  public form: FormGroup;
-  public schemma: any[];
-  constructor(public http: Http, public formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      secret: ['', Validators.required],
-    });
-    this.schemma = ['secret'];
+  public formSchema: IFormSchema = {
+    title: 'God creation',
+    submitLabel: 'Big Bang!!!',
+    controls: [
+      {
+        key: 'secret',
+        type: 'password',
+        label: 'Secret',
+        defaultValue: 'secret',
+        validators: [{ key: 'required', errorMessage: 'Secret is required' }]
+      }
+    ]
+  };
+  constructor(public http: Http) {
   }
 
   ngOnInit() {
 
   }
 
-  onSend() {
-    const credentials = this.form.value;
+  onSend(credentials) {
     this.http
       .post('http://localhost:3000/credentials/bigbang', credentials)
       .subscribe(

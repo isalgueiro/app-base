@@ -15,7 +15,7 @@ export interface IValidator {
   errorMessage?: string;
 }
 
-export class FormSchema {
+export interface IFormSchema {
   title: string;
   submitLabel: string;
   controls: IFormControl[];
@@ -23,5 +23,5 @@ export class FormSchema {
 
 export interface IForm {
   group: FormGroup;
-  schema: FormSchema
+  schema: IFormSchema
 }

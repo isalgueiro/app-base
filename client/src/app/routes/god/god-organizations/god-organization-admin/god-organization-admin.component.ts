@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IForm, IFormSchema } from 'app/core/shared/schema';
+import { FormToolsService } from 'app/core/shared/form-tools.service';
 
 @Component({
   selector: 'ab-god-organization-admin',
@@ -10,16 +11,26 @@ export class GodOrganizationAdminComponent implements OnInit {
   @Input() organization;
   @Input() active: false;
   @Output() close = new EventEmitter<any>();
-  public form: FormGroup;
-  public schemma: any[];
+  public formSchema: IFormSchema = {
+    title: 'organization?.name',
+    submitLabel: 'Set Administrator',
+    controls: [
+      {
+        key: 'name',
+        type: 'text',
+        label: 'Name',
+        validators: [{ key: 'required', errorMessage: 'Name is required' }]
+      },
+      {
+        key: 'email',
+        type: 'email',
+        label: 'Email',
+        validators: [{ key: 'required', errorMessage: 'Email is required' }]
+      },
+    ]
+  };
 
-  constructor(public formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-    });
-    this.schemma = ['name', 'email'];
-  }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -29,8 +40,8 @@ export class GodOrganizationAdminComponent implements OnInit {
     this.close.emit(null);
   }
 
-  onSetAdmin() {
+  onSetAdmin(newAdmin) {
     this.active = false;
-    this.close.emit(this.form.value);
+    this.close.emit(newAdmin);
   }
 }

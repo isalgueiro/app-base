@@ -1,8 +1,13 @@
-<form [formGroup]="form.group"
+<form *ngIf="form && form.group && form.schema && form.schema.controls"
+      [formGroup]="form.group"
       class="container">
-  <ng-content>
-  </ng-content>
+  <section *ngFor="let control of form.schema.controls">
+    <ab-input [form]="form"
+              [control]="control"></ab-input>
+  </section>
   <button type="submit"
           (click)="onClick()"
-          [disabled]="form.Group.invalid">{{ form.schema.submitLabel}}</button>
+          [disabled]="form.group.invalid">
+          {{ form.schema.submitLabel}}
+  </button>
 </form>

@@ -17,7 +17,7 @@ export class FormToolsService {
   }
 
   getControl(form: FormGroup, field: string) {
-    return form.get(field);
+    return form && form.get(field);
   }
 
   shouldBeValid(control) {
