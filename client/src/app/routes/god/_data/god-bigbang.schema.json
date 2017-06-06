@@ -1,0 +1,18 @@
+{
+  "title": "God creation",
+  "submitLabel": "Big Bang!!!",
+  "controls": [
+    {
+      "key": "secret",
+      "type": "password",
+      "label": "Secret",
+      "defaultValue": "secret",
+      "validators": [
+        {
+          "key": "required",
+          "errorMessage": "Secret is required"
+        }
+      ]
+    }
+  ]
+}
