@@ -18,7 +18,7 @@ export interface IValidator {
 export interface IFormSchema {
   title: string;
   submitLabel: string;
-  buttonBlock: boolean;
+  buttonBlock?: boolean;
   controls: IFormControl[];
 }
 
