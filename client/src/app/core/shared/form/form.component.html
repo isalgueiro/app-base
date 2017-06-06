@@ -1,12 +1,14 @@
 <form [formGroup]="form.group"
       class="container">
-  <section *ngFor="let control of form.schema.controls">
+  <section class="form-group" *ngFor="let control of form.schema.controls">
     <ab-input [form]="form"
               [control]="control"></ab-input>
   </section>
-  <button type="submit"
-          (click)="onClick()"
-          [disabled]="form.group.invalid">
-          {{ form.schema.submitLabel}}
-  </button>
+  <section class="form-group">
+    <button [ngClass]="{'btn': true, 'btn-primary': true, 'btn-block': formSchema.buttonBlock === true}" type="submit"
+            (click)="onClick()"
+            [disabled]="form.group.invalid">
+            {{ form.schema.submitLabel}}
+    </button>
+  </section>
 </form>
