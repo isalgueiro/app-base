@@ -21,6 +21,28 @@ Retrieve all organizations.
 + Response 201 (application/json; charset=utf-8)
     + Attributes (OrganizationResponse)
 
+## Organization [/organizations/{id}]
++ Parameters
+    + id: 1 (required)
+
+### Delete Organization [DELETE]
++ Response 204
+
+## Organizations Users [/organizations/{id}/users]
++ Parameters
+    + id: 1 (required)
+
+### Get Organizations Users [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (array)
+        + UserResponse
+
+## Organization Count [/organizations/count]
+### Get Number [GET]
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (CountResponse)
+
 # Group Users
 
 ## Users Collection [/users]
@@ -53,6 +75,8 @@ Get user by id
 + organizationId (string)
 + status (number, required)
 
+## CountResponse
++ data (number, required)
 
 ## OrganizationResponse 
 + _id (string, required)
