@@ -1,4 +1,9 @@
-<header>{{ formSchema.title }}</header>
-<ab-form [formSchema]="formSchema"
-         (send)="onSend($event)">
-</ab-form>
+<div class="column col-8 col-lg-12 centered">
+  <ab-panel title="Login">
+    <panel-body>
+      <ab-form [formSchema]="formSchema"
+               (send)="onSend($event)">
+      </ab-form>
+    </panel-body>
+  </ab-panel>
+</div>

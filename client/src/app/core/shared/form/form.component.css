@@ -1,0 +1,7 @@
+.form-group:last-child {
+  overflow: hidden;
+}
+
+button {
+  margin-top: 1rem;
+}
