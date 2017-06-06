@@ -43,15 +43,7 @@ export class GodBigbangComponent implements OnInit {
         this.bus.navigateTo(['/god']);
       },
       error => {
-        let errMsg: string;
-        if (error instanceof Response) {
-          const body = error.json() || '';
-          const err = body || JSON.stringify(body);
-          errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-        } else {
-          errMsg = error.message ? error.message : error.toString();
-        }
-        this.bus.emit({ level: 'toast-error', text: errMsg })
+        this.bus.emitHttpError(error);
       });
   }
 

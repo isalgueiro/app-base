@@ -20,6 +20,18 @@ export class BusService {
     this.message$.next(message);
   }
 
+  emitHttpError(error) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    this.message$.next({ level: 'toast-error', text: errMsg });
+  }
+
   navigateTo(target: any, args?: any) {
     this.router.navigate(target);
   }
