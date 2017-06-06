@@ -72,19 +72,19 @@ export class CredentialsController {
 
   @Post('confirmation')
   public async postUserConfirmation( @Res() res: Response, @Body() userConfirmation: IUserConfirmation) {
-    res.status(HttpStatus.NO_CONTENT).json(null);
+    res.status(HttpStatus.NO_CONTENT).send();
   }
 
   @Post('activation')
   public async postUserActivation( @Res() res: Response, @Body() userActivation: IUserActivation) {
-    res.status(HttpStatus.NO_CONTENT).json(null);
+    res.status(HttpStatus.NO_CONTENT).send();
   }
 
   @Post()
   public async postCredentials( @Res() res: Response, @Body() userCredential: IUserCredential) {
     this.logger.value('userCredential', userCredential);
     const userToken = await this.credentialsLogic.getUserToken(userCredential);
-    res.status(HttpStatus.OK).json({ access_token: userToken });
+    res.status(HttpStatus.CREATED).json({ access_token: userToken });
   }
 
 }
