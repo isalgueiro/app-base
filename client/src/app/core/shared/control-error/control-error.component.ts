@@ -1,14 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormToolsService } from 'app/core/shared/form-tools.service';
-import { IForm, IFormControl } from 'app/core/shared/schema';
-
+import { IFormControl, IForm } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-control-error',
   template: `
     <small *ngIf="formTools.hasErrorsToShow(form.group,control.key)" class="float-right">
-      <em>{{ formTools.getErrors(form.group,control.key) | json }}</em>
+      <em>{{ formTools.getErrors(form.group,control.key,form.schema) | json }}</em>
     </small>
   `,
   styles: []

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
-import { IValidator } from 'app/core/shared/schema';
+import { IValidator, IFormSchema } from 'app/core/shared/_data/schema.model';
+
 
 @Injectable()
 export class FormToolsService {
@@ -11,7 +12,7 @@ export class FormToolsService {
     return control && control.invalid && this.shouldBeValid(control);
   }
 
-  getErrors(form: FormGroup, field: string) {
+  getErrors(form: FormGroup, field: string, schema: IFormSchema) {
     const control = this.getControl(form, field);
     return control && control.errors;
   }
