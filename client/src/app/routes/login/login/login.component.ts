@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-import { IFormSchema } from 'app/core/shared/schema';
+import { IFormSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-login',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Http } from '@angular/http';
-import { IFormSchema } from 'app/core/shared/schema';
+import { IFormSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-god-bigbang',

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IForm, IFormSchema } from 'app/core/shared/schema';
 import { FormToolsService } from 'app/core/shared/form-tools.service';
+import { IFormSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-god-organization-admin',

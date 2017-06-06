@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { IFormSchema, IForm } from 'app/core/shared/schema';
 import { FormToolsService } from 'app/core/shared/form-tools.service';
+import { IFormSchema, IForm } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-form',

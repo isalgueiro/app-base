@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IForm, IFormControl } from 'app/core/shared/schema';
+import { IFormControl, IForm } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-input',
