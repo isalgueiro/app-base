@@ -1,0 +1,36 @@
+FORMAT: 1A
+HOST: 127.0.0.1:3000
+
+# APP
+
+# Group Users
+
+## Users Collection [/users]
+
+### Get All Users [GET]
+Retrieve all users.
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (array)
+        + UserResponse
+
+## User [/users/{id}]
++ Parameters
+    + id: 1 (required)
+
+### Get User [GET]
+Get user by id
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (UserResponse)
+
+# Data Structures
+
+## UserResponse
++ _id (string, required)
++ name (string, required)
++ email (string, required)
++ phone (string)
++ roles (array[number], required)
++ organizationId (string)
++ status (number, required)

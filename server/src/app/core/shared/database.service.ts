@@ -1,7 +1,7 @@
 import { Component, Logger, Shared } from '@nestjs/common';
 import { Core, Model } from 'iridium';
 import { InstanceImplementation } from 'iridium/dist/lib/InstanceInterface';
-import { SETTINGS } from './../../../environments/environment.template';
+import { SETTINGS } from './../../../environments/environment';
 
 const logger = new Logger('DatabaseService');
 
@@ -29,6 +29,7 @@ export class DatabaseService extends Core {
     }
 
     protected onConnected() {
+        console.log(`Connected to DB: ${SETTINGS.database.database}`);
         this.isConnected = true;
         return Promise.resolve();
     }

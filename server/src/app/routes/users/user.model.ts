@@ -14,9 +14,6 @@ export interface IUserDocument {
 @Index({ email: 1 }, { unique: true })
 @Collection('users')
 export class User extends Instance<IUserDocument, User> implements IUserDocument {
-    public static async onCreating(document: IUserDocument) {
-    }
-
     @ObjectID public _id: string;
     @Property(String, true)
     public name: string;
