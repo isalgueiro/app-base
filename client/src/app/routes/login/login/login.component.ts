@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { Router } from '@angular/router';
 import { IFormSchema } from 'app/core/shared/_data/schema.model';
+import { BusService } from 'app/core/shared/bus.service';
 
 @Component({
   selector: 'ab-login',
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     ]
   };
 
-  constructor(public http: Http, public router: Router) { }
+  constructor(public http: Http, public bus: BusService) { }
 
   ngOnInit() {
   }
@@ -44,9 +44,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', JSON.stringify(userToken));
         console.log(JSON.stringify(userToken));
         if (userToken.roles.findIndex(r2 => r2 === ROLE.GOD) >= 0) {
-          this.router.navigate(['/god']);
+          this.bus.navigateTo(['/god']);
         } else {
-          this.router.navigate(['/']);
+          this.bus.navigateTo(['/']);
         }
       });
   }

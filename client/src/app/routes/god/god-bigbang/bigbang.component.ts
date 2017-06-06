@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Http } from '@angular/http';
 import { IFormSchema } from 'app/core/shared/_data/schema.model';
+import { BusService } from 'app/core/shared/bus.service';
 
 @Component({
   selector: 'ab-god-bigbang',
@@ -28,12 +29,10 @@ export class GodBigbangComponent implements OnInit {
       }
     ]
   };
-  constructor(public http: Http) {
-  }
 
-  ngOnInit() {
+  constructor(private http: Http, private bus: BusService) { }
 
-  }
+  ngOnInit() { }
 
   onSend(credentials) {
     this.http
@@ -41,31 +40,19 @@ export class GodBigbangComponent implements OnInit {
       .subscribe(
       r => {
         console.warn(r.json());
+        this.bus.navigateTo(['/god']);
       },
-      e => {
-        console.error(e);
+      error => {
+        let errMsg: string;
+        if (error instanceof Response) {
+          const body = error.json() || '';
+          const err = body || JSON.stringify(body);
+          errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        } else {
+          errMsg = error.message ? error.message : error.toString();
+        }
+        this.bus.emit({ level: 'toast-error', text: errMsg })
       });
   }
 
 }
-
-
-/*
-
- <ab-form [formGroup]="form"
-          submitLabel="Create!!!"
-          (submit)="onSubmit()">
-      <section>
-        <label for="secret">Secret:</label>
-        <input formControlName="secret"
-              type="password" />
-        <ab-control-error [formGroup]="form" field="secret">
-        </ab-control-error>
-      </section>
-      <ab-input label="Secret: "
-        [formGroup]="form"
-        formControlName="secret"
-        type="password"
-      ></ab-input>
-    </ab-form>
-*/

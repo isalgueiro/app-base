@@ -32,7 +32,7 @@ export class GodOrganizationsComponent implements OnInit {
       data => {
         this.organizations.forEach(org => {
           this.godData
-            .getOrganizationAdmin(org.id)
+            .getOrganizationAdmin(org._id)
             .subscribe(user => {
               org.admin = user[0];
             });
@@ -56,7 +56,7 @@ export class GodOrganizationsComponent implements OnInit {
     this.activeSetAdminModal = false;
   }
   setOrganizationAdmin(newAdmin) {
-    newAdmin.organizationId = this.activeOrganization.id;
+    newAdmin.organizationId = this.activeOrganization._id;
     this.godData
       .setOrganizationAdmin(newAdmin)
       .subscribe(res => this.getOrganizations());
