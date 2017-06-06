@@ -5,10 +5,12 @@ const isProd = (process.env.NODE_ENV === 'prod');
 const settingsProd: ISettings = {
   port: 2000,
   secret: 'secret',
-  database: 'bookings',
-  username: '',
-  password: '',
-  host: 'localhost',
+  database: {
+    database: 'bookings',
+    username: '',
+    password: '',
+    host: 'localhost',
+  },
   mailerSettings: {
     port: 0,
     host: "",
@@ -24,10 +26,12 @@ const settingsProd: ISettings = {
 const settingsDev: ISettings = {
   port: 3000,
   secret: 'secret',
-  database: 'bookings',
-  username: '',
-  password: '',
-  host: 'localhost',
+  database: {
+    database: 'bookings',
+    username: '',
+    password: '',
+    host: 'localhost',
+  },
   mailerSettings: {
     host: "",
     port: 0,

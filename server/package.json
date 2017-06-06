@@ -4,7 +4,9 @@
   "description": "Server with Angular Base Technology",
   "main": "index.js",
   "scripts": {
-    "start:prod": "gulp && NODE_ENV=prod && node index.js",
+    "build:complete": "webpack --config ./webpack.config.js --progress --display-error-details && node ./bin/build",
+    "build": "webpack --config ./webpack.config.js --progress --display-error-details",
+    "start:prod": "NODE_ENV=prod && node ../dist/server/backend.js",
     "start": "set NODE_ENV=dev&&nodemon -e ts --watch src ./index.js"
   },
   "repository": {
@@ -40,11 +42,13 @@
     "@types/express": "^4.0.35",
     "@types/jsonwebtoken": "^7.2.0",
     "@types/node": "^7.0.18",
-    "gulp": "^3.9.1",
-    "gulp-typescript": "^3.1.7",
+    "fs-extra": "^3.0.1",
     "nodemon": "^1.11.0",
     "ts-lint": "^4.5.1",
+    "ts-loader": "^2.1.0",
     "ts-node": "^3.0.4",
-    "typescript": "^2.3.2"
+    "typescript": "^2.3.2",
+    "webpack": "^2.6.1",
+    "webpack-node-externals": "^1.6.0"
   }
 }

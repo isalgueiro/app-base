@@ -4,9 +4,6 @@ import { RolesMiddleware } from './../../core/shared/roles.middleware';
 import { SharedModule } from './../../core/shared/shared.module';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
-import { ROLE } from "../../core/shared/enums";
-
-const roles = [ROLE.ADMIN];
 
 @Module({
     components: [UsersService],

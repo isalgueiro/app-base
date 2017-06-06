@@ -1,9 +1,7 @@
 import { Body, Controller, Get, HttpStatus, Post, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { LoggerService } from "../../core/shared/logger.service";
-import { User } from "../users/user.entity";
 import { UsersService } from "../users/users.service";
-import { Credential } from "./credential.entity";
 import { CredentialsLogic } from "./credentials.logic";
 import {
   IUserActivation,

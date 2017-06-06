@@ -1,7 +1,6 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { InternalServerErrorException } from '../../core/shared/exceptions';
-import { log, middleware } from './../../core/shared/prueba';
 import { UsersService } from './users.service';
 
 @Controller('users')

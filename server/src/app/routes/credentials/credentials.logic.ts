@@ -4,9 +4,9 @@ import { SETTINGS } from '../../../environments/environment';
 import { ROLE, STATUS } from "../../core/shared/enums";
 import { BadRequestException, NotFoundException } from '../../core/shared/exceptions';
 import { LoggerService } from "../../core/shared/logger.service";
-import { User } from "../users/user.entity";
 import { UsersService } from "../users/users.service";
-import { Credential } from "./credential.entity";
+import { IUserDocument, User } from './../users/user.model';
+import { ICredentialDocument } from './credential.model';
 import {
   IUserClientRegistration, IUserCredential, IUserGodRegistration, IUserInvitation, IUserPublicRegistration, IUserToken
 } from "./credentials.models";
@@ -19,14 +19,14 @@ export class CredentialsLogic {
     private credentialsService: CredentialsService,
     private usersService: UsersService) { }
 
-  public async postUserClientRegistration(userRegistration: IUserClientRegistration): Promise<User> {
+  public async postUserClientRegistration(userRegistration: IUserClientRegistration) {
     let newUser = this.createUserFromUserClientRegistration(userRegistration);
     newUser = await this.usersService.post(newUser);
     newUser = await this.postCredential(newUser, userRegistration.password);
     this.sendConfirmationEmail(newUser);
     return newUser;
   }
-  public async postUserGodRegistration(userGodRegistration: IUserGodRegistration): Promise<User> {
+  public async postUserGodRegistration(userGodRegistration: IUserGodRegistration) {
     let newUser = this.createUserFromUserGodRegistration(userGodRegistration);
     newUser = await this.usersService.post(newUser);
     newUser = await this.postCredential(newUser, userGodRegistration.password);
@@ -34,14 +34,14 @@ export class CredentialsLogic {
     return newUser;
   }
 
-  public async postUserPublicRegistration(userRegistration: IUserPublicRegistration): Promise<User> {
+  public async postUserPublicRegistration(userRegistration: IUserPublicRegistration) {
     let newUser = this.createUserFromUserPublicRegistration(userRegistration);
     newUser = await this.usersService.post(newUser);
     this.sendConfirmationEmail(newUser);
     return newUser;
   }
 
-  public async postUserInvitation(userInvitation: IUserInvitation): Promise<User> {
+  public async postUserInvitation(userInvitation: IUserInvitation) {
     let newUser = this.createUserFromUserInvitation(userInvitation);
     newUser = await this.usersService.post(newUser);
     this.sendConfirmationEmail(newUser);
@@ -53,7 +53,7 @@ export class CredentialsLogic {
     if (!user) {
       throw new NotFoundException('Invalid User');
     }
-    const credential = await this.credentialsService.getByUserIdPassword(user.id, userCredential.password);
+    const credential = await this.credentialsService.getByUserIdPassword(user._id, userCredential.password);
     if (!credential) {
       throw new NotFoundException('Invalid Credential');
     }
@@ -63,66 +63,72 @@ export class CredentialsLogic {
       email: user.email,
       organizationId: user.organizationId,
       roles: user.roles,
-      token: token
-    }
+      token
+    };
     return userToken;
   }
 
-  private createUserFromUserGodRegistration(userRegistration: IUserGodRegistration): User {
-    const newUser = new User();
-    newUser.email = userRegistration.email;
-    newUser.name = userRegistration.name;
-    newUser.roles = [ROLE.GOD];
-    newUser.status = STATUS.ACTIVE;
+  private createUserFromUserGodRegistration(userRegistration: IUserGodRegistration) {
+    const newUser: IUserDocument = {
+      email: userRegistration.email,
+      name: userRegistration.name,
+      roles: [ROLE.GOD],
+      status: STATUS.ACTIVE
+    };
     return newUser;
   }
 
-  private createUserFromUserClientRegistration(userRegistration: IUserClientRegistration): User {
-    const newUser = new User();
-    newUser.email = userRegistration.email;
-    newUser.organizationId = userRegistration.organizationId;
-    newUser.name = userRegistration.name;
-    newUser.roles = [ROLE.CLIENT];
-    newUser.status = STATUS.PENDING;
+  private createUserFromUserClientRegistration(userRegistration: IUserClientRegistration) {
+    const newUser: IUserDocument = {
+      email: userRegistration.email,
+      organizationId: userRegistration.organizationId,
+      name: userRegistration.name,
+      roles: [ROLE.CLIENT],
+      status: STATUS.PENDING
+    };
     return newUser;
   }
 
-  private createUserFromUserPublicRegistration(userRegistration: IUserPublicRegistration): User {
-    const newUser = new User();
-    newUser.email = userRegistration.email;
-    newUser.organizationId = userRegistration.organizationId;
-    newUser.name = userRegistration.name;
-    newUser.phone = userRegistration.phone;
-    newUser.roles = [ROLE.PUBLIC];
-    newUser.status = STATUS.PENDING;
+  private createUserFromUserPublicRegistration(userRegistration: IUserPublicRegistration) {
+    const newUser: IUserDocument = {
+      email: userRegistration.email,
+      organizationId: userRegistration.organizationId,
+      name: userRegistration.name,
+      phone: userRegistration.phone,
+      roles: [ROLE.PUBLIC],
+      status: STATUS.PENDING
+    };
     return newUser;
   }
 
-  private createUserFromUserInvitation(userInvitation: IUserInvitation): User {
-    const newUser = new User();
-    newUser.email = userInvitation.email;
-    newUser.organizationId = userInvitation.organizationId;
-    newUser.name = userInvitation.name;
-    newUser.roles = [userInvitation.role];
-    newUser.status = STATUS.PENDING;
+  private createUserFromUserInvitation(userInvitation: IUserInvitation) {
+    const newUser: IUserDocument = {
+      email: userInvitation.email,
+      organizationId: userInvitation.organizationId,
+      name: userInvitation.name,
+      roles: [userInvitation.role],
+      status: STATUS.PENDING
+    };
     return newUser;
   }
 
-  private async postCredential(newUser: User, password: string) {
-    const credential = new Credential();
-    credential.userId = newUser.id;
-    credential.password = password;
+  private async postCredential(newUser: IUserDocument, password: string) {
+    const credential: ICredentialDocument = {
+      userId: newUser._id,
+      password
+    };
+
     try {
       await this.credentialsService.post(credential);
     } catch (err) {
       this.logger.error(err);
-      await this.usersService.remove(newUser.id);
+      await this.usersService.remove(newUser._id);
       newUser = null;
     }
     return newUser;
   }
 
-  private async sendConfirmationEmail(newUser: User): Promise<boolean> {
+  private async sendConfirmationEmail(newUser: IUserDocument): Promise<boolean> {
     return true;
   }
 }

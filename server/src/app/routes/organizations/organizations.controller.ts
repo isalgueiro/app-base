@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { ROLE } from "../../core/shared/enums";
 import { LoggerService } from "../../core/shared/logger.service";
 import { UsersService } from "../users/users.service";
-import { Organization } from "./organization.entity";
+import { IOrganizationDocument } from './organization.model';
 import { OrganizationsService } from "./organizations.service";
 
 @Controller('organizations')
@@ -35,7 +35,7 @@ export class OrganizationsController {
   }
 
   @Post()
-  public async post( @Res() res: Response, @Body() organization: Organization) {
+  public async post( @Res() res: Response, @Body() organization: IOrganizationDocument) {
     const newOrganization = await this.organizationsService.post(organization);
     if (newOrganization) {
       this.logger.value('newOrganization', newOrganization);

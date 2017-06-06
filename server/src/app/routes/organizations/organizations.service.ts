@@ -1,22 +1,17 @@
 import { Component } from "@nestjs/common";
-import { Repository } from "typeorm";
-import { ObjectId, ValidateParams } from "../../core/decorators/validate-param";
 import { DatabaseService } from "../../core/shared/database.service";
 import { LoggerService } from "../../core/shared/logger.service";
-import { Organization } from "./organization.entity";
+import { IOrganizationDocument, Organization } from './organization.model';
 
 @Component()
 export class OrganizationsService {
   private logger: LoggerService = new LoggerService('OrganizationsService');
-  private get repository(): Promise<Repository<Organization>> {
-    return this.databaseService.getRepository(Organization);
-  }
 
   constructor(private databaseService: DatabaseService) { }
 
-  public async getAll(): Promise<Organization[]> {
+  public async getAll(): Promise<IOrganizationDocument[]> {
     const repository = await this.repository;
-    const organizations = await repository.find();
+    const organizations = await repository.find().map(doc => doc.document);
     return organizations;
   }
 
@@ -26,20 +21,24 @@ export class OrganizationsService {
     return organizationsCount;
   }
 
-  public async post(organization: Organization): Promise<Organization> {
+  public async post(organization: IOrganizationDocument): Promise<IOrganizationDocument> {
     const repository = await this.repository;
-    const newOrganization = await repository.persist(organization);
+    const newOrganization = await repository.create(organization);
     return newOrganization;
   }
-  @ValidateParams
-  public async delete( @ObjectId id: string): Promise<void> {
+
+  public async delete(id: string): Promise<void> {
     this.logger.log(id);
     const repository = await this.repository;
-    const orgExists = await repository.findOneById(id);
+    const orgExists = await repository.findOne(id);
     if (orgExists) {
-      await repository.removeById(id);
+      await repository.remove(id);
     } else {
       this.logger.value('Not found while deleting', id);
     }
+  }
+
+  private get repository() {
+    return this.databaseService.repository<IOrganizationDocument, Organization>(Organization);
   }
 }
