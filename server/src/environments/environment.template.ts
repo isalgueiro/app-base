@@ -24,7 +24,7 @@ const settingsProd: ISettings = {
 const settingsDev: ISettings = {
   port: 3000,
   secret: 'secret',
-  database: 'bookings',
+  database: 'base',
   username: '',
   password: '',
   host: 'localhost',
