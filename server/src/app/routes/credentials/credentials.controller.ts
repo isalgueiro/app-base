@@ -1,9 +1,7 @@
 import { Body, Controller, Get, HttpStatus, Post, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { LoggerService } from "../../core/shared/logger.service";
-import { User } from "../users/user.entity";
 import { UsersService } from "../users/users.service";
-import { Credential } from "./credential.entity";
 import { CredentialsLogic } from "./credentials.logic";
 import {
   IUserActivation,
@@ -74,19 +72,19 @@ export class CredentialsController {
 
   @Post('confirmation')
   public async postUserConfirmation( @Res() res: Response, @Body() userConfirmation: IUserConfirmation) {
-    res.status(HttpStatus.NO_CONTENT).json(null);
+    res.status(HttpStatus.NO_CONTENT).send();
   }
 
   @Post('activation')
   public async postUserActivation( @Res() res: Response, @Body() userActivation: IUserActivation) {
-    res.status(HttpStatus.NO_CONTENT).json(null);
+    res.status(HttpStatus.NO_CONTENT).send();
   }
 
   @Post()
   public async postCredentials( @Res() res: Response, @Body() userCredential: IUserCredential) {
     this.logger.value('userCredential', userCredential);
-    const userToken = await this.credentialsLogic.getUserToken(userCredential);
-    res.status(HttpStatus.OK).json({ access_token: userToken });
+    const token = await this.credentialsLogic.getUserToken(userCredential);
+    res.status(HttpStatus.CREATED).json({ access_token: token });
   }
 
 }

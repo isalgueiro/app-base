@@ -1,10 +1,9 @@
+import { Configuration } from 'iridium';
+
 export interface ISettings {
     port: number;
     secret: string;
-    database: string;
-    username: string;
-    password: string;
-    host: string;
+    database: Configuration;
     mailerSettings: IMailerSettings;
 
 }

@@ -67,7 +67,7 @@ export class InternalServerErrorException extends HttpException {
 }
 
 export class ObjectIDException extends BadRequestException {
-  constructor(id: string | ObjectID) {
+  constructor(id: string) {
     new Logger('ObjectIDException').warn(id);
     super(`Id '${id}' is invalid`);
   }

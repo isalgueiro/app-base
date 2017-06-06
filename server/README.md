@@ -1,5 +1,5 @@
-# Servidor reserva-escola
-Reservas para Escolas de Hostelaría
+# Servidor 
+
 
 
 # Prerequisites
@@ -31,7 +31,7 @@ $npm run start
 ```
 
 # Enviroments
-Can set NODE_ENV to execute production or develpment. If NODE_ENV is 'production' then execute with production settings othercase execute with deveploment settings.
+Can set NODE_ENV to execute production or develpment. If NODE_ENV is 'prod' then execute with production settings othercase execute with deveploment settings.
 
 By default using npm run start execute dev mode, if run npm run start:prod execute prod mode.
 
@@ -54,13 +54,20 @@ server
 |-- index.js : 'Launch app, calling ts-node and our init server'
 ```
 
+
+# Test
+```bash
+$npm run test
+```
+
+# Generate bundle and transpile
+```bash
+$npm run build:complete
+$npm run start:prod
+```
+
 # Why exceptions file
 To provide a common errors for HTTP request.
 
-# Middleware
-There is a [middleware](https://github.com/AgoraBinaria/reserva-escola/blob/master/server/src/modules/users/users.middleware.ts) for users routes. This middleware validate that in request header appear a field 'name' which contain the name from one of the users in the database. This is apply to all users routes.
 
-The other [middleware](https://github.com/AgoraBinaria/reserva-escola/blob/master/server/src/modules/users/users2.middleware.ts) only validate in delete route, and test if the user will delete himself.
 
-# TODO
-* Validate and test the transpile.

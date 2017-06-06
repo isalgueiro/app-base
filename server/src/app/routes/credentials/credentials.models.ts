@@ -1,4 +1,3 @@
-import { ObjectID } from 'mongodb';
 import { ROLE } from "../../core/shared/enums";
 
 export interface IUserCredential {
@@ -9,7 +8,7 @@ export interface IUserCredential {
 export interface IUserToken {
   email: string;
   name: string;
-  organizationId: ObjectID;
+  organizationId: string;
   roles: ROLE[];
   token: string;
 }
@@ -17,7 +16,7 @@ export interface IUserToken {
 export interface IUserInvitation {
   email: string;
   name: string;
-  organizationId: ObjectID;
+  organizationId: string;
   role: ROLE;
 }
 
@@ -30,23 +29,23 @@ export interface IUserGodRegistration {
 export interface IUserClientRegistration {
   email: string;
   name: string;
-  organizationId: ObjectID;
+  organizationId: string;
   password: string;
 }
 
 export interface IUserPublicRegistration {
   email: string;
   name: string;
-  organizationId: ObjectID;
+  organizationId: string;
   phone: string;
 }
 
 export interface IUserConfirmation {
-  id: ObjectID;
+  id: string;
   hash: string;
 }
 
 export interface IUserActivation {
-  id: ObjectID;
+  id: string;
   email: string;
 }
