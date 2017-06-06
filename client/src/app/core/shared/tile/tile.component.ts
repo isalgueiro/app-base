@@ -6,9 +6,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styles: []
 })
 export class TileComponent implements OnInit {
+
   @Input() title: string;
   @Input() subtitle: string;
   @Input() icon: string;
+
   constructor() { }
 
   ngOnInit() {

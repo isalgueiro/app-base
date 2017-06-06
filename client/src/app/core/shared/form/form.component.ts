@@ -6,7 +6,7 @@ import { IFormSchema, IForm } from 'app/core/shared/_data/schema.model';
 @Component({
   selector: 'ab-form',
   templateUrl: './form.component.html',
-  styles: []
+  styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit, OnChanges {
   @Input() formSchema: IFormSchema;

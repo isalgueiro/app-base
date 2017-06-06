@@ -1,7 +1,8 @@
-import { Body, Controller, Get, HttpStatus, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, ExceptionFilters, Get, HttpStatus, Param, Post, Res, Session } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { LoggerService } from "../../core/shared/logger.service";
 import { UsersService } from "../users/users.service";
+import { UnknowExceptionFilter } from './../../core/shared/exceptions';
 import { CredentialsLogic } from "./credentials.logic";
 import {
   IUserActivation,
@@ -10,6 +11,7 @@ import {
   IUserInvitation, IUserPublicRegistration
 } from "./credentials.models";
 
+@ExceptionFilters(UnknowExceptionFilter)
 @Controller('credentials')
 export class CredentialsController {
   private logger: LoggerService = new LoggerService('CredentialsController');
@@ -72,19 +74,19 @@ export class CredentialsController {
 
   @Post('confirmation')
   public async postUserConfirmation( @Res() res: Response, @Body() userConfirmation: IUserConfirmation) {
-    res.status(HttpStatus.NO_CONTENT).json(null);
+    res.status(HttpStatus.NO_CONTENT).send();
   }
 
   @Post('activation')
   public async postUserActivation( @Res() res: Response, @Body() userActivation: IUserActivation) {
-    res.status(HttpStatus.NO_CONTENT).json(null);
+    res.status(HttpStatus.NO_CONTENT).send();
   }
 
   @Post()
   public async postCredentials( @Res() res: Response, @Body() userCredential: IUserCredential) {
     this.logger.value('userCredential', userCredential);
-    const userToken = await this.credentialsLogic.getUserToken(userCredential);
-    res.status(HttpStatus.OK).json({ access_token: userToken });
+    const token = await this.credentialsLogic.getUserToken(userCredential);
+    res.status(HttpStatus.CREATED).json({ access_token: token });
   }
 
 }

@@ -48,7 +48,7 @@ export class CredentialsLogic {
     return newUser;
   }
 
-  public async getUserToken(userCredential: IUserCredential): Promise<IUserToken> {
+  public async getUserToken(userCredential: IUserCredential): Promise<string> {
     const user = await this.usersService.getByEmail(userCredential.email);
     if (!user) {
       throw new NotFoundException('Invalid User');
@@ -58,14 +58,7 @@ export class CredentialsLogic {
       throw new NotFoundException('Invalid Credential');
     }
     const token = sign(credential, SETTINGS.secret);
-    const userToken: IUserToken = {
-      name: user.name,
-      email: user.email,
-      organizationId: user.organizationId,
-      roles: user.roles,
-      token
-    };
-    return userToken;
+    return token;
   }
 
   private createUserFromUserGodRegistration(userRegistration: IUserGodRegistration) {

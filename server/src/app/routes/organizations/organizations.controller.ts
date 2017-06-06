@@ -1,11 +1,13 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Query, Req, Res } from "@nestjs/common";
+import { Body, Controller, Delete, ExceptionFilters, Get, HttpStatus, Param, Post, Query, Res, Session } from '@nestjs/common';
 import { Request, Response } from "express";
 import { ROLE } from "../../core/shared/enums";
 import { LoggerService } from "../../core/shared/logger.service";
 import { UsersService } from "../users/users.service";
+import { UnknowExceptionFilter } from './../../core/shared/exceptions';
 import { IOrganizationDocument } from './organization.model';
 import { OrganizationsService } from "./organizations.service";
 
+@ExceptionFilters(UnknowExceptionFilter)
 @Controller('organizations')
 export class OrganizationsController {
   private logger: LoggerService = new LoggerService('OrganizationsController');
@@ -15,21 +17,21 @@ export class OrganizationsController {
   ) { }
 
   @Get()
-  public async getAll( @Req() req: Request, @Res() res: Response) {
+  public async getAll( @Res() res: Response) {
     const organizations = await this.organizationsService.getAll();
     res.status(HttpStatus.OK).json(organizations);
   }
 
   @Get('/:id/users')
   public async getByIdRole(
-    @Req() req: Request, @Res() res: Response,
+    @Res() res: Response,
     @Param('id') id: string, @Query('role') role: string) {
     const organizationUsers = await this.usersService.getByOrganizationRole(id, +role);
     res.status(HttpStatus.OK).json(organizationUsers);
   }
 
   @Get('count')
-  public async getCount( @Req() req: Request, @Res() res: Response) {
+  public async getCount( @Res() res: Response) {
     const organizationsCount = await this.organizationsService.getCount();
     res.status(HttpStatus.OK).json({ data: organizationsCount });
   }

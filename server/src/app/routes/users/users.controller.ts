@@ -1,14 +1,16 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Delete, ExceptionFilters, Get, HttpStatus, Param, Post, Res, Session } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { InternalServerErrorException } from '../../core/shared/exceptions';
+import { UnknowExceptionFilter } from './../../core/shared/exceptions';
 import { UsersService } from './users.service';
 
+@ExceptionFilters(UnknowExceptionFilter)
 @Controller('users')
 export class UsersController {
     constructor(private usersService: UsersService) { }
 
     @Get()
-    public async getAll( @Req() req: Request, @Res() res: Response) {
+    public async getAll( @Res() res: Response) {
         const users = await this.usersService.getAll();
         res.status(HttpStatus.OK).json(users);
     }

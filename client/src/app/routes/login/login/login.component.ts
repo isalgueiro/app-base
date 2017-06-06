@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   public formSchema: IFormSchema = {
     title: 'Log In',
     submitLabel: 'Send',
+    buttonBlock: true,
     controls: [
       {
         key: 'email',

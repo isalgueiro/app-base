@@ -35,10 +35,10 @@ export class UsersService {
 
   public async post(newUser: IUserDocument): Promise<IUserDocument> {
     const repository = await this.repository;
-    const userExists = await repository.findOne({ email: newUser.email });
+    /*const userExists = await repository.findOne({ email: newUser.email });
     if (userExists) {
       throw new ConflictException(`Email ''${newUser.email}'' exists.`);
-    }
+    }*/
     const savedUser = await repository.insert(newUser);
     return savedUser;
   }
