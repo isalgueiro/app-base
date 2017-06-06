@@ -3,6 +3,24 @@ HOST: 127.0.0.1:3000
 
 # APP
 
+# Group Organizations
+
+## Organizations Collection [/organizations]
+
+### Get All Organizations [GET]
+Retrieve all organizations.
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (array)
+        + OrganizationResponse
+
+### Create Organization [POST]
++ Request (application/json)
+    + Attributes (OrganizationRequest)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes (OrganizationResponse)
+
 # Group Users
 
 ## Users Collection [/users]
@@ -34,3 +52,27 @@ Get user by id
 + roles (array[number], required)
 + organizationId (string)
 + status (number, required)
+
+
+## OrganizationResponse 
++ _id (string, required)
++ name (string, required)
++ email (string, required)
++ phone (string, required)
++ url (string, required)
++ address (string, required)
++ description (string, required)
++ image (string, required)
++ standardPrice (number, required)
++ reducedPrice (number, required)
+
+## OrganizationRequest
++ name: Nueva Organization (string, required)
++ email: a@a.es (string, required)
++ phone: 123456 (string, required)
++ url: localhost (string, required)
++ address: Calle false (string, required)
++ description: Organizacion nueva (string, required)
++ image: imagen (string, required)
++ standardPrice: 20 (number, required)
++ reducedPrice: 15 (number, required)

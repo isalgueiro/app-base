@@ -1,4 +1,4 @@
-import {  Collection, Index, Instance, Model, ObjectID, Property, Transform } from 'iridium';
+import { Collection, Index, Instance, Model, ObjectID, Property, Transform } from 'iridium';
 
 export interface IOrganizationDocument {
     _id?: string;
@@ -30,8 +30,8 @@ export class Organization extends Instance<IOrganizationDocument, Organization> 
     public description: string;
     @Property(String, true)
     public image: string;
-    @Property(String, true)
-    public  standardPrice: number;
-    @Property(String, true)
+    @Property(Number, true)
+    public standardPrice: number;
+    @Property(Number, true)
     public reducedPrice: number;
 }
