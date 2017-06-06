@@ -22,7 +22,8 @@ export class FormToolsService {
   }
 
   getMessage(errors: { [key: string]: any }, field: string, schema: IFormSchema) {
-    const errorKey = errors[0];
+    // To Do: Repeat for every key
+    const errorKey = Object.keys(errors)[0];
     const control = schema.controls.find(c => c.key === field);
     if (control) {
       const validator = control.validators.find(v => v.key === errorKey);
@@ -30,7 +31,7 @@ export class FormToolsService {
         return validator.errorMessage;
       }
     } else {
-      return '';
+      return errorKey;
     }
   }
 
