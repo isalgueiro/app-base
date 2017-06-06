@@ -14,7 +14,24 @@ export class FormToolsService {
 
   getErrors(form: FormGroup, field: string, schema: IFormSchema) {
     const control = this.getControl(form, field);
-    return control && control.errors;
+    if (control && control.errors) {
+      return this.getMessage(control.errors, field, schema);
+    } else {
+      return '';
+    }
+  }
+
+  getMessage(errors: { [key: string]: any }, field: string, schema: IFormSchema) {
+    const errorKey = errors[0];
+    const control = schema.controls.find(c => c.key === field);
+    if (control) {
+      const validator = control.validators.find(v => v.key === errorKey);
+      if (validator) {
+        return validator.errorMessage;
+      }
+    } else {
+      return '';
+    }
   }
 
   getControl(form: FormGroup, field: string) {
