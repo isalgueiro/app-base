@@ -21,6 +21,17 @@ export class BusService {
   }
 
   emitHttpError(error) {
+    const errMsg = this.getMessageFromError(error);
+    this.emit({ level: Level.ERROR, text: errMsg });
+  }
+
+  emitSecurityError(error) {
+    const errMsg = this.getMessageFromError(error);
+    this.emit({ level: Level.WARNING, text: errMsg });
+  }
+
+
+  getMessageFromError(error) {
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';
@@ -29,9 +40,8 @@ export class BusService {
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
-    this.message$.next({ level: Level.ERROR, text: errMsg });
+    return errMsg;
   }
-
   navigateTo(target: any, args?: any) {
     this.router.navigate(target);
   }
