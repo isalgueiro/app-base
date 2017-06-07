@@ -8,12 +8,14 @@ import { IFormSchema } from 'app/core/shared/_data/schema.model';
   styles: []
 })
 export class GodOrganizationAdminComponent implements OnInit {
+
   @Input() organization;
   @Input() active: false;
   @Output() close = new EventEmitter<any>();
+
   public formSchema: IFormSchema = {
-    title: '',
-    submitLabel: 'Set Administrator',
+    title: 'Set Administrator',
+    submitLabel: 'Submit',
     controls: [
       {
         key: 'name',
@@ -33,7 +35,7 @@ export class GodOrganizationAdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.formSchema.title = this.organization ? this.organization.name : '';
+
   }
 
   onClose() {

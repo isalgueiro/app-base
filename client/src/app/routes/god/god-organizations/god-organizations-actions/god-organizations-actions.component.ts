@@ -6,7 +6,9 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styles: []
 })
 export class GodOrganizationsActionsComponent implements OnInit {
+
   @Output() public create = new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit() {
@@ -14,4 +16,5 @@ export class GodOrganizationsActionsComponent implements OnInit {
   onCreateOrganizationClick() {
     this.create.emit();
   }
+
 }

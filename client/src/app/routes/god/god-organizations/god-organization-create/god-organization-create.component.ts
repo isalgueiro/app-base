@@ -8,9 +8,11 @@ import { IFormSchema } from 'app/core/shared/_data/schema.model';
   styles: []
 })
 export class GodOrganizationCreateComponent implements OnInit {
+
   @Input() organization;
   @Input() active: false;
   @Output() close = new EventEmitter<any>();
+
   public formSchema: IFormSchema = {
     title: 'New Organization',
     submitLabel: 'Save Organization',
@@ -29,8 +31,8 @@ export class GodOrganizationCreateComponent implements OnInit {
       },
     ]
   };
-  constructor() {
-  }
+
+  constructor() { }
 
   ngOnInit() {
   }
@@ -45,4 +47,5 @@ export class GodOrganizationCreateComponent implements OnInit {
     console.table(newOrganization);
     this.close.emit(newOrganization);
   }
+
 }
