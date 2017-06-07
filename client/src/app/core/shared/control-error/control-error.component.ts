@@ -6,15 +6,17 @@ import { IFormControl, IForm } from 'app/core/shared/_data/schema.model';
 @Component({
   selector: 'ab-control-error',
   template: `
-    <small *ngIf="formTools.hasErrorsToShow(form.group,control.key)" class="float-right">
-      <em>{{ formTools.getErrors(form.group,control.key,form.schema) | json }}</em>
-    </small>
+    <ng-container *ngIf="formTools.hasErrorsToShow(form.group,control.key)">
+      <p class="form-input-hint">{{ formTools.getErrors(form.group,control.key,form.schema) | json }}</p>
+    </ng-container>
   `,
   styles: []
 })
 export class ControlErrorComponent implements OnInit {
+
   @Input() control: IFormControl;
   @Input() form: IForm;
+
   constructor(public formTools: FormToolsService) { }
 
   ngOnInit() {

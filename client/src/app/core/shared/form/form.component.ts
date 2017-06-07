@@ -9,9 +9,12 @@ import { IFormSchema, IForm } from 'app/core/shared/_data/schema.model';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit, OnChanges {
+
   @Input() formSchema: IFormSchema;
   @Output() send: EventEmitter<any> = new EventEmitter<any>();
+
   form: IForm;
+
   constructor(private formBuilder: FormBuilder, private formTools: FormToolsService) { }
 
   ngOnInit() {
