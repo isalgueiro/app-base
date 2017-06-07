@@ -20,7 +20,8 @@ const settingsProd: ISettings = {
       user: "",
       pass: ""
     },
-  }
+  },
+  path: '',
 };
 
 const settingsDev: ISettings = {
@@ -41,7 +42,8 @@ const settingsDev: ISettings = {
       user: "",
       pass: ""
     },
-  }
+  },
+  path: '',
 };
 
 export const SETTINGS = (isProd) ? settingsProd : settingsDev;

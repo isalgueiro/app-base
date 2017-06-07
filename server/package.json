@@ -7,7 +7,7 @@
     "test": "dredd",
     "build:complete": "webpack --config ./webpack.config.js --progress --display-error-details && node ./bin/build",
     "build": "webpack --config ./webpack.config.js --progress --display-error-details",
-    "start:prod": "NODE_ENV=prod && node ../dist/server/backend.js",
+    "start:prod": "NODE_ENV=prod node ../dist/server/backend.js",
     "start": "set NODE_ENV=dev&&nodemon -e ts --watch src ./index.js"
   },
   "repository": {

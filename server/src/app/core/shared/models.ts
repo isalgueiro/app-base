@@ -5,7 +5,7 @@ export interface ISettings {
     secret: string;
     database: Configuration;
     mailerSettings: IMailerSettings;
-
+    path: string;
 }
 
 export interface IMailerSettings {
