@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { IMessage } from 'app/core/shared/toast/toast.component';
+import { IMessage, LEVEL } from 'app/core/shared/toast/toast.component';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -29,7 +29,7 @@ export class BusService {
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
-    this.message$.next({ level: 'toast-error', text: errMsg });
+    this.message$.next({ level: LEVEL.ERROR, text: errMsg });
   }
 
   navigateTo(target: any, args?: any) {

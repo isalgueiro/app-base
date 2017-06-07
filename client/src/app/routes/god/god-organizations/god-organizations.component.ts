@@ -39,7 +39,7 @@ export class GodOrganizationsComponent implements OnInit {
         });
       },
       err => {
-        this.bus.emit({ level: 'toast-error', text: err.message });
+        this.bus.emitHttpError(err);
       });
   }
 
