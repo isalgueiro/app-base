@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { BusService } from 'app/core/shared/bus.service';
-import { IMessage } from 'app/core/shared/toast/toast.component';
+import { IMessage, Level } from 'app/core/shared/toast/toast.component';
 
 @Component({
   selector: 'ab-shell',
-  template: `
-    <ab-top-bar></ab-top-bar>
-    <ab-main-content></ab-main-content>
-    <ab-toast [show]="show" closeButton="true" [text]="text" [level]="level" ></ab-toast>
-  `,
-  styles: []
+  templateUrl: './shell.component.html',
+  styleUrls: ['./shell.component.css']
 })
 export class ShellComponent implements OnInit {
   public show: boolean;
   public text = '';
-  public level = '';
+  public level: Level;
   constructor(private bus: BusService) { }
 
   ngOnInit() {

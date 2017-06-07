@@ -1,19 +1,13 @@
-<div class="container">
-  <div class="columns">
-    <div class="column col-8 col-lg-12 centered">
-      <header class="navbar">
-        <section class="navbar-section">
-          <a href="#"
-             class="navbar-brand mr-10">{{ title }}</a>
-          <ng-container *ngFor="let menuLink of menuLinks">
-            <a [routerLink]="menuLink.href"
-               class="btn btn-link">{{ menuLink.title }}</a>
-          </ng-container>
-        </section>
-        <section class="navbar-section">
-          <figure class="avatar" data-initial="YZ" style="background-color: #5764c6;"></figure>
-        </section>
-      </header>
-    </div>
-  </div>
-</div>
+<header class="navbar">
+  <section class="navbar-section">
+    <a href="#"
+        class="navbar-brand mr-10">{{ title }}</a>
+    <ng-container *ngFor="let menuLink of menuLinks">
+      <a [routerLink]="menuLink.href"
+          class="btn btn-link">{{ menuLink.title }}</a>
+    </ng-container>
+  </section>
+  <section class="navbar-section">
+    <figure class="avatar" data-initial="YZ" style="background-color: #5764c6;"></figure>
+  </section>
+</header>

@@ -26,16 +26,18 @@ export class ToastComponent implements OnInit {
     this.show = false;
   }
 
-  getLevelClass() {
+  getLevelClass(): string {
     switch (this.level) {
       case Level.PRIMARY:
-        break;
+        return 'toast-primary';
       case Level.SUCCESS:
-        break;
+        return 'toast-success';
       case Level.WARNING:
-        break;
+        return 'toast-warning';
       case Level.ERROR:
-        break;
+        return 'toast-error';
+      default:
+        return 'toast-primary';
     }
   }
 
