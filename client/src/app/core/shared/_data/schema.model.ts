@@ -29,6 +29,7 @@ export interface IForm {
 
 export interface IReportSchema {
   title: string;
+  emptyMessage?: string;
   subtitle?: string;
   fields: IField[];
   actions: IAction[];

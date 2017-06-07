@@ -5,7 +5,7 @@
               [control]="control"></ab-input>
   </section>
   <section class="form-group">
-    <button [ngClass]="{'btn': true, 'btn-primary': true, 'btn-block': formSchema.buttonBlock === true}" type="submit"
+    <button [ngClass]="{'btn': true, 'btn-primary': true, 'btn-block': formSchema.buttonBlock}" type="submit"
             (click)="onClick()"
             [disabled]="form.group.invalid">
             {{ form.schema.submitLabel}}

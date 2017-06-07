@@ -25,6 +25,7 @@
     <div class="empty-icon">
       <i class="icon icon-message"></i>
     </div>
-    <h4 class="empty-title">There aren't any data to display :(</h4>
+    <h4 *ngIf="schema.emptyMessage" class="empty-title">{{ schema.emptyMessage }}</h4>
+    <h4 *ngIf="!schema.emptyMessage" class="empty-title">There aren't any data to display :(</h4>
   </div>
 </ng-template>
