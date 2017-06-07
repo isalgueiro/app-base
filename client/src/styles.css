@@ -2,3 +2,7 @@
 .empty .icon {
   font-size: 4rem;
 }
+
+form {
+  padding: 0px !important;
+}
