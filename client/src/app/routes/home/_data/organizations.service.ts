@@ -18,7 +18,7 @@ export class OrganizationsService {
       return Observable.of(this.organizations);
     } else {
       return this.http
-        .get('http://localhost:3000/organizations')
+        .get(this.url)
         .map(r => {
           const _data = r.json();
           this.organizations = _data;
