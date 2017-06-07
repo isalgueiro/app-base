@@ -23,7 +23,7 @@ export class GodDataService {
       .get(this.organizationsUrl)
       .map(res => res.json())
       .map(data => data.map(d => {
-        const org = { id: d.id, name: d.name, admin: { name: '', email: '', userId: '' } };
+        const org = { _id: d._id, name: d.name, admin: { name: '', email: '', userId: '' } };
         return org;
       }))
       .switchMap(orgs => {
@@ -41,7 +41,7 @@ export class GodDataService {
       .get(this.organizationsUrl)
       .map(res => res.json())
       .map(data => data.map(d => {
-        const org = { id: d.id, name: d.name, admin: { name: '', email: '', userId: '' } };
+        const org = { _id: d._id, name: d.name, admin: { name: '', email: '', userId: '' } };
         return org;
       }))
   }
@@ -68,6 +68,6 @@ export class GodDataService {
 
   deleteOrganization(oldOrganization) {
     return this.http
-      .delete(`${this.organizationsUrl}/${oldOrganization.id}`);
+      .delete(`${this.organizationsUrl}/${oldOrganization._id}`);
   }
 }

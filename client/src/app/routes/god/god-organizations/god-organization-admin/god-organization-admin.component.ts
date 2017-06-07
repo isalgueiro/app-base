@@ -12,7 +12,7 @@ export class GodOrganizationAdminComponent implements OnInit {
   @Input() active: false;
   @Output() close = new EventEmitter<any>();
   public formSchema: IFormSchema = {
-    title: 'organization?.name',
+    title: '',
     submitLabel: 'Set Administrator',
     controls: [
       {
@@ -33,6 +33,7 @@ export class GodOrganizationAdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.formSchema.title = this.organization ? this.organization.name : '';
   }
 
   onClose() {

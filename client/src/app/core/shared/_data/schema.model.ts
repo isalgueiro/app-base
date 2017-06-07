@@ -26,3 +26,22 @@ export interface IForm {
   group: FormGroup;
   schema: IFormSchema
 }
+
+export interface IReportSchema {
+  title: string;
+  subtitle?: string;
+  fields: IField[];
+  actions: IAction[];
+}
+
+export interface IField {
+  label: string;
+  name: string;
+  type: string;
+}
+
+export interface IAction {
+  label: string;
+  name: string;
+  icon: string;
+}

@@ -1,5 +1,5 @@
 export interface IOrganizationAdmin {
-  id: string;
+  _id: string;
   name: string;
   adminId?: string;
   adminName?: string;

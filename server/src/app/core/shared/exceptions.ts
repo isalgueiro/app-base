@@ -85,14 +85,16 @@ export class UnknowExceptionFilter implements ExceptionFilter {
       const error = mongoError(exception);
       response.status(error.status);
       message = error.message || message;
+    } else {
+      if (exception.isValidationError || exception.message === invalidId) {
+        message = exception.message;
+        response.status(HttpStatus.BAD_REQUEST);
+      } else {
+        response.status(HttpStatus.INTERNAL_SERVER_ERROR);
+      }
     }
 
-    if (exception.isValidationError || exception.message === invalidId) {
-      message = exception.message;
-      response.status(HttpStatus.BAD_REQUEST);
-    } else {
-      response.status(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+
     response.json({ message });
 
   }

@@ -18,7 +18,7 @@ export class GodHomeComponent implements OnInit {
       data => this.organizationsCount = data
       ,
       err => {
-        this.bus.emit({ level: 'toast-error', text: err });
+        this.bus.emitHttpError(err);
       });
   }
 
