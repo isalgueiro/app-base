@@ -6,11 +6,13 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+
   @Input() schema: IField[];
   @Input() actions: IAction[];
   @Input() data: any[];
   @Output() rowClick = new EventEmitter<any>();
   @Output() rowAction = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
