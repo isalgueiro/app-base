@@ -16,10 +16,7 @@ export class GodHomeComponent implements OnInit {
       .getOrganizationsCount()
       .subscribe(
       data => this.organizationsCount = data
-      ,
-      err => {
-        this.bus.emitHttpError(err);
-      });
+      );
   }
 
 }

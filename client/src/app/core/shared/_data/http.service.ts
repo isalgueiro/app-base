@@ -21,7 +21,7 @@ export class HttpService extends Http {
 
   request(request: string | Request, options?: RequestOptionsArgs): Observable<Response> {
     this.configureRequest(request, options);
-    return super.request(request, options);
+    return this.interceptResponse(request, options);
   }
   private configureRequest(request: string | Request, options: RequestOptionsArgs) {
     if (typeof request === 'string') {
@@ -35,10 +35,11 @@ export class HttpService extends Http {
   private interceptResponse(url: string | Request, options: RequestOptionsArgs): Observable<Response> {
     const observableRequest = super
       .request(url, options)
-      .catch(this.onCatch());
+      .catch(this.onCatch.bind(this));
     return observableRequest;
   }
   private getApiUrl(currentUrl) {
+    console.log(currentUrl);
     if (currentUrl.includes('/assets/')) {
       return currentUrl;
     } else {
@@ -49,16 +50,14 @@ export class HttpService extends Http {
     const headers = request.headers;
     headers.set('Authorization', this.authorization);
   }
-  private onCatch() {
-    return (res: Response) => {
-      if (this.isSecurityError(res)) {
-        this.bus.emitSecurityError(res);
-        this.bus.navigateTo(['/login']);
-      } else {
-         this.bus.emitHttpError(res);
-      }
-      return Observable.throw(res);
-    };
+  private onCatch(res) {
+    if (this.isSecurityError(res)) {
+      this.bus.emitSecurityError(res);
+      this.bus.navigateTo(['/login']);
+    } else {
+      this.bus.emitHttpError(res);
+    }
+    return Observable.throw(res);
   }
   private isSecurityError(res) {
     return res.status === 401 || res.status === 403 || res.status === 419;

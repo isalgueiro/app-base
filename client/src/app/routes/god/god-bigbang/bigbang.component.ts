@@ -41,9 +41,6 @@ export class GodBigbangComponent implements OnInit {
       r => {
         console.warn(r.json());
         this.bus.navigateTo(['/god']);
-      },
-      error => {
-        this.bus.emitHttpError(error);
       });
   }
 

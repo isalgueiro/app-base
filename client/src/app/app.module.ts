@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from 'app/core/layout/layout.module';
 import { SharedModule } from 'app/core/shared/shared.module';
 import { BusService } from 'app/core/shared/bus.service';
-import { Http, XHRBackend, RequestOptions } from '@angular/http';
+import { Http, XHRBackend, RequestOptions, HttpModule } from '@angular/http';
 import { HttpService } from 'app/core/shared/_data/http.service';
 
 @NgModule({
@@ -14,6 +14,7 @@ import { HttpService } from 'app/core/shared/_data/http.service';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     LayoutModule,
     SharedModule
   ],
@@ -22,7 +23,7 @@ import { HttpService } from 'app/core/shared/_data/http.service';
     {
       provide: Http,
       useClass: HttpService,
-      deps: [XHRBackend, RequestOptions]
+      deps: [XHRBackend, RequestOptions, BusService]
     }
   ],
   bootstrap: [AppComponent]

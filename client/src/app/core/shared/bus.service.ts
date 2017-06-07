@@ -9,14 +9,13 @@ export class BusService {
 
   private message$ = new Subject<IMessage>();
 
-  constructor(private router: Router) {
-    console.log('new BUS');
-  }
+  constructor(private router: Router) { }
 
   getMessage$(): Observable<IMessage> {
     return this.message$.asObservable();
   }
   emit(message: IMessage) {
+    console.log('emiting', JSON.stringify(message));
     this.message$.next(message);
   }
 
@@ -40,6 +39,7 @@ export class BusService {
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
+    console.warn(errMsg);
     return errMsg;
   }
   navigateTo(target: any, args?: any) {

@@ -19,7 +19,15 @@ import { GodOrganizationDeleteComponent } from './god-organizations/god-organiza
     GodRoutingModule,
     SharedModule
   ],
-  declarations: [GodBigbangComponent, GodHomeComponent, GodOrganizationsComponent, GodOrganizationAdminComponent, GodOrganizationCreateComponent, GodOrganizationsListComponent, GodOrganizationsActionsComponent, GodOrganizationDeleteComponent],
+  declarations: [
+    GodBigbangComponent,
+    GodHomeComponent,
+    GodOrganizationsComponent,
+    GodOrganizationAdminComponent,
+    GodOrganizationCreateComponent,
+    GodOrganizationsListComponent,
+    GodOrganizationsActionsComponent,
+    GodOrganizationDeleteComponent],
   providers: [GodDataService],
   schemas: [NO_ERRORS_SCHEMA]
 })

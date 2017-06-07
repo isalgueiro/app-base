@@ -37,9 +37,6 @@ export class GodOrganizationsComponent implements OnInit {
               org.admin = user[0];
             });
         });
-      },
-      err => {
-        this.bus.emitHttpError(err);
       });
   }
 
