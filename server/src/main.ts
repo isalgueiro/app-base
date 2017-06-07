@@ -12,11 +12,11 @@ const logger = new Logger('Main');
 const instance = express();
 instance.use(bodyParser.json());
 instance.use(cors());
-instance.use(express.static(join(__dirname + '/../../dist/client/')));
+instance.use(express.static(join(__dirname + '../client/')));
 
 instance.all('/', function (req, res) {
-    console.log(join(__dirname, '/../../dist/client/index.html'));
-    res.sendFile(join(__dirname + '/../../dist/client/index.html'));
+    console.log(join(__dirname, '../client/index.html'));
+    res.sendFile(join(__dirname + '../client/index.html'));
 });
 
 const app = NestFactory.create(AppModule, instance);
