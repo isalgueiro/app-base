@@ -1,3 +1,7 @@
+.modal-title {
+  font-size: 2rem !important;
+}
+
 .modal-container {
   width: 64rem;
 }
