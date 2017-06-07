@@ -3,6 +3,7 @@
          class="form-label">{{ control.label }}:</label>
   <input [formControlName]="control.key"
          class="form-input"
+         [ngClass]="{'is-error': formTools.hasErrorsToShow(form.group,control.key)}"
          [type]="control.type" />
   <ab-control-error [form]="form"
                     [control]="control">

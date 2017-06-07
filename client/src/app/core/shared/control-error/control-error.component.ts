@@ -7,10 +7,10 @@ import { IFormControl, IForm } from 'app/core/shared/_data/schema.model';
   selector: 'ab-control-error',
   template: `
     <ng-container *ngIf="formTools.hasErrorsToShow(form.group,control.key)">
-      <p class="form-input-hint">{{ formTools.getErrors(form.group,control.key,form.schema) | json }}</p>
+      <p class="form-input-hint hint-error">{{ formTools.getErrors(form.group,control.key,form.schema) | json }}</p>
     </ng-container>
   `,
-  styles: []
+  styles: [` .hint-error { color: #e85600; } `]
 })
 export class ControlErrorComponent implements OnInit {
 

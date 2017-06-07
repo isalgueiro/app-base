@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IFormControl, IForm } from 'app/core/shared/_data/schema.model';
+import { FormToolsService } from 'app/core/shared/form-tools.service';
 
 @Component({
   selector: 'ab-input',
@@ -12,7 +13,7 @@ export class InputComponent implements OnInit {
   @Input() control: IFormControl;
   @Input() form: IForm;
 
-  constructor() { }
+  constructor(public formTools: FormToolsService) { }
 
   ngOnInit() {
   }
