@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { IReportSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-table',
@@ -6,8 +7,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styles: []
 })
 export class TableComponent implements OnInit {
-  @Input() schema: IField[];
-  @Input() actions: IAction[];
+  @Input() schema: IReportSchema[];
   @Input() data: any[];
   @Output() rowClick = new EventEmitter<any>();
   @Output() rowAction = new EventEmitter<any>();
@@ -44,14 +44,3 @@ export class TableComponent implements OnInit {
   }
 }
 
-export interface IField {
-  label: string;
-  name: string;
-  type: string;
-}
-
-export interface IAction {
-  label: string;
-  name: string;
-  icon: string;
-}
