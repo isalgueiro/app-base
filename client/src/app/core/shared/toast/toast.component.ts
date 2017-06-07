@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'ab-toast',
@@ -8,9 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ToastComponent implements OnInit {
 
   @Input() show: boolean;
-  @Input() closeButton: boolean;
+  @Input() closeButton?: boolean;
   @Input() level: Level;
   @Input() text: string;
+
+  @Output() close = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -18,12 +20,14 @@ export class ToastComponent implements OnInit {
     if (!this.closeButton) {
       setTimeout(() => {
         this.show = false;
+        this.close.emit(false);
       }, 3000);
     }
   }
 
   onCloseClick() {
     this.show = false;
+    this.close.emit(false);
   }
 
   getLevelClass(): string {

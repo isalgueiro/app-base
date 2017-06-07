@@ -5,8 +5,8 @@
               [control]="control"></ab-input>
   </section>
   <section class="form-group">
-    <button [ngClass]="{'btn': true, 'btn-primary': true, 'btn-block': formSchema.buttonBlock}" type="submit"
-            (click)="onClick()"
+    <button [ngClass]="{'btn btn-primary float-right': true, 'btn-block': formSchema.buttonBlock}" type="submit"
+            (click)="onClick(); form.group.reset();"
             [disabled]="form.group.invalid">
             {{ form.schema.submitLabel}}
     </button>
