@@ -1,20 +1,22 @@
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th *ngFor="let field of schema.fields">{{ field.label }}</th>
-      <th *ngFor="let action of schema.actions">{{ action.label }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let row of data"
-        (click)="onRowClick(row)">
-      <td *ngFor="let field of schema.fields">
-        {{ valueByPath(row,field.name) }}
-      </td>
-      <td *ngFor="let action of schema.actions">
-        <button class="btn"
-                (click)="onActionClick(action,row)"><i [class]="'icon ' + action.icon"></i></button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-container">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th *ngFor="let field of schema">{{ field.label }}</th>
+        <th *ngFor="let action of actions">{{ action.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data"
+          (click)="onRowClick(row)">
+        <td *ngFor="let field of schema">
+          {{ valueByPath(row,field.name) }}
+        </td>
+        <td *ngFor="let action of actions">
+          <button class="btn"
+                  (click)="onActionClick(action,row)"><i [class]="'icon ' + action.icon"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
