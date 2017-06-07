@@ -1,5 +1,6 @@
 <div class="modal"
-     [ngClass]="{active:active}">
+     [ngClass]="{active:active}"
+     (window:keyup.escape)="onClose()">
   <div class="modal-overlay"></div>
   <div class="modal-container">
     <div class="modal-header">
