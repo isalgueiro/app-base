@@ -3,7 +3,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'ab-table',
   templateUrl: './table.component.html',
-  styles: []
+  styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
   @Input() schema: IField[];
