@@ -17,10 +17,10 @@ export class HttpService extends Http {
     private bus: BusService
   ) {
     super(backend, defaultOptions);
-    this.authorization = 'Basic ' + localStorage.getItem('token');
   }
 
   request(request: string | Request, options?: RequestOptionsArgs): Observable<any> {
+    this.authorization = 'Bearer ' + localStorage.getItem('userToken');
     this.configureRequest(request, options);
     return this.interceptResponse(request, options);
   }

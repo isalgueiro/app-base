@@ -6,15 +6,18 @@ import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
 @Module({
-    components: [UsersService],
-    controllers: [UsersController],
-    exports: [UsersService],
-    modules: [SharedModule],
+  components: [UsersService],
+  controllers: [UsersController],
+  exports: [UsersService],
+  modules: [SharedModule],
 })
 export class UsersModule {
-    /* public configure(consumer: MiddlewaresConsumer) {
-         consumer
-             .apply(AuthMiddleware).forRoutes(UsersController)
-             .apply(RolesMiddleware).with(roles).forRoutes(UsersController);
-     }*/
+  public configure(consumer: MiddlewaresConsumer) {
+    consumer
+      .apply(AuthMiddleware)
+      .forRoutes(
+      { path: '/users/me', method: RequestMethod.GET }
+      );
+
+  }
 }

@@ -1,9 +1,8 @@
-export interface IUserToken {
+export interface IUser {
   email: string;
   name: string;
   organizationId: string;
   roles: ROLE[];
-  token: string;
 }
 
 export enum ROLE {

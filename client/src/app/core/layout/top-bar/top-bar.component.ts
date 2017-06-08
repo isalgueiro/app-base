@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IMenuLink } from 'app/core/layout/_data/models/menu-link.model';
+import { BusService } from 'app/core/shared/bus.service';
 
 @Component({
   selector: 'ab-top-bar',
@@ -7,7 +8,7 @@ import { IMenuLink } from 'app/core/layout/_data/models/menu-link.model';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
-
+  userInitials = 'AY';
   title = 'Angular Base';
   menuLinks: IMenuLink[] = [
     {
@@ -20,9 +21,11 @@ export class TopBarComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private bus: BusService) { }
 
   ngOnInit() {
+    this.bus.getUser$()
+      .subscribe(user => this.userInitials = user ? user.name.substr(0, 2) : '')
   }
 
 }

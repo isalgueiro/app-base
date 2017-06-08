@@ -8,7 +8,12 @@ import { UsersService } from "../users/users.service";
 import { IUserDocument, User } from './../users/user.model';
 import { ICredentialDocument } from './credential.model';
 import {
-  IUserClientRegistration, IUserCredential, IUserGodRegistration, IUserInvitation, IUserPublicRegistration, IUserToken
+  IUserClientRegistration,
+  IUserCredential,
+  IUserGodRegistration,
+  IUserInvitation,
+  IUserPublicRegistration,
+  IUserToken
 } from "./credentials.models";
 import { CredentialsService } from "./credentials.service";
 
@@ -57,7 +62,7 @@ export class CredentialsLogic {
     if (!credential) {
       throw new NotFoundException('Invalid Credential');
     }
-    const token = sign(credential, SETTINGS.secret);
+    const token = sign(JSON.stringify(user), SETTINGS.secret);
     return token;
   }
 

@@ -1,13 +1,18 @@
 <header class="navbar">
   <section class="navbar-section">
     <a href="#"
-        class="navbar-brand mr-10">{{ title }}</a>
+       class="navbar-brand mr-10">{{ title }}</a>
     <ng-container *ngFor="let menuLink of menuLinks">
       <a [routerLink]="menuLink.href"
-          class="btn btn-link">{{ menuLink.title }}</a>
+         class="btn btn-link">{{ menuLink.title }}</a>
     </ng-container>
   </section>
   <section class="navbar-section">
-    <figure class="avatar" data-initial="YZ" style="background-color: #5764c6;"></figure>
+    <figure class="avatar"
+            *ngIf="userInitials"
+            [attr.data-initial]="userInitials"
+            style="background-color: #5764c6;"></figure>
+    <i *ngIf="!userInitials"
+       class="icon icon-people"></i>
   </section>
 </header>
