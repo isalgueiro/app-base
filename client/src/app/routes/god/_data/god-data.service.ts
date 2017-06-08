@@ -4,13 +4,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs/Observable';
-import { ROLE } from 'app/routes/login/login/login.component';
+import { ROLE } from 'app/routes/god/_data/user.model';
+import { BusService } from 'app/core/shared/bus.service';
 
 @Injectable()
 export class GodDataService {
-  private organizationsUrl = 'http://localhost:3000/organizations';
-  private credentialsUrl = 'http://localhost:3000/credentials';
-  constructor(private http: Http) { }
+  private organizationsUrl = 'organizations';
+  private credentialsUrl = 'credentials';
+  constructor(private http: Http, private bus: BusService) { }
 
   getOrganizationsCount(): Observable<number> {
     return this.http
@@ -57,8 +58,7 @@ export class GodDataService {
   setOrganizationAdmin(newAdmin) {
     newAdmin.role = ROLE.ADMIN;
     return this.http
-      .post(`${this.credentialsUrl}/invitation`, newAdmin)
-      .map(res => res.json());
+      .post(`${this.credentialsUrl}/invitation`, newAdmin);
   }
 
   postOrganization(newOrganization) {
@@ -69,5 +69,11 @@ export class GodDataService {
   deleteOrganization(oldOrganization) {
     return this.http
       .delete(`${this.organizationsUrl}/${oldOrganization._id}`);
+  }
+
+  createBigbang(credentials) {
+    this.http
+      .post(`${this.credentialsUrl}/bigbang`, credentials)
+      .subscribe(r => this.bus.navigateTo(['/god']));
   }
 }

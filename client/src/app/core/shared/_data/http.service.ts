@@ -4,10 +4,11 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { BusService } from 'app/core/shared/bus.service';
+import { environment } from './../../../../environments/environment';
 
 @Injectable()
 export class HttpService extends Http {
-  public apiProxyUrl = '';
+  public apiUrl = environment.apiUrl;
   private authorization = '';
 
   constructor(
@@ -19,7 +20,7 @@ export class HttpService extends Http {
     this.authorization = 'Basic ' + localStorage.getItem('token');
   }
 
-  request(request: string | Request, options?: RequestOptionsArgs): Observable<Response> {
+  request(request: string | Request, options?: RequestOptionsArgs): Observable<any> {
     this.configureRequest(request, options);
     return this.interceptResponse(request, options);
   }
@@ -32,18 +33,17 @@ export class HttpService extends Http {
       this.setHeaders(request);
     }
   }
-  private interceptResponse(url: string | Request, options: RequestOptionsArgs): Observable<Response> {
+  private interceptResponse(url: string | Request, options: RequestOptionsArgs): Observable<any> {
     const observableRequest = super
       .request(url, options)
       .catch(this.onCatch.bind(this));
     return observableRequest;
   }
   private getApiUrl(currentUrl) {
-    console.log(currentUrl);
     if (currentUrl.includes('/assets/')) {
       return currentUrl;
     } else {
-      return this.apiProxyUrl + currentUrl;
+      return this.apiUrl + currentUrl;
     }
   }
   private setHeaders(request: Request | RequestOptionsArgs) {

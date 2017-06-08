@@ -14,15 +14,9 @@ export class HomeComponent implements OnInit {
   constructor(private organizationsService: OrganizationsService) { }
 
   ngOnInit() {
-    this.organizationsService.getAll().subscribe(d => {
-      if (d.length > 0) {
-        this.organizations = d;
-      } else {
-        this.organizationsService.postSeed().subscribe(r => {
-          this.organizationsService.getAll().subscribe(d2 => this.organizations = d2);
-        })
-      }
-    });
+    this.organizationsService
+      .getAll()
+      .subscribe(data => this.organizations = data);
   }
 
 }

@@ -28,16 +28,17 @@ export class GodOrganizationsComponent implements OnInit {
     this.godData
       .getOrganizations()
       .do(data => this.organizations = data)
-      .subscribe(
-      data => {
-        this.organizations.forEach(org => {
-          this.godData
-            .getOrganizationAdmin(org._id)
-            .subscribe(user => {
-              org.admin = user[0];
-            });
-        });
-      });
+      .subscribe(this.getOrganizationsAdmins.bind(this));
+  }
+
+  getOrganizationsAdmins() {
+    this.organizations.forEach(this.getOrganizationAdmin.bind(this));
+  }
+
+  getOrganizationAdmin(organization) {
+    this.godData
+      .getOrganizationAdmin(organization._id)
+      .subscribe(user => organization.admin = user[0]);
   }
 
   onSetAdmin(organization) {

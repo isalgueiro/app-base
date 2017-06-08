@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
 import { IFormSchema } from 'app/core/shared/_data/schema.model';
-import { BusService } from 'app/core/shared/bus.service';
+import { LoginService, IUserCredential } from 'app/routes/login/_data/login.service';
 
 @Component({
   selector: 'ab-login',
@@ -32,55 +31,16 @@ export class LoginComponent implements OnInit {
     ]
   };
 
-  constructor(public http: Http, public bus: BusService) { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
-  onSend(credentials) {
-    this.http
-      .post('http://localhost:3000/credentials', credentials)
-      .subscribe(r => {
-        const userToken: IUserToken = r.json().access_token;
-        localStorage.setItem('token', JSON.stringify(userToken));
-        console.log(JSON.stringify(userToken));
-        if (userToken.roles.findIndex(r2 => r2 === ROLE.GOD) >= 0) {
-          this.bus.navigateTo(['/god']);
-        } else {
-          this.bus.navigateTo(['/']);
-        }
-      });
+  onSend(credentials: IUserCredential) {
+    this.loginService
+      .postLogIn(credentials);
   }
 
 }
 
 
-export interface IUserCredential {
-  email: string;
-  password: string;
-}
-
-export interface IUserToken {
-  email: string;
-  name: string;
-  organizationId: string;
-  roles: ROLE[];
-  token: string;
-}
-
-export enum ROLE {
-  ADMIN,
-  CLIENT,
-  GOD,
-  ORGANIZER,
-  PUBLIC,
-  USHER,
-}
-
-export enum STATUS {
-  PENDING,
-  CONFIRMED,
-  ACTIVE,
-  DISABLED,
-  CANCELED
-}

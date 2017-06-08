@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Http } from '@angular/http';
 import { IFormSchema } from 'app/core/shared/_data/schema.model';
-import { BusService } from 'app/core/shared/bus.service';
+import { GodDataService } from 'app/routes/god/_data/god-data.service';
 
 @Component({
   selector: 'ab-god-bigbang',
@@ -30,18 +29,13 @@ export class GodBigbangComponent implements OnInit {
     ]
   };
 
-  constructor(private http: Http, private bus: BusService) { }
+  constructor(private godData: GodDataService) { }
 
   ngOnInit() { }
 
   onSend(credentials) {
-    this.http
-      .post('http://localhost:3000/credentials/bigbang', credentials)
-      .subscribe(
-      r => {
-        console.warn(r.json());
-        this.bus.navigateTo(['/god']);
-      });
+    this.godData
+      .createBigbang(credentials);
   }
 
 }

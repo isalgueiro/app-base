@@ -14,9 +14,7 @@ export class GodHomeComponent implements OnInit {
   ngOnInit() {
     this.godData
       .getOrganizationsCount()
-      .subscribe(
-      data => this.organizationsCount = data
-      );
+      .subscribe(count => this.organizationsCount = count);
   }
 
 }
