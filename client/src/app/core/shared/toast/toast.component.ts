@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, SimpleChanges, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'ab-toast',
   templateUrl: './toast.component.html',
   styles: []
 })
-export class ToastComponent implements OnInit {
+export class ToastComponent implements OnInit, OnChanges {
 
   @Input() show: boolean;
   @Input() closeButton?: boolean;
@@ -16,12 +16,16 @@ export class ToastComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    if (!this.closeButton) {
-      setTimeout(() => {
-        this.show = false;
-        this.close.emit(false);
-      }, 3000);
+  ngOnInit() { }
+
+  ngOnChanges(change: SimpleChanges) {
+    if (change.show && change.show.currentValue === true) {
+      if (!this.closeButton) {
+        setTimeout(() => {
+          this.show = false;
+          this.close.emit(false);
+        }, 3000);
+      }
     }
   }
 
