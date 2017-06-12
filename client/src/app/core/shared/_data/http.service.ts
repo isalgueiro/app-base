@@ -17,6 +17,7 @@ export class HttpService extends Http {
     private bus: BusService
   ) {
     super(backend, defaultOptions);
+    // To Do: subscribe to token changes
   }
 
   request(request: string | Request, options?: RequestOptionsArgs): Observable<any> {

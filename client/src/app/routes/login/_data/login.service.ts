@@ -20,13 +20,6 @@ export class LoginService {
             const user = res.json();
             this.bus.emitUserStatus(user);
           })
-        // TO Do: getCurrentUser();
-        // this.bus.emitUserStatus(userToken);
-        // if (userToken.roles.findIndex(r2 => r2 === ROLE.GOD) >= 0) {
-        //   this.bus.navigateTo(['/god']);
-        // } else {
-        //   this.bus.navigateTo(['/']);
-        // }
       });
   }
 }

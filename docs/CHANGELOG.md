@@ -3,7 +3,7 @@
 The change log is a living document...
 
 ## [0.6.0] (15-06-2017)
-- Bus service without business logic
+- Bus and Http service without business logic
 - Update server dependencies
 # **Scenario 3:** User profile and passwords
 
