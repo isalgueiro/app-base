@@ -49,14 +49,22 @@ export class BusService {
   getMessageFromError(error) {
     let errMsg: string;
     if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+      errMsg = this.getMessageFromResponse(error);
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
     console.warn(errMsg);
     return errMsg;
+  }
+
+  getMessageFromResponse(error) {
+    const body = error.json() || '';
+    const errMsg = `${error.status} - ${error.statusText || ''} ${body}`;
+    return errMsg;
+  }
+
+  getBodyError(body) {
+
   }
   navigateTo(target: any, args?: any) {
     this.router.navigate(target);

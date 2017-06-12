@@ -19,13 +19,21 @@ export class ToastComponent implements OnInit, OnChanges {
   ngOnInit() { }
 
   ngOnChanges(change: SimpleChanges) {
-    if (change.show && change.show.currentValue === true) {
-      if (!this.closeButton) {
-        setTimeout(() => {
-          this.show = false;
-          this.close.emit(false);
-        }, 3000);
-      }
+    if (this.changedToShow(change)) {
+      this.autoCloseIfNoButton();
+    }
+  }
+
+  changedToShow(change) {
+    return change.show && change.show.currentValue === true
+  }
+
+  autoCloseIfNoButton() {
+    if (!this.closeButton) {
+      setTimeout(() => {
+        this.show = false;
+        this.close.emit(false);
+      }, 3000);
     }
   }
 
@@ -35,18 +43,22 @@ export class ToastComponent implements OnInit, OnChanges {
   }
 
   getLevelClass(): string {
+    let levelClass = 'toast-primary';
     switch (this.level) {
       case Level.PRIMARY:
-        return 'toast-primary';
+        levelClass = 'toast-primary';
+        break;
       case Level.SUCCESS:
-        return 'toast-success';
+        levelClass = 'toast-success';
+        break;
       case Level.WARNING:
-        return 'toast-warning';
+        levelClass = 'toast-warning';
+        break;
       case Level.ERROR:
-        return 'toast-error';
-      default:
-        return 'toast-primary';
+        levelClass = 'toast-error';
+        break;
     }
+    return levelClass;
   }
 
 }
