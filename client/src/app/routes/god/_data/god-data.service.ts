@@ -74,6 +74,11 @@ export class GodDataService {
   createBigbang(credentials) {
     this.http
       .post(`${this.credentialsUrl}/bigbang`, credentials)
-      .subscribe(r => this.bus.navigateTo(['/god']));
+      .subscribe(
+      r => {
+        // To Do: auto log in
+        this.bus.navigateTo(['/login'])
+      }
+      );
   }
 }

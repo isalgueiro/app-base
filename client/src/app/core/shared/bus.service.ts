@@ -9,15 +9,15 @@ import { IUser } from 'app/routes/god/_data/user.model';
 export class BusService {
 
   private message$ = new Subject<IMessage>();
+  private userToken$ = new Subject<string>();
   private user$ = new Subject<IUser>();
   private userTokenKey = 'userToken';
   constructor(private router: Router) {
     const userSavedToken = localStorage.getItem(this.userTokenKey);
     if (userSavedToken) {
-      const userToken: IUser = JSON.parse(userSavedToken);
-      this.user$.next(userToken);
+      this.userToken$.next(userSavedToken);
     } else {
-      this.user$.next(null);
+      this.userToken$.next(null);
     }
   }
 
@@ -36,14 +36,25 @@ export class BusService {
   emitSecurityError(error) {
     const errMsg = this.getMessageFromError(error);
     this.emit({ level: Level.WARNING, text: errMsg });
+    this.navigateTo(['/login']);
   }
 
   emitUserStatus(user) {
     this.user$.next(user);
+    this.navigateTo(['/']);
   }
 
   getUser$(): Observable<IUser> {
     return this.user$.asObservable();
+  }
+
+  emitUserToken(userToken: string) {
+    localStorage.setItem(this.userTokenKey, userToken);
+    this.userToken$.next(userToken);
+  }
+
+  getUserToken$(): Observable<string> {
+    return this.userToken$.asObservable();
   }
 
   getMessageFromError(error) {

@@ -13,7 +13,7 @@ export class LoginService {
       .post(this.url, credentials)
       .subscribe(r => {
         const userToken: string = r.json().access_token;
-        localStorage.setItem('userToken', userToken);
+        this.bus.emitUserToken(userToken);
         this.http
           .get('users/me')
           .subscribe(res => {

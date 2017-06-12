@@ -17,11 +17,10 @@ export class HttpService extends Http {
     private bus: BusService
   ) {
     super(backend, defaultOptions);
-    // To Do: subscribe to token changes
+    this.subscribeToTokenChanges();
   }
 
   request(request: string | Request, options?: RequestOptionsArgs): Observable<any> {
-    this.authorization = 'Bearer ' + localStorage.getItem('userToken');
     this.configureRequest(request, options);
     return this.interceptResponse(request, options);
   }
@@ -54,14 +53,18 @@ export class HttpService extends Http {
   private onCatch(res) {
     if (this.isSecurityError(res)) {
       this.bus.emitSecurityError(res);
-      this.bus.navigateTo(['/login']);
     } else {
       this.bus.emitHttpError(res);
     }
     return Observable.throw(res);
   }
   private isSecurityError(res) {
-    return res.status === 401 || res.status === 403 || res.status === 419;
+    return res.status === 401 || res.status === 419;
   }
 
+  private subscribeToTokenChanges() {
+    this.bus
+      .getUserToken$()
+      .subscribe(token => this.authorization = 'Bearer ' + token);
+  }
 }
