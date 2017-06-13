@@ -8,7 +8,7 @@ import { IReportSchema } from 'app/core/shared/_data/schema.model';
 })
 export class TableComponent implements OnInit {
 
-  @Input() schema: IReportSchema[];
+  @Input() schema: IReportSchema;
   @Input() data: any[];
   @Output() rowClick = new EventEmitter<any>();
   @Output() rowAction = new EventEmitter<any>();

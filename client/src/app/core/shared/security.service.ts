@@ -4,6 +4,7 @@ import { BusService } from 'app/core/shared/bus.service';
 import { Router } from '@angular/router';
 import { environment } from './../../../environments/environment';
 import { IUser } from 'app/core/shared/_data/user.model';
+import { Level } from 'app/core/shared/_data/message.model';
 
 @Injectable()
 export class SecurityService {
@@ -47,7 +48,10 @@ export class SecurityService {
     this.http
       .post(`${this.url}/bigbang`, secret)
       .subscribe(
-      r => this.logInUser({ email: environment.godEmail, password: environment.secret })
+      r => {
+        this.logInUser({ email: environment.godEmail, password: environment.secret });
+        this.bus.emit({ level: Level.SUCCESS, text: 'Big Bang!!' });
+      }
       );
   }
 
@@ -65,9 +69,9 @@ export class SecurityService {
 
   private saveUser(res) {
     const user: IUser = res.json();
-    console.table(user);
     localStorage.setItem(this.userKey, JSON.stringify(user));
     this.bus.emitUser(user);
+    this.bus.emit({ level: Level.SUCCESS, text: user.name + ' logged in!!' });
     this.navigateTo(['/']);
   }
 
