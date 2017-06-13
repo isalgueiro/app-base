@@ -13,6 +13,7 @@ import { ModalComponent } from './modal/modal.component';
 import { ToastComponent } from './toast/toast.component';
 import { BusService } from 'app/core/shared/bus.service';
 import { PanelComponent } from './panel/panel.component';
+import { SecurityService } from 'app/core/shared/security.service';
 
 @NgModule({
   imports: [
@@ -35,6 +36,6 @@ import { PanelComponent } from './panel/panel.component';
     TableComponent,
     ToastComponent,
     TileComponent],
-  providers: [FormToolsService]
+  providers: [FormToolsService, SecurityService]
 })
 export class SharedModule { }

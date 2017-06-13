@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from 'app/core/shared/shared.module';
-import { LoginService } from 'app/routes/login/_data/login.service';
 
 
 @NgModule({
@@ -13,7 +12,7 @@ import { LoginService } from 'app/routes/login/_data/login.service';
     SharedModule
   ],
   declarations: [LoginComponent],
-  providers: [LoginService],
+  providers: [],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class LoginModule { }

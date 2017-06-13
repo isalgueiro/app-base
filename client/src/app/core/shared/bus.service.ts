@@ -41,9 +41,11 @@ export class BusService {
     this.securityErr$.next(errMsg);
   }
   emitUser(user) {
+    console.log('emitUser:', JSON.stringify(user));
     this.user$.next(user);
   }
   emitUserToken(userToken: string) {
+    console.log('emitUserToken:', userToken);
     this.userToken$.next(userToken);
   }
 

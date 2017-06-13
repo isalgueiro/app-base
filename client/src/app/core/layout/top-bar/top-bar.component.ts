@@ -8,16 +8,13 @@ import { BusService } from 'app/core/shared/bus.service';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
-  userInitials = 'AY';
+  userInitials = '';
+  user = null;
   title = 'Angular Base';
   menuLinks: IMenuLink[] = [
     {
       title: 'Home',
       href: ''
-    },
-    {
-      title: 'Log in',
-      href: 'login'
     }
   ];
 
@@ -25,7 +22,12 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit() {
     this.bus.getUser$()
-      .subscribe(user => this.userInitials = user ? user.name.substr(0, 2) : '')
+      .subscribe(user => {
+        this.user = user;
+        if (this.user && this.user.name) {
+          this.userInitials = this.user.name.substr(0, 2);
+        }
+      })
   }
 
 }
