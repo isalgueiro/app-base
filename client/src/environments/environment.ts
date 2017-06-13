@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/'
+  apiUrl: 'http://localhost:3000/',
+  secret: 'secret',
+  godEmail: 'admin@agorabinaria.com'
 };

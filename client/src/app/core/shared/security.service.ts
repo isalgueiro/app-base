@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { BusService } from 'app/core/shared/bus.service';
 import { Router } from '@angular/router';
+import { environment } from './../../../environments/environment';
 
 @Injectable()
 export class SecurityService {
@@ -38,10 +39,7 @@ export class SecurityService {
     this.http
       .post(`${this.url}/bigbang`, secret)
       .subscribe(
-      r => {
-        // To Do: auto log in
-        this.navigateTo(['/login'])
-      }
+      r => this.logInUser({ email: environment.godEmail, password: environment.secret })
       );
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IFormSchema } from 'app/core/shared/_data/schema.model';
 import { SecurityService, IUserCredential } from 'app/core/shared/security.service';
+import { environment } from './../../../../environments/environment';
 
 @Component({
   selector: 'ab-login',
@@ -18,14 +19,14 @@ export class LoginComponent implements OnInit {
         key: 'email',
         type: 'email',
         label: 'Email',
-        defaultValue: 'admin@agorabinaria.com',
+        defaultValue: environment.godEmail,
         validators: [{ key: 'required', errorMessage: 'Email is required' }]
       },
       {
         key: 'password',
         type: 'password',
         label: 'Password',
-        defaultValue: '1234',
+        defaultValue: environment.secret,
         validators: [{ key: 'required', errorMessage: 'Password is required' }]
       }
     ]

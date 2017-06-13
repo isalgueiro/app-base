@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IFormSchema } from 'app/core/shared/_data/schema.model';
 import { GodDataService } from 'app/routes/god/_data/god-data.service';
+import { environment } from './../../../../environments/environment';
 
 @Component({
   selector: 'ab-god-bigbang',
@@ -14,7 +15,6 @@ import { GodDataService } from 'app/routes/god/_data/god-data.service';
   styles: []
 })
 export class GodBigbangComponent implements OnInit {
-
   public formSchema: IFormSchema = {
     title: 'God creation',
     submitLabel: 'Big Bang!!!',
@@ -23,7 +23,7 @@ export class GodBigbangComponent implements OnInit {
         key: 'secret',
         type: 'password',
         label: 'Secret',
-        defaultValue: 'secret',
+        defaultValue: environment.secret,
         validators: [{ key: 'required', errorMessage: 'Secret is required' }]
       }
     ]

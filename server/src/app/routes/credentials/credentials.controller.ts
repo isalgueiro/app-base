@@ -27,7 +27,7 @@ export class CredentialsController {
     }
     const userRegistration: IUserGodRegistration = {
       email: 'admin@agorabinaria.com',
-      name: 'Administrator',
+      name: 'System Administrator',
       password: 'secret'
     };
     const newUser = await this.credentialsLogic.postUserGodRegistration(userRegistration);
