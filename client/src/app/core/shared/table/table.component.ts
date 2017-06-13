@@ -26,52 +26,52 @@ export class TableComponent implements OnInit {
     this.rowAction.emit({ action, row });
   }
 
-  // valueByPathOLD(target, path) {
-  //   path = path.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
-  //   path = path.replace(/^\./, '');           // strip a leading dot
-  //   const a = path.split('.');
-  //   for (let i = 0, n = a.length; i < n; ++i) {
-  //     const k = a[i];
-  //     if (target) {
-  //       if (k in target) {
-  //         target = target[k];
-  //       } else {
-  //         return;
-  //       }
-  //     } else {
-  //       return;
-  //     }
-  //   }
-  //   return target;
-  // }
-
-
   valueByPath(target, path) {
     path = path.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
     path = path.replace(/^\./, '');           // strip a leading dot
-    const chunks = path.split('.');
-    let result = '';
-    chunks.array.forEach(element => {
+    const a = path.split('.');
+    for (let i = 0, n = a.length; i < n; ++i) {
+      const k = a[i];
       if (target) {
-        target = this.getNewTarget(target, element);
-        if (target) {
-          result = target;
+        if (k in target) {
+          target = target[k];
         } else {
           return;
         }
       } else {
         return;
       }
-    });
-    return result;
-  }
-  getNewTarget(target, element) {
-    if (element in target) {
-      return target[element];
-    } else {
-      return null;
     }
+    return target;
   }
+
+
+  // valueByPath(target, path) {
+  //   path = path.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+  //   path = path.replace(/^\./, '');           // strip a leading dot
+  //   const chunks = path.split('.');
+  //   let result = '';
+  //   chunks.array.forEach(element => {
+  //     if (target) {
+  //       target = this.getNewTarget(target, element);
+  //       if (target) {
+  //         result = target;
+  //       } else {
+  //         return;
+  //       }
+  //     } else {
+  //       return;
+  //     }
+  //   });
+  //   return result;
+  // }
+  // getNewTarget(target, element) {
+  //   if (element in target) {
+  //     return target[element];
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
 }
 

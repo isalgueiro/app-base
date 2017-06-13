@@ -3,6 +3,7 @@ import { IOrganizationAdmin } from 'app/routes/god/_data/organization.model';
 import { GodDataService } from 'app/routes/god/_data/god-data.service';
 import 'rxjs/add/operator/do';
 import { BusService } from 'app/core/shared/bus.service';
+import { Level } from 'app/core/shared/_data/message.model';
 @Component({
   selector: 'ab-god-organizations',
   templateUrl: './god-organizations.component.html',
@@ -57,7 +58,10 @@ export class GodOrganizationsComponent implements OnInit {
     newAdmin.organizationId = this.activeOrganization._id;
     this.godData
       .setOrganizationAdmin(newAdmin)
-      .subscribe(res => this.getOrganizations());
+      .subscribe(res => {
+        this.bus.emit({ level: Level.SUCCESS, text: newAdmin.name + ' asiggned!!' });
+        this.getOrganizations();
+      });
   }
 
   onCreateOrganization() {
@@ -69,7 +73,10 @@ export class GodOrganizationsComponent implements OnInit {
     if (newOrganization) {
       this.godData
         .postOrganization(newOrganization)
-        .subscribe(res => this.getOrganizations());
+        .subscribe(res => {
+          this.bus.emit({ level: Level.SUCCESS, text: newOrganization.name + ' created!!' });
+          this.getOrganizations();
+        });
     }
   }
 
@@ -87,7 +94,10 @@ export class GodOrganizationsComponent implements OnInit {
     this.activeDeleteOrganizationModal = false;
     this.godData
       .deleteOrganization(oldOrganization)
-      .subscribe(res => this.getOrganizations());
+      .subscribe(res => {
+        this.bus.emit({ level: Level.SUCCESS, text: oldOrganization.name + ' deleted!!' });
+        this.getOrganizations();
+      });
   }
 }
 

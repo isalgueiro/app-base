@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormToolsService } from 'app/core/shared/form-tools.service';
 import { IFormSchema } from 'app/core/shared/_data/schema.model';
 
@@ -7,7 +7,8 @@ import { IFormSchema } from 'app/core/shared/_data/schema.model';
   templateUrl: './god-organization-admin.component.html',
   styles: []
 })
-export class GodOrganizationAdminComponent implements OnInit {
+export class GodOrganizationAdminComponent implements OnInit, OnChanges {
+
 
   @Input() organization;
   @Input() active: false;
@@ -38,6 +39,11 @@ export class GodOrganizationAdminComponent implements OnInit {
 
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.organization && changes.organization.currentValue) {
+      this.formSchema.title = 'Set Administrator to ' + changes.organization.currentValue.name;
+    }
+  }
   onClose() {
     this.active = false;
     this.close.emit(null);

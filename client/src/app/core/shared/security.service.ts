@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { BusService } from 'app/core/shared/bus.service';
 import { Router } from '@angular/router';
 import { environment } from './../../../environments/environment';
+import { IUser } from 'app/core/shared/_data/user.model';
 
 @Injectable()
 export class SecurityService {
@@ -15,7 +16,14 @@ export class SecurityService {
       .getSecurityErr$()
       .subscribe(err => this.navigateTo(['/login']));
     this.bus.emitUserToken(localStorage.getItem(this.userTokenKey));
-    this.bus.emitUser(localStorage.getItem(this.userKey));
+    const savedUSer = localStorage.getItem(this.userKey);
+    if (savedUSer) {
+      console.table(savedUSer);
+      const user: IUser = JSON.parse(savedUSer);
+      this.bus.emitUser(user);
+    } else {
+      this.bus.emitUser(null);
+    }
   }
 
   logInUser(credentials: IUserCredential) {
@@ -35,7 +43,7 @@ export class SecurityService {
     this.navigateTo(['/']);
   }
 
-  createBigbang(secret) {
+  createBigbang(secret: string) {
     this.http
       .post(`${this.url}/bigbang`, secret)
       .subscribe(
@@ -56,8 +64,9 @@ export class SecurityService {
   }
 
   private saveUser(res) {
-    const user = res.json();
-    localStorage.setItem(this.userKey, user);
+    const user: IUser = res.json();
+    console.table(user);
+    localStorage.setItem(this.userKey, JSON.stringify(user));
     this.bus.emitUser(user);
     this.navigateTo(['/']);
   }

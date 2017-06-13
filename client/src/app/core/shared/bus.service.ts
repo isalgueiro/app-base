@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { IMessage, Level } from 'app/core/shared/toast/toast.component';
-import { IUser } from 'app/routes/god/_data/user.model';
+import { IUser } from 'app/core/shared/_data/user.model';
+import { IMessage, Level } from 'app/core/shared/_data/message.model';
+
 
 @Injectable()
 export class BusService {
@@ -40,7 +41,7 @@ export class BusService {
     this.emit({ level: Level.WARNING, text: errMsg });
     this.securityErr$.next(errMsg);
   }
-  emitUser(user) {
+  emitUser(user: IUser) {
     console.log('emitUser:', JSON.stringify(user));
     this.user$.next(user);
   }

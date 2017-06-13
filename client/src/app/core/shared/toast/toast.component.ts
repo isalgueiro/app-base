@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output, SimpleChanges, OnChanges } from '@angular/core';
+import { Level } from "app/core/shared/_data/message.model";
 
 @Component({
   selector: 'ab-toast',
@@ -61,17 +62,4 @@ export class ToastComponent implements OnInit, OnChanges {
     return levelClass;
   }
 
-}
-
-export interface IMessage {
-  level: Level;
-  text: string;
-}
-
-// toast-primary, toast-success, toast-warning or toast-error
-export enum Level {
-  PRIMARY,
-  SUCCESS,
-  WARNING,
-  ERROR
 }

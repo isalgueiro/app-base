@@ -4,9 +4,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs/Observable';
-import { ROLE } from 'app/routes/god/_data/user.model';
 import { BusService } from 'app/core/shared/bus.service';
 import { SecurityService } from 'app/core/shared/security.service';
+import { ROLE } from 'app/core/shared/_data/user.model';
 
 @Injectable()
 export class GodDataService {

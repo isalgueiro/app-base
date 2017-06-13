@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IMenuLink } from 'app/core/layout/_data/models/menu-link.model';
 import { BusService } from 'app/core/shared/bus.service';
+import { IUser } from 'app/core/shared/_data/user.model';
 
 @Component({
   selector: 'ab-top-bar',
@@ -8,8 +9,8 @@ import { BusService } from 'app/core/shared/bus.service';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
-  userInitials = '';
-  user = null;
+  userInitials = '?';
+  user: IUser = null;
   title = 'Angular Base';
   menuLinks: IMenuLink[] = [
     {
