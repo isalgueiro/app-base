@@ -33,9 +33,9 @@ export class GodBigbangComponent implements OnInit {
 
   ngOnInit() { }
 
-  onSend(credentials) {
+  onSend(secret) {
     this.godData
-      .createBigbang(credentials);
+      .createBigbang(secret);
   }
 
 }

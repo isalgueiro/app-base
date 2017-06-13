@@ -6,12 +6,14 @@ import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs/Observable';
 import { ROLE } from 'app/routes/god/_data/user.model';
 import { BusService } from 'app/core/shared/bus.service';
+import { SecurityService } from 'app/core/shared/security.service';
 
 @Injectable()
 export class GodDataService {
   private organizationsUrl = 'organizations';
   private credentialsUrl = 'credentials';
-  constructor(private http: Http, private bus: BusService) { }
+
+  constructor(private http: Http, private bus: BusService, private security: SecurityService) { }
 
   getOrganizationsCount(): Observable<number> {
     return this.http
@@ -71,14 +73,7 @@ export class GodDataService {
       .delete(`${this.organizationsUrl}/${oldOrganization._id}`);
   }
 
-  createBigbang(credentials) {
-    this.http
-      .post(`${this.credentialsUrl}/bigbang`, credentials)
-      .subscribe(
-      r => {
-        // To Do: auto log in
-        this.bus.navigateTo(['/login'])
-      }
-      );
+  createBigbang(secret) {
+    this.security.createBigbang(secret);
   }
 }

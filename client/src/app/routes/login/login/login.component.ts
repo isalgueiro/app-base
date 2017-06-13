@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IFormSchema } from 'app/core/shared/_data/schema.model';
-import { LoginService, IUserCredential } from 'app/routes/login/_data/login.service';
+import { SecurityService, IUserCredential } from 'app/core/shared/security.service';
 
 @Component({
   selector: 'ab-login',
@@ -31,14 +31,14 @@ export class LoginComponent implements OnInit {
     ]
   };
 
-  constructor(private loginService: LoginService) { }
+  constructor(private security: SecurityService) { }
 
   ngOnInit() {
   }
 
   onSend(credentials: IUserCredential) {
-    this.loginService
-      .postLogIn(credentials);
+    this.security
+      .logInUser(credentials);
   }
 
 }
