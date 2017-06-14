@@ -13,18 +13,8 @@ export class SecurityService {
   private url = 'credentials';
 
   constructor(private bus: BusService, private http: Http, private router: Router) {
-    this.bus
-      .getSecurityErr$()
-      .subscribe(err => this.navigateTo(['/login']));
-    this.bus.emitUserToken(localStorage.getItem(this.userTokenKey));
-    const savedUSer = localStorage.getItem(this.userKey);
-    if (savedUSer) {
-      console.table(savedUSer);
-      const user: IUser = JSON.parse(savedUSer);
-      this.bus.emitUser(user);
-    } else {
-      this.bus.emitUser(null);
-    }
+    this.onSecurityErrNavigateToLogin();
+    this.emitUserStatus();
   }
 
   logInUser(credentials: IUserCredential) {
@@ -53,6 +43,19 @@ export class SecurityService {
         this.bus.emit({ level: Level.SUCCESS, text: 'Big Bang!!' });
       }
       );
+  }
+
+  private onSecurityErrNavigateToLogin() {
+    this.bus
+      .getSecurityErr$()
+      .subscribe(err => this.navigateTo(['/login']));
+  }
+
+  private emitUserStatus() {
+    const userToken: string = localStorage.getItem(this.userTokenKey);
+    this.bus.emitUserToken(userToken);
+    const user: IUser = JSON.parse(localStorage.getItem(this.userKey) || '');
+    this.bus.emitUser(user);
   }
 
   private saveUserToken(response) {

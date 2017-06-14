@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BusService } from 'app/core/shared/bus.service';
-import { IMessage, Level } from 'app/core/shared/toast/toast.component';
+import { Level, IMessage } from 'app/core/shared/_data/message.model';
 
 @Component({
   selector: 'ab-shell',

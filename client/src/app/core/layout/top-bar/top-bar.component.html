@@ -8,11 +8,11 @@
     </ng-container>
   </section>
   <section *ngIf="user"
+           (click)="logOutActive=true"
            class="navbar-section">
     <figure class="avatar"
             [attr.data-initial]="userInitials"
             style="background-color: #5764c6;"></figure>
-
   </section>
   <section *ngIf="!user"
            class="navbar-section">
@@ -20,3 +20,18 @@
     <i class="icon icon-people"></i> Log In</a>
   </section>
 </header>
+<aside>
+  <ab-modal [title]="user?.name"
+            [active]="logOutActive"
+            (close)="logOutActive=false">
+    <modal-content>
+      {{ user | json }}
+    </modal-content>
+    <modal-footer>
+      <button (click)="logOutActive=false"
+              class="btn btn-link">Remain logged in</button>
+      <button (click)="onLogOutClick()"
+              class="btn btn-primary">Log Out.</button>
+    </modal-footer>
+  </ab-modal>
+</aside>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IMenuLink } from 'app/core/layout/_data/models/menu-link.model';
 import { BusService } from 'app/core/shared/bus.service';
 import { IUser } from 'app/core/shared/_data/user.model';
-
+import { IMenuLink } from 'app/core/layout/_data/menu-link.model';
+import { environment } from './../../../../environments/environment';
+import { SecurityService } from 'app/core/shared/security.service';
 @Component({
   selector: 'ab-top-bar',
   templateUrl: './top-bar.component.html',
@@ -11,7 +12,8 @@ import { IUser } from 'app/core/shared/_data/user.model';
 export class TopBarComponent implements OnInit {
   userInitials = '?';
   user: IUser = null;
-  title = 'Angular Base';
+  title = environment.appTitle;
+  logOutActive: Boolean;
   menuLinks: IMenuLink[] = [
     {
       title: 'Home',
@@ -19,9 +21,18 @@ export class TopBarComponent implements OnInit {
     }
   ];
 
-  constructor(private bus: BusService) { }
+  constructor(private bus: BusService, private security: SecurityService) { }
 
   ngOnInit() {
+    this.onUserChange();
+  }
+
+  onLogOutClick() {
+    this.logOutActive = false;
+    this.security.logOutUser();
+  }
+
+  private onUserChange() {
     this.bus.getUser$()
       .subscribe(user => {
         this.user = user;
@@ -30,5 +41,4 @@ export class TopBarComponent implements OnInit {
         }
       })
   }
-
 }
