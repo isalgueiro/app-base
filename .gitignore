@@ -58,3 +58,5 @@ typings/
 .env
 
 environment.ts
+
+dist
