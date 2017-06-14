@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs/Observable';
-import { BusService } from 'app/core/shared/bus.service';
+import { BusService } from 'app/bus.service';
 import { SecurityService } from 'app/core/shared/security.service';
 import { ROLE } from 'app/core/shared/_data/user.model';
 

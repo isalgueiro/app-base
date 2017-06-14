@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BusService } from 'app/core/shared/bus.service';
+import { BusService } from 'app/bus.service';
 import { Level, IMessage } from 'app/core/shared/_data/message.model';
 
 @Component({

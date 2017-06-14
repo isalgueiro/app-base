@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { BusService } from 'app/core/shared/bus.service';
+import { BusService } from 'app/bus.service';
 import { Router } from '@angular/router';
 import { environment } from './../../../environments/environment';
 import { IUser } from 'app/core/shared/_data/user.model';
@@ -31,6 +31,7 @@ export class SecurityService {
     this.bus.emitUserToken(null);
     localStorage.removeItem(this.userKey);
     this.bus.emitUser(null);
+    this.bus.emit({ level: Level.SUCCESS, text: 'logged out!!' });
     this.navigateTo(['/']);
   }
 
@@ -54,7 +55,8 @@ export class SecurityService {
   private emitUserStatus() {
     const userToken: string = localStorage.getItem(this.userTokenKey);
     this.bus.emitUserToken(userToken);
-    const user: IUser = JSON.parse(localStorage.getItem(this.userKey) || '');
+    const userStorage = localStorage.getItem(this.userKey);
+    const user: IUser = userStorage ? JSON.parse(userStorage) : null;
     this.bus.emitUser(user);
   }
 

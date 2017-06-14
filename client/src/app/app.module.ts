@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LayoutModule } from 'app/core/layout/layout.module';
 import { SharedModule } from 'app/core/shared/shared.module';
-import { BusService } from 'app/core/shared/bus.service';
+import { BusService } from 'app/bus.service';
 import { Http, XHRBackend, RequestOptions, HttpModule } from '@angular/http';
 import { HttpService } from 'app/core/shared/_data/http.service';
 

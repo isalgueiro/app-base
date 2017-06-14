@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IOrganizationAdmin } from 'app/routes/god/_data/organization.model';
 import { GodDataService } from 'app/routes/god/_data/god-data.service';
 import 'rxjs/add/operator/do';
-import { BusService } from 'app/core/shared/bus.service';
+import { BusService } from 'app/bus.service';
 import { Level } from 'app/core/shared/_data/message.model';
 @Component({
   selector: 'ab-god-organizations',
@@ -11,7 +11,7 @@ import { Level } from 'app/core/shared/_data/message.model';
 })
 export class GodOrganizationsComponent implements OnInit {
   public organizations: any[];
-  public organizationsFull: any[];
+  // public organizationsFull: any[];
   public activeSetAdminModal = false;
   public activeCreateOrganizationModal = false;
   public activeDeleteOrganizationModal = false;
@@ -20,9 +20,9 @@ export class GodOrganizationsComponent implements OnInit {
 
   ngOnInit() {
     this.getOrganizations();
-    this.godData
-      .getOrganizationsFull()
-      .subscribe(data => this.organizationsFull = data);
+    // this.godData
+    //   .getOrganizationsFull()
+    //   .subscribe(data => this.organizationsFull = data);
   }
 
   getOrganizations() {
