@@ -1,7 +1,7 @@
 {
-  "name": "server-angular-base",
+  "name": "server-app-base",
   "version": "0.1.0",
-  "description": "Server with Angular Base Technology",
+  "description": "Server with Angular Based Technology",
   "main": "index.js",
   "scripts": {
     "test": "dredd",
