@@ -5,14 +5,12 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { ShellComponent } from './shell.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { MainContentComponent } from './main-content/main-content.component';
-import { HomeModule } from 'app/routes/home/home.module';
 import { SharedModule } from 'app/core/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     LayoutRoutingModule,
-    HomeModule,
     SharedModule
   ],
   declarations: [ShellComponent, TopBarComponent, MainContentComponent],

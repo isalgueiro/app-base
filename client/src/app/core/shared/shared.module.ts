@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
 import { TileComponent } from './tile/tile.component';
 import { ModalComponent } from './modal/modal.component';
 import { ToastComponent } from './toast/toast.component';
-import { BusService } from 'app/core/shared/bus.service';
 import { PanelComponent } from './panel/panel.component';
 import { SecurityService } from 'app/core/shared/security.service';
 
