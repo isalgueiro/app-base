@@ -17,7 +17,7 @@ instance.use(express.static(SETTINGS.path));
 const app = NestFactory.create(AppModule, instance);
 /*app.setGlobalPrefix('api');*/
 
-instance.use(function(req, res) {
+/*instance.use(function(req, res) {
     res.sendFile(join(SETTINGS.path, 'index.html'));
-});
+});*/
 app.listen(SETTINGS.port, () => logger.log(`Application is listening on port ${SETTINGS.port}`));
