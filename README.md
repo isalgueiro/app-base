@@ -17,8 +17,14 @@ $cd server
 $npm run build
 ```
 
-## Start server with pm2
-```
+## Init server with pm2 [ecosystem.json](http://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/#ecosystemjson)
+```bash
 $cd
 $pm2 ecosystem.js
+```
+> Only first time
+
+## Restart server with pm2
+```bash
+$pm2 restart 'id'
 ```
