@@ -14,14 +14,15 @@ instance.use(bodyParser.json());
 instance.use(cors());
 instance.use(express.static(SETTINGS.path));
 
-instance.all('/', function(req, res) {
-    res.sendFile(join(SETTINGS.path, 'index.html'));
-});
 
-instance.use(function(req, res) {
-    res.sendFile(join(SETTINGS.path, 'index.html'));
-});
+
 
 const app = NestFactory.create(AppModule, instance);
+instance.all('/', function (req, res) {
+    res.sendFile(join(SETTINGS.path, 'index.html'));
+});
 
+instance.use(function (req, res) {
+    res.sendFile(join(SETTINGS.path, 'index.html'));
+});
 app.listen(SETTINGS.port, () => logger.log(`Application is listening on port ${SETTINGS.port}`));
