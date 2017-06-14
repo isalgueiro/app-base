@@ -15,10 +15,10 @@ instance.use(cors());
 instance.use(express.static(SETTINGS.path));
 
 const app = NestFactory.create(AppModule, instance);
-
+/*app.setGlobalPrefix('api');*/
 app.init();
 
-instance.get('*', function(req, res) {
+instance.get('*', function (req, res) {
     res.sendFile(join(SETTINGS.path, 'index.html'));
 });
 
