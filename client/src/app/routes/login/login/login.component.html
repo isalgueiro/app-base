@@ -1,8 +1,7 @@
 <div class="column col-8 col-lg-12 centered">
-  <ab-panel title="Login">
+  <ab-panel [schema]="panelSchema">
     <panel-body>
-      <ab-form [formSchema]="formSchema"
-               (send)="onSend($event)">
+      <ab-form [formSchema]="formSchema" (send)="onSend($event)">
       </ab-form>
     </panel-body>
   </ab-panel>

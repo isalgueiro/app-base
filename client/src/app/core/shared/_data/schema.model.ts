@@ -28,9 +28,8 @@ export interface IForm {
 }
 
 export interface IReportSchema {
-  title: string;
+  header: IHeader;
   emptyMessage?: string;
-  subtitle?: string;
   fields: IField[];
   actions: IAction[];
 }
@@ -50,9 +49,10 @@ export interface IAction {
 export interface IHeader {
   title: string;
   subtitle?: string;
+  icon?: string;
 }
 
 export interface IPanelSchema {
   header: IHeader;
-  actions: IAction[];
+  actions?: IAction[];
 }
