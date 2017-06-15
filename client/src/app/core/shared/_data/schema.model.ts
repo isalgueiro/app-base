@@ -46,3 +46,13 @@ export interface IAction {
   name: string;
   icon: string;
 }
+
+export interface IHeader {
+  title: string;
+  subtitle?: string;
+}
+
+export interface IPanelSchema {
+  header: IHeader;
+  actions: IAction[];
+}

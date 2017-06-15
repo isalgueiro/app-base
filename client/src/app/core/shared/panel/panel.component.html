@@ -1,14 +1,14 @@
 <div class="panel">
   <div class="panel-header">
-    <div class="panel-title text-center">{{ title }}</div>
-  </div>
-  <div class="panel-nav">
-    <ng-content select="panel-nav"></ng-content>
+    <div class="panel-title text-center">{{ schema.header.title }}</div>
+    <div class="panel-subtitle text-center">{{ schema.header.subtitle }}</div>
   </div>
   <div class="panel-body">
     <ng-content select="panel-body"></ng-content>
   </div>
   <div class="panel-footer">
-    <ng-content select="panel-footer"></ng-content>
+    <ng-container *ngFor="let action of schema.actions">
+      <button (click)="onClick(action.name)" class="btn btn-primary btn-block">action.label</button>
+    </ng-container>
   </div>
 </div>
