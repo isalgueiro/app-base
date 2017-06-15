@@ -8,7 +8,10 @@
   </div>
   <div class="panel-footer">
     <ng-container *ngFor="let action of schema.actions">
-      <button (click)="onClick(action.name)" class="btn btn-primary btn-block">action.label</button>
+      <button (click)="onClick(action.name)" class="btn btn-primary btn-block">
+        <i *ngIf="action.icon" [class]="'icon ' + action.icon"></i>
+        action.label
+      </button>
     </ng-container>
   </div>
 </div>

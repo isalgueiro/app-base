@@ -16,7 +16,7 @@ export class PanelComponent implements OnInit {
   ngOnInit() {
   }
 
-  onclick(name: string) {
+  onClick(name: string) {
     this.send.emit(name);
   }
 
