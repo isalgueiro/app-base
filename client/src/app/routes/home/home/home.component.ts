@@ -5,7 +5,7 @@ import { OrganizationsService } from 'app/routes/home/_data/organizations.servic
 @Component({
   selector: 'ab-home',
   templateUrl: './home.component.html',
-  styles: []
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 

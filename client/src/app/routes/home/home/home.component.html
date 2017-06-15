@@ -1,36 +1,20 @@
 <div class="container">
-  <ng-container *ngFor="let organization of organizations; let i = index; let e = even">
-    <div *ngIf="e"
-         class="columns">
-      <div class="column col-6 col-sm-12">
-        <div class="card">
-          <div class="card-image">
-            <img class="img-responsive"
-                 [src]="organizations[i].image" />
+  <div class="columns">
+    <ng-container *ngFor="let organization of organizations; let i = index; let e = even">
+        <div class="column col-6">
+          <div class="card">
+            <div class="card-image">
+              <img class="img-responsive"
+                  [src]="organizations[i].image" />
+            </div>
+            <div class="card-header">
+              <button class="btn btn-primary float-right">Ver centro</button>
+              <div class="card-title">{{ organizations[i].name }}</div>
+              <div class="card-subtitle">{{ organizations[i].address }}</div>
+            </div>
+            <div class="card-body">{{ organizations[i].description }}</div>
           </div>
-          <div class="card-header">
-            <button class="btn btn-primary float-right">Ver centro</button>
-            <div class="card-title">{{ organizations[i].name }}</div>
-            <div class="card-subtitle">{{ organizations[i].address }}</div>
-          </div>
-          <div class="card-body">{{ organizations[i].description }}</div>
         </div>
-      </div>
-      <div *ngIf="organizations[i+1]"
-           class="column col-6 col-sm-12">
-        <div class="card">
-          <div class="card-image">
-            <img class="img-responsive"
-                 [src]="organizations[i+1].image" />
-          </div>
-          <div class="card-header">
-            <button class="btn btn-primary float-right">Go to Organization</button>
-            <div class="card-title">{{ organizations[i+1].name }}</div>
-            <div class="card-subtitle">{{ organizations[i+1].address }}</div>
-          </div>
-          <div class="card-body">{{ organizations[i+1].description }}</div>
-        </div>
-      </div>
-    </div>
-  </ng-container>
+    </ng-container>
+  </div>
 </div>
