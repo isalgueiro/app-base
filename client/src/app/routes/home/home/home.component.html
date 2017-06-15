@@ -1,20 +1,19 @@
 <div class="container">
   <div class="columns">
-    <ng-container *ngFor="let organization of organizations; let i = index; let e = even">
-        <div class="column col-6">
-          <div class="card">
-            <div class="card-image">
-              <img class="img-responsive"
-                  [src]="organizations[i].image" />
-            </div>
-            <div class="card-header">
-              <button class="btn btn-primary float-right">Ver centro</button>
-              <div class="card-title">{{ organizations[i].name }}</div>
-              <div class="card-subtitle">{{ organizations[i].address }}</div>
-            </div>
-            <div class="card-body">{{ organizations[i].description }}</div>
+    <ng-container *ngFor="let organization of organizations">
+      <div class="column col-6 col-md-12">
+        <div class="card">
+          <div class="card-image">
+            <img class="img-responsive" [src]="organization.image" />
           </div>
+          <div class="card-header">
+            <button class="btn btn-primary float-right">Ver centro</button>
+            <div class="card-title">{{ organization.name }}</div>
+            <div class="card-subtitle">{{ organization.address }}</div>
+          </div>
+          <div class="card-body">{{ organization.description }}</div>
         </div>
+      </div>
     </ng-container>
   </div>
 </div>
