@@ -16,7 +16,9 @@ export class GodOrganizationsListComponent implements OnInit {
 
   ngOnInit() {
     this.schema = {
-      title: 'List of Organizations',
+      header: {
+        title: 'List of Organizations'
+      },
       emptyMessage: 'There aren\'t any organizations to display :(',
       fields: [
         {

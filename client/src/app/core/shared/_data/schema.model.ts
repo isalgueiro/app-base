@@ -42,8 +42,9 @@ export interface IField {
 
 export interface IAction {
   label: string;
-  name: string;
-  icon: string;
+  name?: string;
+  link?: string;
+  icon?: string;
 }
 
 export interface IHeader {

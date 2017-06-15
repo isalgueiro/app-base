@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './form/form.component';
@@ -13,6 +13,7 @@ import { ModalComponent } from './modal/modal.component';
 import { ToastComponent } from './toast/toast.component';
 import { PanelComponent } from './panel/panel.component';
 import { SecurityService } from 'app/core/shared/security.service';
+import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -22,11 +23,12 @@ import { SecurityService } from 'app/core/shared/security.service';
   ],
   declarations: [
     ControlErrorComponent, FormComponent, InputComponent, TableComponent,
-    CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent
+    CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent, DashboardComponent
   ],
   exports: [
     ControlErrorComponent,
     CounterComponent,
+    DashboardComponent,
     FormComponent,
     InputComponent,
     ModalComponent,

@@ -8,9 +8,13 @@
   </div>
   <div class="panel-footer">
     <ng-container *ngFor="let action of schema.actions">
-      <button (click)="onClick(action.name)" class="btn btn-primary btn-block">
+      <button *ngIf="action.name" (click)="onClick(action.name)" class="btn btn-primary btn-block">
         <i *ngIf="action.icon" [class]="'icon ' + action.icon"></i>
-        action.label
+        {{ action.label }}
+      </button>
+      <button *ngIf="action.link" [routerLink]="action.link" class="btn btn-primary btn-block">
+        <i *ngIf="action.icon" [class]="'icon ' + action.icon"></i>
+        {{ action.label }}
       </button>
     </ng-container>
   </div>
