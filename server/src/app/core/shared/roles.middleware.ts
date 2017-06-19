@@ -9,19 +9,16 @@ import { ForbiddenException, UnauthorizedException } from './exceptions';
 export class RolesMiddleware implements NestMiddleware {
   public resolve(roles: ROLE[]): (req: Request, res: Response, next: NextFunction) => void {
     return (req: Request, res: Response, next: NextFunction) => {
-      const user = req['user'];
-      if (user) {
-        const isAuth = roles.some(rol => {
-          return user.roles.some(userRol => {
-            return userRol === rol;
-          });
+      const user = req['session'];
+      const isAuth = roles.some(rol => {
+        return user.roles.some(userRol => {
+          return userRol === rol;
         });
-        if (!isAuth) {
-          throw new ForbiddenException('');
-        }
+      });
+      if (isAuth) {
         return next();
       }
-      throw new UnauthorizedException('');
+      throw new ForbiddenException('');
     };
   }
 

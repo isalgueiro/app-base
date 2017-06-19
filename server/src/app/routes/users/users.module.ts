@@ -15,9 +15,6 @@ export class UsersModule {
   public configure(consumer: MiddlewaresConsumer) {
     consumer
       .apply(AuthMiddleware)
-      .forRoutes(
-      { path: '/users/me', method: RequestMethod.GET }
-      );
-
+      .forRoutes(UsersController);
   }
 }

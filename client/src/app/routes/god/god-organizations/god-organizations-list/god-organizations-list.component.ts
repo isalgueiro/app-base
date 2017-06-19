@@ -51,9 +51,9 @@ export class GodOrganizationsListComponent implements OnInit {
     }
   }
   onRowAction(rowAction) {
-    if (rowAction.action.name === 'setAdmin') {
+    if (rowAction.action.value === 'setAdmin') {
       this.setAdmin.emit(rowAction.row);
-    } else if (rowAction.action.name === 'delete') {
+    } else if (rowAction.action.value === 'delete') {
       this.deleteOrganization.emit(rowAction.row);
     }
   }
