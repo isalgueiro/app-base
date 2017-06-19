@@ -1,13 +1,14 @@
-import { Body, Controller, Delete, ExceptionFilters, Get, HttpStatus, Param, Post, Query, Res, Session } from '@nestjs/common';
+import {
+  Body, Controller, Delete, ExceptionFilters,
+  Get, HttpStatus, Param, Post, Query, Res, Session
+} from '@nestjs/common';
 import { Request, Response } from "express";
 import { ROLE } from "../../core/shared/enums";
 import { LoggerService } from "../../core/shared/logger.service";
 import { UsersService } from "../users/users.service";
-import { UnknowExceptionFilter } from './../../core/shared/exceptions';
 import { IOrganizationDocument } from './organization.model';
 import { OrganizationsService } from "./organizations.service";
 
-@ExceptionFilters(UnknowExceptionFilter)
 @Controller('organizations')
 export class OrganizationsController {
   private logger: LoggerService = new LoggerService('OrganizationsController');

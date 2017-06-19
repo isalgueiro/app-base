@@ -2,9 +2,14 @@
 
 The change log is a living document...
 
+## [0.7.0] (19-06-2017)
+- Docs updated and project management
+- Select Control
+# **Scenario 3:** User profile and passwords
+
 ## [0.6.0] (15-06-2017)
 - Bus and Http service without business logic
-- Update server dependencies
+- Client shared controls
 # **Scenario 3:** User profile and passwords
 
 ## [0.5.0] (08-06-2017)

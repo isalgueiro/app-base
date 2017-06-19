@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: 127.0.0.1:3000
+HOST: 127.0.0.1:3000/api
 
 # APP
 
@@ -14,6 +14,13 @@ HOST: 127.0.0.1:3000
 + Response 201 (application/json; charset=utf-8)
     + Attributes (UserResponse)
 
++ Request (application/json)
+    + Attributes (BigBang)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
+
+
 ## Credentials client [/credentials/client]
 
 ### Create [POST]
@@ -22,6 +29,12 @@ HOST: 127.0.0.1:3000
 
 + Response 201 (application/json; charset=utf-8)
     + Attributes (UserResponse)
+
++ Request (application/json)
+    + Attributes (UserRequest)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
 
 ## Credentials client [/credentials/public]
 
@@ -32,6 +45,12 @@ HOST: 127.0.0.1:3000
 + Response 201 (application/json; charset=utf-8)
     + Attributes (UserResponse)
 
++ Request (application/json)
+    + Attributes (UserRequestPublic)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
+
 ## Credentials client [/credentials/invitation]
 
 ### Create [POST]
@@ -41,6 +60,11 @@ HOST: 127.0.0.1:3000
 + Response 201 (application/json; charset=utf-8)
     + Attributes (UserResponse)
 
++ Request (application/json)
+    + Attributes (UserRequestInvitation)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
 
 ## Credentials client [/credentials/confirmation]
 
@@ -66,6 +90,12 @@ HOST: 127.0.0.1:3000
 
 + Response 201 (application/json; charset=utf-8)
     + Attributes (Auth)
+
++ Request (application/json)
+    + Attributes (UserCredentials)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
 
 # Group Organizations
 
@@ -203,3 +233,6 @@ Get user by id
 + image: imagen (string, required)
 + standardPrice: 20 (number, required)
 + reducedPrice: 15 (number, required)
+
+## FailResponse
++ message (string, required)
