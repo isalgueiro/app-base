@@ -1,0 +1,6 @@
+<section [formGroup]="form.group">
+  <label [for]="control.key" class="form-switch" (click)="form.group.get(control.key).setValue(!form.group.get(control.key).value)">
+    <input type="checkbox" [formControlName]="control.key"/>
+    <i class="form-icon"></i>{{ control.label }}
+  </label>
+</section>
