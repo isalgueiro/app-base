@@ -16,7 +16,7 @@ import { SecurityService } from 'app/core/shared/security.service';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 import { SelectComponent } from './select/select.component';
 import { RadioComponent } from './radio/radio.component';
-import { CheckboxComponent } from './checkbox/checkbox.component';
+import { SwitchComponent } from './switch/switch.component';
 
 @NgModule({
   imports: [
@@ -26,7 +26,8 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
   ],
   declarations: [
     ControlErrorComponent, FormComponent, InputComponent, TableComponent,
-    CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent, DashboardComponent, SelectComponent, RadioComponent, CheckboxComponent
+    CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent,
+    DashboardComponent, SelectComponent, RadioComponent, SwitchComponent
   ],
   exports: [
     ControlErrorComponent,
