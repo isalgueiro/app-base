@@ -3,8 +3,6 @@ import { Core, Model } from 'iridium';
 import { InstanceImplementation } from 'iridium/dist/lib/InstanceInterface';
 import { SETTINGS } from './../../../environments/environment';
 
-const logger = new Logger('DatabaseService');
-
 @Component()
 export class DatabaseService extends Core {
 
@@ -29,7 +27,6 @@ export class DatabaseService extends Core {
     }
 
     protected onConnected() {
-        console.log(`Connected to DB: ${SETTINGS.database.database}`);
         this.isConnected = true;
         return Promise.resolve();
     }

@@ -1,6 +1,10 @@
 <div class="panel">
   <div class="panel-header">
-    <div class="panel-title text-center">{{ schema.header.title }}</div>
+    <div class="panel-title text-center">
+      <i *ngIf="schema.header.icon"
+         [class]="'mr-10 icon ' + schema.header.icon"></i>
+      <span>{{ schema.header.title }}</span>
+    </div>
     <div class="panel-subtitle text-center">{{ schema.header.subtitle }}</div>
   </div>
   <div class="panel-body">
@@ -8,14 +12,18 @@
   </div>
   <div class="panel-footer">
     <ng-container *ngFor="let action of schema.actions">
-      <button *ngIf="action.name" (click)="onClick(action.name)" class="btn btn-primary btn-block">
-        <i *ngIf="action.icon" [class]="'icon ' + action.icon"></i>
-        {{ action.label }}
+      <button *ngIf="action.name"
+              (click)="onClick(action.name)"
+              class="btn btn-primary btn-block">
+        <i *ngIf="action.icon" [class]="'mr-10 icon ' + action.icon"></i>
+        <span>{{ action.label }}</span>
       </button>
-      <button *ngIf="action.link" [routerLink]="action.link" class="btn btn-primary btn-block">
-        <i *ngIf="action.icon" [class]="'icon ' + action.icon"></i>
-        {{ action.label }}
-      </button>
+      <a *ngIf="action.link"
+         [routerLink]="action.link"
+         class="btn btn-primary btn-block">
+        <i *ngIf="action.icon" [class]="'mr-10 icon ' + action.icon"></i>
+        <span>{{ action.label }}</span>
+      </a>
     </ng-container>
   </div>
 </div>

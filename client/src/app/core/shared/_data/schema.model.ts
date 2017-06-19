@@ -4,6 +4,7 @@ export interface IFormControl {
   key: string;
   type: string;
   label: string;
+  actions?: IAction[];
   placeholder?: string;
   defaultValue?: any;
   validators: IValidator[];
@@ -42,7 +43,7 @@ export interface IField {
 
 export interface IAction {
   label: string;
-  name?: string;
+  value?: string;
   link?: string;
   icon?: string;
 }

@@ -14,6 +14,10 @@ import { ToastComponent } from './toast/toast.component';
 import { PanelComponent } from './panel/panel.component';
 import { SecurityService } from 'app/core/shared/security.service';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
+import { SelectComponent } from './select/select.component';
+import { RadioComponent } from './radio/radio.component';
+import { SwitchComponent } from './switch/switch.component';
+import { TextareaComponent } from './textarea/textarea.component';
 
 @NgModule({
   imports: [
@@ -23,7 +27,8 @@ import { DashboardComponent } from './layouts/dashboard/dashboard.component';
   ],
   declarations: [
     ControlErrorComponent, FormComponent, InputComponent, TableComponent,
-    CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent, DashboardComponent
+    CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent,
+    DashboardComponent, SelectComponent, RadioComponent, SwitchComponent, TextareaComponent
   ],
   exports: [
     ControlErrorComponent,
