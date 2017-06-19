@@ -23,6 +23,12 @@ HOST: 127.0.0.1:3000/api
 + Response 201 (application/json; charset=utf-8)
     + Attributes (UserResponse)
 
++ Request (application/json)
+    + Attributes (UserRequest)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
+
 ## Credentials client [/credentials/public]
 
 ### Create [POST]
@@ -31,6 +37,12 @@ HOST: 127.0.0.1:3000/api
 
 + Response 201 (application/json; charset=utf-8)
     + Attributes (UserResponse)
+
++ Request (application/json)
+    + Attributes (UserRequestPublic)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
 
 ## Credentials client [/credentials/invitation]
 
@@ -41,6 +53,11 @@ HOST: 127.0.0.1:3000/api
 + Response 201 (application/json; charset=utf-8)
     + Attributes (UserResponse)
 
++ Request (application/json)
+    + Attributes (UserRequestInvitation)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
 
 ## Credentials client [/credentials/confirmation]
 
@@ -203,3 +220,6 @@ Get user by id
 + image: imagen (string, required)
 + standardPrice: 20 (number, required)
 + reducedPrice: 15 (number, required)
+
+## FailResponse
++ message (string, required)
