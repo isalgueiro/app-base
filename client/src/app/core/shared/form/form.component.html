@@ -3,6 +3,10 @@
     <ng-container [ngSwitch]="control.type">
       <ab-select *ngSwitchCase="'select'" [form]="form" [control]="control">
       </ab-select>
+      <ab-radio *ngSwitchCase="'radio'" [form]="form" [control]="control">
+      </ab-radio>
+      <ab-checkbox *ngSwitchCase="'checkbox'" [form]="form" [control]="control">
+      </ab-checkbox>
       <ab-input *ngSwitchDefault [form]="form" [control]="control">
       </ab-input>
     </ng-container>
@@ -14,3 +18,4 @@
     </button>
   </section>
 </form>
+{{ form.group.value | json }}

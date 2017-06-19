@@ -15,6 +15,8 @@ import { PanelComponent } from './panel/panel.component';
 import { SecurityService } from 'app/core/shared/security.service';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 import { SelectComponent } from './select/select.component';
+import { RadioComponent } from './radio/radio.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 @NgModule({
   imports: [
@@ -24,7 +26,7 @@ import { SelectComponent } from './select/select.component';
   ],
   declarations: [
     ControlErrorComponent, FormComponent, InputComponent, TableComponent,
-    CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent, DashboardComponent, SelectComponent
+    CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent, DashboardComponent, SelectComponent, RadioComponent, CheckboxComponent
   ],
   exports: [
     ControlErrorComponent,

@@ -1,0 +1,10 @@
+<section [formGroup]="form.group">
+  <label [for]="control.key" class="form-label">{{ control.label }}</label>
+  <label *ngFor="let action of control.actions" class="form-radio">
+    <input type="radio" [formControlName]="control.key" [value]="action.value"
+      [ngClass]="{'is-error': formTools.hasErrorsToShow(form.group,control.key)}"/>
+    <i class="form-icon"></i> {{ action.label }}
+  </label>
+  <ab-control-error [form]="form" [control]="control">
+  </ab-control-error>
+</section>
