@@ -1,6 +1,6 @@
 {
   "name": "server-app-base",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Server with Angular Based Technology",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,9 @@
     "url": "git+https://github.com/AgoraBinaria/angular-base.git"
   },
   "author": {
-    "name": "Ágora Binaria S.L."
+    "name": "Ágora Binaria S.L.",
+    "email": "albertobasalo@agorabinaria.com",
+    "url": "http://agorabinaria.com"
   },
   "license": "MIT",
   "bugs": {
