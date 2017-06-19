@@ -14,7 +14,7 @@ export class AuthMiddleware implements NestMiddleware {
   public resolve() {
     return (req: Request, res: Response, next: NextFunction) => {
       this.logger.log('resolve');
-      const authHeader = req.headers['authorization'];
+      const authHeader = req.headers['authorization'] as string;
       this.logger.value('authHeader', authHeader);
       if (!authHeader) {
         throw new NotFoundException('');

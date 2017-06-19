@@ -5,7 +5,7 @@ import * as cors from 'cors';
 import * as express from 'express';
 import { join } from 'path';
 import { AppModule } from './app/app.module';
-import { NotFoundException } from './app/core/shared/exceptions';
+import { NotFoundException, UnknowExceptionFilter } from './app/core/shared/exceptions';
 import { SETTINGS } from './environments/environment';
 
 const logger = new Logger('Main');
@@ -16,9 +16,10 @@ instance.use(express.static(SETTINGS.path));
 
 const app = NestFactory.create(AppModule, instance);
 app.setGlobalPrefix('api');
+app.useGlobalFilters(new UnknowExceptionFilter());
 app.init();
 
-instance.get('*', function (req, res) {
+instance.get('*', (req, res, next) => {
     res.sendFile(join(SETTINGS.path, 'index.html'));
 });
 
