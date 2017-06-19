@@ -39,12 +39,12 @@ export class GodOrganizationsListComponent implements OnInit {
       ], actions: [
         {
           label: 'Adm',
-          name: 'setAdmin',
+          value: 'setAdmin',
           icon: 'icon-people'
         },
         {
           label: 'Del',
-          name: 'delete',
+          value: 'delete',
           icon: 'icon-delete'
         },
       ]
