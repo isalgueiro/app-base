@@ -13,15 +13,14 @@ export class AuthMiddleware implements NestMiddleware {
   private logger: LoggerService = new LoggerService('AuthMiddleware');
   public resolve() {
     return (req: Request, res: Response, next: NextFunction) => {
-      this.logger.log('resolve');
       const authHeader = req.headers['authorization'] as string;
       this.logger.value('authHeader', authHeader);
       if (!authHeader) {
-        throw new NotFoundException('');
+        throw new NotFoundException('Authorization not provide');
       }
       const token = authHeader.split(' ')[1];
       if (!token) {
-        throw new NotFoundException('');
+        throw new NotFoundException('Authorization not provide');
       }
       const user = verify(token, SETTINGS.secret);
       req['session'] = user;
