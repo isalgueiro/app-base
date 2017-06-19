@@ -1,0 +1,7 @@
+<section [formGroup]="form.group">
+  <div class="form-group">
+    <label [for]="control.key" class="form-label">{{ control.label }}</label>
+    <textarea class="form-input" [formControlName]="control.key" [placeholder]="control.placeholder ? control.placeholder : ''"
+      rows="3"></textarea>
+  </div>
+</section>
