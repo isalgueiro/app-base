@@ -29,45 +29,29 @@ export class CredentialsController {
       password: 'secret'
     };
     const newUser = await this.credentialsLogic.postUserGodRegistration(userRegistration);
-    if (newUser) {
-      this.logger.value('newUser', newUser);
-      res.status(HttpStatus.CREATED).json(newUser);
-    } else {
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Not created' });
-    }
+    this.logger.value('newUser', newUser);
+    res.status(HttpStatus.CREATED).json(newUser);
   }
 
   @Post('client')
   public async postUserClientRegistration( @Res() res: Response, @Body() userRegistration: IUserClientRegistration) {
     const newUser = await this.credentialsLogic.postUserClientRegistration(userRegistration);
-    if (newUser) {
-      this.logger.value('newUser', newUser);
-      res.status(HttpStatus.CREATED).json(newUser);
-    } else {
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Not created' });
-    }
+    this.logger.value('newUser', newUser);
+    res.status(HttpStatus.CREATED).json(newUser);
   }
 
   @Post('public')
   public async postUserPublicRegistration( @Res() res: Response, @Body() userRegistration: IUserPublicRegistration) {
     const newUser = await this.credentialsLogic.postUserPublicRegistration(userRegistration);
-    if (newUser) {
-      this.logger.value('newUser', newUser);
-      res.status(HttpStatus.CREATED).json(newUser);
-    } else {
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Not created' });
-    }
+    this.logger.value('newUser', newUser);
+    res.status(HttpStatus.CREATED).json(newUser);
   }
 
   @Post('invitation')
   public async postUserInvitation( @Res() res: Response, @Body() userInvitation: IUserInvitation) {
     const newUser = await this.credentialsLogic.postUserInvitation(userInvitation);
-    if (newUser) {
-      this.logger.value('newUser', newUser);
-      res.status(HttpStatus.CREATED).json(newUser);
-    } else {
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Not created' });
-    }
+    this.logger.value('newUser', newUser);
+    res.status(HttpStatus.CREATED).json(newUser);
   }
 
   @Post('confirmation')

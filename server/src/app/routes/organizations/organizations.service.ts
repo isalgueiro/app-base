@@ -28,7 +28,6 @@ export class OrganizationsService {
   }
 
   public async delete(id: string): Promise<void> {
-    this.logger.log(id);
     const repository = await this.repository;
     const orgExists = await repository.findOne(id);
     if (orgExists) {

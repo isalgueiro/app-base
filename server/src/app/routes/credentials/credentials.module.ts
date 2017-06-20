@@ -1,6 +1,7 @@
-import { Module } from '@nestjs/common';
+import { MiddlewaresConsumer, Module, RequestMethod } from '@nestjs/common';
 import { SharedModule } from '../../core/shared/shared.module';
 import { UsersModule } from '../users/users.module';
+import { AuthMiddleware } from './../../core/shared/auth.middleware';
 import { CredentialsController } from './credentials.controller';
 import { CredentialsLogic } from "./credentials.logic";
 import { CredentialsService } from './credentials.service';
@@ -12,5 +13,12 @@ import { CredentialsService } from './credentials.service';
   modules: [UsersModule, SharedModule],
 })
 export class CredentialsModule {
-
+  public configure(consumer: MiddlewaresConsumer) {
+    consumer
+      .apply(AuthMiddleware)
+      .forRoutes({
+        path: 'credentials/invitation',
+        method: RequestMethod.POST
+      });
+  }
 }
