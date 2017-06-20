@@ -1,7 +1,7 @@
 import { Collection, Index, Instance, Model, ObjectID, Property, Transform } from 'iridium';
 import { ROLE, STATUS } from "../../core/shared/enums";
 
-export interface IUserDocument {
+export interface IUser {
   _id?: string;
   name: string;
   email: string;
@@ -13,7 +13,7 @@ export interface IUserDocument {
 
 @Index({ email: 1 }, { unique: true })
 @Collection('users')
-export class User extends Instance<IUserDocument, User> implements IUserDocument {
+export class User extends Instance<IUser, User> implements IUser {
   @ObjectID
   public _id: string;
   @Property(String, true)

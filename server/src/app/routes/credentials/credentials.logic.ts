@@ -5,8 +5,8 @@ import { ROLE, STATUS } from "../../core/shared/enums";
 import { BadRequestException, NotFoundException } from '../../core/shared/exceptions';
 import { LoggerService } from "../../core/shared/logger.service";
 import { UsersService } from "../users/users.service";
-import { IUserDocument, User } from './../users/user.model';
-import { ICredentialDocument } from './credential.model';
+import { IUser, User } from './../users/users.models';
+import { ICredential } from './credentials.models';
 import {
   IUserClientRegistration,
   IUserCredential,
@@ -67,7 +67,7 @@ export class CredentialsLogic {
   }
 
   private createUserFromUserGodRegistration(userRegistration: IUserGodRegistration) {
-    const newUser: IUserDocument = {
+    const newUser: IUser = {
       email: userRegistration.email,
       name: userRegistration.name,
       roles: [ROLE.GOD],
@@ -77,7 +77,7 @@ export class CredentialsLogic {
   }
 
   private createUserFromUserClientRegistration(userRegistration: IUserClientRegistration) {
-    const newUser: IUserDocument = {
+    const newUser: IUser = {
       email: userRegistration.email,
       organizationId: userRegistration.organizationId,
       name: userRegistration.name,
@@ -88,7 +88,7 @@ export class CredentialsLogic {
   }
 
   private createUserFromUserPublicRegistration(userRegistration: IUserPublicRegistration) {
-    const newUser: IUserDocument = {
+    const newUser: IUser = {
       email: userRegistration.email,
       organizationId: userRegistration.organizationId,
       name: userRegistration.name,
@@ -100,7 +100,7 @@ export class CredentialsLogic {
   }
 
   private createUserFromUserInvitation(userInvitation: IUserInvitation) {
-    const newUser: IUserDocument = {
+    const newUser: IUser = {
       email: userInvitation.email,
       organizationId: userInvitation.organizationId,
       name: userInvitation.name,
@@ -110,8 +110,8 @@ export class CredentialsLogic {
     return newUser;
   }
 
-  private async postCredential(newUser: IUserDocument, password: string) {
-    const credential: ICredentialDocument = {
+  private async postCredential(newUser: IUser, password: string) {
+    const credential: ICredential = {
       userId: newUser._id,
       password
     };
@@ -126,7 +126,7 @@ export class CredentialsLogic {
     return newUser;
   }
 
-  private async sendConfirmationEmail(newUser: IUserDocument): Promise<boolean> {
+  private async sendConfirmationEmail(newUser: IUser): Promise<boolean> {
     return true;
   }
 }

@@ -58,3 +58,8 @@ export interface IPanelSchema {
   header: IHeader;
   actions?: IAction[];
 }
+
+export interface IEmptyStateSchema {
+  loading: boolean;
+  action: IAction;
+}
