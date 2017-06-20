@@ -1,6 +1,6 @@
 import { Collection, Index, Instance, Model, ObjectID, Property, Transform } from 'iridium';
 
-export interface IOrganizationDocument {
+export interface IOrganization {
   _id?: string;
   name: string;
   email: string;
@@ -14,7 +14,7 @@ export interface IOrganizationDocument {
 }
 
 @Collection('organizations')
-export class Organization extends Instance<IOrganizationDocument, Organization> implements IOrganizationDocument {
+export class Organization extends Instance<IOrganization, Organization> implements IOrganization {
   @ObjectID
   public _id: string;
   @Property(String, true)

@@ -7,7 +7,7 @@ import {
   GoneException, NotFoundException,
   ObjectIDException
 } from './../../core/shared/exceptions';
-import { IUserDocument, User } from './user.model';
+import { IUser, User } from './users.models';
 
 @Component()
 export class UsersService {
@@ -15,25 +15,25 @@ export class UsersService {
 
   constructor(private databaseService: DatabaseService) { }
 
-  public async getAll(): Promise<IUserDocument[]> {
+  public async getAll(): Promise<IUser[]> {
     const repository = await this.repository;
     const users = await repository.find().map(doc => doc.document);
     return users;
   }
 
-  public async getById(id: string): Promise<IUserDocument> {
+  public async getById(id: string): Promise<IUser> {
     const repository = await this.repository;
     const user = await repository.findOne(id);
     return user;
   }
 
-  public async getByEmail(email: string): Promise<IUserDocument> {
+  public async getByEmail(email: string): Promise<IUser> {
     const repository = await this.repository;
     const user = await repository.findOne({ email });
     return user;
   }
 
-  public async post(newUser: IUserDocument): Promise<IUserDocument> {
+  public async post(newUser: IUser): Promise<IUser> {
     const repository = await this.repository;
     const savedUser = await repository.insert(newUser);
     return savedUser;
@@ -47,13 +47,13 @@ export class UsersService {
     }
   }
 
-  public async getByOrganizationRole(organizationId: string, role: ROLE): Promise<IUserDocument[]> {
+  public async getByOrganizationRole(organizationId: string, role: ROLE): Promise<IUser[]> {
     const repository = await this.repository;
     const organizationUsers = await repository.find({ organizationId, roles: role }).map(doc => doc.document);
     return organizationUsers;
   }
 
   private get repository() {
-    return this.databaseService.repository<IUserDocument, User>(User);
+    return this.databaseService.repository<IUser, User>(User);
   }
 }
