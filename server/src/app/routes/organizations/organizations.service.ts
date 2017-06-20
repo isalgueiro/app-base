@@ -1,7 +1,7 @@
 import { Component } from "@nestjs/common";
 import { DatabaseService } from "../../core/shared/database.service";
 import { LoggerService } from "../../core/shared/logger.service";
-import { IOrganizationDocument, Organization } from './organization.model';
+import { IOrganization, Organization } from './organizations.models';
 
 @Component()
 export class OrganizationsService {
@@ -9,7 +9,7 @@ export class OrganizationsService {
 
   constructor(private databaseService: DatabaseService) { }
 
-  public async getAll(): Promise<IOrganizationDocument[]> {
+  public async getAll(): Promise<IOrganization[]> {
     const repository = await this.repository;
     const organizations = await repository.find().map(doc => doc.document);
     return organizations;
@@ -21,7 +21,7 @@ export class OrganizationsService {
     return organizationsCount;
   }
 
-  public async post(organization: IOrganizationDocument): Promise<IOrganizationDocument> {
+  public async post(organization: IOrganization): Promise<IOrganization> {
     const repository = await this.repository;
     const newOrganization = await repository.create(organization);
     return newOrganization;
@@ -38,6 +38,6 @@ export class OrganizationsService {
   }
 
   private get repository() {
-    return this.databaseService.repository<IOrganizationDocument, Organization>(Organization);
+    return this.databaseService.repository<IOrganization, Organization>(Organization);
   }
 }

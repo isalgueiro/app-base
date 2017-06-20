@@ -1,5 +1,22 @@
 import { ROLE } from "../../core/shared/enums";
 
+import { Collection, Instance, ObjectID, Property } from 'iridium';
+export interface ICredential {
+  _id?: string;
+  userId: string;
+  password: string;
+}
+
+@Collection('credentials')
+export class Credential extends Instance<ICredential, Credential> implements ICredential {
+  @ObjectID
+  public _id?: string;
+  @Property(String, true)
+  public userId: string;
+  @Property(String, true)
+  public password: string;
+}
+
 export interface IUserCredential {
   email: string;
   password: string;

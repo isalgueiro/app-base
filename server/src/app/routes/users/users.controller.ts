@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, ExceptionFilters, Get, HttpStatus, Param, Post, Res, Session } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { IUserDocument } from "./user.model";
+import { IUser } from "./users.models";
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -14,7 +14,7 @@ export class UsersController {
   }
 
   @Get('/me')
-  public async getMe( @Res() res: Response, @Session() session: IUserDocument) {
+  public async getMe( @Res() res: Response, @Session() session: IUser) {
     const userId = session._id;
     const users = await this.usersService.getById(userId);
     res.status(HttpStatus.OK).json(users);
