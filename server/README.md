@@ -21,6 +21,12 @@
 $npm install
 ```
 
+# Configure
+Generate enviroments.ts, and fill with your configuration.
+```
+$cp environment/environment.template.ts environment/environment.ts
+```
+
 # Start server
 ```bash
 $npm run reload 

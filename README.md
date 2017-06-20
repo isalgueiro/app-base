@@ -14,7 +14,7 @@ Development
 ### Run Development Server
 ```bash
 $cd server
-$copy environment/environment.template.ts environment/environment.ts
+$cp environment/environment.template.ts environment/environment.ts
 $npm i
 $npm start
 ```
