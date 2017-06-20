@@ -60,3 +60,5 @@ typings/
 environment.ts
 
 dist
+
+package-lock.json
