@@ -2,7 +2,7 @@ import { Component, HttpStatus } from "@nestjs/common";
 import * as nodemailer from 'nodemailer';
 import { SETTINGS } from "../../../environments/environment";
 import { LoggerService } from "../../core/shared/logger.service";
-import { IMessage } from './mail.models';
+import { IMessage } from './mails.models';
 
 @Component()
 export class MailsService {
