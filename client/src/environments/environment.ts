@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   appName: 'AppBase',
-  appTitle: 'Application Base',
+  appTitle: 'App Base',
   apiUrl: 'http://localhost:3000/api/',
   secret: 'secret',
   godEmail: 'admin@agorabinaria.com'
