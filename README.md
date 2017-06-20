@@ -63,3 +63,8 @@ $pm2 ecosystem.js
 ```bash
 $pm2 restart 'id'
 ```
+
+
+## Install Problems
+* [node-gyp](https://github.com/nodejs/node-gyp)
+* [windows-build-tools](https://github.com/felixrieseberg/windows-build-tools/issues/20)
