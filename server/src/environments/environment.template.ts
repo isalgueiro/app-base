@@ -43,7 +43,7 @@ const settingsDev: ISettings = {
       pass: ""
     },
   },
-  path: '',
+  path: '.',
 };
 
 export const SETTINGS = (isProd) ? settingsProd : settingsDev;
