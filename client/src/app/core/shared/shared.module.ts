@@ -18,6 +18,7 @@ import { SelectComponent } from './select/select.component';
 import { RadioComponent } from './radio/radio.component';
 import { SwitchComponent } from './switch/switch.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { EmptyStateComponent } from './empty-state/empty-state.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,7 @@ import { TextareaComponent } from './textarea/textarea.component';
   declarations: [
     ControlErrorComponent, FormComponent, InputComponent, TableComponent,
     CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent,
-    DashboardComponent, SelectComponent, RadioComponent, SwitchComponent, TextareaComponent
+    DashboardComponent, SelectComponent, RadioComponent, SwitchComponent, TextareaComponent, EmptyStateComponent
   ],
   exports: [
     ControlErrorComponent,
