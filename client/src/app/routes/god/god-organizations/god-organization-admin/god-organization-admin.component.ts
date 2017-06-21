@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { FormToolsService } from 'app/core/shared/form-tools.service';
+import { FormToolsService } from 'app/core/shared/forms/form-tools.service';
 import { IFormSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
