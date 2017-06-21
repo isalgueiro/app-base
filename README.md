@@ -9,6 +9,7 @@ Base for a great Application
 Requirements
 -----------
 * Start MongoDB
+* Edit configuration in [server](https://github.com/AgoraBinaria/app-base/blob/master/server/README.md#configure)
 
 ### Run Development Server
 ```bash
