@@ -1,7 +1,7 @@
 <form [formGroup]="form.group"
       class="container">
-  <section class="form-group"
-           *ngFor="let control of form.schema.controls">
+  <fieldset class="form-group"
+            *ngFor="let control of form.schema.controls">
     <ng-container [ngSwitch]="control.type">
       <ab-select *ngSwitchCase="'select'"
                  [form]="form"
@@ -24,13 +24,13 @@
                 [control]="control">
       </ab-input>
     </ng-container>
-  </section>
-  <section class="form-group">
+  </fieldset>
+  <footer class="form-group">
     <button [ngClass]="{'btn btn-primary float-right': true, 'btn-block': formSchema.buttonBlock}"
             type="submit"
             (click)="onClick(); form.group.reset();"
             [disabled]="form.group.invalid">
       {{ form.schema.submitLabel}}
     </button>
-  </section>
+  </footer>
 </form>

@@ -1,15 +1,22 @@
-<div class="empty">
-  <div *ngIf="schema.loading" class="loading"></div>
-  <div *ngIf="!schema.loading" class="empty-icon">
+<aside class="empty">
+  <div *ngIf="schema.loading"
+       class="loading"></div>
+  <div *ngIf="!schema.loading"
+       class="empty-icon">
     <i class="icon icon-people"></i>
   </div>
-  <h4 *ngIf="schema.loading" class="empty-title">The data is loading.</h4>
+  <h4 *ngIf="schema.loading"
+      class="empty-title">The data is loading.</h4>
   <ng-container *ngIf="!schema.loading">
     <h4 class="empty-title">There is no data to display.</h4>
     <p class="empty-subtitle">Click the button to add new data.</p>
     <div class="empty-action">
-      <button *ngIf="schema.action.icon" (click)="onClick()" class="btn btn-primary"><i [class]="'icon ' + schema.action.icon"></i> {{ schema.action.label }}</button>
-      <button *ngIf="!schema.action.icon" (click)="onClick()" class="btn btn-primary">{{ schema.action.label }}</button>
+      <button *ngIf="schema.action.icon"
+              (click)="onClick()"
+              class="btn btn-primary"><i [class]="'icon ' + schema.action.icon"></i> {{ schema.action.label }}</button>
+      <button *ngIf="!schema.action.icon"
+              (click)="onClick()"
+              class="btn btn-primary">{{ schema.action.label }}</button>
     </div>
   </ng-container>
-</div>
+</aside>
