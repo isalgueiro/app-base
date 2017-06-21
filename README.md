@@ -8,8 +8,7 @@ Base for a great Application
 
 Development
 -----------
-
-> Start MongoDB localhost:2020
+Start MongoDB 
 
 ### Run Development Server
 ```bash
