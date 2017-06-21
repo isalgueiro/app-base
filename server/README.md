@@ -48,12 +48,30 @@ $npm run test
 
 # Generate bundle and transpile
 ```bash
-$npm run build:complete
-$npm run start:prod
+$npm run build
+$pm2 start ecosystem.json
 ```
 
 # Why exceptions file
 To provide a common errors for HTTP request.
 
+# Ecosystem
+Use ecosystem json provide a better manage of app configuration
+```json
+{
+  "apps" : [
+        {
+            // App base
+            "name"        : "app-base",
+            "script"      : "backend.js",
+            "merge_logs"  : true,
+            "cwd"         : "absolute path to dist/server",
+            "env" : {
+               "NODE_ENV": "prod"
+            }
+        }
+  ]
+}
+```
 
 
