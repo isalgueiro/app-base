@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IPanelSchema } from 'app/core/shared/_data/schema.model';
+import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-panel',
@@ -8,7 +8,7 @@ import { IPanelSchema } from 'app/core/shared/_data/schema.model';
 })
 export class PanelComponent implements OnInit {
 
-  @Input() schema: IPanelSchema;
+  @Input() schema: IWidgetSchema;
   @Output() send = new EventEmitter<any>();
 
   constructor() { }

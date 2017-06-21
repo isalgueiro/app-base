@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IFormSchema, IPanelSchema } from 'app/core/shared/_data/schema.model';
+import { IFormSchema, IWidgetSchema } from 'app/core/shared/_data/schema.model';
 import { SecurityService, IUserCredential } from 'app/core/shared/security.service';
 import { environment } from './../../../../environments/environment';
 
@@ -10,7 +10,7 @@ import { environment } from './../../../../environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  public panelSchema: IPanelSchema = {
+  public panelSchema: IWidgetSchema = {
     header: {
       title: 'Log In',
       subtitle: 'Please, provide your credentials to log in into the application'

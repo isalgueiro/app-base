@@ -1,13 +1,15 @@
-<div class="tile">
-  <div *ngIf="icon" class="tile-icon">
-    <i [class]="'icon centered ' + icon"></i>
-  </div>
-  <div class="tile-content">
-    <p class="tile-title">{{title}}</p>
-    <p class="tile-subtitle">{{subtitle}}</p>
-  </div>
-  <div class="tile-action">
+<article *ngIf="schema"
+         class="tile">
+  <header *ngIf="schema.header.icon"
+          class="tile-icon">
+    <i [class]="'icon centered ' + schema.header.icon"></i>
+  </header>
+  <main class="tile-content">
+    <p class="tile-title">{{schema.header.title}}</p>
+    <p class="tile-subtitle">{{schema.header.subtitle}}</p>
+  </main>
+  <footer class="tile-action">
     <ng-content>
     </ng-content>
-  </div>
-</div>
+  </footer>
+</article>

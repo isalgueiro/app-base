@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IOrganization } from 'app/routes/home/_data/models/organization.model';
 import { OrganizationsService } from 'app/routes/home/_data/organizations.service';
-import { IPanelSchema, IAction } from 'app/core/shared/_data/schema.model';
+import { IWidgetSchema, IAction } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-home',
@@ -10,7 +10,7 @@ import { IPanelSchema, IAction } from 'app/core/shared/_data/schema.model';
 })
 export class HomeComponent implements OnInit {
 
-  public schemas: IPanelSchema[] = [];
+  public schemas: IWidgetSchema[] = [];
 
   constructor(private organizationsService: OrganizationsService) { }
 
@@ -20,11 +20,11 @@ export class HomeComponent implements OnInit {
       .subscribe(data => this.schemas = this.transformData(data));
   }
 
-  transformData(organizations: IOrganization[]): IPanelSchema[] {
-    const panels: IPanelSchema[] = [];
+  transformData(organizations: IOrganization[]): IWidgetSchema[] {
+    const panels: IWidgetSchema[] = [];
 
     organizations.forEach(organization => {
-      const organizationPanel: IPanelSchema = {
+      const organizationPanel: IWidgetSchema = {
         header: {
           title: organization.name,
           subtitle: organization.address

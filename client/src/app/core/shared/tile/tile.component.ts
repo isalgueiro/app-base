@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-tile',
@@ -7,9 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TileComponent implements OnInit {
 
-  @Input() title: string;
-  @Input() subtitle: string;
-  @Input() icon: string;
+  @Input() schema: IWidgetSchema;
 
   constructor() { }
 

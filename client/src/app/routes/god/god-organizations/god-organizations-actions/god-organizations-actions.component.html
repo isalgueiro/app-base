@@ -1,6 +1,4 @@
-<ab-tile title="Organizations"
-         subtitle="Manage your organizations and it's administrators"
-         icon="icon-flag">
-        <button class="btn btn-primary"
-                (click)="onCreateOrganizationClick()">Create New</button>
+<ab-tile [schema]="schema">
+  <button class="btn btn-primary"
+          (click)="onCreateOrganizationClick()">Create New</button>
 </ab-tile>

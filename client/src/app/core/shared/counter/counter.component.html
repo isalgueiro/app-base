@@ -1,8 +1,9 @@
-<ab-tile [title]="counter + ' ' + title"
-         [subtitle]="subtitle"
+<ab-tile [schema]="schema"
          icon="icon-flag">
-      <a [routerLink]="link"
-         class="btn btn-primary">
-            {{label}}
+  <section *ngIf="schema.actions.length>0">
+    <a [routerLink]="schema.actions[0].link"
+       class="btn btn-primary">
+            <span>{{schema.actions[0].label}}</span>
       </a>
+  </section>
 </ab-tile>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GodDataService } from 'app/routes/god/_data/god-data.service';
 import { BusService } from 'app/bus.service';
-import { IPanelSchema } from 'app/core/shared/_data/schema.model';
+import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-god-home',
@@ -9,7 +9,7 @@ import { IPanelSchema } from 'app/core/shared/_data/schema.model';
   styles: []
 })
 export class GodHomeComponent implements OnInit {
-  public schemas: IPanelSchema[] = [];
+  public schemas: IWidgetSchema[] = [];
   constructor(private godData: GodDataService, private bus: BusService) { }
 
   ngOnInit() {

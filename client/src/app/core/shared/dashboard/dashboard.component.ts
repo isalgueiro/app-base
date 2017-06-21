@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IPanelSchema } from 'app/core/shared/_data/schema.model';
+import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-dashboard',
@@ -8,7 +8,7 @@ import { IPanelSchema } from 'app/core/shared/_data/schema.model';
 })
 export class DashboardComponent implements OnInit {
 
-  @Input() schemas: IPanelSchema[];
+  @Input() schemas: IWidgetSchema[];
 
   constructor() { }
 

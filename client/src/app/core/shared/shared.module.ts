@@ -13,7 +13,7 @@ import { ModalComponent } from './modal/modal.component';
 import { ToastComponent } from './toast/toast.component';
 import { PanelComponent } from './panel/panel.component';
 import { SecurityService } from 'app/core/shared/security.service';
-import { DashboardComponent } from './layouts/dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { SelectComponent } from './select/select.component';
 import { RadioComponent } from './radio/radio.component';
 import { SwitchComponent } from './switch/switch.component';

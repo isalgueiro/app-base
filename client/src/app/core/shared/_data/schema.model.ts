@@ -54,8 +54,10 @@ export interface IHeader {
   icon?: string;
 }
 
-export interface IPanelSchema {
+export interface IWidgetSchema {
   header: IHeader;
+  type?: 'panel' | 'card' | 'tile';
+  counter?: number;
   actions?: IAction[];
 }
 

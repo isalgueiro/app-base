@@ -1,0 +1,19 @@
+<div class="columns">
+  <div *ngFor="let widget of schemas"
+       class="column col-6 col-md-12">
+    <ng-container [ngSwitch]="widget.type">
+      <ab-panel *ngSwitchCase="'panel'"
+                [schema]="widget">
+      </ab-panel>
+      <ab-tile *ngSwitchCase="'tile'"
+               [schema]="widget">
+      </ab-tile>
+      <ab-tile *ngSwitchCase="'card'"
+               [schema]="widget">
+      </ab-tile>
+      <ab-panel *ngSwitchDefault
+                [schema]="widget">
+      </ab-panel>
+    </ng-container>
+  </div>
+</div>
