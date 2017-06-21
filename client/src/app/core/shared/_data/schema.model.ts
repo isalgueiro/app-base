@@ -1,8 +1,15 @@
 import { FormGroup } from '@angular/forms';
 
+export interface IFormSchema {
+  title: string;
+  submitLabel: string;
+  buttonBlock?: boolean;
+  controls: IFormControl[];
+}
+
 export interface IFormControl {
   key: string;
-  type: string;
+  type: 'email' | 'password' | 'radio' | 'select' | 'switch' | 'text' | 'textarea';
   label: string;
   actions?: IAction[];
   placeholder?: string;
@@ -10,17 +17,17 @@ export interface IFormControl {
   validators: IValidator[];
 }
 
+export interface IAction {
+  label: string;
+  value?: string;
+  link?: string;
+  icon?: string;
+}
+
 export interface IValidator {
   key: string;
   args?: any[];
   errorMessage?: string;
-}
-
-export interface IFormSchema {
-  title: string;
-  submitLabel: string;
-  buttonBlock?: boolean;
-  controls: IFormControl[];
 }
 
 export interface IForm {
@@ -37,15 +44,8 @@ export interface IReportSchema {
 
 export interface IField {
   label: string;
-  name: string;
+  key: string;
   type: string;
-}
-
-export interface IAction {
-  label: string;
-  value?: string;
-  link?: string;
-  icon?: string;
 }
 
 export interface IHeader {
@@ -61,7 +61,8 @@ export interface IWidgetSchema {
   actions?: IAction[];
 }
 
-export interface IEmptyStateSchema {
+export interface ILoadEmptyStateSchema {
   loading: boolean;
+  empty: boolean;
   action: IAction;
 }

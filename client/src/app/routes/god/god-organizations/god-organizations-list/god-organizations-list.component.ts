@@ -23,17 +23,17 @@ export class GodOrganizationsListComponent implements OnInit {
       fields: [
         {
           label: 'Organization',
-          name: 'name',
+          key: 'name',
           type: 'string'
         },
         {
           label: 'Administrator',
-          name: 'admin.name',
+          key: 'admin.name',
           type: 'string'
         },
         {
           label: 'Email',
-          name: 'admin.email',
+          key: 'admin.email',
           type: 'string'
         }
       ], actions: [
