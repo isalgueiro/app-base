@@ -41,26 +41,6 @@ Can set NODE_ENV to execute production or develpment. If NODE_ENV is 'prod' then
 
 By default using npm run start execute dev mode, if run npm run start:prod execute prod mode.
 
-# Project Structure
-```bash
-server
-|-- src
-|    |-- modules
-|    |   |-- application: 'Main module'
-|    |          |-- application.module.ts: 'The main module to start all modules'
-|    |   |-- users: 'Content users controller and respository'
-|    |          |-- users.controller.ts: 'The controller for routes'
-|    |          |-- users.service.ts: 'The service to access to data'
-|    |          |-- users.service.ts: 'The middleware to users routes'
-|    |          |-- users.module.ts: 'The module, import depencencies and export services'
-|    |          |-- users.exceptions.ts: 'This file provide all exceptions for users.'
-|    |-- utils
-|    |    |-- exceptions.ts: 'Exceptions constructor'
-|    |-- index.ts : 'Content server init logic'
-|-- index.js : 'Launch app, calling ts-node and our init server'
-```
-
-
 # Test
 ```bash
 $npm run test
