@@ -6,9 +6,9 @@ Base for a great Application
 - Angular 4
 - NodeJS with TypeScript
 
-Development
+Requirements
 -----------
-Start MongoDB 
+* Start MongoDB
 
 ### Run Development Server
 ```bash
@@ -27,6 +27,7 @@ $npm start
 
 - http://localhost:4200
 - http://localhost:4200/god/bigbang
+- http://localhost:4200/god/organizations
 - http://localhost:4200/god/
 
 
