@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { BusService } from 'app/bus.service';
-import { environment } from './../environments/environment';
+import { BusService } from './bus.service';
+import { environment } from './../../environments/environment';
 
 @Injectable()
 export class HttpService extends Http {

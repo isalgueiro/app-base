@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IOrganizationAdmin } from 'app/routes/god/_data/organization.model';
 import { GodDataService } from 'app/routes/god/_data/god-data.service';
 import 'rxjs/add/operator/do';
-import { BusService } from 'app/bus.service';
+import { BusService } from 'app/core/bus.service';
 import { Level } from 'app/core/shared/_data/message.model';
 @Component({
   selector: 'ab-god-organizations',

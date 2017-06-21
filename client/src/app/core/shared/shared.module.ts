@@ -12,7 +12,6 @@ import { TileComponent } from './widgets/tile/tile.component';
 import { ModalComponent } from './modal/modal.component';
 import { ToastComponent } from './toast/toast.component';
 import { PanelComponent } from './widgets/panel/panel.component';
-import { SecurityService } from 'app/core/shared/security.service';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 import { SelectComponent } from './forms/select/select.component';
 import { RadioComponent } from './forms/radio/radio.component';
@@ -43,6 +42,6 @@ import { EmptyStateComponent } from './empty-state/empty-state.component';
     TableComponent,
     ToastComponent,
     TileComponent],
-  providers: [FormToolsService, SecurityService]
+  providers: [FormToolsService]
 })
 export class SharedModule { }

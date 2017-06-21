@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BusService } from 'app/bus.service';
+import { BusService } from 'app/core/bus.service';
 import { IUser } from 'app/core/shared/_data/user.model';
 import { IMenuLink } from 'app/core/layout/_data/menu-link.model';
 import { environment } from './../../../../environments/environment';
-import { SecurityService } from 'app/core/shared/security.service';
+import { SecurityService } from 'app/core/security.service';
 @Component({
   selector: 'ab-top-bar',
   templateUrl: './top-bar.component.html',

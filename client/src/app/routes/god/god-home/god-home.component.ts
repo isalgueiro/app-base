@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GodDataService } from 'app/routes/god/_data/god-data.service';
-import { BusService } from 'app/bus.service';
+import { BusService } from 'app/core/bus.service';
 import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
