@@ -55,13 +55,12 @@ $pm2 start ecosystem.json
 # Why exceptions file
 To provide a common errors for HTTP request.
 
-# Ecosystem
+# [Ecosystem](http://pm2.keymetrics.io/docs/usage/deployment/)
 Use ecosystem json provide a better manage of app configuration
 ```json
 {
   "apps" : [
         {
-            // App base
             "name"        : "app-base",
             "script"      : "backend.js",
             "merge_logs"  : true,
