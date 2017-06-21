@@ -19,7 +19,7 @@ export class GodOrganizationCreateComponent implements OnInit {
     controls: [
       {
         key: 'name',
-        type: 'textarea',
+        type: 'text',
         label: 'Name',
         validators: [{ key: 'required', errorMessage: 'Name is required' }]
       },

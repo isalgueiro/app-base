@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IForm, IFormControl } from 'app/core/shared/_data/schema.model';
-import { FormToolsService } from 'app/core/shared/form-tools.service';
+import { FormToolsService } from "app/core/shared/forms/form-tools.service";
+
 
 @Component({
   selector: 'ab-switch',
