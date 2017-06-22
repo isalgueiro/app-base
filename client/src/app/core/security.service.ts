@@ -55,9 +55,16 @@ export class SecurityService {
   private emitUserStatus() {
     const userToken: string = localStorage.getItem(this.userTokenKey);
     this.bus.emitUserToken(userToken);
-    const userStorage = localStorage.getItem(this.userKey);
-    const user: IUser = userStorage ? JSON.parse(userStorage) : null;
+    const user = this.getUserFromLocalStorage();
     this.bus.emitUser(user);
+  }
+  private getUserFromLocalStorage() {
+    let user: IUser = null;
+    const userStorage = localStorage.getItem(this.userKey);
+    if (userStorage) {
+      user = JSON.parse(userStorage);
+    }
+    return user;
   }
 
   private saveUserToken(response) {
