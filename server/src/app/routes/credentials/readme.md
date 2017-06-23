@@ -1,11 +1,12 @@
 #Registro de usuarios
 
-### Manual
+*needs review and translation*
+
 ## GOD
-- Creación manual en base de datos
+- Creación vía aplicación '/god/bigbang'
 ````json
 {
-    "name" : "god user",
+    "name" : "Admin",
     "email" : "admin@agorabinaria.com",
     "password" : "AGoodGodPassword",
     "status" : "ACTIVE"
