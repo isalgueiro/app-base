@@ -1,0 +1,7 @@
+<ab-tile [schema]="actionSchema"
+         (send)="create.emit()">
+</ab-tile>
+<ab-table [data]="tableData"
+          [schema]="reportSchema"
+          (rowAction)="rowAction.emit($event)">
+</ab-table>

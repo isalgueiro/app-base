@@ -12,6 +12,7 @@ import { GodOrganizationCreateComponent } from './god-organizations/god-organiza
 import { GodOrganizationsListComponent } from './god-organizations/god-organizations-list/god-organizations-list.component';
 import { GodOrganizationsActionsComponent } from './god-organizations/god-organizations-actions/god-organizations-actions.component';
 import { GodOrganizationDeleteComponent } from './god-organizations/god-organization-delete/god-organization-delete.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { GodOrganizationDeleteComponent } from './god-organizations/god-organiza
     GodOrganizationCreateComponent,
     GodOrganizationsListComponent,
     GodOrganizationsActionsComponent,
-    GodOrganizationDeleteComponent],
+    GodOrganizationDeleteComponent,
+    UsersComponent],
   providers: [GodDataService],
   schemas: [NO_ERRORS_SCHEMA]
 })

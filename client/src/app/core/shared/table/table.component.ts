@@ -27,6 +27,9 @@ export class TableComponent implements OnInit {
   }
 
   valueByPath(target, path) {
+    if (!path) {
+      return '';
+    }
     path = path.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
     path = path.replace(/^\./, '');           // strip a leading dot
     const a = path.split('.');

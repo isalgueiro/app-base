@@ -1,17 +1,17 @@
-<section *ngIf="data?.length > 0"
+<section *ngIf="schema?.fields && data?.length > 0"
          class="table-container">
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th *ngFor="let field of schema.fields">{{ field.label }}</th>
-        <th *ngFor="let action of schema.actions">{{ action.label }}</th>
+        <th *ngFor="let field of schema.fields">{{ field?.label }}</th>
+        <th *ngFor="let action of schema.actions">{{ action?.label }}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let row of data"
           (click)="onRowClick(row)">
         <td *ngFor="let field of schema.fields">
-          {{ valueByPath(row,field.key) }}
+          {{ valueByPath(row,field?.key) }}
         </td>
         <td *ngFor="let action of schema.actions">
           <button class="btn"

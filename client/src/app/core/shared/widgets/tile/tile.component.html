@@ -9,7 +9,19 @@
     <p class="tile-subtitle">{{schema.header.subtitle}}</p>
   </main>
   <footer class="tile-action">
-    <ng-content>
-    </ng-content>
+    <ng-container *ngFor="let action of schema.actions">
+      <button *ngIf="action.key || action.value"
+              (click)="send.emit(action.key, action.value)"
+              class="btn btn-primary btn-block">
+        <i *ngIf="action.icon" [class]="'mr-10 icon ' + action.icon"></i>
+        <span>{{ action.label }}</span>
+      </button>
+      <a *ngIf="action.link"
+         [routerLink]="action.link"
+         class="btn btn-primary btn-block">
+        <i *ngIf="action.icon" [class]="'mr-10 icon ' + action.icon"></i>
+        <span>{{ action.label }}</span>
+      </a>
+    </ng-container>
   </footer>
 </article>

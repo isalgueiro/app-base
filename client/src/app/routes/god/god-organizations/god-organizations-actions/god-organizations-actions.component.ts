@@ -18,7 +18,13 @@ export class GodOrganizationsActionsComponent implements OnInit {
         title: 'Organizations',
         subtitle: 'Manage your organizations and its administrators',
         icon: 'icon-flag'
-      }
+      },
+      actions: [
+        {
+          label: 'Create New',
+          key: 'create_new'
+        }
+      ]
     }
   }
   onCreateOrganizationClick() {
