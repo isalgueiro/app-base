@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SecurityService } from "app/core/security.service";
 
 @Component({
   selector: 'ab-root',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styles: []
 })
 export class AppComponent {
-  title = 'rh';
+  constructor(private security: SecurityService) {
+
+  }
 }

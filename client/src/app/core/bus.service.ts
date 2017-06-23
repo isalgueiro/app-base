@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Observable } from 'rxjs/Observable';
 import { IUser } from 'app/core/shared/_data/user.model';
 import { IMessage, Level } from 'app/core/shared/_data/message.model';
@@ -10,8 +11,8 @@ export class BusService {
 
   private message$ = new Subject<IMessage>();
   private securityErr$ = new Subject<string>();
-  private userToken$ = new Subject<string>();
-  private user$ = new Subject<IUser>();
+  private userToken$ = new BehaviorSubject<string>(null);
+  private user$ = new BehaviorSubject<IUser>(null);
 
   constructor() {
   }
