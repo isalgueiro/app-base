@@ -12,12 +12,5 @@ import { OrganizationsService } from "./organizations.service";
   modules: [SharedModule, UsersModule],
 })
 export class OrganizationsModule {
-  public configure(consumer: MiddlewaresConsumer) {
-    consumer
-      .apply(AuthMiddleware)
-      .forRoutes({
-        path: 'organizations',
-        method: RequestMethod.GET
-      });
-  }
+
 }

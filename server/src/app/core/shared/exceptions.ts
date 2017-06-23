@@ -85,7 +85,7 @@ export class UnknowExceptionFilter implements ExceptionFilter {
     Reflect.ownKeys(exception).forEach(k => {
       errorMessage += (`${k}: ${exception[k]}/n`);
     });
-    console.log(exception.name);
+
     this.logger.log(errorMessage);
     if (exception instanceof MongoError) {
       const error = this.mongoError(exception);
