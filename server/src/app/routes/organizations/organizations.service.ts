@@ -1,6 +1,8 @@
 import { Component } from "@nestjs/common";
 import { DatabaseService } from "../../core/shared/database.service";
+import { ROLE } from "../../core/shared/enums";
 import { LoggerService } from "../../core/shared/logger.service";
+import { Roles } from './../../core/decorators/roles.decorator';
 import { IOrganization, Organization } from './organizations.models';
 
 @Component()
