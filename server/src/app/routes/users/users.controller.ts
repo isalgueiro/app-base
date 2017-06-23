@@ -13,6 +13,12 @@ export class UsersController {
     res.status(HttpStatus.OK).json(users);
   }
 
+  @Get('count')
+  public async getCount( @Res() res: Response) {
+    const usersCount = await this.usersService.getCount();
+    res.status(HttpStatus.OK).json({ data: usersCount });
+  }
+
   @Get('/me')
   public async getMe( @Res() res: Response, @Session() session: IUser) {
     const userId = session._id;

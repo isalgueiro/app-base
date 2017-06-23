@@ -21,6 +21,12 @@ export class UsersService {
     return users;
   }
 
+  public async getCount(): Promise<number> {
+    const repository = await this.repository;
+    const usersCount = await repository.count();
+    return usersCount;
+  }
+
   public async getById(id: string): Promise<IUser> {
     const repository = await this.repository;
     const user = await repository.findOne(id);

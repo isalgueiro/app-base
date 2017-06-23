@@ -38,7 +38,6 @@ export class MeComponent implements OnInit {
   }
 
   configureDashBoard(role: string) {
-    // To Do: swith by Role
     this.schemas = [
       {
         header: {
@@ -53,6 +52,11 @@ export class MeComponent implements OnInit {
         ]
       }
     ];
+    // To Do: switch by Role
+    this.configureDashBoardForGod();
+  }
+
+  configureDashBoardForGod() {
     this.me.getOrganizationsCount().subscribe(count => {
       this.schemas.push(
         {
@@ -65,6 +69,22 @@ export class MeComponent implements OnInit {
             {
               label: 'Manage organizations',
               link: '/god/organizations'
+            }
+          ]
+        });
+    });
+    this.me.getUsersCount().subscribe(count => {
+      this.schemas.push(
+        {
+          header: {
+            title: count + ' Users',
+            subtitle: 'Users, statuses and roles',
+            icon: 'people-flag'
+          },
+          actions: [
+            {
+              label: 'Manage Users',
+              link: '/god/users'
             }
           ]
         });
