@@ -19,8 +19,10 @@ app.setGlobalPrefix('api');
 app.useGlobalFilters(new UnknowExceptionFilter());
 app.init();
 
-instance.get('*', (req, res, next) => {
+if (process.env.NODE_ENV === 'prod') {
+  instance.get('*', (req, res, next) => {
     res.sendFile(join(SETTINGS.path, 'index.html'));
-});
+  });
+}
 
 app.listen(SETTINGS.port, () => logger.log(`Application is listening on port ${SETTINGS.port}`));

@@ -11,9 +11,5 @@ import { OrganizationsService } from "./organizations.service";
   modules: [SharedModule, UsersModule],
 })
 export class OrganizationsModule {
-  /* public configure(consumer: MiddlewaresConsumer) {
-       consumer
-           .apply(AuthMiddleware).forRoutes(UsersController)
-           .apply(RolesMiddleware).with(roles).forRoutes(UsersController);
-   }*/
+
 }
