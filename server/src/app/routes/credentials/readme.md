@@ -1,17 +1,18 @@
 #Registro de usuarios
 
-### Manual
+*needs review and translation*
+
 ## GOD
-- Creación manual en base de datos
+- Creación vía aplicación '/god/bigbang'
 ````json
 {
-    "name" : "god user",
+    "name" : "Admin",
     "email" : "admin@agorabinaria.com",
-    "password" : "AGoodGodPassword:-)",
+    "password" : "AGoodGodPassword",
     "status" : "ACTIVE"
 }
 ```` 
-*Los demás usuarios nacerán con estado 'PENDING' y recibirán un coprreo para activar sus cuentas*
+*Los demás usuarios nacerán con estado 'PENDING' y recibirán un correo para activar sus cuentas*
 
 ## Invitados
 ### ADMIN
@@ -44,7 +45,7 @@
 {
     "name" : "Kevin Bacon",
     "email" : "kevin@gmail.com",
-    "password" : "hisOwnPassword:-)",
+    "password" : "hisOwnPassword",
     "organizationId" : 1,
 }
 ```` 

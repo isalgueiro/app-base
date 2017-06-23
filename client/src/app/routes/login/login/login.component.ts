@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IFormSchema, IWidgetSchema } from 'app/core/shared/_data/schema.model';
-import { SecurityService, IUserCredential } from 'app/core/shared/security.service';
+import { SecurityService, IUserCredential } from 'app/core/security.service';
 import { environment } from './../../../../environments/environment';
 
 @Component({

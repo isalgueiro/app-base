@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormToolsService } from 'app/core/shared/form-tools.service';
+import { FormToolsService } from 'app/core/shared/forms/form-tools.service';
 import { IFormSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
@@ -19,7 +19,7 @@ export class GodOrganizationCreateComponent implements OnInit {
     controls: [
       {
         key: 'name',
-        type: 'textarea',
+        type: 'text',
         label: 'Name',
         validators: [{ key: 'required', errorMessage: 'Name is required' }]
       },

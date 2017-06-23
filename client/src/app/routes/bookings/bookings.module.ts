@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BookingsRoutingModule } from './bookings-routing.module';
+import { BookingsRoutingModule } from './bookings.routing';
 import { BookinsEditComponent } from './bookins-edit/bookins-edit.component';
 
 @NgModule({

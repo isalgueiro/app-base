@@ -1,14 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IEmptyStateSchema } from 'app/core/shared/_data/schema.model';
+import { ILoadEmptyStateSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
-  selector: 'ab-empty-state',
-  templateUrl: './empty-state.component.html',
+  selector: 'ab-load-empty-state',
+  templateUrl: './load-empty-state.component.html',
   styles: []
 })
-export class EmptyStateComponent implements OnInit {
+export class LoadEmptyStateComponent implements OnInit {
 
-  @Input() schema: IEmptyStateSchema;
+  @Input() schema: ILoadEmptyStateSchema;
   @Output() action = new EventEmitter<any>();
 
   constructor() { }

@@ -10,7 +10,6 @@
 {
   _id:'3452sdfgwq435',
   name:'Kevin Gamero',
-  password: 'gfasr154r',
   email:'kevin@loquesea.com',
   roles: ['admin','client','god','organizer','public','usher'],
   organizationId: '32r2rfw4rqw3df',

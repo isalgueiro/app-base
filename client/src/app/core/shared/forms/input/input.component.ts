@@ -1,13 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { IFormControl, IForm } from 'app/core/shared/_data/schema.model';
-import { FormToolsService } from 'app/core/shared/form-tools.service';
+import { FormToolsService } from "app/core/shared/forms/form-tools.service";
+
 
 @Component({
-  selector: 'ab-radio',
-  templateUrl: './radio.component.html',
+  selector: 'ab-input',
+  templateUrl: './input.component.html',
   styles: []
 })
-export class RadioComponent implements OnInit {
+export class InputComponent implements OnInit {
 
   @Input() control: IFormControl;
   @Input() form: IForm;
@@ -16,5 +18,4 @@ export class RadioComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

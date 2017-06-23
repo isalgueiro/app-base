@@ -8,6 +8,8 @@ Base for a great Application
 
 Requirements
 -----------
+* npm 4.6 **no npm 5**
+* See Install problems on Windows at the bottom
 * Start MongoDB
 * Edit configuration in [server](https://github.com/AgoraBinaria/app-base/blob/master/server/README.md#configure)
 

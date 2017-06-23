@@ -1,17 +1,21 @@
-<div class="container">
-  <div class="columns header-bg">
+<section class="container">
+  <nav class="columns header-bg">
     <div class="column col-8 col-lg-12 centered">
       <ab-top-bar></ab-top-bar>
     </div>
-  </div>
-  <div class="columns" [style.display]="show ? 'block' : 'none'">
+  </nav>
+  <aside class="columns"
+         [style.display]="show ? 'block' : 'none'">
     <div class="column col-8 col-lg-12 centered">
-      <ab-toast [show]="show" [text]="text" [level]="level" (close)="show = false"></ab-toast>
+      <ab-toast [show]="show"
+                [text]="text"
+                [level]="level"
+                (close)="show = false"></ab-toast>
     </div>
-  </div>
-  <div class="columns">
+  </aside>
+  <main class="columns">
     <div class="column col-8 col-lg-12 centered">
       <ab-main-content></ab-main-content>
     </div>
-  </div>
-</div>
+  </main>
+</section>
