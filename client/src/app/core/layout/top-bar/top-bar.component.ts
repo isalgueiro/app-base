@@ -3,7 +3,6 @@ import { BusService } from 'app/core/bus.service';
 import { IUser } from 'app/core/shared/_data/user.model';
 import { IMenuLink } from 'app/core/layout/_data/menu-link.model';
 import { environment } from './../../../../environments/environment';
-import { SecurityService } from 'app/core/security.service';
 @Component({
   selector: 'ab-top-bar',
   templateUrl: './top-bar.component.html',
@@ -13,7 +12,6 @@ export class TopBarComponent implements OnInit {
   userInitials = '?';
   user: IUser = null;
   title = environment.appTitle;
-  logOutActive: Boolean;
   menuLinks: IMenuLink[] = [
     {
       title: 'Home',
@@ -21,15 +19,10 @@ export class TopBarComponent implements OnInit {
     }
   ];
 
-  constructor(private bus: BusService, private security: SecurityService) { }
+  constructor(private bus: BusService) { }
 
   ngOnInit() {
     this.onUserChange();
-  }
-
-  onLogOutClick() {
-    this.logOutActive = false;
-    this.security.logOutUser();
   }
 
   private onUserChange() {

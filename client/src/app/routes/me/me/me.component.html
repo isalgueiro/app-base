@@ -1,0 +1,22 @@
+<p>
+  me works!
+</p>
+
+
+{{ user | json }}
+<button (click)="logOutActive=true">Log Out</button>
+<aside>
+  <ab-modal [title]="user?.name"
+            [active]="logOutActive"
+            (close)="logOutActive=false">
+    <modal-content>
+      {{ user | json }}
+    </modal-content>
+    <modal-footer>
+      <button (click)="logOutActive=false"
+              class="btn btn-link">Remain logged in</button>
+      <button (click)="onLogOutClick()"
+              class="btn btn-primary">Log Out.</button>
+    </modal-footer>
+  </ab-modal>
+</aside>

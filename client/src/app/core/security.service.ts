@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { environment } from './../../environments/environment';
 import { IUser } from 'app/core/shared/_data/user.model';
 import { Level } from 'app/core/shared/_data/message.model';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 
 @Injectable()
 export class SecurityService {
@@ -22,7 +24,8 @@ export class SecurityService {
       .post(this.url, credentials)
       .subscribe(r => {
         this.saveUserToken(r);
-        this.getLoggedUser();
+        this.getMe()
+          .subscribe(this.emitLogin.bind(this));
       });
   }
 
@@ -44,6 +47,13 @@ export class SecurityService {
         this.bus.emit({ level: Level.SUCCESS, text: 'Big Bang!!' });
       }
       );
+  }
+
+  public getMe() {
+    return this.http
+      .get('users/me')
+      .map(res => res.json())
+      .do(this.saveUser.bind(this));
   }
 
   private onSecurityErrNavigateToLogin() {
@@ -73,18 +83,14 @@ export class SecurityService {
     this.bus.emitUserToken(userToken);
   }
 
-  private getLoggedUser() {
-    this.http
-      .get('users/me')
-      .subscribe(res => this.saveUser(res));
+  private saveUser(user: IUser) {
+    localStorage.setItem(this.userKey, JSON.stringify(user));
   }
 
-  private saveUser(res) {
-    const user: IUser = res.json();
-    localStorage.setItem(this.userKey, JSON.stringify(user));
+  private emitLogin(user) {
     this.bus.emitUser(user);
     this.bus.emit({ level: Level.SUCCESS, text: user.name + ' logged in!!' });
-    this.navigateTo(['/']);
+    this.navigateTo(['/me']);
   }
 
   private navigateTo(target: any, args?: any) {

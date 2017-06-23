@@ -27,6 +27,10 @@ const routes: Routes = [
     loadChildren: routeBase + 'login/login.module#LoginModule'
   },
   {
+    path: 'me',
+    loadChildren: routeBase + 'me/me.module#MeModule'
+  },
+  {
     path: 'org/:organizationName',
     loadChildren: routeBase + 'organization/organization.module#OrganizationModule'
   },

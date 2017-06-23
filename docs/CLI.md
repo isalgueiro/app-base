@@ -19,6 +19,9 @@ ng g c routes/bookings/bookins-edit
 ng g m routes/login --routing
 ng g c routes/login/login 
 
+ng g m routes/me --routing
+ng g c routes/me/me 
+
 ng g m routes/client --routing
 ng g c routes/client/client-home
 ng g c routes/client/client-bookings
