@@ -17,11 +17,15 @@ export interface IFormControl {
   validators: IValidator[];
 }
 
-export interface IAction {
+export interface IAction extends IKeyValue {
   label: string;
-  value?: string;
   link?: string;
   icon?: string;
+}
+
+export interface IKeyValue {
+  key?: string;
+  value?: string;
 }
 
 export interface IValidator {

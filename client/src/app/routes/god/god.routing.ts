@@ -8,7 +8,8 @@ import { GodBigbangComponent } from 'app/routes/god/god-bigbang/bigbang.componen
 const routes: Routes = [
   {
     path: '',
-    component: GodHomeComponent
+    redirectTo: 'organizations',
+    pathMatch: 'full'
   },
   {
     path: 'bigbang',

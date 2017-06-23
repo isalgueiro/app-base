@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
+import { IWidgetSchema, IKeyValue } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-panel',
@@ -9,15 +9,15 @@ import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 export class PanelComponent implements OnInit {
 
   @Input() schema: IWidgetSchema;
-  @Output() send = new EventEmitter<any>();
+  @Output() send = new EventEmitter<IKeyValue>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onClick(name: string) {
-    this.send.emit(name);
+  onClick(key: string, value: string) {
+    this.send.emit({ key, value });
   }
 
 }

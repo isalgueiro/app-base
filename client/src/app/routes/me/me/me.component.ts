@@ -21,7 +21,9 @@ export class MeComponent implements OnInit {
   }
 
   onSend(event) {
-    this.onLogOutClick();
+    if (event.key === 'logout') {
+      this.onLogOutClick();
+    };
   }
   onLogOutClick() {
     this.logOutActive = false;
@@ -47,7 +49,8 @@ export class MeComponent implements OnInit {
         actions: [
           {
             label: 'Log Out',
-            value: 'logout'
+            key: 'logout',
+            icon: 'icon-shutdown'
           }
         ]
       }
@@ -79,7 +82,7 @@ export class MeComponent implements OnInit {
           header: {
             title: count + ' Users',
             subtitle: 'Users, statuses and roles',
-            icon: 'people-flag'
+            icon: 'icon-people'
           },
           actions: [
             {
