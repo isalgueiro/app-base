@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 export class DashboardComponent implements OnInit {
 
   @Input() schemas: IWidgetSchema[];
+  @Output() send = new EventEmitter<any>();
 
   constructor() { }
 

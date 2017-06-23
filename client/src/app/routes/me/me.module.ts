@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MeRoutingModule } from './me-routing.module';
 import { MeComponent } from './me/me.component';
 import { SharedModule } from 'app/core/shared/shared.module';
+import { MeService } from 'app/routes/me/me.service';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { SharedModule } from 'app/core/shared/shared.module';
     SharedModule
   ],
   declarations: [MeComponent],
+  providers: [MeService],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class MeModule { }

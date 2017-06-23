@@ -1,10 +1,7 @@
-<p>
-  me works!
-</p>
+<ab-dashboard [schemas]="schemas"
+              (send)="onSend($event)">
+</ab-dashboard>
 
-
-{{ user | json }}
-<button (click)="logOutActive=true">Log Out</button>
 <aside>
   <ab-modal [title]="user?.name"
             [active]="logOutActive"

@@ -12,8 +12,8 @@
   </main>
   <footer class="panel-footer">
     <ng-container *ngFor="let action of schema.actions">
-      <button *ngIf="action.name"
-              (click)="onClick(action.name)"
+      <button *ngIf="action.value"
+              (click)="onClick(action.value)"
               class="btn btn-primary btn-block">
         <i *ngIf="action.icon" [class]="'mr-10 icon ' + action.icon"></i>
         <span>{{ action.label }}</span>

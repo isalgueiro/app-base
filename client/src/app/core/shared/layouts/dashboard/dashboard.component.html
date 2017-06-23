@@ -12,7 +12,8 @@
                [schema]="widget">
       </ab-tile>
       <ab-panel *ngSwitchDefault
-                [schema]="widget">
+                [schema]="widget"
+                (send)="send.emit($event)">
       </ab-panel>
     </ng-container>
   </div>
