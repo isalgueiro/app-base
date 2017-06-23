@@ -7,11 +7,11 @@
 {
     "name" : "god user",
     "email" : "admin@agorabinaria.com",
-    "password" : "AGoodGodPassword:-)",
+    "password" : "AGoodGodPassword",
     "status" : "ACTIVE"
 }
 ```` 
-*Los demás usuarios nacerán con estado 'PENDING' y recibirán un coprreo para activar sus cuentas*
+*Los demás usuarios nacerán con estado 'PENDING' y recibirán un correo para activar sus cuentas*
 
 ## Invitados
 ### ADMIN
@@ -44,7 +44,7 @@
 {
     "name" : "Kevin Bacon",
     "email" : "kevin@gmail.com",
-    "password" : "hisOwnPassword:-)",
+    "password" : "hisOwnPassword",
     "organizationId" : 1,
 }
 ```` 
