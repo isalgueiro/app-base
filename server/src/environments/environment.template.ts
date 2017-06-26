@@ -6,7 +6,7 @@ const settingsProd: ISettings = {
   port: 2000,
   secret: 'secret',
   database: {
-    database: 'bookings',
+    database: 'base',
     username: '',
     password: '',
     host: 'localhost',
