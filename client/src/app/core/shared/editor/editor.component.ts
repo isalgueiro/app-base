@@ -7,7 +7,6 @@ import { IWidgetSchema, IKeyValue, IReportSchema, IFormSchema, IHeader, IAction 
   styles: []
 })
 export class EditorComponent implements OnInit {
-  @Input() public header: IHeader;
   @Input() public actionSchema: IWidgetSchema;
   @Input() public reportSchema: IReportSchema;
   @Input() public tableData: IWidgetSchema;
@@ -16,6 +15,7 @@ export class EditorComponent implements OnInit {
   @Output() public create = new EventEmitter<IKeyValue>();
   @Output() public delete = new EventEmitter<IKeyValue>();
   @Output() public rowAction = new EventEmitter<IKeyValue>();
+
   public createModalActive = false;
   public deleteModalActive = false;
   public selectedItem: any;
@@ -36,7 +36,7 @@ export class EditorComponent implements OnInit {
     console.log('onRowAction', data);
     if (data.action === 'delete') {
       this.deleteModalActive = true;
-      this.selectedItem = data.value;
+      this.selectedItem = data.row;
     } else {
       this.rowAction.emit(data);
     }

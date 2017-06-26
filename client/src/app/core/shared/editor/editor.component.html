@@ -14,11 +14,11 @@
     </ab-form>
   </modal-content>
 </ab-modal>
-<ab-modal title="Delete"
+<ab-modal title="{{ 'Delete ' + actionSchema.header.title }}"
           [active]="deleteModalActive"
           (close)="onCancelDelete()">
   <modal-content>
-    Delete {{ selectedItem | json }} ?
+    {{ selectedItem | json }}
   </modal-content>
   <modal-footer>
     <button (click)="onCancelDelete()"

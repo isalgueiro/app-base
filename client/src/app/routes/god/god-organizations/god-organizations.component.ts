@@ -4,6 +4,7 @@ import { GodDataService } from 'app/routes/god/_data/god-data.service';
 import 'rxjs/add/operator/do';
 import { BusService } from 'app/core/bus.service';
 import { Level } from 'app/core/shared/_data/message.model';
+import { IFormSchema, IWidgetSchema, IReportSchema } from 'app/core/shared/_data/schema.model';
 @Component({
   selector: 'ab-god-organizations',
   templateUrl: './god-organizations.component.html',
@@ -16,6 +17,75 @@ export class GodOrganizationsComponent implements OnInit {
   public activeCreateOrganizationModal = false;
   public activeDeleteOrganizationModal = false;
   public activeOrganization;
+
+  public createFormSchema: IFormSchema = {
+    title: 'New Organization',
+    submitLabel: 'Save Organization',
+    controls: [
+      {
+        key: 'name',
+        type: 'text',
+        label: 'Name',
+        validators: [{ key: 'required', errorMessage: 'Name is required' }]
+      },
+      {
+        key: 'email',
+        type: 'email',
+        label: 'Email',
+        validators: [{ key: 'required', errorMessage: 'Email is required' }]
+      },
+    ]
+  };
+
+  public actionSchema: IWidgetSchema = {
+    header: {
+      title: 'Organizations',
+      subtitle: 'Manage your organizations and its administrators',
+      icon: 'icon-flag'
+    },
+    actions: [
+      {
+        label: 'Create New',
+        key: 'create_new'
+      }
+    ]
+  }
+
+  public reportSchema: IReportSchema = {
+    header: {
+      title: 'List of Organizations'
+    },
+    emptyMessage: 'There aren\'t any organizations to display :(',
+    fields: [
+      {
+        label: 'Organization',
+        key: 'name',
+        type: 'string'
+      },
+      {
+        label: 'Administrator',
+        key: 'admin.name',
+        type: 'string'
+      },
+      {
+        label: 'Email',
+        key: 'admin.email',
+        type: 'string'
+      }
+    ], actions: [
+      {
+        label: 'Adm',
+        key: 'setAdmin',
+        icon: 'icon-people'
+      },
+      {
+        label: 'Del',
+        key: 'delete',
+        icon: 'icon-delete'
+      },
+    ]
+  }
+
   constructor(private godData: GodDataService, private bus: BusService) { }
 
   ngOnInit() {
@@ -54,6 +124,12 @@ export class GodOrganizationsComponent implements OnInit {
     this.activeOrganization = null;
     this.activeSetAdminModal = false;
   }
+  onRowAction(data) {
+    console.log('onRowAction Receibed', data);
+    if (data.action === 'setAdmin') {
+      this.onSetAdmin(data.row);
+    }
+  }
   setOrganizationAdmin(newAdmin) {
     newAdmin.organizationId = this.activeOrganization._id;
     this.godData
@@ -64,11 +140,8 @@ export class GodOrganizationsComponent implements OnInit {
       });
   }
 
-  onCreateOrganization() {
-    this.activeCreateOrganizationModal = true;
-  }
-
-  onCloseCreateOrganizationModal(newOrganization) {
+  onCreate(newOrganization) {
+    console.log('onCreate', newOrganization);
     this.activeCreateOrganizationModal = false;
     if (newOrganization) {
       this.godData
@@ -80,17 +153,9 @@ export class GodOrganizationsComponent implements OnInit {
     }
   }
 
-  onDeleteOrganization(organization) {
-    this.activeOrganization = organization;
-    this.activeDeleteOrganizationModal = true;
-  }
 
-  onCloseDeleteOrganizationModal(organization) {
-    this.activeOrganization = organization;
-    this.activeDeleteOrganizationModal = false;
-  }
-
-  onConfirmDeleteOrganizationModal(oldOrganization) {
+  onDelete(oldOrganization) {
+    console.log('onDelete', oldOrganization);
     this.activeDeleteOrganizationModal = false;
     this.godData
       .deleteOrganization(oldOrganization)
