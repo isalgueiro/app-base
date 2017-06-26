@@ -1,4 +1,5 @@
-<section class="column col-8 col-lg-12 centered">
+<section *ngIf="loadedMetadata;else loading"
+         class="column col-8 col-lg-12 centered">
   <ab-panel [schema]="panelSchema">
     <panel-body>
       <ab-form [formSchema]="formSchema"
@@ -7,3 +8,7 @@
     </panel-body>
   </ab-panel>
 </section>
+<ng-template #loading>
+  <ab-load-empty-state [schema]="loadingPanelSchema">
+  </ab-load-empty-state>
+</ng-template>

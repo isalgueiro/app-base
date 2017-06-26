@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IOrganizationAdmin } from 'app/routes/god/_data/organization.model';
 import { GodDataService } from 'app/routes/god/_data/god-data.service';
 import 'rxjs/add/operator/do';
-import 'rxjs/observable/forkJoin';
+import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { BusService } from 'app/core/bus.service';
@@ -20,7 +20,11 @@ export class GodOrganizationsComponent implements OnInit {
   public activeCreateOrganizationModal = false;
   public activeDeleteOrganizationModal = false;
   public activeOrganization;
-  public loadingMetadata = true;
+  public loadedMetadata = false;
+  loadingPanelSchema = {
+    loading: true,
+    empty: false
+  };
   public createFormSchema: IFormSchema;
   public actionSchema: IWidgetSchema;
   public reportSchema: IReportSchema;
@@ -38,7 +42,7 @@ export class GodOrganizationsComponent implements OnInit {
       this.http
         .get('assets/schemas/god_organizations_report.json')
         .do(res => this.reportSchema = res.json()))
-      .subscribe(res => this.loadingMetadata = false)
+      .subscribe(res => this.loadedMetadata = true)
     this.getOrganizations();
   }
 

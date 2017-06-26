@@ -1,7 +1,4 @@
-<aside *ngIf="loadingMetadata">
-  Loading....
-</aside>
-<div *ngIf="!loadingMetadata">
+<div *ngIf="loadedMetadata;else loading">
   <ab-editor [actionSchema]="actionSchema"
              [tableData]="organizations"
              [reportSchema]="reportSchema"
@@ -17,3 +14,7 @@
     </ab-god-organization-admin>
   </aside>
 </div>
+<ng-template #loading>
+  <ab-load-empty-state [schema]="loadingPanelSchema">
+  </ab-load-empty-state>
+</ng-template>
