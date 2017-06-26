@@ -9,6 +9,7 @@ import { environment } from './../../environments/environment';
 @Injectable()
 export class HttpService extends Http {
   public apiUrl = environment.apiUrl;
+  public assetsUrl = environment.assetsUrl;
   private authorization = '';
 
   constructor(
@@ -39,9 +40,9 @@ export class HttpService extends Http {
       .catch(this.onCatch.bind(this));
     return observableRequest;
   }
-  private getApiUrl(currentUrl) {
-    if (currentUrl.includes('/assets/')) {
-      return currentUrl;
+  private getApiUrl(currentUrl: string) {
+    if (currentUrl.includes('assets/')) {
+      return this.assetsUrl + currentUrl;
     } else {
       return this.apiUrl + currentUrl;
     }

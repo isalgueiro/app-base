@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { IOrganizationAdmin } from 'app/routes/god/_data/organization.model';
 import { GodDataService } from 'app/routes/god/_data/god-data.service';
 import 'rxjs/add/operator/do';
+import 'rxjs/observable/forkJoin';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 import { BusService } from 'app/core/bus.service';
 import { Level } from 'app/core/shared/_data/message.model';
 import { IFormSchema, IWidgetSchema, IReportSchema } from 'app/core/shared/_data/schema.model';
+import { Http } from '@angular/http';
 @Component({
   selector: 'ab-god-organizations',
   templateUrl: './god-organizations.component.html',
@@ -12,87 +16,30 @@ import { IFormSchema, IWidgetSchema, IReportSchema } from 'app/core/shared/_data
 })
 export class GodOrganizationsComponent implements OnInit {
   public organizations: any[];
-  // public organizationsFull: any[];
   public activeSetAdminModal = false;
   public activeCreateOrganizationModal = false;
   public activeDeleteOrganizationModal = false;
   public activeOrganization;
-
-  public createFormSchema: IFormSchema = {
-    title: 'New Organization',
-    submitLabel: 'Save Organization',
-    controls: [
-      {
-        key: 'name',
-        type: 'text',
-        label: 'Name',
-        validators: [{ key: 'required', errorMessage: 'Name is required' }]
-      },
-      {
-        key: 'email',
-        type: 'email',
-        label: 'Email',
-        validators: [{ key: 'required', errorMessage: 'Email is required' }]
-      },
-    ]
-  };
-
-  public actionSchema: IWidgetSchema = {
-    header: {
-      title: 'Organizations',
-      subtitle: 'Manage your organizations and its administrators',
-      icon: 'icon-flag'
-    },
-    actions: [
-      {
-        label: 'Create New',
-        key: 'create_new'
-      }
-    ]
-  }
-
-  public reportSchema: IReportSchema = {
-    header: {
-      title: 'List of Organizations'
-    },
-    emptyMessage: 'There aren\'t any organizations to display :(',
-    fields: [
-      {
-        label: 'Organization',
-        key: 'name',
-        type: 'string'
-      },
-      {
-        label: 'Administrator',
-        key: 'admin.name',
-        type: 'string'
-      },
-      {
-        label: 'Email',
-        key: 'admin.email',
-        type: 'string'
-      }
-    ], actions: [
-      {
-        label: 'Adm',
-        key: 'setAdmin',
-        icon: 'icon-people'
-      },
-      {
-        label: 'Del',
-        key: 'delete',
-        icon: 'icon-delete'
-      },
-    ]
-  }
-
-  constructor(private godData: GodDataService, private bus: BusService) { }
+  public loadingMetadata = true;
+  public createFormSchema: IFormSchema;
+  public actionSchema: IWidgetSchema;
+  public reportSchema: IReportSchema;
+  public name = 'organizations';
+  constructor(private godData: GodDataService, private bus: BusService, private http: Http) { }
 
   ngOnInit() {
+
+    Observable.forkJoin(this.http
+      .get('assets/schemas/god_organizations_create.json')
+      .do(res => this.createFormSchema = res.json()),
+      this.http
+        .get('assets/schemas/god_organizations_actions.json')
+        .do(res => this.actionSchema = res.json()),
+      this.http
+        .get('assets/schemas/god_organizations_report.json')
+        .do(res => this.reportSchema = res.json()))
+      .subscribe(res => this.loadingMetadata = false)
     this.getOrganizations();
-    // this.godData
-    //   .getOrganizationsFull()
-    //   .subscribe(data => this.organizationsFull = data);
   }
 
   getOrganizations() {

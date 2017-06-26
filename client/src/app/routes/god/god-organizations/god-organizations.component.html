@@ -1,14 +1,19 @@
-<ab-editor [actionSchema]="actionSchema"
-           [tableData]="organizations"
-           [reportSchema]="reportSchema"
-           (rowAction)="onRowAction($event)"
-           [createFormSchema]="createFormSchema"
-           (create)="onCreate($event)"
-           (delete)="onDelete($event)">
-</ab-editor>
-<aside>
-  <ab-god-organization-admin [active]="activeSetAdminModal"
-                             [organization]="activeOrganization"
-                             (close)="onCloseSetAdminModal($event)">
-  </ab-god-organization-admin>
+<aside *ngIf="loadingMetadata">
+  Loading....
 </aside>
+<div *ngIf="!loadingMetadata">
+  <ab-editor [actionSchema]="actionSchema"
+             [tableData]="organizations"
+             [reportSchema]="reportSchema"
+             (rowAction)="onRowAction($event)"
+             [createFormSchema]="createFormSchema"
+             (create)="onCreate($event)"
+             (delete)="onDelete($event)">
+  </ab-editor>
+  <aside>
+    <ab-god-organization-admin [active]="activeSetAdminModal"
+                               [organization]="activeOrganization"
+                               (close)="onCloseSetAdminModal($event)">
+    </ab-god-organization-admin>
+  </aside>
+</div>

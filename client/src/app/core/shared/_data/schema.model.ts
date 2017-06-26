@@ -29,7 +29,7 @@ export interface IKeyValue {
 }
 
 export interface IValidator {
-  key: string;
+  key: 'required';
   args?: any[];
   errorMessage?: string;
 }

@@ -1,0 +1,35 @@
+{
+  "header": {
+    "title": "List of Organizations"
+  },
+  "emptyMessage": "There aren't any organizations to display :(",
+  "fields": [
+    {
+      "label": "Organization",
+      "key": "name",
+      "type": "string"
+    },
+    {
+      "label": "Administrator",
+      "key": "admin.name",
+      "type": "string"
+    },
+    {
+      "label": "Email",
+      "key": "admin.email",
+      "type": "string"
+    }
+  ],
+  "actions": [
+    {
+      "label": "Adm",
+      "key": "setAdmin",
+      "icon": "icon-people"
+    },
+    {
+      "label": "Del",
+      "key": "delete",
+      "icon": "icon-delete"
+    }
+  ]
+}
