@@ -45,6 +45,7 @@ import { EditorComponent } from './editor/editor.component';
     TableComponent,
     ToastComponent,
     TileComponent],
-  providers: [FormToolsService]
+  providers: [FormToolsService],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class SharedModule { }

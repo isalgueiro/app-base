@@ -15,7 +15,7 @@
         </td>
         <td *ngFor="let action of schema.actions">
           <button class="btn"
-                  (click)="onActionClick(action,row)"><i [class]="'icon ' + action.icon"></i></button>
+                  (click)="onActionClick(action.key,row)"><i [class]="'icon ' + action.icon"></i></button>
         </td>
       </tr>
     </tbody>

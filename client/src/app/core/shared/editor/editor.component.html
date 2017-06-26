@@ -1,7 +1,29 @@
 <ab-tile [schema]="actionSchema"
-         (send)="create.emit()">
+         (send)="onAction($event)">
 </ab-tile>
 <ab-table [data]="tableData"
           [schema]="reportSchema"
-          (rowAction)="rowAction.emit($event)">
+          (rowAction)="onRowAction($event)">
 </ab-table>
+<ab-modal [title]="createFormSchema.title"
+          [active]="createModalActive"
+          (close)="onCancelCreate()">
+  <modal-content>
+    <ab-form [formSchema]="createFormSchema"
+             (send)="onCreate($event)">
+    </ab-form>
+  </modal-content>
+</ab-modal>
+<ab-modal title="Delete"
+          [active]="deleteModalActive"
+          (close)="onCancelDelete()">
+  <modal-content>
+    Delete {{ selectedItem | json }} ?
+  </modal-content>
+  <modal-footer>
+    <button (click)="onCancelDelete()"
+            class="btn btn-link">No, leave it</button>
+    <button (click)="onDelete(selectedItem)"
+            class="btn btn-primary">Yes, delete.</button>
+  </modal-footer>
+</ab-modal>

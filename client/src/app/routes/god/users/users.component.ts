@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IWidgetSchema, IReportSchema } from 'app/core/shared/_data/schema.model';
+import { IWidgetSchema, IReportSchema, IFormSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-users',
@@ -9,6 +9,7 @@ import { IWidgetSchema, IReportSchema } from 'app/core/shared/_data/schema.model
 export class UsersComponent implements OnInit {
   actionSchema: IWidgetSchema;
   reportSchema: IReportSchema;
+  createFormSchema: IFormSchema;
   users: any[];
   constructor() { }
 
@@ -57,18 +58,43 @@ export class UsersComponent implements OnInit {
       ], actions: [
         {
           label: 'In',
-          value: 'aprobe',
+          key: 'aprobe',
           icon: 'icon-check'
         },
         {
           label: 'Out',
-          value: 'reject',
+          key: 'reject',
           icon: 'icon-cross'
         },
         {
           label: 'Del',
-          value: 'delete',
+          key: 'delete',
           icon: 'icon-delete'
+        },
+      ]
+    };
+    this.createFormSchema = {
+      title: 'New User',
+      submitLabel: 'Save User',
+      controls: [
+        {
+          key: 'name',
+          type: 'text',
+          label: 'Name',
+          validators: [{ key: 'required', errorMessage: 'Name is required' }]
+        },
+        {
+          key: 'phone',
+          type: 'text',
+          label: 'Phone',
+          validators: []
+        }
+        ,
+        {
+          key: 'email',
+          type: 'email',
+          label: 'Email',
+          validators: [{ key: 'required', errorMessage: 'Email is required' }]
         },
       ]
     };
@@ -80,10 +106,13 @@ export class UsersComponent implements OnInit {
     ]
   }
 
-  onCreate() {
-    console.log('creating users');
+  onCreate(data) {
+    console.log('creating user: ', data);
   }
-  onRowAction() {
-    console.log('action over users');
+  onDelete(data) {
+    console.log('deleting user: ', data);
+  }
+  onRowAction(data) {
+    console.log('action over user: ', data);
   }
 }
