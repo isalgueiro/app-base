@@ -6,13 +6,13 @@ import { AdminOrganizationComponent } from './admin-organization/admin-organizat
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { AdminBookingsComponent } from './admin-bookings/admin-bookings.component';
 import { AdminPaymentsComponent } from './admin-payments/admin-payments.component';
-import { AdminHomeComponent } from './admin-home/admin-home.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule
   ],
-  declarations: [AdminOrganizationComponent, AdminUsersComponent, AdminBookingsComponent, AdminPaymentsComponent, AdminHomeComponent]
+  declarations: [AdminOrganizationComponent, AdminUsersComponent, AdminBookingsComponent, AdminPaymentsComponent]
 })
 export class AdminModule { }

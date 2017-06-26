@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { IWidgetSchema, IReportSchema, IFormSchema } from 'app/core/shared/_data/schema.model';
 
 @Component({
-  selector: 'ab-users',
-  templateUrl: './users.component.html',
+  selector: 'ab-god-users',
+  templateUrl: './god-users.component.html',
   styles: []
 })
-export class UsersComponent implements OnInit {
+export class GodUsersComponent implements OnInit {
   actionSchema: IWidgetSchema;
   reportSchema: IReportSchema;
   createFormSchema: IFormSchema;
@@ -100,8 +100,8 @@ export class UsersComponent implements OnInit {
     };
     this.users = [
       {
-        name: 'pepe',
-        email: 'p@p-es'
+        name: 'pepe perez',
+        email: 'pp@per.es'
       }
     ]
   }
