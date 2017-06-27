@@ -99,10 +99,10 @@ export class GodUsersComponent implements OnInit {
       ]
     };
     this.users = [
-      {
-        name: 'pepe perez',
-        email: 'pp@per.es'
-      }
+      // {
+      //   name: 'pepe perez',
+      //   email: 'pp@per.es'
+      // }
     ]
   }
 

@@ -19,5 +19,4 @@ export class LoadEmptyStateComponent implements OnInit {
   onClick() {
     this.action.emit(this.schema.action.value);
   }
-
 }

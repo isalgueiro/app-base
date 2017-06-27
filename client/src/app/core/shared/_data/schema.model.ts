@@ -68,5 +68,5 @@ export interface IWidgetSchema {
 export interface ILoadEmptyStateSchema {
   loading: boolean;
   empty: boolean;
-  action: IAction;
+  action?: IAction;
 }

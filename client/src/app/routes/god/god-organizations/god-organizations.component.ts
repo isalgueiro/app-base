@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { BusService } from 'app/core/bus.service';
 import { Level } from 'app/core/shared/_data/message.model';
-import { IFormSchema, IWidgetSchema, IReportSchema } from 'app/core/shared/_data/schema.model';
+import { IFormSchema, IWidgetSchema, IReportSchema, ILoadEmptyStateSchema } from 'app/core/shared/_data/schema.model';
 import { Http } from '@angular/http';
 @Component({
   selector: 'ab-god-organizations',
@@ -21,7 +21,7 @@ export class GodOrganizationsComponent implements OnInit {
   public activeDeleteOrganizationModal = false;
   public activeOrganization;
   public loadedMetadata = false;
-  loadingPanelSchema = {
+  public loadingPanelSchema: ILoadEmptyStateSchema = {
     loading: true,
     empty: false
   };

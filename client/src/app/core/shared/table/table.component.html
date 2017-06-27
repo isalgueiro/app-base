@@ -1,4 +1,4 @@
-<section *ngIf="schema?.fields && data?.length > 0"
+<section *ngIf="schema?.fields && data?.length > 0; else empty "
          class="table-container">
   <table class="table table-striped table-hover">
     <thead>
@@ -21,3 +21,7 @@
     </tbody>
   </table>
 </section>
+<ng-template #empty>
+  <ab-load-empty-state [schema]="{ loading: false, empty: true }">
+  </ab-load-empty-state>
+</ng-template>
