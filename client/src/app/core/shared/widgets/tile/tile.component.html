@@ -10,7 +10,7 @@
   </main>
   <footer class="tile-action">
     <ng-container *ngFor="let action of schema.actions">
-      <ab-action class="centered"
+      <ab-action class="ml-10 float-right"
                  [schema]="action"
                  (action)="onClick($event)"></ab-action>
     </ng-container>

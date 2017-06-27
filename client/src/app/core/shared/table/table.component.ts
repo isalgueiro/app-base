@@ -21,9 +21,9 @@ export class TableComponent implements OnInit {
   onRowClick(row) {
     this.rowClick.emit(row);
   }
-
-  onActionClick(action, row) {
-    this.rowAction.emit({ key: action, value: row });
+  // { key: action, value: row }
+  onActionClick(event, row) {
+    this.rowAction.emit({ key: event.key, value: row });
   }
 
   valueByPath(target, path) {

@@ -1,13 +1,13 @@
-<section class="float-right ">
+<section class="centered ">
   <a *ngIf="schema.link"
      [routerLink]="schema.link">
-    <i *ngIf="schema.icon" [class]="'mr-10 icon ' + schema.icon"></i>
-    <span>{{ schema.label }}</span>
+    <i *ngIf="schema.icon" [class]="'icon ' + schema.icon"></i>
+    <span *ngIf="!noLabel" class="ml-10">{{ schema.label }}</span>
   </a>
   <button *ngIf="!schema.link"
           (click)="onClick()"
-          class="btn btn-primary">
-      <i *ngIf="schema.icon" [class]="'mr-10 icon ' + schema.icon"></i>
-      <span>{{ schema.label }}</span>
+          [class]=" 'btn ' + btnClass">
+      <i *ngIf="schema.icon" [class]="'icon ' + schema.icon"></i>
+      <span *ngIf="!noLabel" class="ml-10">{{ schema.label }}</span>
     </button>
 </section>

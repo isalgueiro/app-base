@@ -14,8 +14,15 @@
           {{ valueByPath(row,field?.key) }}
         </td>
         <td *ngFor="let action of schema.actions">
-          <button class="btn"
-                  (click)="onActionClick(action.key,row)"><i [class]="'icon ' + action.icon"></i></button>
+          <!--<button class="btn"
+                  (click)="onActionClick(action.key,row)">
+                  <i [class]="'icon ' + action.icon"></i>
+          </button>-->
+          <ab-action class="centered"
+                     btnClass='btn-action'
+                     noLabel="true"
+                     [schema]="action"
+                     (action)="onActionClick($event, row)"></ab-action>
         </td>
       </tr>
     </tbody>
