@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { IReportSchema } from 'app/core/shared/_data/schema.model';
+import { IReportSchema, IKeyValue } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-table',
@@ -11,7 +11,7 @@ export class TableComponent implements OnInit {
   @Input() schema: IReportSchema;
   @Input() data: any[];
   @Output() rowClick = new EventEmitter<any>();
-  @Output() rowAction = new EventEmitter<any>();
+  @Output() rowAction = new EventEmitter<IKeyValue>();
 
   constructor() { }
 
@@ -23,7 +23,7 @@ export class TableComponent implements OnInit {
   }
 
   onActionClick(action, row) {
-    this.rowAction.emit({ action, row });
+    this.rowAction.emit({ key: action, value: row });
   }
 
   valueByPath(target, path) {

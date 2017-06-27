@@ -1,9 +1,8 @@
 <ab-tile [schema]="schema"
          icon="icon-flag">
-  <section *ngIf="schema.actions.length>0">
-    <a [routerLink]="schema.actions[0].link"
-       class="btn btn-primary">
-            <span>{{schema.actions[0].label}}</span>
-      </a>
-  </section>
+  <ng-container *ngFor="let action of schema.actions">
+    <ab-action class="centered"
+               [schema]="action"
+               (action)="onClick($event)"></ab-action>
+  </ng-container>
 </ab-tile>

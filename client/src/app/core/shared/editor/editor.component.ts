@@ -26,17 +26,17 @@ export class EditorComponent implements OnInit {
 
   onAction(data: IKeyValue) {
     console.log('onAction', data);
-    if (data === 'create_new') {
+    if (data.key === 'create_new') {
       this.createModalActive = true;
     } else {
       this.rowAction.emit(data);
     }
   }
-  onRowAction(data: any) {
+  onRowAction(data: IKeyValue) {
     console.log('onRowAction', data);
-    if (data.action === 'delete') {
+    if (data.key === 'delete') {
       this.deleteModalActive = true;
-      this.selectedItem = data.row;
+      this.selectedItem = data.value;
     } else {
       this.rowAction.emit(data);
     }

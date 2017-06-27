@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { BusService } from 'app/core/bus.service';
 import { Level } from 'app/core/shared/_data/message.model';
-import { IFormSchema, IWidgetSchema, IReportSchema, ILoadEmptyStateSchema } from 'app/core/shared/_data/schema.model';
+import { IFormSchema, IWidgetSchema, IReportSchema, ILoadEmptyStateSchema, IKeyValue } from 'app/core/shared/_data/schema.model';
 import { Http } from '@angular/http';
 @Component({
   selector: 'ab-god-organizations',
@@ -75,10 +75,10 @@ export class GodOrganizationsComponent implements OnInit {
     this.activeOrganization = null;
     this.activeSetAdminModal = false;
   }
-  onRowAction(data) {
+  onRowAction(data: IKeyValue) {
     console.log('onRowAction Receibed', data);
-    if (data.action === 'setAdmin') {
-      this.onSetAdmin(data.row);
+    if (data.key === 'setAdmin') {
+      this.onSetAdmin(data.value);
     }
   }
   setOrganizationAdmin(newAdmin) {

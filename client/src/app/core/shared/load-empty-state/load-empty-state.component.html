@@ -1,7 +1,7 @@
 <aside class="empty">
   <div class="empty-icon">
-    <i *ngIf="schema.loading"
-       class="icon icon-time"></i>
+    <div *ngIf="schema.loading"
+         class="loading"></div>
     <i *ngIf="!schema.loading && schema.empty"
        class="icon icon-stop"></i>
   </div>

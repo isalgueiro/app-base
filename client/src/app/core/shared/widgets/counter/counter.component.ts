@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IWidgetSchema, IKeyValue } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-counter',
@@ -8,9 +8,13 @@ import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 })
 export class CounterComponent implements OnInit {
   @Input() schema: IWidgetSchema;
+  @Output() send = new EventEmitter<IKeyValue>();
   constructor() { }
 
   ngOnInit() {
+  }
+  onClick(keyValue) {
+    this.send.emit(keyValue);
   }
 
 }
