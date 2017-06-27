@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BusService } from 'app/core/bus.service';
 import { IUser } from 'app/core/shared/_data/user.model';
-import { IMenuLink } from 'app/core/layout/_data/menu-link.model';
 import { environment } from './../../../../environments/environment';
 @Component({
   selector: 'ab-top-bar',
@@ -12,12 +11,7 @@ export class TopBarComponent implements OnInit {
   userInitials = '?';
   user: IUser = null;
   title = environment.appTitle;
-  menuLinks: IMenuLink[] = [
-    {
-      title: 'Home',
-      href: ''
-    }
-  ];
+
 
   constructor(private bus: BusService) { }
 

@@ -6,6 +6,7 @@ import { ShellComponent } from './shell.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { MainContentComponent } from './main-content/main-content.component';
 import { SharedModule } from 'app/core/shared/shared.module';
+import { MainNavComponent } from './main-nav/main-nav.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { SharedModule } from 'app/core/shared/shared.module';
     LayoutRoutingModule,
     SharedModule
   ],
-  declarations: [ShellComponent, TopBarComponent, MainContentComponent],
+  declarations: [ShellComponent, TopBarComponent, MainContentComponent, MainNavComponent],
   exports: [ShellComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
