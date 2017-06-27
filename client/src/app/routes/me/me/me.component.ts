@@ -21,6 +21,7 @@ export class MeComponent implements OnInit {
   }
 
   onSend(event) {
+    console.log('onSend', event);
     if (event.key === 'logout') {
       this.onLogOutClick();
     };

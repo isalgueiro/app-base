@@ -19,6 +19,7 @@ import { SwitchComponent } from './forms/switch/switch.component';
 import { TextareaComponent } from './forms/textarea/textarea.component';
 import { LoadEmptyStateComponent } from './load-empty-state/load-empty-state.component';
 import { EditorComponent } from './editor/editor.component';
+import { ActionComponent } from './layouts/action/action.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import { EditorComponent } from './editor/editor.component';
   declarations: [
     ControlErrorComponent, FormComponent, InputComponent, TableComponent,
     CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent,
-    DashboardComponent, SelectComponent, RadioComponent, SwitchComponent, TextareaComponent, LoadEmptyStateComponent, EditorComponent
+    DashboardComponent, SelectComponent, RadioComponent, SwitchComponent, TextareaComponent, LoadEmptyStateComponent, EditorComponent, ActionComponent
   ],
   exports: [
     ControlErrorComponent,

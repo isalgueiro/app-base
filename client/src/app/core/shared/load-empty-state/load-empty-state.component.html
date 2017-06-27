@@ -12,10 +12,6 @@
   <div *ngIf="schema.action"
        class="empty-action">
     <p class="empty-subtitle">Click to start.</p>
-    <button (click)="onClick()"
-            class="btn btn-primary">
-      <i *ngIf="schema.action.icon" [class]="'mr-10 icon ' + schema.action.icon"></i>
-      <span>{{ schema.action.label }}</span>
-    </button>
+    <ab-action [schema]="schema.action"></ab-action>
   </div>
 </aside>

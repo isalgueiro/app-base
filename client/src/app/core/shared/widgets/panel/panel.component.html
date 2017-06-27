@@ -12,18 +12,9 @@
   </main>
   <footer class="panel-footer">
     <ng-container *ngFor="let action of schema.actions">
-      <button *ngIf="action.key || action.value"
-              (click)="onClick(action.key, action.value)"
-              class="btn btn-primary btn-block">
-        <i *ngIf="action.icon" [class]="'mr-10 icon ' + action.icon"></i>
-        <span>{{ action.label }}</span>
-      </button>
-      <a *ngIf="action.link"
-         [routerLink]="action.link"
-         class="btn btn-primary btn-block">
-        <i *ngIf="action.icon" [class]="'mr-10 icon ' + action.icon"></i>
-        <span>{{ action.label }}</span>
-      </a>
+      <ab-action class="centered"
+                 [schema]="action"
+                 (action)="onClick($event)"></ab-action>
     </ng-container>
   </footer>
 </article>

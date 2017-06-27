@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
         actions: [
           {
             label: 'Ver centro',
-            link: 'ejej'
+            icon: 'icon-search'
           }
         ]
       };
