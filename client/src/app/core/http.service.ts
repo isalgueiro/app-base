@@ -5,6 +5,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { BusService } from './bus.service';
 import { environment } from './../../environments/environment';
+import { HTTP_STATUS } from './http-status.enum';
 
 @Injectable()
 export class HttpService extends Http {
@@ -60,7 +61,12 @@ export class HttpService extends Http {
     return Observable.throw(res);
   }
   private isSecurityError(res) {
-    return res.status === 401 || res.status === 419;
+    return (
+      res.status === HTTP_STATUS.UNAUTHORIZED ||
+      res.status === HTTP_STATUS.AUTHENTICATION_TIMEOUT);
+  }
+  private isNotAllowed(res) {
+    return res.status === HTTP_STATUS.FORBIDDEN;
   }
 
   private subscribeToTokenChanges() {
