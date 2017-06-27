@@ -16,3 +16,18 @@
     </modal-footer>
   </ab-modal>
 </aside>
+<aside>
+  <ab-modal [title]="user?.name"
+            [active]="changePasswordActive"
+            (close)="logOutActive=false">
+    <modal-content>
+      Formulario para Cambiar password
+    </modal-content>
+    <modal-footer>
+      <button (click)="changePasswordActive=false"
+              class="btn btn-link">Remain same password</button>
+      <button (click)="oCahngePasswordClick()"
+              class="btn btn-primary">Change.</button>
+    </modal-footer>
+  </ab-modal>
+</aside>

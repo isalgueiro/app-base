@@ -31,16 +31,16 @@ const routes: Routes = [
     loadChildren: routeBase + 'me/me.module#MeModule'
   },
   {
-    path: 'org/:organizationName',
-    loadChildren: routeBase + 'organization/organization.module#OrganizationModule'
-  },
-  {
     path: 'organizer',
     loadChildren: routeBase + 'organizer/organizer.module#OrganizerModule'
   },
   {
     path: 'usher',
     loadChildren: routeBase + 'usher/usher.module#UsherModule'
+  },
+  {
+    path: ':organizationName',
+    loadChildren: routeBase + 'organization/organization.module#OrganizationModule'
   }
 ];
 

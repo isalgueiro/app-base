@@ -21,6 +21,7 @@
 {
   _id:'3452sdfgwq435',
   name:'One organization',
+  slug:'one_organization'
   email:'info@one.org',
   phone : '987654321',
   url : 'http://one.org',
@@ -38,6 +39,7 @@
   organizerId :'213451234fasdf',
   created: '',
   name:'',
+  slug:'ddmmyy_shift'
   description: '',
   image:'',
   startDate:'',

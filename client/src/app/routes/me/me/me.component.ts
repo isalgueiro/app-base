@@ -12,6 +12,7 @@ import { MeService } from 'app/routes/me/me.service';
 export class MeComponent implements OnInit {
   user: IUser = null;
   logOutActive: Boolean;
+  changePasswordActive: Boolean;
   public schemas: IWidgetSchema[] = [];
 
   constructor(private security: SecurityService, private me: MeService) { }
@@ -24,7 +25,9 @@ export class MeComponent implements OnInit {
     console.log('onSend', event);
     if (event.key === 'logout') {
       this.logOutActive = true;
-    };
+    } else if (event.key === 'change_password') {
+      this.changePasswordActive = true;
+    }
   }
   onLogOutClick() {
     this.logOutActive = false;
@@ -52,12 +55,18 @@ export class MeComponent implements OnInit {
             label: 'Log Out',
             key: 'logout',
             icon: 'icon-shutdown'
+          },
+          {
+            label: 'Change Password',
+            key: 'change_password',
+            icon: 'icon-people'
           }
         ]
       }
     ];
     // To Do: switch by Role
     this.configureDashBoardForGod();
+    this.configureDashBoardForAdmin();
   }
 
   configureDashBoardForGod() {
@@ -93,5 +102,22 @@ export class MeComponent implements OnInit {
           ]
         });
     });
+  }
+
+  configureDashBoardForAdmin() {
+    this.schemas.push(
+      {
+        header: {
+          title: 'Mi Organization Name',
+          subtitle: 'Entities with an administrator, several organizers and its own events and users',
+          icon: 'icon-flag'
+        },
+        actions: [
+          {
+            label: 'Manage my Org',
+            link: '/:organization'
+          }
+        ]
+      });
   }
 }
