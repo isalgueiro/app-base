@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { environment } from './../../../../environments/environment';
-import { BusService } from "app/core/bus.service";
-import { IUser } from "app/core/shared/_data/user.model";
-import { IAction } from "app/core/shared/_data/schema.model";
+import { IUser } from 'app/core/shared/_data/user.model';
+import { IAction } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-main-nav',
@@ -10,8 +9,8 @@ import { IAction } from "app/core/shared/_data/schema.model";
   styles: []
 })
 export class MainNavComponent implements OnInit {
+  @Input() public user: IUser = null;
   title = environment.appTitle;
-  user: IUser = null;
   menuLinks: IAction[] = [
     {
       icon: 'icon-apps',
@@ -19,17 +18,9 @@ export class MainNavComponent implements OnInit {
       link: ''
     }
   ];
-  constructor(private bus: BusService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.onUserChange();
-  }
-
-  private onUserChange() {
-    this.bus.getUser$()
-      .subscribe(user => {
-        this.user = user;
-      })
   }
 
 }

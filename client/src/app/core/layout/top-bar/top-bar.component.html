@@ -13,7 +13,7 @@
                class="navbar-section">
         <a routerLink="me">
           <figure class="avatar"
-                  [attr.data-initial]="userInitials"
+                  [attr.data-initial]="user.name.substring(0,2)"
                   style="background-color: #5764c6;"></figure>
         </a>
       </section>
