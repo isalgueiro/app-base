@@ -1,3 +1,4 @@
+/*import { UseFilters } from '@nestjs/common';
 import { ROLE } from "./../shared/enums";
 import { ForbiddenException } from './../shared/exceptions';
 
@@ -27,3 +28,16 @@ export function Roles(roles?: ROLE[]) {
     return descriptor;
   };
 }
+
+const defineFiltersMetadata = (...filters: ExceptionFilter[]) => {
+    return (target: object, key?, descriptor?) => {
+        if (descriptor) {
+            Reflect.defineMetadata(EXCEPTION_FILTERS_METADATA, filters, descriptor.value);
+            return descriptor;
+        }
+        Reflect.defineMetadata(EXCEPTION_FILTERS_METADATA, filters, target);
+        return target;
+    };
+};
+
+export const Roles = (...filters: ExceptionFilter[]) => defineFiltersMetadata(...filters);*/

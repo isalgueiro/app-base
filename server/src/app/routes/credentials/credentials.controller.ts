@@ -2,7 +2,6 @@ import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Res, Session, U
 import { Request, Response } from 'express';
 import { LoggerService } from "../../core/shared/logger.service";
 import { UsersService } from "../users/users.service";
-import { Roles } from './../../core/decorators/roles.decorator';
 import { ROLE } from "./../../core/shared/enums";
 import { CredentialsLogic } from "./credentials.logic";
 import {

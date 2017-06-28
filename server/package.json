@@ -1,6 +1,6 @@
 {
   "name": "server-app-base",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Server with Angular Based Technology",
   "main": "index.js",
   "scripts": {
@@ -24,8 +24,8 @@
   "homepage": "https://github.com/AgoraBinaria/angular-base#readme",
   "dependencies": {
     "@nestjs/common": "^3.0.0",
-    "@nestjs/core": "^3.0.0",
-    "@nestjs/microservices": "^3.0.0",
+    "@nestjs/core": "^3.0.1",
+    "@nestjs/microservices": "^3.0.1",
     "@nestjs/websockets": "^3.0.0",
     "body-parser": "^1.17.2",
     "cors": "^2.8.3",
