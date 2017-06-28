@@ -1,7 +1,7 @@
 <section class="container">
   <nav class="columns header-bg">
     <div class="column col-8 col-lg-12 centered">
-      <ab-top-bar></ab-top-bar>
+      <ab-top-bar [user]="user"></ab-top-bar>
     </div>
   </nav>
   <aside class="columns"
@@ -15,7 +15,7 @@
   </aside>
   <main class="columns">
     <div class="column col-1 col-lg-2">
-      <ab-main-nav></ab-main-nav>
+      <ab-main-nav [user]="user"></ab-main-nav>
     </div>
     <div class="column col-10 col-lg-10 centered">
       <ab-main-content></ab-main-content>

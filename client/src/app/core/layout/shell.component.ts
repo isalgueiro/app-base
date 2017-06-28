@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BusService } from 'app/core/bus.service';
 import { Level, IMessage } from 'app/core/shared/_data/message.model';
+import { IUser } from 'app/core/shared/_data/user.model';
 
 @Component({
   selector: 'ab-shell',
@@ -8,9 +9,11 @@ import { Level, IMessage } from 'app/core/shared/_data/message.model';
   styleUrls: ['./shell.component.css']
 })
 export class ShellComponent implements OnInit {
+  public user: IUser = null;
   public show: boolean;
   public text = '';
   public level: Level;
+
   constructor(private bus: BusService) { }
 
   ngOnInit() {
@@ -22,6 +25,9 @@ export class ShellComponent implements OnInit {
         this.level = message.level;
         this.show = true;
       });
+    this.bus
+      .getUser$()
+      .subscribe(user => this.user = user);
   }
 
 }
