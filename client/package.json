@@ -1,7 +1,7 @@
 {
   "name": "app-base",
   "description": "Web Client with Angular Based Technology",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "author": {
     "name": "Ágora Binaria S.L.",
     "email": "albertobasalo@agorabinaria.com",
@@ -18,27 +18,27 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^4.0.0",
-    "@angular/common": "^4.0.0",
-    "@angular/compiler": "^4.0.0",
-    "@angular/core": "^4.0.0",
-    "@angular/forms": "^4.0.0",
-    "@angular/http": "^4.0.0",
-    "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0",
-    "@angular/router": "^4.0.0",
+    "@angular/animations": "^4.2.4",
+    "@angular/common": "^4.2.4",
+    "@angular/compiler": "^4.2.4",
+    "@angular/core": "^4.2.4",
+    "@angular/forms": "^4.2.4",
+    "@angular/http": "^4.2.4",
+    "@angular/platform-browser": "^4.2.4",
+    "@angular/platform-browser-dynamic": "^4.2.4",
+    "@angular/router": "^4.2.4",
     "core-js": "^2.4.1",
-    "rxjs": "^5.1.0",
+    "rxjs": "6.0.0-alpha.0",
     "spectre.css": "^0.2.14",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.12"
   },
   "devDependencies": {
-    "@angular/cli": "1.1.0-rc.0",
-    "@angular/compiler-cli": "^4.0.0",
-    "@angular/language-service": "^4.0.0",
+    "@angular/cli": "1.1.3",
+    "@angular/compiler-cli": "^4.2.4",
+    "@angular/language-service": "^4.2.4",
     "@types/jasmine": "2.5.38",
-    "@types/node": "~6.0.60",
-    "codelyzer": "~3.0.0",
+    "@types/node": "~8.0.4",
+    "codelyzer": "~3.1.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
@@ -47,9 +47,9 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-coverage-istanbul-reporter": "^1.0.0",
-    "protractor": "~5.1.0",
-    "ts-node": "~2.0.0",
-    "tslint": "~5.1.0",
-    "typescript": "~2.3.1"
+    "protractor": "~5.1.2",
+    "ts-node": "~3.1.0",
+    "tslint": "~5.4.3",
+    "typescript": "2.4.0"
   }
 }
