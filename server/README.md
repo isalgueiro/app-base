@@ -32,7 +32,7 @@ pm2 logs --lines 100
 ```
 
 ## Hard Way
-Edit [enviroment.ts](https://github.com/AgoraBinaria/app-base/blob/master/server/src/enviroments/enviroment.ts) with your configuration, or set all enviroments variables before execute.
+Edit [enviroment.ts](https://github.com/AgoraBinaria/app-base/blob/master/server/src/environments/environment.ts) with your configuration, or set all enviroments variables before execute.
 ```
 $npm run start
 ```
