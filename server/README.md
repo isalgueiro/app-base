@@ -22,10 +22,22 @@ $npm install
 ```
 
 # Configure
-Generate enviroments.ts, and fill with your configuration.
+## Easy way
+Install pm2 and configure [ecosystem.json](https://github.com/AgoraBinaria/app-base/blob/master/server/ecosystem.json) with your configuration
 ```
-$cp src/environment/environment.template.ts src/environment/environment.ts
+$npm install -g pm2
+pm2 start ecosystem.json
+
+pm2 logs --lines 100
 ```
+
+## Hard Way
+Edit [enviroment.ts](https://github.com/AgoraBinaria/app-base/blob/master/server/src/enviroments/enviroment.ts) with your configuration, or set all enviroments variables before execute.
+```
+$npm run start
+```
+
+
 
 # Start server
 ```bash
@@ -33,9 +45,7 @@ $npm run start
 ```
 
 # Enviroments
-Can set NODE_ENV to execute production or develpment. If NODE_ENV is 'prod' then execute with production settings othercase execute with deveploment settings.
-
-By default using npm run start execute dev mode, if run npm run start:prod execute prod mode.
+To configure the enviroment just define __env__ as enviroment variable of node and set the value of [STAGES](https://github.com/AgoraBinaria/app-base/blob/master/server/src/app/core/shared/enums.ts) emun.
 
 # Test
 ```bash
