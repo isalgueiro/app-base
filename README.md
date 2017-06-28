@@ -58,7 +58,7 @@ $npm run build
 More about [ecosystem.json](http://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/#ecosystemjson)
 ```bash
 $cd
-$pm2 ecosystem.js
+$pm2 start ecosystem.json
 ```
 > Only first time
 
