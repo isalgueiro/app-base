@@ -1,22 +1,34 @@
-import { Configuration } from 'iridium';
+interface IConfiguration {
+  host?: string;
+  port?: any;
+  database?: string;
+  username?: string;
+  password?: string;
+}
+
+export enum STAGES {
+  prod = 'prod',
+  dev = 'dev'
+}
 
 export interface ISettings {
-    port: number;
-    secret: string;
-    database: Configuration;
-    mailerSettings: IMailerSettings;
-    path: string;
+  env: STAGES;
+  port: any;
+  secret: string;
+  database: IConfiguration;
+  mailerSettings: IMailerSettings;
+  path: string;
 }
 
 export interface IMailerSettings {
-    service?: string;
-    port?: number;
-    host?: string;
-    auth: {
-        user: string;
-        pass: string;
-    };
-    secure: boolean;
-    ignoreTLS?: boolean;
-    requireTLS?: boolean;
+  service?: string;
+  port?: any;
+  host?: string;
+  auth: {
+    user: string;
+    pass: string;
+  };
+  secure: any;
+  ignoreTLS?: any;
+  requireTLS?: any;
 }

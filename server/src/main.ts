@@ -6,20 +6,23 @@ import * as express from 'express';
 import { join } from 'path';
 import { AppModule } from './app/app.module';
 import { NotFoundException, UnknowExceptionFilter } from './app/core/shared/exceptions';
+import { STAGES } from './app/core/shared/models';
 import { SETTINGS } from './environments/environment';
 
 const logger = new Logger('Main');
 const instance = express();
 instance.use(bodyParser.json());
 instance.use(cors());
-instance.use(express.static(SETTINGS.path));
+if (SETTINGS.env === STAGES.prod) {
+  instance.use(express.static(SETTINGS.path));
+}
 
 const app = NestFactory.create(AppModule, instance);
 app.setGlobalPrefix('api');
 app.useGlobalFilters(new UnknowExceptionFilter());
 app.init();
 
-if (process.env.NODE_ENV === 'prod') {
+if (SETTINGS.env === STAGES.prod) {
   instance.get('*', (req, res, next) => {
     res.sendFile(join(SETTINGS.path, 'index.html'));
   });
