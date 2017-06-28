@@ -1,4 +1,4 @@
-import { MiddlewaresConsumer, Module, RequestMethod } from '@nestjs/common';
+import { MiddlewaresConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { UsersModule } from "../users/users.module";
 import { AuthMiddleware } from './../../core/shared/auth.middleware';
 import { SharedModule } from './../../core/shared/shared.module';
@@ -11,6 +11,6 @@ import { OrganizationsService } from "./organizations.service";
   exports: [],
   modules: [SharedModule, UsersModule],
 })
-export class OrganizationsModule {
+export class OrganizationsModule implements NestModule {
 
 }

@@ -72,49 +72,100 @@ export class ObjectIDException extends BadRequestException {
     super(`Id '${id}' is invalid`);
   }
 }
+import { JsonWebTokenError, NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
 
 @Catch(Error)
 export class UnknowExceptionFilter implements ExceptionFilter {
   private logger = new Logger('UnknowExceptionFilter');
-  private duplicateKey = 11000;
-  private invalidId = 'Argument passed in must be a single String of 12 bytes or a string of 24 hex characters';
+  private readonly duplicateKey = 11000;
+  private readonly invalidId =
+  'Argument passed in must be a single String of 12 bytes or a string of 24 hex characters';
+  private readonly EXPIRED_ERROR = "TokenExpiredError";
+  private readonly TOKEN_ERROR = "JsonWebTokenError";
 
   public catch(exception, response) {
-    let message = 'Unknown Exception';
+    this.logMessage(exception);
+    let errorMessage: IErrorMessage = {
+      message: 'Unknow Exception',
+      status: HttpStatus.INTERNAL_SERVER_ERROR,
+    };
+
+    if (exception instanceof MongoError) {
+      errorMessage = this.mongoError(exception);
+    }
+
+    if (exception instanceof JsonWebTokenError || TokenExpiredError || NotBeforeError) {
+      errorMessage = this.jwtParseError(exception);
+    }
+
+    if (exception.isValidationError) {
+      errorMessage = this.smackError(exception);
+    }
+
+    response.status(errorMessage.status).json({ message: errorMessage.message });
+  }
+
+  private logMessage(exception) {
     let errorMessage = '';
     Reflect.ownKeys(exception).forEach(k => {
       errorMessage += (`${k}: ${exception[k]}/n`);
     });
 
     this.logger.log(errorMessage);
-    if (exception instanceof MongoError) {
-      const error = this.mongoError(exception);
-      response.status(error.status);
-      message = error.message || message;
-    } else {
-      if (exception.isValidationError || exception.message === this.invalidId) {
-        message = exception.message;
-        response.status(HttpStatus.BAD_REQUEST);
-      } else {
-        response.status(HttpStatus.INTERNAL_SERVER_ERROR);
-      }
-    }
-    response.json({ message });
   }
 
-  private mongoError(exception) {
-    const error = { message: null, status: null };
+  private smackError(exception): IErrorMessage {
+    const errorMessage: IErrorMessage = {
+      message: 'Unknow Exception',
+      status: HttpStatus.INTERNAL_SERVER_ERROR,
+    };
+
+    if (exception.message === this.invalidId) {
+      errorMessage.message = exception.message;
+      errorMessage.status = HttpStatus.BAD_REQUEST;
+    }
+
+    return errorMessage;
+  }
+
+  private mongoError(exception): IErrorMessage {
+    const errorMessage: IErrorMessage = {
+      message: 'Unknow Exception',
+      status: HttpStatus.INTERNAL_SERVER_ERROR,
+    };
     switch (exception.code) {
       case this.duplicateKey:
-        error.message = exception.message;
-        error.status = HttpStatus.CONFLICT;
-        break;
-
-      default:
-        error.status = HttpStatus.INTERNAL_SERVER_ERROR;
+        errorMessage.message = exception.message;
+        errorMessage.status = HttpStatus.CONFLICT;
         break;
     }
 
-    return error;
+    return errorMessage;
   }
+
+  private jwtParseError(exception): IErrorMessage {
+    const errorMessage: IErrorMessage = {
+      message: 'Unknow Exception',
+      status: HttpStatus.INTERNAL_SERVER_ERROR,
+    };
+    switch (exception.name) {
+      case this.EXPIRED_ERROR: {
+        errorMessage.message = exception.message;
+        errorMessage.status = HttpStatus.UNAUTHORIZED;
+        break;
+      }
+      case this.TOKEN_ERROR: {
+        errorMessage.message = exception.message;
+        errorMessage.status = HttpStatus.UNAUTHORIZED;
+        break;
+      }
+    }
+
+    return errorMessage;
+  }
+}
+
+interface IErrorMessage {
+  message: string;
+  status: number;
 }

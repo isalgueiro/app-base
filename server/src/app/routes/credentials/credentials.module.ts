@@ -1,4 +1,4 @@
-import { MiddlewaresConsumer, Module, RequestMethod } from '@nestjs/common';
+import { MiddlewaresConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { SharedModule } from '../../core/shared/shared.module';
 import { UsersModule } from '../users/users.module';
 import { AuthMiddleware } from './../../core/shared/auth.middleware';
@@ -12,7 +12,7 @@ import { CredentialsService } from './credentials.service';
   exports: [CredentialsLogic],
   modules: [UsersModule, SharedModule],
 })
-export class CredentialsModule {
+export class CredentialsModule implements NestModule {
   public configure(consumer: MiddlewaresConsumer) {
     consumer
       .apply(AuthMiddleware)
