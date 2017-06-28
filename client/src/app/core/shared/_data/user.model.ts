@@ -6,18 +6,16 @@ export interface IUser {
 }
 
 export enum ROLE {
-  ADMIN,
-  CLIENT,
-  GOD,
-  ORGANIZER,
-  PUBLIC,
-  USHER,
+  ADMIN = 'ADMIN',
+  CLIENT = 'CLIENT',
+  GOD = 'GOD',
+  PUBLIC = 'PUBLIC',
 }
 
 export enum STATUS {
-  PENDING,
-  CONFIRMED,
-  ACTIVE,
-  DISABLED,
-  CANCELED
+  PENDING = 'PENDING',
+  CONFIRMED = 'CONFIRMED',
+  ACTIVE = 'ACTIVE',
+  DISABLED = 'DISABLED',
+  CANCELED = 'CANCELED'
 }

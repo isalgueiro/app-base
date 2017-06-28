@@ -27,7 +27,7 @@ export class OrganizationsController {
   public async getByIdRole(
     @Res() res: Response,
     @Param('id') id: string, @Query('role') role: string) {
-    const organizationUsers = await this.usersService.getByOrganizationRole(id, +role);
+    const organizationUsers = await this.usersService.getByOrganizationRole(id, ROLE[role]);
     res.status(HttpStatus.OK).json(organizationUsers);
   }
 
