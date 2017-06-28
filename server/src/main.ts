@@ -5,8 +5,8 @@ import * as cors from 'cors';
 import * as express from 'express';
 import { join } from 'path';
 import { AppModule } from './app/app.module';
+import { STAGES } from './app/core/shared/enums';
 import { NotFoundException, UnknowExceptionFilter } from './app/core/shared/exceptions';
-import { STAGES } from './app/core/shared/models';
 import { SETTINGS } from './environments/environment';
 
 const logger = new Logger('Main');

@@ -1,14 +1,11 @@
+import { STAGES } from './enums';
+
 interface IConfiguration {
   host?: string;
   port?: any;
   database?: string;
   username?: string;
   password?: string;
-}
-
-export enum STAGES {
-  prod = 'prod',
-  dev = 'dev'
 }
 
 export interface ISettings {

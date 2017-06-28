@@ -12,3 +12,8 @@ export enum STATUS {
   DISABLED = 'DISABLED',
   CANCELED = 'CANCELED'
 }
+
+export enum STAGES {
+  prod = 'prod',
+  dev = 'dev'
+}
