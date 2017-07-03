@@ -7,6 +7,7 @@ Base for a great Application
 - NodeJS with TypeScript
 
 Forks:
+TO DO: clone or fork????
 https://github.com/app-booking
 
 
