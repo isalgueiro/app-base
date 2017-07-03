@@ -14,11 +14,8 @@
     </div>
   </aside>
   <main class="columns">
-    <div class="column col-1 col-lg-2">
-      <ab-main-nav [user]="user"></ab-main-nav>
-    </div>
-    <div class="column col-10 col-lg-10 centered">
-      <ab-main-content></ab-main-content>
-    </div>
+    <ab-main-nav [user]="user"
+                 [menuLinks]="menuLinks"></ab-main-nav>
+    <ab-main-content class="column centered"></ab-main-content>
   </main>
 </section>

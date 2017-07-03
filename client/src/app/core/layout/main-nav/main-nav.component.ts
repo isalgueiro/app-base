@@ -11,13 +11,8 @@ import { IAction } from 'app/core/shared/_data/schema.model';
 export class MainNavComponent implements OnInit {
   @Input() public user: IUser = null;
   title = environment.appTitle;
-  menuLinks: IAction[] = [
-    {
-      icon: 'icon-apps',
-      label: 'Home',
-      link: ''
-    }
-  ];
+  @Input() menuLinks: IAction[];
+
   constructor() { }
 
   ngOnInit() {
