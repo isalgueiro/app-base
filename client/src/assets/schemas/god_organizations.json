@@ -1,0 +1,78 @@
+{
+  "actions": {
+    "header": {
+      "title": "Organizations",
+      "subtitle": "Manage your organizations and its administrators",
+      "icon": "icon-flag"
+    },
+    "actions": [
+      {
+        "label": "Create New",
+        "key": "create_new"
+      }
+    ]
+  },
+  "create": {
+    "title": "New Organization",
+    "submitLabel": "Save Organization",
+    "controls": [
+      {
+        "key": "name",
+        "type": "text",
+        "label": "Name",
+        "validators": [
+          {
+            "key": "required",
+            "errorMessage": "Name is required"
+          }
+        ]
+      },
+      {
+        "key": "email",
+        "type": "email",
+        "label": "Email",
+        "validators": [
+          {
+            "key": "required",
+            "errorMessage": "Email is required"
+          }
+        ]
+      }
+    ]
+  },
+  "report": {
+    "header": {
+      "title": "List of Organizations"
+    },
+    "emptyMessage": "There aren't any organizations to display :(",
+    "fields": [
+      {
+        "label": "Organization",
+        "key": "name",
+        "type": "string"
+      },
+      {
+        "label": "Administrator",
+        "key": "admin.name",
+        "type": "string"
+      },
+      {
+        "label": "Email",
+        "key": "admin.email",
+        "type": "string"
+      }
+    ],
+    "actions": [
+      {
+        "label": "Adm",
+        "key": "setAdmin",
+        "icon": "icon-people"
+      },
+      {
+        "label": "Del",
+        "key": "delete",
+        "icon": "icon-delete"
+      }
+    ]
+  }
+}

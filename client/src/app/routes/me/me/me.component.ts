@@ -39,7 +39,9 @@ export class MeComponent implements OnInit {
       .getMe()
       .subscribe(user => {
         this.user = user;
-        this.configureDashBoard(this.user.roles[0].toString())
+        if (this.user) {
+          this.configureDashBoard(this.user.roles[0].toString())
+        }
       });
   }
 
@@ -66,7 +68,7 @@ export class MeComponent implements OnInit {
     ];
     // To Do: switch by Role
     this.configureDashBoardForGod();
-    this.configureDashBoardForAdmin();
+    // this.configureDashBoardForAdmin();
   }
 
   configureDashBoardForGod() {
@@ -108,7 +110,7 @@ export class MeComponent implements OnInit {
     this.schemas.push(
       {
         header: {
-          title: 'Mi Organization Name',
+          title: 'My Organization Name',
           subtitle: 'Entities with an administrator, several organizers and its own events and users',
           icon: 'icon-flag'
         },

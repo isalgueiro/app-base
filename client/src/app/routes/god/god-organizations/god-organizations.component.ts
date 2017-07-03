@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IOrganizationAdmin } from 'app/routes/god/_data/organization.model';
 import { GodDataService } from 'app/routes/god/_data/god-data.service';
 import 'rxjs/add/operator/do';
-import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { BusService } from 'app/core/bus.service';
 import { Level } from 'app/core/shared/_data/message.model';
@@ -32,17 +30,14 @@ export class GodOrganizationsComponent implements OnInit {
   constructor(private godData: GodDataService, private bus: BusService, private http: Http) { }
 
   ngOnInit() {
-
-    Observable.forkJoin(this.http
-      .get('assets/schemas/god_organizations_create.json')
-      .do(res => this.createFormSchema = res.json()),
-      this.http
-        .get('assets/schemas/god_organizations_actions.json')
-        .do(res => this.actionSchema = res.json()),
-      this.http
-        .get('assets/schemas/god_organizations_report.json')
-        .do(res => this.reportSchema = res.json()))
-      .subscribe(res => this.loadedMetadata = true)
+    this.http
+      .get('assets/schemas/god_organizations.json')
+      .subscribe(res => {
+        const schemas = res.json();
+        this.actionSchema = schemas.actions;
+        this.createFormSchema = schemas.create;
+        this.loadedMetadata = true;
+      });
     this.getOrganizations();
   }
 

@@ -4,9 +4,6 @@ import { SecurityService, IUserCredential } from 'app/core/security.service';
 import { environment } from './../../../../environments/environment';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
 @Component({
   selector: 'ab-login',
   templateUrl: './login.component.html',
@@ -21,18 +18,17 @@ export class LoginComponent implements OnInit {
   public panelSchema: IWidgetSchema;
   public formSchema: IFormSchema;
 
-  constructor(private security: SecurityService, private http: Http) {
-    Observable.forkJoin(
-      this.http
-        .get('assets/schemas/login_panel.json')
-        .do(res => this.panelSchema = res.json()),
-      this.http
-        .get('assets/schemas/login_form.json')
-        .do(res => this.formSchema = res.json())
-    ).subscribe(res => this.loadedMetadata = true);
-  }
+  constructor(private security: SecurityService, private http: Http) { }
 
   ngOnInit() {
+    this.http
+      .get('assets/schemas/login.json')
+      .subscribe(res => {
+        const schemas = res.json();
+        this.panelSchema = schemas.panel;
+        this.formSchema = schemas.form;
+        this.loadedMetadata = true;
+      });
   }
 
   onSend(credentials: IUserCredential) {
