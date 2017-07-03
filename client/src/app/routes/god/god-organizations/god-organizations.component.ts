@@ -36,6 +36,7 @@ export class GodOrganizationsComponent implements OnInit {
         const schemas = res.json();
         this.actionSchema = schemas.actions;
         this.createFormSchema = schemas.create;
+        this.reportSchema = schemas.report;
         this.loadedMetadata = true;
       });
     this.getOrganizations();
