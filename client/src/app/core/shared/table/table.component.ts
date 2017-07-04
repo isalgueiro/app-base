@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { IReportSchema, IKeyValue } from 'app/core/shared/_data/schema.model';
+import { IReportSchema, IKeyValue, IField } from 'app/core/shared/_data/schema.model';
 
 @Component({
   selector: 'ab-table',
@@ -20,6 +20,23 @@ export class TableComponent implements OnInit {
 
   onRowClick(row) {
     this.rowClick.emit(row);
+  }
+  onHeaderClick(field: IField) {
+    this.orderDataByKey(this.data, field.key)
+  }
+
+  orderDataByKey(values: any[], orderKey: any) {
+    return values.sort((a, b) => {
+      const valA = this.valueByPath(a, orderKey);
+      const valB = this.valueByPath(b, orderKey);
+      if (valA < valB) {
+        return -1;
+      }
+      if (valA > valB) {
+        return 1;
+      }
+      return 0
+    });
   }
   // { key: action, value: row }
   onActionClick(event, row) {
