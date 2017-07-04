@@ -1,10 +1,4 @@
 <ab-dashboard *ngIf="!showEdition" [schemas]="schemas" (send)="onSend($event)">
 </ab-dashboard>
-
-<section class="column col-8 col-lg-12 centered" *ngIf="showEdition">
-    <ab-tile>
-
-    </ab-tile>
-    <ab-form [formSchema]="formSchema" (send)="onSend($event)">
-    </ab-form>
-</section>
+<ab-form [formSchema]="formSchema" (send)="onSend($event)" class="column col-8 col-lg-12 centered" *ngIf="showEdition">
+</ab-form>
