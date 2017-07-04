@@ -12,6 +12,7 @@ export interface ISettings {
   env: STAGES;
   port: any;
   secret: string;
+  godEmail: 'admin@agorabinaria.com';
   database: IConfiguration;
   mailerSettings: IMailerSettings;
   path: string;

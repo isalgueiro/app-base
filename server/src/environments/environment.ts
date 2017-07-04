@@ -4,9 +4,10 @@ import { ISettings } from './../app/core/shared/models';
 const settings: ISettings = {
   env: STAGES[process.env.env] || STAGES.dev,
   port: process.env.port || 2000,
-  secret: process.env.port || 'secret',
+  secret: 'secret',
+  godEmail: 'admin@agorabinaria.com',
   database: {
-    database: process.env.database_name || 'bookings',
+    database: process.env.database_name || 'base',
     username: process.env.database_username || '',
     password: process.env.database_password || '',
     host: process.env.database_host || 'localhost',

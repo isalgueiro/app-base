@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Res, Session, UseFilters } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { SETTINGS } from '../../../environments/environment';
 import { LoggerService } from "../../core/shared/logger.service";
 import { UsersService } from "../users/users.service";
 import { ROLE } from "./../../core/shared/enums";
@@ -19,7 +20,7 @@ export class CredentialsController {
 
   @Post('bigbang')
   public async postUserGodRegistration( @Res() res: Response, @Body() secret: any) {
-    if (secret.secret !== 'secret') {
+    if (secret.secret !== SETTINGS.secret) {
       this.logger.warn('invalid god secret: ' + JSON.stringify(secret));
       res.status(HttpStatus.UNAUTHORIZED).json(secret);
       return;
@@ -27,7 +28,7 @@ export class CredentialsController {
     const userRegistration: IUserGodRegistration = {
       email: 'admin@agorabinaria.com',
       name: 'System Administrator',
-      password: 'secret'
+      password: SETTINGS.secret
     };
     const newUser = await this.credentialsLogic.postUserGodRegistration(userRegistration);
     this.logger.value('newUser', newUser);
