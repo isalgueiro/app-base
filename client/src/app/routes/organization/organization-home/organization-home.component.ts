@@ -7,12 +7,12 @@ import { IFormSchema, IWidgetSchema } from 'app/core/shared/_data/schema.model';
   styles: []
 })
 export class OrganizationHomeComponent implements OnInit {
-  public showEdition: boolean = false;
+  public showEdition = false;
 
   private organization: Organization = {
-    name: "My organization",
-    description: "My description",
-    img: "/myImgUrl"
+    name: 'My organization',
+    description: 'My description',
+    img: '/myImgUrl'
   };
 
   public organizationPanel: IWidgetSchema = {
@@ -22,7 +22,7 @@ export class OrganizationHomeComponent implements OnInit {
     },
     actions: [
       {
-        label: 'Editar',
+        label: 'Edit',
         icon: 'icon-edit'
       }
     ]
@@ -32,7 +32,7 @@ export class OrganizationHomeComponent implements OnInit {
 
   public formSchema: IFormSchema = {
     title: 'My organization data',
-    submitLabel: 'save',
+    submitLabel: 'Save Organization',
     controls: [
       {
         key: 'name',
@@ -46,20 +46,25 @@ export class OrganizationHomeComponent implements OnInit {
         type: 'text',
         label: 'Image',
         defaultValue: this.organization.img,
-        validators: [{ key: 'required', errorMessage: 'Image urll is required' }]
+        validators: [{ key: 'required', errorMessage: 'Image url is required' }]
       },
       {
         key: 'description',
         type: 'textarea',
-        label: 'Descripción',
+        label: 'Description',
         defaultValue: this.organization.description,
-        validators: [{ key: 'required', errorMessage: 'description is required' }]
+        validators: [{ key: 'required', errorMessage: 'Description is required' }]
       },
     ]
   };
   constructor() { }
 
   ngOnInit() {
+    // TO DO:
+    /*
+    - get organization from url
+    - get schemas from assets
+     */
 
   }
 
