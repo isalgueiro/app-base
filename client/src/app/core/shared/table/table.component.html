@@ -4,11 +4,8 @@
     <thead>
       <tr>
         <th *ngFor="let field of schema.fields">
-          {{ field?.label }}
-          <ab-action class="centered"
-                     btnClass='btn-action'
-                     noLabel="true"
-                     [schema]="{label:field.label}"
+          <ab-action btnClass='btn-link'
+                     [schema]="{label:field.label, icon:'icon-arrow-up'}"
                      (action)="onHeaderClick(field)"></ab-action>
         </th>
         <th *ngFor="let action of schema.actions">{{ action?.label }}</th>
