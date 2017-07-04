@@ -66,9 +66,12 @@ export class MeComponent implements OnInit {
         ]
       }
     ];
-    // To Do: switch by Role
-    this.configureDashBoardForGod();
-    // this.configureDashBoardForAdmin();
+    if (role === 'GOD') {
+      this.configureDashBoardForGod();
+    }
+    else if (role === 'ADMIN') {
+      this.configureDashBoardForAdmin();
+    }
   }
 
   configureDashBoardForGod() {
