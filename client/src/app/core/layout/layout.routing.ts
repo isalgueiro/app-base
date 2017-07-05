@@ -19,7 +19,7 @@ const routes: Routes = [
     loadChildren: routeBase + 'me/me.module#MeModule'
   },
   {
-    path: ':organizationName',
+    path: ':id',
     loadChildren: routeBase + 'organization/organization.module#OrganizationModule'
   }
 ];

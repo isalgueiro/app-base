@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IFormSchema, IWidgetSchema } from 'app/core/shared/_data/schema.model';
+import { Http } from '@angular/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ab-organization-home',
@@ -7,8 +9,14 @@ import { IFormSchema, IWidgetSchema } from 'app/core/shared/_data/schema.model';
   styles: []
 })
 export class OrganizationHomeComponent implements OnInit {
+  organizationsUrl = 'organizations';
+  org: any;
   public showEdition = false;
-
+  loadedMetadata = false;
+  loadingPanelSchema = {
+    loading: true,
+    empty: false
+  };
   private organization: Organization = {
     name: 'My organization',
     description: 'My description',
@@ -57,7 +65,7 @@ export class OrganizationHomeComponent implements OnInit {
       },
     ]
   };
-  constructor() { }
+  constructor(private http: Http, private route: ActivatedRoute) { }
 
   ngOnInit() {
     // TO DO:
@@ -66,6 +74,16 @@ export class OrganizationHomeComponent implements OnInit {
     - get schemas from assets
      */
 
+
+    this.route.params
+      .subscribe(params => {
+        const id = params['id'];
+        this.http
+          .get(`${this.organizationsUrl}/${id}`)
+          .subscribe(d => {
+            this.org = d.json();
+          });
+      });
   }
 
 

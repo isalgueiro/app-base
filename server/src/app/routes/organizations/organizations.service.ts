@@ -16,6 +16,12 @@ export class OrganizationsService {
     return organizations;
   }
 
+  public async getById(id: string): Promise<IOrganization> {
+    const repository = await this.repository;
+    const organization = await repository.findOne({ _id: id });
+    return organization;
+  }
+
   public async getCount(): Promise<number> {
     const repository = await this.repository;
     const organizationsCount = await repository.count();

@@ -9,8 +9,6 @@ export interface IOrganization {
   address: any;
   description: string;
   image: string;
-  standardPrice: number;
-  reducedPrice: number;
 }
 
 @Collection('organizations')
@@ -31,8 +29,4 @@ export class Organization extends Instance<IOrganization, Organization> implemen
   public description: string;
   @Property(String, false)
   public image: string;
-  @Property(Number, false)
-  public standardPrice: number;
-  @Property(Number, false)
-  public reducedPrice: number;
 }

@@ -23,6 +23,14 @@ export class OrganizationsController {
     res.status(HttpStatus.OK).json(organizations);
   }
 
+  @Get('/:id/')
+  public async getById(
+    @Res() res: Response,
+    @Param('id') id: string) {
+    const organization = await this.organizationsService.getById(id);
+    res.status(HttpStatus.OK).json(organization);
+  }
+
   @Get('/:id/users')
   public async getByIdRole(
     @Res() res: Response,

@@ -1,9 +1,16 @@
-<ab-dashboard *ngIf="!showEdition"
-              [schemas]="schemas"
-              (send)="onSend($event)">
-</ab-dashboard>
-<ab-form [formSchema]="formSchema"
-         (send)="onSend($event)"
-         class="column col-8 col-lg-12 centered"
-         *ngIf="showEdition">
-</ab-form>
+<section *ngIf="loadedMetadata;else loading">
+  <ab-dashboard *ngIf="!showEdition"
+                [schemas]="schemas"
+                (send)="onSend($event)">
+  </ab-dashboard>
+  <ab-form [formSchema]="formSchema"
+           (send)="onSend($event)"
+           *ngIf="showEdition">
+  </ab-form>
+</section>
+<ng-template #loading>
+  <ab-load-empty-state [schema]="loadingPanelSchema">
+  </ab-load-empty-state>
+</ng-template>
+
+{{ org | json }}
