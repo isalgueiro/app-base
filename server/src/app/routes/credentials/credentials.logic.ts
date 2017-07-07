@@ -130,9 +130,9 @@ export class CredentialsLogic {
     return true;
   }
 
-  private async updateUser(user: IUser) {
+  private async updateUserStatus(user: IUser) {
     try {
-      user = await this.usersService.update(user._id, user);
+      user = await this.usersService.updateStatus(user._id, user);
     } catch (err) {
       this.logger.error(err);
     }
@@ -142,7 +142,7 @@ export class CredentialsLogic {
   public async aceptInvitation(userInvitation: IUserAcceptInvitation): Promise<string> {
     let user = await this.usersService.getById(userInvitation.hash);
     user.status = STATUS.CONFIRMED;
-    await this.updateUser(user);
+    await this.updateUserStatus(user);
     await this.postCredential(user, userInvitation.password);
     let credential: IUserCredential = {
       email: user.email,

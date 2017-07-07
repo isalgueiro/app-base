@@ -45,11 +45,16 @@ export class UsersService {
     return savedUser;
   }
 
-  public async update(id: string, newUser: IUser): Promise<IUser> {
+  public async updateStatus(id: string, newUser: IUser): Promise<IUser> {
     const repository = await this.repository;
-    //const savedUser = await repository.update(id, newUser);
+    const obj = {};
+    obj['status'] = newUser.status;
+    const savedUser = await repository.update({ _id: id }, { $set: obj });
     return this.getById(newUser._id);
   }
+
+
+
 
   public async remove(id: string): Promise<void> {
     const repository = await this.repository;
