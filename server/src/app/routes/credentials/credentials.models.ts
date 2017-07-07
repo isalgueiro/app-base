@@ -66,3 +66,8 @@ export interface IUserActivation {
   id: string;
   email: string;
 }
+
+export interface IUserAcceptInvitation {
+  hash: string;
+  password: string;
+}

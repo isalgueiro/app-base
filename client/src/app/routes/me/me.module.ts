@@ -5,6 +5,7 @@ import { MeRoutingModule } from './me-routing.module';
 import { MeComponent } from './me/me.component';
 import { SharedModule } from 'app/core/shared/shared.module';
 import { MeService } from 'app/routes/me/me.service';
+import { MeRegisterComponent } from './me-register/me-register.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { MeService } from 'app/routes/me/me.service';
     MeRoutingModule,
     SharedModule
   ],
-  declarations: [MeComponent],
+  declarations: [MeComponent, MeRegisterComponent],
   providers: [MeService],
   schemas: [NO_ERRORS_SCHEMA]
 })

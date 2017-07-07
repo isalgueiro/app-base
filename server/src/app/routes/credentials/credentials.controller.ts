@@ -9,7 +9,7 @@ import {
   IUserActivation,
   IUserClientRegistration, IUserConfirmation,
   IUserCredential, IUserGodRegistration,
-  IUserInvitation, IUserPublicRegistration
+  IUserInvitation, IUserPublicRegistration, IUserAcceptInvitation
 } from "./credentials.models";
 
 @Controller('credentials')
@@ -72,5 +72,13 @@ export class CredentialsController {
     const token = await this.credentialsLogic.getUserToken(userCredential);
     res.status(HttpStatus.CREATED).json({ access_token: token });
   }
+
+  @Post('aceptInvitation')
+  public async postInvitationAccept( @Res() res: Response, @Body() invitationCredential: IUserAcceptInvitation) {
+    const token = await this.credentialsLogic.aceptInvitation(invitationCredential);
+    res.status(HttpStatus.ACCEPTED).json({ access_token: token });
+  }
+
+
 
 }

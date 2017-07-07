@@ -15,8 +15,8 @@ export class GodOrganizationAdminComponent implements OnInit, OnChanges {
   @Output() close = new EventEmitter<any>();
 
   public formSchema: IFormSchema = {
-    title: 'Set Administrator',
-    submitLabel: 'Submit',
+    title: 'Invite Administrator',
+    submitLabel: 'Send invitation',
     controls: [
       {
         key: 'name',

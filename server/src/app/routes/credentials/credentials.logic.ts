@@ -13,7 +13,7 @@ import {
   IUserGodRegistration,
   IUserInvitation,
   IUserPublicRegistration,
-  IUserToken
+  IUserToken, IUserAcceptInvitation
 } from "./credentials.models";
 import { CredentialsService } from "./credentials.service";
 
@@ -128,5 +128,26 @@ export class CredentialsLogic {
 
   private async sendConfirmationEmail(newUser: IUser): Promise<boolean> {
     return true;
+  }
+
+  private async updateUser(user: IUser) {
+    try {
+      user = await this.usersService.update(user._id, user);
+    } catch (err) {
+      this.logger.error(err);
+    }
+    return user;
+  }
+
+  public async aceptInvitation(userInvitation: IUserAcceptInvitation): Promise<string> {
+    let user = await this.usersService.getById(userInvitation.hash);
+    user.status = STATUS.CONFIRMED;
+    await this.updateUser(user);
+    await this.postCredential(user, userInvitation.password);
+    let credential: IUserCredential = {
+      email: user.email,
+      password: userInvitation.password
+    };
+    return this.getUserToken(credential);
   }
 }

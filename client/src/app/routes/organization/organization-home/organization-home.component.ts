@@ -83,6 +83,9 @@ export class OrganizationHomeComponent implements OnInit {
           .subscribe(d => {
             this.org = d.json();
           });
+          this.organization = this.org;
+          this.loadingPanelSchema.loading = false;
+          this.loadedMetadata = true;
       });
   }
 
@@ -100,8 +103,6 @@ export class OrganizationHomeComponent implements OnInit {
     }
     this.showEdition = !this.showEdition;
   }
-
-
 }
 
 interface Organization {

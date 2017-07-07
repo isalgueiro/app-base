@@ -96,9 +96,23 @@ export class SecurityService {
   private navigateTo(target: any, args?: any) {
     this.router.navigate(target);
   }
+
+  acceptInvitation(credentials: IInvitationCredential) {
+    let userCredentials;
+    this.http.post(`${this.url}/aceptInvitation`, credentials).subscribe(d => {
+      this.saveUserToken(d);
+      this.getMe()
+        .subscribe(this.emitLogin.bind(this));
+    });
+  }
 }
 
 export interface IUserCredential {
   email: string;
+  password: string;
+}
+
+export interface IInvitationCredential {
+  hash: string;
   password: string;
 }
