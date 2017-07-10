@@ -10,18 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class OrganizationHomeComponent implements OnInit {
   organizationsUrl = 'organizations';
-  org: any;
   public showEdition = false;
   loadedMetadata = false;
   loadingPanelSchema = {
     loading: true,
     empty: false
   };
-  private organization: Organization = {
-    name: 'My organization',
-    description: 'My description',
-    img: '/myImgUrl'
-  };
+  private organization: any;
 
   public organizationPanel: IWidgetSchema = {
     header: {
@@ -70,7 +65,6 @@ export class OrganizationHomeComponent implements OnInit {
   ngOnInit() {
     // TO DO:
     /*
-    - get organization from url
     - get schemas from assets
      */
 
@@ -81,11 +75,10 @@ export class OrganizationHomeComponent implements OnInit {
         this.http
           .get(`${this.organizationsUrl}/${id}`)
           .subscribe(d => {
-            this.org = d.json();
+            this.organization = d.json();
           });
-          this.organization = this.org;
-          this.loadingPanelSchema.loading = false;
-          this.loadedMetadata = true;
+        this.loadingPanelSchema.loading = false;
+        this.loadedMetadata = true;
       });
   }
 
