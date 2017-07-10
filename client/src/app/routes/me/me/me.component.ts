@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IUser } from 'app/core/shared/_data/user.model';
 import { SecurityService } from 'app/core/security.service';
 import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
-import { MeService } from 'app/routes/me/me.service';
+import { MeService, IOrganization } from 'app/routes/me/me.service';
 
 @Component({
   selector: 'ab-me',
@@ -14,7 +14,7 @@ export class MeComponent implements OnInit {
   logOutActive: Boolean;
   changePasswordActive: Boolean;
   public schemas: IWidgetSchema[] = [];
-
+  organization: IOrganization = null;
   constructor(private security: SecurityService, private me: MeService) { }
 
   ngOnInit() {
@@ -110,19 +110,22 @@ export class MeComponent implements OnInit {
   }
 
   configureDashBoardForAdmin() {
-    this.schemas.push(
-      {
-        header: {
-          title: 'My Organization Name',
-          subtitle: 'Entities with an administrator, several organizers and its own events and users',
-          icon: 'icon-flag'
-        },
-        actions: [
-          {
-            label: 'Manage my Org',
-            link: '/:organization'
-          }
-        ]
-      });
+    this.me.getAdministratedOrganization(this.user.organizationId).subscribe(organization => {
+      this.organization = organization;
+      this.schemas.push(
+        {
+          header: {
+            title: this.organization.name,
+            subtitle: 'Entities with an administrator, several organizers and its own events and users',
+            icon: 'icon-flag'
+          },
+          actions: [
+            {
+              label: 'Manage my Org',
+              link: `/organization/${this.user.organizationId}`
+            }
+          ]
+        });
+    });
   }
 }

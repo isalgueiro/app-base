@@ -20,4 +20,18 @@ export class MeService {
       .get(`${this.usersUrl}/count`)
       .map(res => res.json().data);
   }
+
+
+  //TODO controlar si ninguna org
+  getAdministratedOrganization(id): Observable<IOrganization> {
+    return this.http
+      .get(`${this.organizationsUrl}/${id}`)
+      .map(res => res.json());
+  }
+}
+
+
+
+export interface IOrganization {
+  name: string;
 }
