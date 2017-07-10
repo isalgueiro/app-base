@@ -25,7 +25,7 @@ export class MeService {
   //TODO controlar si ninguna org
   getAdministratedOrganization(id): Observable<IOrganization> {
     return this.http
-      .get(`${this.organizationsUrl}/${id}`)
+      .get(`${this.organizationsUrl}/byId/${id}`)
       .map(res => res.json());
   }
 }
@@ -34,4 +34,5 @@ export class MeService {
 
 export interface IOrganization {
   name: string;
+  slug: string;
 }

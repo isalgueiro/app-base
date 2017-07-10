@@ -122,7 +122,7 @@ export class MeComponent implements OnInit {
           actions: [
             {
               label: 'Manage my Org',
-              link: `/organization/${this.user.organizationId}`
+              link: `/organization/${this.organization.slug}`
             }
           ]
         });

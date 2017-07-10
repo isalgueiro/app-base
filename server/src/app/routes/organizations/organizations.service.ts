@@ -22,12 +22,19 @@ export class OrganizationsService {
     return organization;
   }
 
+  public async getBySlug(slug: string): Promise<IOrganization> {
+    const repository = await this.repository;
+    const organization = await repository.findOne({ slug: slug });
+    return organization;
+  }
+
   public async getCount(): Promise<number> {
     const repository = await this.repository;
     const organizationsCount = await repository.count();
     return organizationsCount;
   }
 
+  //TODO controlar slug no repe
   public async post(organization: IOrganization): Promise<IOrganization> {
     const repository = await this.repository;
     organization.slug = organization.name.replace(' ', '_');

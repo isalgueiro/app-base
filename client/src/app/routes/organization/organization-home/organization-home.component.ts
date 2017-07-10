@@ -17,49 +17,10 @@ export class OrganizationHomeComponent implements OnInit {
     empty: false
   };
   private organization: any;
+  public organizationPanel: IWidgetSchema;
+  public schemas: IWidgetSchema[];
+  public formSchema: IFormSchema;
 
-  public organizationPanel: IWidgetSchema = {
-    header: {
-      title: this.organization.name,
-      subtitle: this.organization.description
-    },
-    actions: [
-      {
-        label: 'Edit',
-        icon: 'icon-edit'
-      }
-    ]
-  };
-
-  public schemas: IWidgetSchema[] = [this.organizationPanel];
-
-  public formSchema: IFormSchema = {
-    title: 'My organization data',
-    submitLabel: 'Save Organization',
-    controls: [
-      {
-        key: 'name',
-        type: 'text',
-        label: 'Name',
-        defaultValue: this.organization.name,
-        validators: [{ key: 'required', errorMessage: 'Name is required' }]
-      },
-      {
-        key: 'imageUrl',
-        type: 'text',
-        label: 'Image',
-        defaultValue: this.organization.img,
-        validators: [{ key: 'required', errorMessage: 'Image url is required' }]
-      },
-      {
-        key: 'description',
-        type: 'textarea',
-        label: 'Description',
-        defaultValue: this.organization.description,
-        validators: [{ key: 'required', errorMessage: 'Description is required' }]
-      },
-    ]
-  };
   constructor(private http: Http, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -76,10 +37,52 @@ export class OrganizationHomeComponent implements OnInit {
           .get(`${this.organizationsUrl}/${id}`)
           .subscribe(d => {
             this.organization = d.json();
+            this.organizationPanel = {
+              header: {
+                title: this.organization.name,
+                subtitle: this.organization.description
+              },
+              actions: [
+                {
+                  label: 'Edit',
+                  icon: 'icon-edit'
+                }
+              ]
+            };
+            this.schemas = [this.organizationPanel];
+            this.formSchema = {
+              title: 'My organization data',
+              submitLabel: 'Save Organization',
+              controls: [
+                {
+                  key: 'name',
+                  type: 'text',
+                  label: 'Name',
+                  defaultValue: this.organization.name,
+                  validators: [{ key: 'required', errorMessage: 'Name is required' }]
+                },
+                {
+                  key: 'imageUrl',
+                  type: 'text',
+                  label: 'Image',
+                  defaultValue: this.organization.img,
+                  validators: [{ key: 'required', errorMessage: 'Image url is required' }]
+                },
+                {
+                  key: 'description',
+                  type: 'textarea',
+                  label: 'Description',
+                  defaultValue: this.organization.description,
+                  validators: [{ key: 'required', errorMessage: 'Description is required' }]
+                },
+              ]
+            };
           });
         this.loadingPanelSchema.loading = false;
         this.loadedMetadata = true;
       });
+
+
   }
 
 

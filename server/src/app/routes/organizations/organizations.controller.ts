@@ -23,11 +23,19 @@ export class OrganizationsController {
     res.status(HttpStatus.OK).json(organizations);
   }
 
-  @Get('/:id/')
+  @Get('/byId/:id/')
   public async getById(
     @Res() res: Response,
     @Param('id') id: string) {
     const organization = await this.organizationsService.getById(id);
+    res.status(HttpStatus.OK).json(organization);
+  }
+
+  @Get('/:slug/')
+  public async getBySlug(
+    @Res() res: Response,
+    @Param('slug') slug: string) {
+    const organization = await this.organizationsService.getBySlug(slug);
     res.status(HttpStatus.OK).json(organization);
   }
 
