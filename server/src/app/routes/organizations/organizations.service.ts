@@ -30,6 +30,7 @@ export class OrganizationsService {
 
   public async post(organization: IOrganization): Promise<IOrganization> {
     const repository = await this.repository;
+    organization.slug = organization.name.replace(' ', '_');
     const newOrganization = await repository.create(organization);
     return newOrganization;
   }

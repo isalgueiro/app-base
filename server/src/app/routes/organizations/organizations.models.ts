@@ -2,6 +2,7 @@ import { Collection, Index, Instance, Model, ObjectID, Property, Transform } fro
 
 export interface IOrganization {
   _id?: string;
+  slug: string;
   name: string;
   email: string;
   phone: string;
@@ -15,6 +16,8 @@ export interface IOrganization {
 export class Organization extends Instance<IOrganization, Organization> implements IOrganization {
   @ObjectID
   public _id: string;
+  @Property(String, true)
+  public slug: string;
   @Property(String, true)
   public name: string;
   @Property(String, false)
