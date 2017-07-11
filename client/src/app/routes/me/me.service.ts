@@ -9,7 +9,7 @@ export class MeService {
 
   constructor(private http: Http) { }
 
-  getSchema(): Observable<any> {
+  getGodSchema(): Observable<any> {
     return this.http
       .get('assets/schemas/me_god.json')
       .map(res => res.json());
@@ -41,4 +41,5 @@ export class MeService {
 export interface IOrganization {
   name: string;
   slug: string;
+  description: string
 }

@@ -21,19 +21,6 @@ export class MeComponent implements OnInit {
     this.getMe();
   }
 
-  onSend(event) {
-    console.log('onSend', event);
-    if (event.key === 'logout') {
-      this.logOutActive = true;
-    } else if (event.key === 'change_password') {
-      this.changePasswordActive = true;
-    }
-  }
-  onLogOutClick() {
-    this.logOutActive = false;
-    this.security.logOutUser();
-  }
-
   getMe() {
     this.security
       .getMe()
@@ -41,7 +28,7 @@ export class MeComponent implements OnInit {
         this.user = user;
         if (this.user) {
           this.me
-            .getSchema()
+            .getGodSchema()
             .subscribe(s => {
               this.schemas = s;
               this.configureDashBoard(this.user.roles[0].toString());
@@ -50,6 +37,7 @@ export class MeComponent implements OnInit {
       });
   }
 
+  //TODO centralice roles
   configureDashBoard(role: string) {
     this.schemas[0].header.title = this.user.name;
     this.schemas[0].header.subtitle = this.user.email;
@@ -102,16 +90,29 @@ export class MeComponent implements OnInit {
         {
           header: {
             title: this.organization.name,
-            subtitle: 'Entities with an administrator, several organizers and its own events and users',
+            subtitle: this.organization.description,
             icon: 'icon-flag'
           },
           actions: [
             {
-              label: 'Manage my Org',
+              label: `Manage ${this.organization.name}`,
               link: `/organization/${this.organization.slug}`
             }
           ]
         });
     });
+  }
+
+  onSend(event) {
+    console.log('onSend', event);
+    if (event.key === 'logout') {
+      this.logOutActive = true;
+    } else if (event.key === 'change_password') {
+      this.changePasswordActive = true;
+    }
+  }
+  onLogOutClick() {
+    this.logOutActive = false;
+    this.security.logOutUser();
   }
 }
