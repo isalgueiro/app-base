@@ -40,36 +40,40 @@ export class MeComponent implements OnInit {
       .subscribe(user => {
         this.user = user;
         if (this.user) {
-          this.configureDashBoard(this.user.roles[0].toString())
+          this.me
+            .getSchema()
+            .subscribe(s => {
+              this.schemas = s;
+              this.configureDashBoard(this.user.roles[0].toString());
+            });
         }
       });
   }
 
   configureDashBoard(role: string) {
-    this.schemas = [
-      {
-        header: {
-          title: this.user.name,
-          subtitle: this.user.email
-        },
-        actions: [
-          {
-            label: 'Log Out',
-            key: 'logout',
-            icon: 'icon-shutdown'
-          },
-          {
-            label: 'Change Password',
-            key: 'change_password',
-            icon: 'icon-people'
-          }
-        ]
-      }
-    ];
+    // this.schemas = [
+    //   {
+    //     header: {
+    //       title: this.user.name,
+    //       subtitle: this.user.email
+    //     },
+    //     actions: [
+    //       {
+    //         label: 'Log Out',
+    //         key: 'logout',
+    //         icon: 'icon-shutdown'
+    //       },
+    //       {
+    //         label: 'Change Password',
+    //         key: 'change_password',
+    //         icon: 'icon-people'
+    //       }
+    //     ]
+    //   }
+    // ];
     if (role === 'GOD') {
       this.configureDashBoardForGod();
-    }
-    else if (role === 'ADMIN') {
+    } else if (role === 'ADMIN') {
       this.configureDashBoardForAdmin();
     }
   }
