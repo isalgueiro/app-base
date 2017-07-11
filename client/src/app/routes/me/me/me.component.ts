@@ -51,26 +51,8 @@ export class MeComponent implements OnInit {
   }
 
   configureDashBoard(role: string) {
-    // this.schemas = [
-    //   {
-    //     header: {
-    //       title: this.user.name,
-    //       subtitle: this.user.email
-    //     },
-    //     actions: [
-    //       {
-    //         label: 'Log Out',
-    //         key: 'logout',
-    //         icon: 'icon-shutdown'
-    //       },
-    //       {
-    //         label: 'Change Password',
-    //         key: 'change_password',
-    //         icon: 'icon-people'
-    //       }
-    //     ]
-    //   }
-    // ];
+    this.schemas[0].header.title = this.user.name;
+    this.schemas[0].header.subtitle = this.user.email;
     if (role === 'GOD') {
       this.configureDashBoardForGod();
     } else if (role === 'ADMIN') {
