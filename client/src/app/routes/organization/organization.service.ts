@@ -4,10 +4,10 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class OrganizationService {
-  private url = 'organization';
+  private url = 'organizations';
   constructor(private http: Http) {
-
   }
+
   updateOrganization(organization: IOrganization): Observable<IOrganization> {
     return this.http.patch(`${this.url}`, organization)
       .map(o => o.json());

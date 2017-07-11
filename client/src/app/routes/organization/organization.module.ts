@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { OrganizationRoutingModule } from './organization.routing';
 import { OrganizationHomeComponent } from './organization-home/organization-home.component';
 import { SharedModule } from 'app/core/shared/shared.module';
+import { OrganizationService } from 'app/routes/organization/organization.service';
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import { SharedModule } from 'app/core/shared/shared.module';
     OrganizationRoutingModule,
     SharedModule
   ],
-  declarations: [OrganizationHomeComponent]
+  declarations: [OrganizationHomeComponent],
+  providers: [OrganizationService]
 })
 export class OrganizationModule { }

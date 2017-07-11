@@ -42,6 +42,26 @@ export class OrganizationsService {
     return newOrganization;
   }
 
+  public async patch(organization: IOrganization): Promise<IOrganization> {
+    const repository = await this.repository;
+    organization.slug = organization.name.replace(' ', '_');
+    const obj = {};
+    //TODO study automatify this
+    obj['slug'] = organization.name.replace(' ', '_');
+    obj['name'] = organization.name;
+    obj['email'] = organization.email;
+    obj['phone'] = organization.phone;
+    obj['url'] = organization.url;
+    //TODO set address as a object
+    obj['address'] = organization.address;
+    obj['description'] = organization.description;
+    obj['image'] = organization.image;
+    obj['standardPrice'] = organization.standardPrice;
+    obj['reducedPrice'] = organization.reducedPrice;
+    await repository.update({ _id: organization._id }, { $set: obj });
+    return this.getById(organization._id);
+  }
+
   public async delete(id: string): Promise<void> {
     const repository = await this.repository;
     const orgExists = await repository.findOne(id);

@@ -3,6 +3,7 @@ import { IFormSchema, IWidgetSchema } from 'app/core/shared/_data/schema.model';
 import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { OrganizationService, IOrganization } from 'app/routes/organization/organization.service';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class OrganizationHomeComponent implements OnInit {
   public schemas: IWidgetSchema[];
   public formSchema: IFormSchema;
 
-  constructor(private http: Http, private route: ActivatedRoute) { }
+  constructor(private http: Http, private route: ActivatedRoute, private organizationService: OrganizationService) { }
   setSchemas() {
     this.organizationPanel = {
       header: {
@@ -125,9 +126,13 @@ export class OrganizationHomeComponent implements OnInit {
   onSend(organization) {
     if (this.showEdition) {
       let aux = this.organization._id;
-      this.organization = Object.create(organization);
+      this.organization = Object.assign({}, organization);
       this.organization._id = aux;
-      this.setSchemas();
+      this.organizationService.updateOrganization(this.organization)
+        .subscribe(org => {
+          this.organization = org;
+          this.setSchemas();
+        });
     }
     this.showEdition = !this.showEdition;
   }

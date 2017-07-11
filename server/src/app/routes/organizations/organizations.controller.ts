@@ -1,6 +1,6 @@
 import {
   Body, Controller, Delete, ExceptionFilters,
-  Get, HttpStatus, Param, Post, Query, Res, Session
+  Get, HttpStatus, Param, Post, Query, Res, Session, Patch
 } from '@nestjs/common';
 import { Request, Response } from "express";
 import { ROLE } from "../../core/shared/enums";
@@ -53,8 +53,6 @@ export class OrganizationsController {
     res.status(HttpStatus.OK).json(organizationUsers);
   }
 
-
-
   @Post()
   public async post( @Res() res: Response, @Body() organization: IOrganization) {
     const newOrganization = await this.organizationsService.post(organization);
@@ -63,6 +61,17 @@ export class OrganizationsController {
       res.status(HttpStatus.CREATED).json(newOrganization);
     } else {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Not created' });
+    }
+  }
+
+  @Patch()
+  public async update( @Res() res: Response, @Body() organization: IOrganization) {
+    const updatedOrganization = await this.organizationsService.patch(organization);
+    if (updatedOrganization) {
+      //this.logger.value('updatedOrganization', updatedOrganization);
+      res.status(HttpStatus.CREATED).json(updatedOrganization);
+    } else {
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Not updated' });
     }
   }
 
