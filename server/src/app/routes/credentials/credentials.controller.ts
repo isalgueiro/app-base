@@ -79,6 +79,4 @@ export class CredentialsController {
     res.status(HttpStatus.ACCEPTED).json({ access_token: token });
   }
 
-
-
 }

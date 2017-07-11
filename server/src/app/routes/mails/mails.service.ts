@@ -9,10 +9,11 @@ export class MailsService {
   private transporter: any;
   private logger = new LoggerService('MailsService');
   constructor() {
+    this.logger.value('SETTINGS.mailerSettings', SETTINGS.mailerSettings);
     this.transporter = nodemailer.createTransport(SETTINGS.mailerSettings);
   }
 
-  public sendMail(message: IMessage) {
+  public async sendMail(message: IMessage) {
     return this.transporter.sendMail(message);
   }
 }

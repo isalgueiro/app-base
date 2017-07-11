@@ -28,7 +28,7 @@
   "workbench.iconTheme": "material-icon-theme",
   "html.format.wrapAttributes": "force-aligned",
   "editor.formatOnSave": true,
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 1,
   "tslint.autoFixOnSave": true,
   "workbench.statusBar.visible": true,
   "editor.minimap.enabled": false

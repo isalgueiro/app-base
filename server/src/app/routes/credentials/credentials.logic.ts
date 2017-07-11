@@ -4,16 +4,18 @@ import { SETTINGS } from '../../../environments/environment';
 import { ROLE, STATUS } from "../../core/shared/enums";
 import { BadRequestException, NotFoundException } from '../../core/shared/exceptions';
 import { LoggerService } from "../../core/shared/logger.service";
+import { IMessage } from "../mails/mails.models";
+import { MailsService } from "../mails/mails.service";
 import { UsersService } from "../users/users.service";
 import { IUser, User } from './../users/users.models';
 import { ICredential } from './credentials.models';
 import {
+  IUserAcceptInvitation,
   IUserClientRegistration,
   IUserCredential,
   IUserGodRegistration,
   IUserInvitation,
-  IUserPublicRegistration,
-  IUserToken, IUserAcceptInvitation
+  IUserPublicRegistration, IUserToken
 } from "./credentials.models";
 import { CredentialsService } from "./credentials.service";
 
@@ -64,6 +66,18 @@ export class CredentialsLogic {
     }
     const token = sign(JSON.stringify(user), SETTINGS.secret);
     return token;
+  }
+
+  public async aceptInvitation(userInvitation: IUserAcceptInvitation): Promise<string> {
+    const user = await this.usersService.getById(userInvitation.hash);
+    user.status = STATUS.CONFIRMED;
+    await this.updateUserStatus(user);
+    await this.postCredential(user, userInvitation.password);
+    const credential: IUserCredential = {
+      email: user.email,
+      password: userInvitation.password
+    };
+    return this.getUserToken(credential);
   }
 
   private createUserFromUserGodRegistration(userRegistration: IUserGodRegistration) {
@@ -127,7 +141,20 @@ export class CredentialsLogic {
   }
 
   private async sendConfirmationEmail(newUser: IUser): Promise<boolean> {
-    return true;
+    const mailsService = new MailsService();
+    const message: IMessage = {
+      from: 'no-reply@test.com',
+      to: newUser.email,
+      subject: 'Welcome to the platform',
+      text: `Hello ${newUser.name}.
+      Welcome to App Base. Visit http://localhost:4200/me/${newUser._id} to activate your account`,
+      html: `<p>Hello ${newUser.name}.
+      Welcome to App Base. Visit http://localhost:4200/me/${newUser._id} to activate your account.</p>`
+    };
+    this.logger.value('message', message);
+    const response = await mailsService.sendMail(message);
+    this.logger.value('response', response);
+    return response;
   }
 
   private async updateUserStatus(user: IUser) {
@@ -139,15 +166,4 @@ export class CredentialsLogic {
     return user;
   }
 
-  public async aceptInvitation(userInvitation: IUserAcceptInvitation): Promise<string> {
-    let user = await this.usersService.getById(userInvitation.hash);
-    user.status = STATUS.CONFIRMED;
-    await this.updateUserStatus(user);
-    await this.postCredential(user, userInvitation.password);
-    let credential: IUserCredential = {
-      email: user.email,
-      password: userInvitation.password
-    };
-    return this.getUserToken(credential);
-  }
 }

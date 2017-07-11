@@ -14,13 +14,13 @@ const settings: ISettings = {
     port: process.env.database_port || 27017,
   },
   mailerSettings: {
-    port: process.env.mailer_port || 0,
-    host: process.env.mailer_host || "",
+    port: process.env.mailer_port || 25,
+    host: process.env.mailer_host || "debugmail.io",
     secure: process.env.mailer_secure || false,
     ignoreTLS: process.env.mailer_ignoreTLS || true,
     auth: {
-      user: process.env.mailer_user || "",
-      pass: process.env.mailer_pass || ""
+      user: process.env.mailer_user || "admin@agorabinaria.com",
+      pass: process.env.mailer_pass || "82fdc8b0-55ae-11e7-954e-d7f004b08dd1"
     },
   },
   path: process.env.prod_path || '',
