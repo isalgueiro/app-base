@@ -24,7 +24,7 @@
                 "label": "Repeat Password",
                 "validators": [{
                     "key": "required",
-                    "errorMessage": "Password is required"
+                    "errorMessage": "Password repetition is required"
                 }]
             }
         ]

@@ -115,4 +115,5 @@ export interface IUserCredential {
 export interface IInvitationCredential {
   hash: string;
   password: string;
+  passwordBis: string;
 }

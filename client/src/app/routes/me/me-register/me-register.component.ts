@@ -26,7 +26,7 @@ export class MeRegisterComponent implements OnInit {
         this.userId = params['hash'];
       });
     this.http
-      .get('assets/schemas/invitation.json')
+      .get('assets/schemas/accept_invitation.json')
       .subscribe(res => {
         const schemas = res.json();
         this.panelSchema = schemas.panel;
@@ -37,10 +37,12 @@ export class MeRegisterComponent implements OnInit {
 
 
   onSend(credentials: IInvitationCredential) {
-    credentials.hash = this.userId;
-    this.securityService.acceptInvitation(credentials);
+    if (credentials.password === credentials.passwordBis) {
+      credentials.hash = this.userId;
+      this.securityService.acceptInvitation(credentials);
+    }
+    else {
+      //TODO show dont match message
+    }
   }
-
-
-
 }
