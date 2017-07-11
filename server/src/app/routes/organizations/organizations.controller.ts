@@ -31,6 +31,12 @@ export class OrganizationsController {
     res.status(HttpStatus.OK).json(organization);
   }
 
+  @Get('count')
+  public async getCount( @Res() res: Response) {
+    const organizationsCount = await this.organizationsService.getCount();
+    res.status(HttpStatus.OK).json({ data: organizationsCount });
+  }
+
   @Get('/:slug/')
   public async getBySlug(
     @Res() res: Response,
@@ -47,11 +53,7 @@ export class OrganizationsController {
     res.status(HttpStatus.OK).json(organizationUsers);
   }
 
-  @Get('count')
-  public async getCount( @Res() res: Response) {
-    const organizationsCount = await this.organizationsService.getCount();
-    res.status(HttpStatus.OK).json({ data: organizationsCount });
-  }
+
 
   @Post()
   public async post( @Res() res: Response, @Body() organization: IOrganization) {
