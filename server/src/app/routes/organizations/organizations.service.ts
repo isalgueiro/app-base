@@ -44,10 +44,9 @@ export class OrganizationsService {
 
   public async patch(organization: IOrganization): Promise<IOrganization> {
     const repository = await this.repository;
-    organization.slug = organization.name.replace(' ', '_');
     const obj = {};
     //TODO study automatify this
-    obj['slug'] = organization.name.replace(' ', '_');
+    obj['slug'] = organization.name.replace(new RegExp(" ", "g"), '_');
     obj['name'] = organization.name;
     obj['email'] = organization.email;
     obj['phone'] = organization.phone;
