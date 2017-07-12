@@ -19,7 +19,7 @@ export class OrganizationHomeComponent implements OnInit {
     loading: true,
     empty: false
   };
-  private organization: IOrganization;
+  public organization: IOrganization;
   public viewSchema: IWidgetSchema;
   public formSchema: IFormSchema;
 
@@ -57,7 +57,14 @@ export class OrganizationHomeComponent implements OnInit {
           .get(`${this.organizationsUrl}/${id}`)
           .subscribe(d => {
             this.organization = d.json();
-            this.setSchemas();
+            if (this.organization) {
+              this.setSchemas();
+            }
+            else {
+              this.loadingPanelSchema.loading = false;
+              this.loadedMetadata = true;
+              this.loadingPanelSchema.empty = true;
+            }
           });
       });
   }
