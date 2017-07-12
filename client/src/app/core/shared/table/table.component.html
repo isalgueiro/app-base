@@ -8,7 +8,7 @@
                      [schema]="{label:field.label, icon:'icon-arrow-up'}"
                      (action)="onHeaderClick(field)"></ab-action>
         </th>
-        <th *ngFor="let action of schema.actions">{{ action?.label }}</th>
+        <th *ngFor="let action of schema.actions">{{ action?.title }}</th>
       </tr>
     </thead>
     <tbody>

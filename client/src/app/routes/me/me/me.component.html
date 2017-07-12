@@ -21,7 +21,7 @@
   <aside>
     <ab-modal [title]="user?.name"
               [active]="changePasswordActive"
-              (close)="logOutActive=false">
+              (close)="changePasswordActive=false">
       <modal-content>
         <ab-form [formSchema]="changePassSchema"
                  (send)="onChangePasswordClick($event)">

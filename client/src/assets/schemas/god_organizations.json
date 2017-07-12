@@ -64,14 +64,16 @@
     ],
     "actions": [
       {
-        "label": "Adm",
+        "label": "",
         "key": "setAdmin",
-        "icon": "icon-people"
+        "icon": "icon-people",
+        "title": "Adm"
       },
       {
-        "label": "Del",
+        "label": "",
         "key": "delete",
-        "icon": "icon-delete"
+        "icon": "icon-delete",
+        "title": "Del"
       }
     ]
   }

@@ -21,6 +21,7 @@ export interface IAction extends IKeyValue {
   label: string;
   link?: string;
   icon?: string;
+  title?: string;
 }
 
 export interface IKeyValue {
