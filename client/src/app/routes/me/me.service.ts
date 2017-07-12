@@ -1,3 +1,5 @@
+import { IWidgetSchema } from '../../core/shared/_data/schema.model';
+
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -20,6 +22,10 @@ export class MeService {
 
   getMeGodSchema(): Observable<any> {
     return this.schemaService.getSchema('me_god');
+  }
+
+  getMeOrganizationsSchema(): Observable<any> {
+    return this.schemaService.getSchema('me_organizations');
   }
 
   getOrganizationsCount(): Observable<number> {

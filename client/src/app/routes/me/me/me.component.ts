@@ -66,23 +66,22 @@ export class MeComponent implements OnInit {
   }
 
   configureDashBoardForAdmin() {
-    // TO DO: use schema for each role
     this.me.getAdministratedOrganization(this.user.organizationId).subscribe(organization => {
       this.organization = organization;
-      this.schemas.push(
-        {
-          header: {
-            title: this.organization.name,
-            subtitle: this.organization.description,
-            icon: 'icon-flag'
-          },
-          actions: [
-            {
-              label: `Manage ${this.organization.name}`,
-              link: `/organization/${this.organization.slug}`
-            }
-          ]
-        });
+      if (this.organization) {
+        this.me
+          .getMeOrganizationsSchema()
+          .subscribe(s => {
+            this.schemas = this.schemas.concat(s);
+            //TODO factorize this
+            this.schemas[1].header.title = this.organization.name;
+            this.schemas[1].header.subtitle = this.organization.description;
+            this.schemas[1].actions[0].label = `Manage ${this.organization.name}`;
+            this.schemas[1].actions[0].link = `/organization/${this.organization.slug}`;
+            this.loadedMetadata = true;
+          });
+      }
+
     });
   }
 
