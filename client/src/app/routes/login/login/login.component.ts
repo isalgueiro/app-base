@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IFormSchema, IWidgetSchema } from 'app/core/shared/_data/schema.model';
 import { SecurityService, IUserCredential } from 'app/core/security.service';
 import { environment } from './../../../../environments/environment';
-import { Http } from '@angular/http';
+import { SchemaService } from 'app/core/shared/_data/schema.service';
 import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'ab-login',
@@ -18,13 +18,12 @@ export class LoginComponent implements OnInit {
   public panelSchema: IWidgetSchema;
   public formSchema: IFormSchema;
 
-  constructor(private security: SecurityService, private http: Http) { }
+  constructor(private security: SecurityService, private schemaService: SchemaService) { }
 
   ngOnInit() {
-    this.http
-      .get('assets/schemas/login.json')
-      .subscribe(res => {
-        const schemas = res.json();
+    this.schemaService
+      .getSchema('login')
+      .subscribe(schemas => {
         this.panelSchema = schemas.panel;
         this.formSchema = schemas.form;
         this.loadedMetadata = true;

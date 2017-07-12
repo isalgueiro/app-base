@@ -7,6 +7,7 @@ import { BusService } from 'app/core/bus.service';
 import { Level } from 'app/core/shared/_data/message.model';
 import { IFormSchema, IWidgetSchema, IReportSchema, ILoadEmptyStateSchema, IKeyValue } from 'app/core/shared/_data/schema.model';
 import { Http } from '@angular/http';
+import { SchemaService } from 'app/core/shared/_data/schema.service';
 @Component({
   selector: 'ab-god-organizations',
   templateUrl: './god-organizations.component.html',
@@ -27,13 +28,12 @@ export class GodOrganizationsComponent implements OnInit {
   public actionSchema: IWidgetSchema;
   public reportSchema: IReportSchema;
   public name = 'organizations';
-  constructor(private godData: GodDataService, private bus: BusService, private http: Http) { }
+  constructor(private godData: GodDataService, private bus: BusService, private http: Http, private schemaService: SchemaService) { }
 
   ngOnInit() {
-    this.http
-      .get('assets/schemas/god_organizations.json')
-      .subscribe(res => {
-        const schemas = res.json();
+    this.schemaService
+      .getSchema('god_organizations')
+      .subscribe(schemas => {
         this.actionSchema = schemas.actions;
         this.createFormSchema = schemas.create;
         this.reportSchema = schemas.report;

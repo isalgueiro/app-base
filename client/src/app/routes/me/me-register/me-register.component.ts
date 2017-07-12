@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Http } from '@angular/http';
 import { IFormSchema, IWidgetSchema } from 'app/core/shared/_data/schema.model';
 import { SecurityService, IInvitationCredential } from 'app/core/security.service';
+import { SchemaService } from 'app/core/shared/_data/schema.service';
 
 @Component({
   selector: 'ab-me-register',
@@ -18,17 +18,15 @@ export class MeRegisterComponent implements OnInit {
   public panelSchema: IWidgetSchema;
   public formSchema: IFormSchema;
   public userId: string;
-  constructor(private route: ActivatedRoute, private http: Http, private securityService: SecurityService) { }
+  constructor(private route: ActivatedRoute, private schemaService: SchemaService, private securityService: SecurityService) { }
 
   ngOnInit() {
     this.route.params
       .subscribe(params => {
         this.userId = params['hash'];
       });
-    this.http
-      .get('assets/schemas/accept_invitation.json')
-      .subscribe(res => {
-        const schemas = res.json();
+    this.schemaService.getSchema('accept_invitation')
+      .subscribe(schemas => {
         this.panelSchema = schemas.panel;
         this.formSchema = schemas.form;
         this.loadedMetadata = true;
@@ -40,9 +38,8 @@ export class MeRegisterComponent implements OnInit {
     if (credentials.password === credentials.passwordBis) {
       credentials.hash = this.userId;
       this.securityService.acceptInvitation(credentials);
-    }
-    else {
-      //TODO show dont match message
+    } else {
+      // TODO show dont match message
     }
   }
 }

@@ -1,30 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { SchemaService } from 'app/core/shared/_data/schema.service';
 
 @Injectable()
 export class MeService {
   private organizationsUrl = 'organizations';
   private usersUrl = 'users';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private schemaService: SchemaService) { }
 
   getMeSchema(): Observable<any> {
-    return this.http
-      .get('assets/schemas/me.json')
-      .map(res => res.json());
+    return this.schemaService.getSchema('me');
   }
 
   getChangePasswordSchema(): Observable<any> {
-    return this.http
-      .get('assets/schemas/change_password.json')
-      .map(res => res.json());
+    return this.schemaService.getSchema('change_password');
   }
 
   getMeGodSchema(): Observable<any> {
-    return this.http
-      .get('assets/schemas/me_god.json')
-      .map(res => res.json());
+    return this.schemaService.getSchema('me_god');
   }
 
   getOrganizationsCount(): Observable<number> {
