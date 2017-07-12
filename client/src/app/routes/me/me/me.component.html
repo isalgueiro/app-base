@@ -1,6 +1,11 @@
-<ab-dashboard [schemas]="schemas"
+<ab-dashboard *ngIf="loadedMetadata;else loading"
+              [schemas]="schemas"
               (send)="onSend($event)">
 </ab-dashboard>
+<ng-template #loading>
+  <ab-load-empty-state [schema]="{loading: true,empty: false}">
+  </ab-load-empty-state>
+</ng-template>
 <aside>
   <ab-modal [title]="user?.name"
             [active]="logOutActive"
@@ -26,7 +31,7 @@
     <modal-footer>
       <button (click)="changePasswordActive=false"
               class="btn btn-link">Remain same password</button>
-      <button (click)="oCahngePasswordClick()"
+      <button (click)="onChangePasswordClick()"
               class="btn btn-primary">Change.</button>
     </modal-footer>
   </ab-modal>

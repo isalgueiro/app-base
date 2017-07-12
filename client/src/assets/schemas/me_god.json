@@ -1,19 +1,27 @@
 [
   {
     "header": {
-      "title": "this.user.name",
-      "subtitle": "this.user.email"
+      "title": "Organizations",
+      "subtitle": "Entities with an administrator, several organizers and its own events and users",
+      "icon": "icon-flag"
     },
     "actions": [
       {
-        "label": "Log Out",
-        "key": "logout",
-        "icon": "icon-shutdown"
-      },
+        "label": "Manage organizations",
+        "link": "/god/organizations"
+      }
+    ]
+  },
+  {
+    "header": {
+      "title": "Users",
+      "subtitle": "Users, statuses and roles",
+      "icon": "icon-people"
+    },
+    "actions": [
       {
-        "label": "Change Password",
-        "key": "change_password",
-        "icon": "icon-people"
+        "label": "Manage organizations",
+        "link": "/god/organizations"
       }
     ]
   }

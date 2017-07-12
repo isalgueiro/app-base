@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from 'app/core/shared/_data/user.model';
+import { IUser, ROLE } from 'app/core/shared/_data/user.model';
 import { SecurityService } from 'app/core/security.service';
 import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 import { MeService, IOrganization } from 'app/routes/me/me.service';
@@ -10,6 +10,7 @@ import { MeService, IOrganization } from 'app/routes/me/me.service';
   styles: []
 })
 export class MeComponent implements OnInit {
+  loadedMetadata = false;
   user: IUser = null;
   logOutActive: Boolean;
   changePasswordActive: Boolean;
@@ -28,7 +29,7 @@ export class MeComponent implements OnInit {
         this.user = user;
         if (this.user) {
           this.me
-            .getGodSchema()
+            .getMeSchema()
             .subscribe(s => {
               this.schemas = s;
               this.configureDashBoard(this.user.roles[0].toString());
@@ -37,53 +38,32 @@ export class MeComponent implements OnInit {
       });
   }
 
-  //TODO centralice roles
+  // TODO centralice roles
   configureDashBoard(role: string) {
     this.schemas[0].header.title = this.user.name;
     this.schemas[0].header.subtitle = this.user.email;
-    if (role === 'GOD') {
+    if (role === ROLE.GOD) {
       this.configureDashBoardForGod();
-    } else if (role === 'ADMIN') {
+    } else if (role === ROLE.ADMIN) {
       this.configureDashBoardForAdmin();
     }
   }
 
   configureDashBoardForGod() {
-    this.me.getOrganizationsCount().subscribe(count => {
-      this.schemas.push(
-        {
-          header: {
-            title: count + ' Organizations',
-            subtitle: 'Entities with an administrator, several organizers and its own events and users',
-            icon: 'icon-flag'
-          },
-          actions: [
-            {
-              label: 'Manage organizations',
-              link: '/god/organizations'
-            }
-          ]
-        });
-    });
-    this.me.getUsersCount().subscribe(count => {
-      this.schemas.push(
-        {
-          header: {
-            title: count + ' Users',
-            subtitle: 'Users, statuses and roles',
-            icon: 'icon-people'
-          },
-          actions: [
-            {
-              label: 'Manage Users',
-              link: '/god/users'
-            }
-          ]
-        });
-    });
+    this.me
+      .getMeGodSchema()
+      .subscribe(s => {
+        this.schemas = this.schemas.concat(s);
+        this.loadedMetadata = true;
+        this.me.getOrganizationsCount()
+          .subscribe(count => this.schemas[1].header.title = count + ' ' + this.schemas[1].header.title);
+        this.me.getUsersCount()
+          .subscribe(count => this.schemas[2].header.title = count + ' ' + this.schemas[2].header.title);
+      });
   }
 
   configureDashBoardForAdmin() {
+    // TO DO: use schema for each role
     this.me.getAdministratedOrganization(this.user.organizationId).subscribe(organization => {
       this.organization = organization;
       this.schemas.push(
@@ -114,5 +94,8 @@ export class MeComponent implements OnInit {
   onLogOutClick() {
     this.logOutActive = false;
     this.security.logOutUser();
+  }
+  onChangePasswordClick() {
+    console.warn('onChangePasswordClick');
   }
 }

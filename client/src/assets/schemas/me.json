@@ -1,0 +1,20 @@
+[
+  {
+    "header": {
+      "title": "this.user.name",
+      "subtitle": "this.user.email"
+    },
+    "actions": [
+      {
+        "label": "Log Out",
+        "key": "logout",
+        "icon": "icon-shutdown"
+      },
+      {
+        "label": "Change Password",
+        "key": "change_password",
+        "icon": "icon-people"
+      }
+    ]
+  }
+]
