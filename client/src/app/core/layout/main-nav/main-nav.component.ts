@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { environment } from './../../../../environments/environment';
 import { IUser } from 'app/core/shared/_data/user.model';
 import { IAction } from 'app/core/shared/_data/schema.model';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'ab-main-nav',
