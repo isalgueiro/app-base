@@ -1,6 +1,6 @@
 <section *ngIf="loadedMetadata;else loading">
-    <ab-dashboard *ngIf="!showEdition" [schemas]="schemas" (send)="onSend($event)">
-    </ab-dashboard>
+    <ab-panel *ngIf="!showEdition" [schema]="viewSchema" (send)="onSend($event)">
+    </ab-panel>
     <ab-form [formSchema]="formSchema" (send)="onSend($event)" *ngIf="showEdition">
     </ab-form>
 </section>

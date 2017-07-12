@@ -20,92 +20,31 @@ export class OrganizationHomeComponent implements OnInit {
     empty: false
   };
   private organization: IOrganization;
-  public organizationPanel: IWidgetSchema;
-  public schemas: IWidgetSchema[];
+  public viewSchema: IWidgetSchema;
   public formSchema: IFormSchema;
 
   constructor(private http: Http, private route: ActivatedRoute, private organizationService: OrganizationService) { }
   setSchemas() {
-    this.organizationPanel = {
-      header: {
-        title: this.organization.name,
-        subtitle: this.organization.description
-      },
-      actions: [
-        {
-          label: 'Edit',
-          icon: 'icon-edit'
-        }
-      ]
-    };
-    this.schemas = [this.organizationPanel];
-    this.formSchema = {
-      title: 'My organization data',
-      submitLabel: 'Save Organization',
-      controls: [
-        {
-          key: 'name',
-          type: 'text',
-          label: 'Name',
-          defaultValue: this.organization.name,
-          validators: [{ key: 'required', errorMessage: 'Name is required' }]
-        },
-        {
-          key: 'email',
-          type: 'email',
-          label: 'Email',
-          defaultValue: this.organization.email,
-          validators: [{ key: 'required', errorMessage: 'Email is required' }]
-        },
-        {
-          key: 'phone',
-          type: 'text',
-          label: 'Phone',
-          defaultValue: this.organization.phone,
-          validators: [{ key: 'required', errorMessage: 'Phone is required' }]
-        },
-        {
-          key: 'url',
-          type: 'text',
-          label: 'Web Page',
-          defaultValue: this.organization.url,
-          validators: []
-        },
-        {
-          key: 'image',
-          type: 'text',
-          label: 'Image Url',
-          defaultValue: this.organization.image,
-          validators: []
-        },
-        {
-          key: 'standardPrice',
-          type: 'text',
-          label: 'Standar Price',
-          defaultValue: this.organization.standardPrice,
-          validators: [{ key: 'required', errorMessage: 'Standard price is required' }]
-        },
-        {
-          key: 'reducedPrice',
-          type: 'text',
-          label: 'Reduced Price',
-          defaultValue: this.organization.reducedPrice,
-          validators: [{ key: 'required', errorMessage: 'Reduced price is required' }]
-        },
-        {
-          key: 'description',
-          type: 'textarea',
-          label: 'Description',
-          defaultValue: this.organization.description,
-          validators: [{ key: 'required', errorMessage: 'Description is required' }]
-        }
-      ]
-    };
-
-    this.loadingPanelSchema.loading = false;
-    this.loadedMetadata = true;
-
+    this.organizationService.getViewSchema().subscribe(s => {
+      this.viewSchema = s;
+      this.viewSchema.header.title = this.organization.name;
+      this.viewSchema.header.subtitle = this.organization.description;
+    });
+    this.organizationService.getEditionSchema().subscribe(s => {
+      this.formSchema = s;
+      this.formSchema.controls[0].defaultValue = this.organization.name;
+      this.formSchema.controls[1].defaultValue = this.organization.email;
+      this.formSchema.controls[2].defaultValue = this.organization.phone;
+      this.formSchema.controls[3].defaultValue = this.organization.url;
+      this.formSchema.controls[4].defaultValue = this.organization.image;
+      this.formSchema.controls[5].defaultValue = this.organization.standardPrice;
+      this.formSchema.controls[6].defaultValue = this.organization.reducedPrice;
+      this.formSchema.controls[7].defaultValue = this.organization.description;
+      this.loadingPanelSchema.loading = false;
+      this.loadedMetadata = true;
+    });
   }
+
   ngOnInit() {
     // TO DO:
     /*
@@ -132,6 +71,7 @@ export class OrganizationHomeComponent implements OnInit {
         .subscribe(org => {
           this.organization = org;
           this.setSchemas();
+          //TODO replace param on url
         });
     }
     this.showEdition = !this.showEdition;

@@ -1,0 +1,10 @@
+{
+    "header": {
+        "title": " ",
+        "subtitle": " "
+    },
+    "actions": [{
+        "label": "Edit",
+        "icon": "icon-edit"
+    }]
+}
