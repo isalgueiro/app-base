@@ -4,10 +4,6 @@
       <section class="navbar-section">
         <a routerLink=""
            class="navbar-brand mr-10">{{ title }}</a>
-        <ng-container *ngFor="let menuLink of menuLinks">
-          <a [routerLink]="menuLink.href"
-             class="btn btn-link">{{ menuLink.title }}</a>
-        </ng-container>
       </section>
       <section *ngIf="user"
                class="navbar-section">
@@ -20,7 +16,7 @@
       <section *ngIf="!user"
                class="navbar-section">
         <a routerLink='login'>
-        <i class="icon icon-people"></i> Log In</a>
+          <i class="icon icon-people"></i> Log In</a>
       </section>
     </header>
   </div>
