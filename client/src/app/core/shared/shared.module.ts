@@ -30,9 +30,11 @@ import { ActionComponent } from './layouts/action/action.component';
   declarations: [
     ControlErrorComponent, FormComponent, InputComponent, TableComponent,
     CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent,
-    DashboardComponent, SelectComponent, RadioComponent, SwitchComponent, TextareaComponent, LoadEmptyStateComponent, EditorComponent, ActionComponent
+    DashboardComponent, SelectComponent, RadioComponent, SwitchComponent,
+    TextareaComponent, LoadEmptyStateComponent, EditorComponent, ActionComponent
   ],
   exports: [
+    ActionComponent,
     ControlErrorComponent,
     CounterComponent,
     DashboardComponent,

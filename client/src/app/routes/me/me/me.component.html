@@ -1,38 +1,41 @@
-<ab-dashboard *ngIf="loadedMetadata;else loading"
-              [schemas]="schemas"
-              (send)="onSend($event)">
-</ab-dashboard>
+<section *ngIf="loadedMetadata;else loading">
+  <ab-dashboard [schemas]="schemas"
+                (send)="onSend($event)">
+  </ab-dashboard>
+  <aside>
+    <ab-modal [title]="user?.name"
+              [active]="logOutActive"
+              (close)="logOutActive=false">
+      <modal-content>
+        {{ user | json }}
+      </modal-content>
+      <modal-footer>
+        <ab-action [schema]="{label:'Remain logged in'}"
+                   btnClass="btn-link"
+                   (action)="logOutActive=false"></ab-action>
+        <ab-action [schema]="{label:'Log Out.'}"
+                   (action)="onLogOutClick()"></ab-action>
+      </modal-footer>
+    </ab-modal>
+  </aside>
+  <aside>
+    <ab-modal [title]="user?.name"
+              [active]="changePasswordActive"
+              (close)="logOutActive=false">
+      <modal-content>
+        <ab-form [formSchema]="changePassSchema"
+                 (send)="onChangePasswordClick($event)">
+        </ab-form>
+      </modal-content>
+      <modal-footer>
+        <ab-action [schema]="{label:'Remain same password'}"
+                   btnClass="btn-link"
+                   (action)="changePasswordActive=false"></ab-action>
+      </modal-footer>
+    </ab-modal>
+  </aside>
+</section>
 <ng-template #loading>
   <ab-load-empty-state [schema]="{loading: true,empty: false}">
   </ab-load-empty-state>
 </ng-template>
-<aside>
-  <ab-modal [title]="user?.name"
-            [active]="logOutActive"
-            (close)="logOutActive=false">
-    <modal-content>
-      {{ user | json }}
-    </modal-content>
-    <modal-footer>
-      <button (click)="logOutActive=false"
-              class="btn btn-link">Remain logged in</button>
-      <button (click)="onLogOutClick()"
-              class="btn btn-primary">Log Out.</button>
-    </modal-footer>
-  </ab-modal>
-</aside>
-<aside>
-  <ab-modal [title]="user?.name"
-            [active]="changePasswordActive"
-            (close)="logOutActive=false">
-    <modal-content>
-      Formulario para Cambiar password
-    </modal-content>
-    <modal-footer>
-      <button (click)="changePasswordActive=false"
-              class="btn btn-link">Remain same password</button>
-      <button (click)="onChangePasswordClick()"
-              class="btn btn-primary">Change.</button>
-    </modal-footer>
-  </ab-modal>
-</aside>

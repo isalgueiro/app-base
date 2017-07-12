@@ -15,6 +15,12 @@ export class MeService {
       .map(res => res.json());
   }
 
+  getChangePasswordSchema(): Observable<any> {
+    return this.http
+      .get('assets/schemas/change_password.json')
+      .map(res => res.json());
+  }
+
   getMeGodSchema(): Observable<any> {
     return this.http
       .get('assets/schemas/me_god.json')

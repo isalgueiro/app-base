@@ -15,6 +15,7 @@ export class MeComponent implements OnInit {
   logOutActive: Boolean;
   changePasswordActive: Boolean;
   public schemas: IWidgetSchema[] = [];
+  public changePassSchema;
   organization: IOrganization = null;
   constructor(private security: SecurityService, private me: MeService) { }
 
@@ -34,14 +35,16 @@ export class MeComponent implements OnInit {
               this.schemas = s;
               this.configureDashBoard(this.user.roles[0].toString());
             });
+          this.me.getChangePasswordSchema()
+            .subscribe(s => this.changePassSchema = s);
         }
       });
   }
 
-  // TODO centralice roles
   configureDashBoard(role: string) {
     this.schemas[0].header.title = this.user.name;
     this.schemas[0].header.subtitle = this.user.email;
+
     if (role === ROLE.GOD) {
       this.configureDashBoardForGod();
     } else if (role === ROLE.ADMIN) {
@@ -95,7 +98,8 @@ export class MeComponent implements OnInit {
     this.logOutActive = false;
     this.security.logOutUser();
   }
-  onChangePasswordClick() {
-    console.warn('onChangePasswordClick');
+  onChangePasswordClick(newPassword) {
+    this.changePasswordActive = false;
+    console.warn('onChangePasswordClick', newPassword);
   }
 }
