@@ -19,22 +19,11 @@
       {
         "key": "name",
         "type": "text",
-        "label": "Name",
+        "label": "Organization Name",
         "validators": [
           {
             "key": "required",
-            "errorMessage": "Name is required"
-          }
-        ]
-      },
-      {
-        "key": "email",
-        "type": "email",
-        "label": "Email",
-        "validators": [
-          {
-            "key": "required",
-            "errorMessage": "Email is required"
+            "errorMessage": "Name of organization is required"
           }
         ]
       }
@@ -74,6 +63,34 @@
         "key": "delete",
         "icon": "icon-delete",
         "title": "Del"
+      }
+    ]
+  },
+  "setAdmin": {
+    "title": "Invite Administrator",
+    "submitLabel": "Send invitation",
+    "controls": [
+      {
+        "key": "name",
+        "type": "text",
+        "label": "Administrator Name",
+        "validators": [
+          {
+            "key": "required",
+            "errorMessage": "Name of the administrator is required"
+          }
+        ]
+      },
+      {
+        "key": "email",
+        "type": "email",
+        "label": "Administrator Email",
+        "validators": [
+          {
+            "key": "required",
+            "errorMessage": "Email for send invitation is required"
+          }
+        ]
       }
     ]
   }
