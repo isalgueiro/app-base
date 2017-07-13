@@ -32,7 +32,8 @@ export class HomeComponent implements OnInit {
         actions: [
           {
             label: 'Ver centro',
-            icon: 'icon-search'
+            icon: 'icon-search',
+            link: `/organization/${organization.slug}`
           }
         ]
       };
