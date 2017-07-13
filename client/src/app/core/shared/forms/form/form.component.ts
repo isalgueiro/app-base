@@ -24,6 +24,9 @@ export class FormComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes.formSchema) {
       const formSchema = changes.formSchema.currentValue;
+      if (!formSchema || !formSchema.controls) {
+        return;
+      }
       const controlsGroup = {};
       formSchema.controls.forEach(c => {
         controlsGroup[c.key] = [

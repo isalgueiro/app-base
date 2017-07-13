@@ -1,4 +1,5 @@
-<form [formGroup]="form.group"
+<form *ngIf="formSchema"
+      [formGroup]="form.group"
       class="container">
   <fieldset class="form-group"
             *ngFor="let control of form.schema.controls">

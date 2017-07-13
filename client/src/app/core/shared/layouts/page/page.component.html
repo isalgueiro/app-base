@@ -1,0 +1,8 @@
+<section *ngIf="loadedMetadata;else loading">
+  <ng-content select="ab-panel">
+  </ng-content>
+</section>
+<ng-template #loading>
+  <ab-load-empty-state [schema]="{loading: true,empty: false}">
+  </ab-load-empty-state>
+</ng-template>

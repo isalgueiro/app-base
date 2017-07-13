@@ -3,6 +3,7 @@ import { IUser, ROLE } from 'app/core/shared/_data/user.model';
 import { SecurityService } from 'app/core/security.service';
 import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 import { MeService, IOrganization } from 'app/routes/me/me.service';
+import { BusService } from 'app/core/bus.service';
 
 @Component({
   selector: 'ab-me',
@@ -17,10 +18,16 @@ export class MeComponent implements OnInit {
   public schemas: IWidgetSchema[] = [];
   public changePassSchema;
   organization: IOrganization = null;
-  constructor(private security: SecurityService, private me: MeService) { }
+  constructor(
+    private security: SecurityService,
+    private me: MeService,
+    private bus: BusService) { }
 
   ngOnInit() {
     this.getMe();
+    this.bus
+      .getPageSchema$()
+      .subscribe(s => this.schemas = s);
   }
 
   getMe() {
@@ -29,12 +36,7 @@ export class MeComponent implements OnInit {
       .subscribe(user => {
         this.user = user;
         if (this.user) {
-          this.me
-            .getMeSchema()
-            .subscribe(s => {
-              this.schemas = s;
-              this.configureDashBoard(this.user.roles[0].toString());
-            });
+          this.configureDashBoard(this.user.roles[0].toString());
           this.me.getChangePasswordSchema()
             .subscribe(s => this.changePassSchema = s);
         }
@@ -73,7 +75,7 @@ export class MeComponent implements OnInit {
           .getMeOrganizationsSchema()
           .subscribe(s => {
             this.schemas = this.schemas.concat(s);
-            //TODO factorize this
+            // TODO factorize this
             this.schemas[1].header.title = this.organization.name;
             this.schemas[1].header.subtitle = this.organization.description;
             this.schemas[1].actions[0].label = `Manage ${this.organization.name}`;

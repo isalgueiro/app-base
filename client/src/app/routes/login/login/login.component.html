@@ -1,4 +1,4 @@
-<section *ngIf="loadedMetadata;else loading">
+<ab-page name="login">
   <ab-panel [schema]="panelSchema">
     <panel-body>
       <ab-form [formSchema]="formSchema"
@@ -6,8 +6,4 @@
       </ab-form>
     </panel-body>
   </ab-panel>
-</section>
-<ng-template #loading>
-  <ab-load-empty-state [schema]="loadingPanelSchema">
-  </ab-load-empty-state>
-</ng-template>
+</ab-page>

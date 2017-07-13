@@ -21,6 +21,7 @@ import { LoadEmptyStateComponent } from './layouts/load-empty-state/load-empty-s
 import { EditorComponent } from './layouts/editor/editor.component';
 import { ActionComponent } from './layouts/action/action.component';
 import { SchemaService } from 'app/core/shared/_data/schema.service';
+import { PageComponent } from './layouts/page/page.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,7 @@ import { SchemaService } from 'app/core/shared/_data/schema.service';
     ControlErrorComponent, FormComponent, InputComponent, TableComponent,
     CounterComponent, TileComponent, ModalComponent, ToastComponent, PanelComponent,
     DashboardComponent, SelectComponent, RadioComponent, SwitchComponent,
-    TextareaComponent, LoadEmptyStateComponent, EditorComponent, ActionComponent
+    TextareaComponent, LoadEmptyStateComponent, EditorComponent, ActionComponent, PageComponent
   ],
   exports: [
     ActionComponent,
@@ -44,6 +45,7 @@ import { SchemaService } from 'app/core/shared/_data/schema.service';
     InputComponent,
     LoadEmptyStateComponent,
     ModalComponent,
+    PageComponent,
     PanelComponent,
     ReactiveFormsModule,
     TableComponent,

@@ -27,24 +27,7 @@ export class GodOrganizationsComponent implements OnInit {
   public createFormSchema: IFormSchema;
   public actionSchema: IWidgetSchema;
   public reportSchema: IReportSchema;
-  public setAdminFormSchema: IFormSchema = {
-    title: 'Invite Administrator',
-    submitLabel: 'Send invitation',
-    controls: [
-      {
-        key: 'name',
-        type: 'text',
-        label: 'Administrator Name',
-        validators: [{ key: 'required', errorMessage: 'Name of the administrator is required' }]
-      },
-      {
-        key: 'email',
-        type: 'email',
-        label: 'Administrator Email',
-        validators: [{ key: 'required', errorMessage: 'Email for send invitation is required' }]
-      },
-    ]
-  };
+  public setAdminFormSchema: IFormSchema;
   public name = 'organizations';
   constructor(private godData: GodDataService, private bus: BusService, private http: Http, private schemaService: SchemaService) { }
 
