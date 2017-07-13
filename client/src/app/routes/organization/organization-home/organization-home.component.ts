@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { OrganizationService, IOrganization } from 'app/routes/organization/organization.service';
 import { Observable } from 'rxjs/Observable';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class OrganizationHomeComponent implements OnInit {
   public viewSchema: IWidgetSchema;
   public formSchema: IFormSchema;
 
-  constructor(private http: Http, private route: ActivatedRoute, private organizationService: OrganizationService) { }
+  constructor(private http: Http, private route: ActivatedRoute, private organizationService: OrganizationService, private location: Location) { }
   setSchemas() {
     this.organizationService.getViewSchema().subscribe(s => {
       this.viewSchema = s;
@@ -72,13 +73,16 @@ export class OrganizationHomeComponent implements OnInit {
   onSend(organization) {
     if (this.showEdition) {
       let aux = this.organization._id;
+      let auxName = this.organization.name;
       this.organization = Object.assign({}, organization);
       this.organization._id = aux;
       this.organizationService.updateOrganization(this.organization)
         .subscribe(org => {
           this.organization = org;
+          if (!(auxName === this.organization.name)) {
+            this.location.go(`/${this.organization.slug}`);
+          }
           this.setSchemas();
-          //TODO replace param on url
         });
     }
     this.showEdition = !this.showEdition;
