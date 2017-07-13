@@ -29,4 +29,6 @@ export interface IMailerSettings {
   secure: any;
   ignoreTLS?: any;
   requireTLS?: any;
+  debug: boolean;
+  logger: boolean;
 }
