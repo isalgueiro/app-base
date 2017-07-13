@@ -8,10 +8,15 @@
              (delete)="onDelete($event)">
   </ab-editor>
   <aside>
-    <ab-god-organization-admin [active]="activeSetAdminModal"
-                               [organization]="activeOrganization"
-                               (close)="onCloseSetAdminModal($event)">
-    </ab-god-organization-admin>
+    <ab-modal [title]="setAdminFormSchema.title"
+              [active]="activeSetAdminModal"
+              (close)="onCloseSetAdminModal(null)">
+      <modal-content>
+        <ab-form [formSchema]="setAdminFormSchema"
+                 (send)="onCloseSetAdminModal($event)">
+        </ab-form>
+      </modal-content>
+    </ab-modal>
   </aside>
 </div>
 <ng-template #loading>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SecurityService } from "app/core/security.service";
+import { SecurityService } from 'app/core/security.service';
 
 @Component({
   selector: 'ab-root',
