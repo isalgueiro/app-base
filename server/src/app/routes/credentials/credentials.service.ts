@@ -24,4 +24,12 @@ export class CredentialsService {
     return this.databaseService.repository<ICredential, Credential>(Credential);
   }
 
+  public async update(credential: ICredential): Promise<void> {
+    const repository = await this.repository;
+    const obj = {};
+    obj['password'] = credential.password;
+    debugger;
+    const savedUser = await repository.update({ userId: credential.userId }, { $set: obj });
+  }
+
 }

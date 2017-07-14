@@ -9,6 +9,7 @@ import { SchemaService } from 'app/core/shared/_data/schema.service';
 export class MeService {
   private organizationsUrl = 'organizations';
   private usersUrl = 'users';
+  private credentialsUrl = 'credentials';
 
   constructor(private http: Http, private schemaService: SchemaService) { }
 
@@ -46,6 +47,10 @@ export class MeService {
     return this.http
       .get(`${this.organizationsUrl}/byId/${id}`)
       .map(res => res.json());
+  }
+
+  changePassword(password: any): Observable<any> {
+    return this.http.patch(`${this.credentialsUrl}/newPassword`, password).map(res => res.json());
   }
 }
 

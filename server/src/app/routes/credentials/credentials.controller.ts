@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Res, Session, UseFilters } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Res, Session, UseFilters, Patch } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { SETTINGS } from '../../../environments/environment';
 import { LoggerService } from "../../core/shared/logger.service";
@@ -9,7 +9,8 @@ import {
   IUserActivation,
   IUserClientRegistration, IUserConfirmation,
   IUserCredential, IUserGodRegistration,
-  IUserInvitation, IUserPublicRegistration, IUserAcceptInvitation
+  IUserInvitation, IUserPublicRegistration, IUserAcceptInvitation,
+  ICredential
 } from "./credentials.models";
 
 @Controller('credentials')
@@ -77,6 +78,13 @@ export class CredentialsController {
   public async postInvitationAccept( @Res() res: Response, @Body() invitationCredential: IUserAcceptInvitation) {
     const token = await this.credentialsLogic.aceptInvitation(invitationCredential);
     res.status(HttpStatus.ACCEPTED).json({ access_token: token });
+  }
+
+  @Patch('newPassword')
+  public async postNewCredentials( @Res() res: Response, @Body() newCredentials: ICredential, @Session() session: ICredential) {
+    //newCredentials.userId = session._id;
+    await this.credentialsLogic.updateCredential(newCredentials);
+    res.status(HttpStatus.OK);
   }
 
 }

@@ -166,4 +166,11 @@ export class CredentialsLogic {
     return user;
   }
 
+  public async updateCredential(credentials: ICredential) {
+    try {
+      await this.credentialsService.update(credentials);
+    } catch (err) {
+      this.logger.error(err);
+    }
+  }
 }
