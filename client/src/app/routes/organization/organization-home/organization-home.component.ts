@@ -33,14 +33,7 @@ export class OrganizationHomeComponent implements OnInit {
     });
     this.organizationService.getEditionSchema().subscribe(s => {
       this.formSchema = s;
-      this.formSchema.controls[0].defaultValue = this.organization.name;
-      this.formSchema.controls[1].defaultValue = this.organization.email;
-      this.formSchema.controls[2].defaultValue = this.organization.phone;
-      this.formSchema.controls[3].defaultValue = this.organization.url;
-      this.formSchema.controls[4].defaultValue = this.organization.image;
-      this.formSchema.controls[5].defaultValue = this.organization.standardPrice;
-      this.formSchema.controls[6].defaultValue = this.organization.reducedPrice;
-      this.formSchema.controls[7].defaultValue = this.organization.description;
+      this.organizationService.getSchemaValues(this.formSchema, this.organization);
       this.loadingPanelSchema.loading = false;
       this.loadedMetadata = true;
     });

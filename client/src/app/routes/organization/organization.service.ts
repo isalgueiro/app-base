@@ -22,6 +22,10 @@ export class OrganizationService {
   getViewSchema(): Observable<IWidgetSchema> {
     return this.schemaService.getSchema('organization_view');
   }
+
+  getSchemaValues(form: IFormSchema, target: any) {
+    return this.schemaService.populateDefaultValues(form, target)
+  }
 }
 
 export interface IOrganization {
