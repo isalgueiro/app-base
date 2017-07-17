@@ -24,7 +24,11 @@ export class OrganizationHomeComponent implements OnInit {
   public viewSchema: IWidgetSchema;
   public formSchema: IFormSchema;
 
-  constructor(private http: Http, private route: ActivatedRoute, private organizationService: OrganizationService, private location: Location) { }
+  constructor(
+    private http: Http,
+    private route: ActivatedRoute,
+    private organizationService: OrganizationService,
+    private location: Location) { }
   setSchemas() {
     this.organizationService.getViewSchema().subscribe(s => {
       this.viewSchema = s;
@@ -53,8 +57,7 @@ export class OrganizationHomeComponent implements OnInit {
             this.organization = d.json();
             if (this.organization) {
               this.setSchemas();
-            }
-            else {
+            } else {
               this.loadingPanelSchema.loading = false;
               this.loadedMetadata = true;
               this.loadingPanelSchema.empty = true;
@@ -65,8 +68,8 @@ export class OrganizationHomeComponent implements OnInit {
 
   onSend(organization) {
     if (this.showEdition) {
-      let aux = this.organization._id;
-      let auxName = this.organization.name;
+      const aux = this.organization._id;
+      const auxName = this.organization.name;
       this.organization = Object.assign({}, organization);
       this.organization._id = aux;
       this.organizationService.updateOrganization(this.organization)

@@ -16,6 +16,7 @@
   <main class="columns">
     <ab-main-nav [user]="user"
                  [menuLinks]="menuLinks"></ab-main-nav>
-    <ab-main-content class="column centered"></ab-main-content>
+    <ab-main-content [loadedMetadata]="loadedMetadata"
+                     class="column centered"></ab-main-content>
   </main>
 </section>

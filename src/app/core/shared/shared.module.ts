@@ -23,6 +23,7 @@ import { ActionComponent } from './layouts/action/action.component';
 import { SchemaService } from 'app/core/shared/_data/schema.service';
 import { PageComponent } from './layouts/page/page.component';
 
+
 @NgModule({
   imports: [
     CommonModule,

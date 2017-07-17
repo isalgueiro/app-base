@@ -1,25 +1,19 @@
-<div *ngIf="loadedMetadata;else loading">
-  <ab-editor [actionSchema]="actionSchema"
-             [tableData]="organizations"
-             [reportSchema]="reportSchema"
-             (rowAction)="onRowAction($event)"
-             [createFormSchema]="createFormSchema"
-             (create)="onCreate($event)"
-             (delete)="onDelete($event)">
-  </ab-editor>
-  <aside>
-    <ab-modal [title]="setAdminFormSchema.title"
-              [active]="activeSetAdminModal"
-              (close)="onCloseSetAdminModal(null)">
-      <modal-content>
-        <ab-form [formSchema]="setAdminFormSchema"
-                 (send)="onCloseSetAdminModal($event)">
-        </ab-form>
-      </modal-content>
-    </ab-modal>
-  </aside>
-</div>
-<ng-template #loading>
-  <ab-load-empty-state [schema]="loadingPanelSchema">
-  </ab-load-empty-state>
-</ng-template>
+<ab-editor [actionSchema]="actionSchema"
+           [tableData]="organizations"
+           [reportSchema]="reportSchema"
+           (rowAction)="onRowAction($event)"
+           [createFormSchema]="createFormSchema"
+           (create)="onCreate($event)"
+           (delete)="onDelete($event)">
+</ab-editor>
+<aside>
+  <ab-modal [title]="setAdminFormSchema.title"
+            [active]="activeSetAdminModal"
+            (close)="onCloseSetAdminModal(null)">
+    <modal-content>
+      <ab-form [formSchema]="setAdminFormSchema"
+               (send)="onCloseSetAdminModal($event)">
+      </ab-form>
+    </modal-content>
+  </ab-modal>
+</aside>

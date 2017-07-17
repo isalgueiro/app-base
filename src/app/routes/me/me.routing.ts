@@ -6,7 +6,8 @@ import { MeRegisterComponent } from 'app/routes/me/me-register/me-register.compo
 const routes: Routes = [
   {
     path: '',
-    component: MeComponent
+    component: MeComponent,
+    data: { name: 'me', title: 'My profile' }
   },
   {
     path: ':hash',

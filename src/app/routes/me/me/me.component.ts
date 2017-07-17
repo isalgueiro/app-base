@@ -4,6 +4,7 @@ import { SecurityService } from 'app/core/security.service';
 import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 import { MeService, IOrganization } from 'app/routes/me/me.service';
 import { BusService } from 'app/core/bus.service';
+import 'rxjs/add/operator/takeWhile';
 
 @Component({
   selector: 'ab-me',
@@ -11,23 +12,30 @@ import { BusService } from 'app/core/bus.service';
   styles: []
 })
 export class MeComponent implements OnInit {
-  loadedMetadata = false;
-  user: IUser = null;
-  logOutActive: Boolean;
-  changePasswordActive: Boolean;
-  public schemas: IWidgetSchema[] = [];
+  public user: IUser = null;
+  public logOutActive: Boolean;
+  public changePasswordActive: Boolean;
+  public schemas: IWidgetSchema[];
   public changePassSchema;
-  organization: IOrganization = null;
+  public organization: IOrganization = null;
+
   constructor(
     private security: SecurityService,
     private me: MeService,
-    private bus: BusService) { }
+    private bus: BusService) {
+    console.log('constructor');
+  }
 
   ngOnInit() {
-    this.getMe();
     this.bus
       .getPageSchema$()
-      .subscribe(s => this.schemas = s);
+      .takeWhile(() => this.schemas == null)
+      .subscribe(s => {
+        if (s[0] && s[0].header) {
+          this.schemas = s;
+          this.getMe();
+        }
+      });
   }
 
   getMe() {
@@ -47,9 +55,9 @@ export class MeComponent implements OnInit {
     this.schemas[0].header.title = this.user.name;
     this.schemas[0].header.subtitle = this.user.email;
 
-    if (role === ROLE.GOD.toString()) {
+    if (role === ROLE.GOD) {
       this.configureDashBoardForGod();
-    } else if (role === ROLE.ADMIN.toString()) {
+    } else if (role === ROLE.ADMIN) {
       this.configureDashBoardForAdmin();
     }
   }
@@ -59,7 +67,6 @@ export class MeComponent implements OnInit {
       .getMeGodSchema()
       .subscribe(s => {
         this.schemas = this.schemas.concat(s);
-        this.loadedMetadata = true;
         this.me.getOrganizationsCount()
           .subscribe(count => this.schemas[1].header.title = count + ' ' + this.schemas[1].header.title);
         this.me.getUsersCount()
@@ -80,7 +87,6 @@ export class MeComponent implements OnInit {
             this.schemas[1].header.subtitle = this.organization.description;
             this.schemas[1].actions[0].label = `Manage ${this.organization.name}`;
             this.schemas[1].actions[0].link = `/organization/${this.organization.slug}`;
-            this.loadedMetadata = true;
           });
       }
 

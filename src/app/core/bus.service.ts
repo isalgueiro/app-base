@@ -13,7 +13,7 @@ export class BusService {
   private securityErr$ = new Subject<string>();
   private userToken$ = new BehaviorSubject<string>(null);
   private user$ = new BehaviorSubject<IUser>(null);
-  private pageSchema$ = new Subject<any>();
+  private pageSchema$ = new BehaviorSubject<any>(null);
 
   constructor() {
   }

@@ -6,8 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { BusService } from 'app/core/bus.service';
 import { Level } from 'app/core/shared/_data/message.model';
 import { IFormSchema, IWidgetSchema, IReportSchema, ILoadEmptyStateSchema, IKeyValue } from 'app/core/shared/_data/schema.model';
-import { Http } from '@angular/http';
-import { SchemaService } from 'app/core/shared/_data/schema.service';
+
 @Component({
   selector: 'ab-god-organizations',
   templateUrl: './god-organizations.component.html',
@@ -19,27 +18,23 @@ export class GodOrganizationsComponent implements OnInit {
   public activeCreateOrganizationModal = false;
   public activeDeleteOrganizationModal = false;
   public activeOrganization;
-  public loadedMetadata = false;
-  public loadingPanelSchema: ILoadEmptyStateSchema = {
-    loading: true,
-    empty: false
-  };
   public createFormSchema: IFormSchema;
   public actionSchema: IWidgetSchema;
   public reportSchema: IReportSchema;
   public setAdminFormSchema: IFormSchema;
   public name = 'organizations';
-  constructor(private godData: GodDataService, private bus: BusService, private http: Http, private schemaService: SchemaService) { }
+  constructor(
+    private godData: GodDataService,
+    private bus: BusService) { }
 
   ngOnInit() {
-    this.schemaService
-      .getSchema('god_organizations')
+    this.bus
+      .getPageSchema$()
       .subscribe(schemas => {
         this.actionSchema = schemas.actions;
         this.createFormSchema = schemas.create;
         this.reportSchema = schemas.report;
         this.setAdminFormSchema = schemas.setAdmin;
-        this.loadedMetadata = true;
       });
     this.getOrganizations();
   }

@@ -1,9 +1,3 @@
-<ab-page name="login">
-  <ab-panel [schema]="panelSchema">
-    <panel-body>
-      <ab-form [formSchema]="formSchema"
-               (send)="onSend($event)">
-      </ab-form>
-    </panel-body>
-  </ab-panel>
-</ab-page>
+<ab-form [formSchema]="formSchema"
+         (send)="onSend($event)">
+</ab-form>

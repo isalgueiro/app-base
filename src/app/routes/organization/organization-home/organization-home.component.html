@@ -1,10 +1,10 @@
-<section *ngIf="loadedMetadata && organization;else loading">
-    <ab-panel *ngIf="!showEdition" [schema]="viewSchema" (send)="onSend($event)">
-    </ab-panel>
-    <ab-form [formSchema]="formSchema" (send)="onSend($event)" *ngIf="showEdition">
-    </ab-form>
+<section *ngIf="organization">
+  <ab-panel *ngIf="!showEdition"
+            [schema]="viewSchema"
+            (send)="onSend($event)">
+  </ab-panel>
+  <ab-form [formSchema]="formSchema"
+           (send)="onSend($event)"
+           *ngIf="showEdition">
+  </ab-form>
 </section>
-<ng-template #loading>
-    <ab-load-empty-state [schema]="loadingPanelSchema">
-    </ab-load-empty-state>
-</ng-template>

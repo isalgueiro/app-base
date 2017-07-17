@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'organizations',
-    component: GodOrganizationsComponent
+    component: GodOrganizationsComponent,
+    data: { name: 'god_organizations' }
   },
   {
     path: 'users',
