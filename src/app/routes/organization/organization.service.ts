@@ -7,12 +7,15 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class OrganizationService {
-  private url = 'organizations';
+  private organizationsUrl = 'organizations';
   constructor(private http: HttpClient, private schemaService: SchemaService) {
   }
-
+  getOrganization(id) {
+    return this.http
+      .get<IOrganization>(`${this.organizationsUrl}/${id}`)
+  }
   updateOrganization(organization: IOrganization): Observable<IOrganization> {
-    return this.http.patch<IOrganization>(`${this.url}`, organization);
+    return this.http.patch<IOrganization>(`${this.organizationsUrl}`, organization);
   }
 
   getEditionSchema(): Observable<IFormSchema> {

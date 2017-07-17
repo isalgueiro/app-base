@@ -2,7 +2,7 @@
               (send)="onSend($event)">
 </ab-dashboard>
 <aside>
-  <ab-modal [title]="user.name"
+  <ab-modal [title]="user?.name"
             [active]="logOutActive"
             (close)="logOutActive=false">
     <modal-content>
@@ -18,7 +18,7 @@
   </ab-modal>
 </aside>
 <aside>
-  <ab-modal [title]="user.name"
+  <ab-modal [title]="user?.name"
             [active]="changePasswordActive"
             (close)="changePasswordActive=false">
     <modal-content>

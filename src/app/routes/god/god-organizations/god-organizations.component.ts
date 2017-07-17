@@ -35,8 +35,8 @@ export class GodOrganizationsComponent implements OnInit {
         this.createFormSchema = schemas.create;
         this.reportSchema = schemas.report;
         this.setAdminFormSchema = schemas.setAdmin;
+        this.getOrganizations();
       });
-    this.getOrganizations();
   }
 
   getOrganizations() {

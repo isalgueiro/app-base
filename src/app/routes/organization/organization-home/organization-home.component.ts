@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { Location } from '@angular/common';
 
 
+
 @Component({
   selector: 'ab-organization-home',
   templateUrl: './organization-home.component.html',
@@ -25,7 +26,6 @@ export class OrganizationHomeComponent implements OnInit {
   public formSchema: IFormSchema;
 
   constructor(
-    private http: Http,
     private route: ActivatedRoute,
     private organizationService: OrganizationService,
     private location: Location) { }
@@ -51,10 +51,10 @@ export class OrganizationHomeComponent implements OnInit {
     this.route.params
       .subscribe(params => {
         const id = params['id'];
-        this.http
-          .get(`${this.organizationsUrl}/${id}`)
-          .subscribe(d => {
-            this.organization = d.json();
+        this.organizationService
+          .getOrganization(id)
+          .subscribe(organization => {
+            this.organization = organization;
             if (this.organization) {
               this.setSchemas();
             } else {

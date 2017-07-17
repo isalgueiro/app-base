@@ -30,9 +30,9 @@ export class MeComponent implements OnInit {
     this.bus
       .getPageSchema$()
       .takeWhile(() => this.schemas == null)
-      .subscribe(s => {
-        if (s[0] && s[0].header) {
-          this.schemas = s;
+      .subscribe(schema => {
+        if (schema[0] && schema[0].header) {
+          this.schemas = schema;
           this.getMe();
         }
       });
