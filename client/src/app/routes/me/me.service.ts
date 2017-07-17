@@ -12,7 +12,7 @@ export class MeService {
   private usersUrl = 'users';
   private credentialsUrl = 'credentials';
 
-  constructor(private http: Http, private _http: HttpClient, private schemaService: SchemaService) { }
+  constructor(private http: HttpClient, private schemaService: SchemaService) { }
 
   getMeSchema(): Observable<any> {
     return this.schemaService.getSchema('me');
@@ -31,13 +31,13 @@ export class MeService {
   }
 
   getOrganizationsCount(): Observable<number> {
-    return this._http
+    return this.http
       .get<any>(`${this.organizationsUrl}/count`)
       .map(res => res.data);
   }
 
   getUsersCount(): Observable<number> {
-    return this._http
+    return this.http
       .get<any>(`${this.usersUrl}/count`)
       .map(res => res.data);
   }
@@ -45,12 +45,12 @@ export class MeService {
 
   // TODO controlar si ninguna org
   getAdministratedOrganization(id): Observable<IOrganization> {
-    return this._http
+    return this.http
       .get<IOrganization>(`${this.organizationsUrl}/byId/${id}`);
   }
 
   changePassword(password: any): Observable<any> {
-    return this.http.patch(`${this.credentialsUrl}/newPassword`, password).map(res => res.json());
+    return this.http.patch(`${this.credentialsUrl}/newPassword`, password);
   }
 }
 

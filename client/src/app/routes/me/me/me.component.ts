@@ -47,9 +47,9 @@ export class MeComponent implements OnInit {
     this.schemas[0].header.title = this.user.name;
     this.schemas[0].header.subtitle = this.user.email;
 
-    if (role === ROLE.GOD) {
+    if (role === ROLE.GOD.toString()) {
       this.configureDashBoardForGod();
-    } else if (role === ROLE.ADMIN) {
+    } else if (role === ROLE.ADMIN.toString()) {
       this.configureDashBoardForAdmin();
     }
   }

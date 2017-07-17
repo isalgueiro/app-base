@@ -24,11 +24,6 @@ import { SecurityService } from 'app/core/security.service';
   ],
   providers: [
     BusService,
-    /*     {
-          provide: Http,
-          useClass: HttpService,
-          deps: [XHRBackend, RequestOptions, BusService]
-        }, */
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
