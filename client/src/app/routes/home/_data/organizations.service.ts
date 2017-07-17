@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { IOrganization } from 'app/routes/home/_data/models/organization.model';
@@ -9,12 +10,11 @@ import 'rxjs/add/observable/forkJoin';
 @Injectable()
 export class OrganizationsService {
   private url = 'organizations';
-  constructor(private http: Http) { }
+  constructor(private http: Http, private _http: HttpClient) { }
 
   getAll(): Observable<IOrganization[]> {
-    return this.http
-      .get(this.url)
-      .map(r => r.json());
+    return this._http
+      .get<IOrganization[]>(this.url);
   }
 
 }

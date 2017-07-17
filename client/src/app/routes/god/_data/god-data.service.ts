@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -13,18 +14,17 @@ export class GodDataService {
   private organizationsUrl = 'organizations';
   private credentialsUrl = 'credentials';
 
-  constructor(private http: Http, private bus: BusService, private security: SecurityService) { }
+  constructor(private http: HttpClient, private bus: BusService, private security: SecurityService) { }
 
   getOrganizationsCount(): Observable<number> {
     return this.http
-      .get(`${this.organizationsUrl}/count`)
-      .map(res => res.json().data);
+      .get<any>(`${this.organizationsUrl}/count`)
+      .map(res => res.data);
   }
 
-  getOrganizationsFull(): Observable<any[]> {
+  /* getOrganizationsFull(): Observable<any[]> {
     return this.http
-      .get(this.organizationsUrl)
-      .map(res => res.json())
+      .get<any[]>(this.organizationsUrl)
       .map(data => data.map(d => {
         const org = { _id: d._id, name: d.name, admin: { name: '', email: '', userId: '' } };
         return org;
@@ -37,12 +37,11 @@ export class GodDataService {
         });
         return Observable.forkJoin(observables);
       })
-  }
+  } */
 
   getOrganizations(): Observable<any[]> {
     return this.http
-      .get(this.organizationsUrl)
-      .map(res => res.json())
+      .get<any>(this.organizationsUrl)
       .map(data => data.map(d => {
         const org = { _id: d._id, name: d.name, admin: { name: '', email: '', userId: '' } };
         return org;
@@ -53,8 +52,7 @@ export class GodDataService {
     const search = new URLSearchParams();
     search.set('role', ROLE.ADMIN.toString());
     return this.http
-      .get(`${this.organizationsUrl}/${organizationId}/users`, { search })
-      .map(res => res.json());
+      .get<any>(`${this.organizationsUrl}/${organizationId}/users?${search.toString()}`);
   }
 
   setOrganizationAdmin(newAdmin) {

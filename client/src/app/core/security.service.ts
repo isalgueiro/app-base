@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { BusService } from './bus.service';
@@ -14,7 +16,7 @@ export class SecurityService {
   private userKey = 'user';
   private url = 'credentials';
 
-  constructor(private bus: BusService, private http: Http, private router: Router) {
+  constructor(private bus: BusService, private http: HttpClient, private router: Router) {
     this.onSecurityErrNavigateToLogin();
     this.emitUserStatus();
   }
@@ -49,10 +51,9 @@ export class SecurityService {
       );
   }
 
-  public getMe() {
+  public getMe(): Observable<IUser> {
     return this.http
-      .get('users/me')
-      .map(res => res.json())
+      .get<IUser>('users/me')
       .do(this.saveUser.bind(this));
   }
 
@@ -78,7 +79,7 @@ export class SecurityService {
   }
 
   private saveUserToken(response) {
-    const userToken: string = response.json().access_token;
+    const userToken: string = response.access_token;
     localStorage.setItem(this.userTokenKey, userToken);
     this.bus.emitUserToken(userToken);
   }
@@ -98,7 +99,6 @@ export class SecurityService {
   }
 
   acceptInvitation(credentials: IInvitationCredential) {
-    let userCredentials;
     this.http.post(`${this.url}/aceptInvitation`, credentials).subscribe(d => {
       this.saveUserToken(d);
       this.getMe()

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { IWidgetSchema } from '../../core/shared/_data/schema.model';
 
 import { Injectable } from '@angular/core';
@@ -11,7 +12,7 @@ export class MeService {
   private usersUrl = 'users';
   private credentialsUrl = 'credentials';
 
-  constructor(private http: Http, private schemaService: SchemaService) { }
+  constructor(private http: Http, private _http: HttpClient, private schemaService: SchemaService) { }
 
   getMeSchema(): Observable<any> {
     return this.schemaService.getSchema('me');
@@ -30,23 +31,22 @@ export class MeService {
   }
 
   getOrganizationsCount(): Observable<number> {
-    return this.http
-      .get(`${this.organizationsUrl}/count`)
-      .map(res => res.json().data);
+    return this._http
+      .get<any>(`${this.organizationsUrl}/count`)
+      .map(res => res.data);
   }
 
   getUsersCount(): Observable<number> {
-    return this.http
-      .get(`${this.usersUrl}/count`)
-      .map(res => res.json().data);
+    return this._http
+      .get<any>(`${this.usersUrl}/count`)
+      .map(res => res.data);
   }
 
 
   // TODO controlar si ninguna org
   getAdministratedOrganization(id): Observable<IOrganization> {
-    return this.http
-      .get(`${this.organizationsUrl}/byId/${id}`)
-      .map(res => res.json());
+    return this._http
+      .get<IOrganization>(`${this.organizationsUrl}/byId/${id}`);
   }
 
   changePassword(password: any): Observable<any> {
