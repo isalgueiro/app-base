@@ -3,16 +3,16 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { SchemaService } from 'app/core/shared/_data/schema.service';
 import { IFormSchema, IWidgetSchema } from 'app/core/shared/_data/schema.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class OrganizationService {
   private url = 'organizations';
-  constructor(private http: Http, private schemaService: SchemaService) {
+  constructor(private http: HttpClient, private schemaService: SchemaService) {
   }
 
   updateOrganization(organization: IOrganization): Observable<IOrganization> {
-    return this.http.patch(`${this.url}`, organization)
-      .map(o => o.json());
+    return this.http.patch<IOrganization>(`${this.url}`, organization);
   }
 
   getEditionSchema(): Observable<IFormSchema> {

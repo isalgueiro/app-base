@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from 'app/core/layout/layout.module';
 import { SharedModule } from 'app/core/shared/shared.module';
 import { BusService } from 'app/core/bus.service';
-import { HttpService } from 'app/core/http.service';
 import { SecurityService } from 'app/core/security.service';
 
 @NgModule({

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { IFormSchema } from 'app/core/shared/_data/schema.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class SchemaService {
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getSchema(schemaName: string) {
     return this.http
-      .get(`assets/schemas/${schemaName}.json`)
-      .map(res => res.json());
+      .get<any>(`assets/schemas/${schemaName}.json`);
   }
 
   valueByPath(target, path) {

@@ -10,8 +10,14 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class Interceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let url: string;
+    if (req.url.includes('assets/')) {
+      url = `${environment.assetsUrl}${req.url}`;
+    } else {
+      url = `${environment.apiUrl}${req.url}`;
+    }
     req = req.clone({
-      url: `${environment.apiUrl}${req.url}`
+      url: url
     })
     return next.handle(req);
   }
