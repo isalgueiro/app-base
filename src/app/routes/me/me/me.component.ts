@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IUser, ROLE } from 'app/core/shared/_data/user.model';
 import { SecurityService } from 'app/core/security.service';
 import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
-import { MeService, IOrganization } from 'app/routes/me/me.service';
 import { BusService } from 'app/core/bus.service';
 import 'rxjs/add/operator/takeWhile';
+import { IOrganization, MeService } from 'app/routes/me/_data/me.service';
 
 @Component({
   selector: 'ab-me',

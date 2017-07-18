@@ -5,6 +5,7 @@ import { IUser } from 'app/core/shared/_data/user.model';
 import { IAction } from 'app/core/shared/_data/schema.model';
 import { SchemaService } from 'app/core/shared/_data/schema.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { environment } from 'environments/environment';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -18,6 +19,7 @@ export class ShellComponent implements OnInit {
   public user: IUser = null;
   public show: boolean;
   public text = '';
+  public title: string;
   public level: Level;
   public menuLinks: IAction[];
   public loadedMetadata: boolean;
@@ -48,6 +50,11 @@ export class ShellComponent implements OnInit {
       .filter(pageRoute => pageRoute.outlet === 'primary')
       .mergeMap(primaryRoute => primaryRoute.data)
       .subscribe(data => {
+        if (data.title) {
+          this.title = data.title;
+        } else {
+          this.title = environment.appTitle
+        }
         if (data.name) {
           this.loadMetadata(data.name);
         } else {

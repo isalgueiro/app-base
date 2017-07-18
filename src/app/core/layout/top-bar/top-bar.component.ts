@@ -10,7 +10,7 @@ import { environment } from 'environments/environment';
 export class TopBarComponent implements OnInit {
   @Input() public user: IUser = null;
   public userInitials = '?';
-  public title = environment.appTitle;
+  @Input() public title = environment.appTitle;
 
 
   constructor() { }

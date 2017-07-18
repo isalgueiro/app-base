@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 
 import { MeComponent } from './me/me.component';
 import { SharedModule } from 'app/core/shared/shared.module';
-import { MeService } from 'app/routes/me/me.service';
+
 import { MeRegisterComponent } from './me-register/me-register.component';
 import { MeRoutingModule } from 'app/routes/me/me.routing';
+import { MeService } from 'app/routes/me/_data/me.service';
 
 @NgModule({
   imports: [

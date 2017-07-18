@@ -5,7 +5,8 @@ import { OrganizationHomeComponent } from 'app/routes/organization/organization-
 const routes: Routes = [
   {
     path: '',
-    component: OrganizationHomeComponent
+    component: OrganizationHomeComponent,
+    data: { title: 'Organization' }
   },
   // {
   //   path: ':id',

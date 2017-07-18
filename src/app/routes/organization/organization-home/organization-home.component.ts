@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IFormSchema, IWidgetSchema } from 'app/core/shared/_data/schema.model';
 import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
-import { OrganizationService, IOrganization } from 'app/routes/organization/organization.service';
 import { Observable } from 'rxjs/Observable';
 import { Location } from '@angular/common';
+import { IOrganization, OrganizationService } from 'app/routes/organization/_data/organization.service';
 
 
 

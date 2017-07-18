@@ -1,6 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { IWidgetSchema } from '../../core/shared/_data/schema.model';
-
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';

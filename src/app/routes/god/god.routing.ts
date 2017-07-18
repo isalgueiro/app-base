@@ -13,16 +13,18 @@ const routes: Routes = [
   },
   {
     path: 'bigbang',
-    component: GodBigbangComponent
+    component: GodBigbangComponent,
+    data: { title: 'Big Bang' }
   },
   {
     path: 'organizations',
     component: GodOrganizationsComponent,
-    data: { name: 'god_organizations' }
+    data: { name: 'god_organizations', title: 'Organizations' }
   },
   {
     path: 'users',
-    component: GodUsersComponent
+    component: GodUsersComponent,
+    data: { title: 'Users' }
   }
 ];
 
