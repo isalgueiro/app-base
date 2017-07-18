@@ -21,23 +21,6 @@ export class GodDataService {
       .map(res => res.data);
   }
 
-  /* getOrganizationsFull(): Observable<any[]> {
-    return this.http
-      .get<any[]>(this.organizationsUrl)
-      .map(data => data.map(d => {
-        const org = { _id: d._id, name: d.name, admin: { name: '', email: '', userId: '' } };
-        return org;
-      }))
-      .switchMap(orgs => {
-        const observables = orgs.map(org => {
-          return this
-            .getOrganizationAdmin(org.id)
-            .map(users => { org.admin = users && users[0]; return org; })
-        });
-        return Observable.forkJoin(observables);
-      })
-  } */
-
   getOrganizations(): Observable<any[]> {
     return this.http
       .get<any>(this.organizationsUrl)
@@ -48,21 +31,17 @@ export class GodDataService {
   }
 
   getOrganizationAdmin(organizationId: number): Observable<any> {
-    const params = new HttpParams();
-    params.set('role', ROLE.ADMIN.toString());
     return this.http
-      .get<any>(`${this.organizationsUrl}/${organizationId}/users`, { params });
+      .get<any>(`${this.organizationsUrl}/${organizationId}/users?role=ADMIN`);
   }
 
   /**
-   *disponiblesPorCanales(filter: string): Observable<any> {
-  const params = new HttpParams();
-  params.set('FiltroTexto', filter);
-  params.set('ElementosporPagina', '40');
-  params.set('Pagina', '1');
-
-  return this.http.get(`${this.baseUrl}/disponiblesPorCanalesUsuario`, { params });
-  }
+const params = new HttpParams();
+    params.set('role', 'ADMIN');
+    const options = { params: params };
+    console.log(options);
+    return this.http
+      .get<any>(`${this.organizationsUrl}/${organizationId}/users`, options);
    * / */
 
   setOrganizationAdmin(newAdmin) {
@@ -79,9 +58,5 @@ export class GodDataService {
   deleteOrganization(oldOrganization) {
     return this.http
       .delete(`${this.organizationsUrl}/${oldOrganization._id}`);
-  }
-
-  createBigbang(secret) {
-    this.security.createBigbang(secret);
   }
 }
