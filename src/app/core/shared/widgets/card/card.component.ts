@@ -2,22 +2,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IWidgetSchema, IKeyValue } from 'app/core/shared/_data/schema.model';
 
 @Component({
-  selector: 'ab-panel',
-  templateUrl: './panel.component.html',
+  selector: 'ab-card',
+  templateUrl: './card.component.html',
   styles: []
 })
-export class PanelComponent implements OnInit {
-
+export class CardComponent implements OnInit {
   @Input() public schema: IWidgetSchema;
-  @Output() public send = new EventEmitter<IKeyValue>();
-
+  @Input() public data: any;
+  @Output() send = new EventEmitter<IKeyValue>();
   constructor() { }
 
   ngOnInit() {
-  }
-
-  onClick(keyValue) {
-    this.send.emit(keyValue);
   }
 
 }

@@ -9,8 +9,8 @@ import { SchemaService } from 'app/core/shared/_data/schema.service';
 })
 export class TableComponent implements OnInit {
 
-  @Input() schema: IReportSchema;
-  @Input() data: any[];
+  @Input() public schema: IReportSchema;
+  @Input() public data: any[];
   @Output() rowClick = new EventEmitter<any>();
   @Output() rowAction = new EventEmitter<IKeyValue>();
 
