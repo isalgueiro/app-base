@@ -6,6 +6,7 @@ import { SchemaService } from 'app/core/shared/_data/schema.service';
 import { Observable } from 'rxjs/Observable';
 import { BusService } from 'app/core/bus.service';
 import { ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/takeWhile';
 @Component({
   selector: 'ab-login',
   templateUrl: './login.component.html',
@@ -22,8 +23,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.bus
       .getPageSchema$()
+      .takeWhile(() => this.formSchema == null)
       .subscribe(schemas => {
-        this.formSchema = schemas.form;
+        if (schemas) {
+          this.formSchema = schemas.form;
+        }
       });
   }
 

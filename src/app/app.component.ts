@@ -10,6 +10,6 @@ import { SecurityService } from 'app/core/security.service';
 })
 export class AppComponent {
   constructor(private security: SecurityService) {
-
+    this.security.checkBigbang();
   }
 }

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { BusService } from 'app/core/bus.service';
 import { Level } from 'app/core/shared/_data/message.model';
 import { IFormSchema, IWidgetSchema, IReportSchema, ILoadEmptyStateSchema, IKeyValue } from 'app/core/shared/_data/schema.model';
+import 'rxjs/add/operator/takeWhile';
 
 @Component({
   selector: 'ab-god-organizations',
@@ -30,12 +31,15 @@ export class GodOrganizationsComponent implements OnInit {
   ngOnInit() {
     this.bus
       .getPageSchema$()
+      .takeWhile(() => this.actionSchema == null)
       .subscribe(schemas => {
-        this.actionSchema = schemas.actions;
-        this.createFormSchema = schemas.create;
-        this.reportSchema = schemas.report;
-        this.setAdminFormSchema = schemas.setAdmin;
-        this.getOrganizations();
+        if (schemas) {
+          this.actionSchema = schemas.actions;
+          this.createFormSchema = schemas.create;
+          this.reportSchema = schemas.report;
+          this.setAdminFormSchema = schemas.setAdmin;
+          this.getOrganizations();
+        }
       });
   }
 

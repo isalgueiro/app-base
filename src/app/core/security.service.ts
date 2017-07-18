@@ -40,15 +40,10 @@ export class SecurityService {
     this.navigateTo(['/login']);
   }
 
-  createBigbang(secret: string) {
+  checkBigbang() {
     this.http
-      .post(`${this.url}/bigbang`, secret)
-      .subscribe(
-      r => {
-        this.logInUser({ email: environment.godEmail, password: environment.secret });
-        this.bus.emit({ level: Level.SUCCESS, text: 'Big Bang!!' });
-      }
-      );
+      .get(`${this.url}/bigbang`)
+      .subscribe(r => console.warn(r));
   }
 
   public getMe(): Observable<IUser> {

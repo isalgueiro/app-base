@@ -33,10 +33,11 @@ export class MeComponent implements OnInit {
   ngOnInit() {
     this.bus
       .getPageSchema$()
+      .takeWhile(() => this.userSchema == null)
       .subscribe(schemas => {
-        if (schemas != null) {
-          this.godSchema = schemas.godSchema;
+        if (schemas && schemas.userSchema) {
           this.userSchema = schemas.userSchema;
+          this.godSchema = schemas.godSchema;
           this.organizationsSchema = schemas.organizationsSchema;
           this.changePasswordSchema = schemas.changePassword;
           this.logoutSchema = schemas.logoutSchema;
