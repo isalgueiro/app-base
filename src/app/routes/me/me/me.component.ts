@@ -31,7 +31,7 @@ export class MeComponent implements OnInit {
       .getPageSchema$()
       .takeWhile(() => this.schemas == null)
       .subscribe(schema => {
-        if (schema[0] && schema[0].header) {
+        if (schema && schema[0] && schema[0].header) {
           this.schemas = schema;
           this.getMe();
         }
