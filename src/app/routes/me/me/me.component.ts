@@ -1,3 +1,4 @@
+import { SchemaService } from '../../../core/shared/_data/schema.service';
 import { Component, OnInit } from '@angular/core';
 import { IUser, ROLE } from 'app/core/shared/_data/user.model';
 import { SecurityService } from 'app/core/security.service';
@@ -15,24 +16,30 @@ export class MeComponent implements OnInit {
   public user: IUser = null;
   public logOutActive: Boolean;
   public changePasswordActive: Boolean;
-  public schemas: IWidgetSchema[];
-  public changePassSchema;
+  public schemas: IWidgetSchema[] = [];
+  public userSchema;
+  public changePasswordSchema;
+  public logoutSchema;
+  public organizationsSchema;
   public organization: IOrganization = null;
-
+  public godSchema;
   constructor(
     private security: SecurityService,
     private me: MeService,
-    private bus: BusService) {
-    console.log('constructor');
+    private bus: BusService,
+    private schemaService: SchemaService) {
   }
 
   ngOnInit() {
     this.bus
       .getPageSchema$()
-      .takeWhile(() => this.schemas == null)
-      .subscribe(schema => {
-        if (schema && schema[0] && schema[0].header) {
-          this.schemas = schema;
+      .subscribe(schemas => {
+        if (schemas != null) {
+          this.godSchema = schemas.godSchema;
+          this.userSchema = schemas.userSchema;
+          this.organizationsSchema = schemas.organizationsSchema;
+          this.changePasswordSchema = schemas.changePassword;
+          this.logoutSchema = schemas.logoutSchema;
           this.getMe();
         }
       });
@@ -44,17 +51,15 @@ export class MeComponent implements OnInit {
       .subscribe(user => {
         this.user = user;
         if (this.user) {
+          this.userSchema.header.title = this.user.name;
+          this.userSchema.header.subtitle = this.user.email;
+          this.schemas.push(this.userSchema);
           this.configureDashBoard(this.user.roles[0].toString());
-          this.me.getChangePasswordSchema()
-            .subscribe(s => this.changePassSchema = s);
         }
       });
   }
 
   configureDashBoard(role: string) {
-    this.schemas[0].header.title = this.user.name;
-    this.schemas[0].header.subtitle = this.user.email;
-
     if (role === ROLE.GOD) {
       this.configureDashBoardForGod();
     } else if (role === ROLE.ADMIN) {
@@ -63,31 +68,22 @@ export class MeComponent implements OnInit {
   }
 
   configureDashBoardForGod() {
-    this.me
-      .getMeGodSchema()
-      .subscribe(s => {
-        this.schemas = this.schemas.concat(s);
-        this.me.getOrganizationsCount()
-          .subscribe(count => this.schemas[1].header.title = count + ' ' + this.schemas[1].header.title);
-        this.me.getUsersCount()
-          .subscribe(count => this.schemas[2].header.title = count + ' ' + this.schemas[2].header.title);
-      });
+    this.schemas.push(this.godSchema);
+    this.me.getOrganizationsCount()
+      .subscribe(count => this.organizationsSchema.header.title = count + ' ' + this.organizationsSchema.header.title);
+    this.me.getUsersCount()
+      .subscribe(count => this.userSchema.header.title = count + ' ' + this.userSchema.header.title);
   }
 
   configureDashBoardForAdmin() {
     this.me.getAdministratedOrganization(this.user.organizationId).subscribe(organization => {
       this.organization = organization;
       if (this.organization) {
-        this.me
-          .getMeOrganizationsSchema()
-          .subscribe(s => {
-            this.schemas = this.schemas.concat(s);
-            // TODO factorize this
-            this.schemas[1].header.title = this.organization.name;
-            this.schemas[1].header.subtitle = this.organization.description;
-            this.schemas[1].actions[0].label = `Manage ${this.organization.name}`;
-            this.schemas[1].actions[0].link = `/organization/${this.organization.slug}`;
-          });
+        // this.schemaService.populateDefaultValues(this.organizationsSchema, organization);
+        this.organizationsSchema.header.title = this.organization.name;
+        this.organizationsSchema.header.subtitle = this.organization.description;
+        this.organizationsSchema.actions[0].link = `/organization/${this.organization.slug}`;
+        this.schemas.push(this.organizationsSchema);
       }
 
     });
