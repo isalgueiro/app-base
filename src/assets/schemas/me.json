@@ -1,20 +1,79 @@
-[
-  {
-    "header": {
-      "title": "this.user.name",
-      "subtitle": "this.user.email"
+{
+    "userSchema": {
+        "header": {
+            "title": "this.user.name",
+            "subtitle": "this.user.email"
+        },
+        "actions": [{
+                "label": "Log Out",
+                "key": "logout",
+                "icon": "icon-shutdown"
+            },
+            {
+                "label": "Change Password",
+                "key": "change_password",
+                "icon": "icon-people"
+            }
+        ]
     },
-    "actions": [
-      {
-        "label": "Log Out",
-        "key": "logout",
-        "icon": "icon-shutdown"
-      },
-      {
-        "label": "Change Password",
-        "key": "change_password",
-        "icon": "icon-people"
-      }
-    ]
-  }
-]
+    "organizationsSchema": {
+        "header": {
+            "title": "",
+            "subtitle": "",
+            "icon": "icon-flag"
+        },
+        "actions": [{
+            "label": "Manage",
+            "link": ""
+        }]
+    },
+    "logoutSchema": {
+        "title": "logout"
+    },
+    "changePassword": {
+        "title": "Change your password",
+        "submitLabel": "Send",
+        "buttonBlock": true,
+        "controls": [{
+                "key": "password",
+                "type": "password",
+                "label": "New Password",
+                "validators": [{
+                    "key": "required",
+                    "errorMessage": "New Password is required"
+                }]
+            },
+            {
+                "key": "passwordBis",
+                "type": "password",
+                "label": "Repeat Password",
+                "validators": [{
+                    "key": "required",
+                    "errorMessage": "Password repetition is required"
+                }]
+            }
+        ]
+    },
+    "godSchema": {
+        "header": {
+            "title": "Organizations",
+            "subtitle": "Entities with an administrator, several organizers and its own events and users",
+            "icon": "icon-flag"
+        },
+        "actions": [{
+            "label": "Manage organizations",
+            "link": "/god/organizations"
+        }]
+    },
+    "godSubChema": {
+        "header": {
+            "title": "Users",
+            "subtitle": "Users, statuses and roles",
+            "icon": "icon-people"
+        },
+        "actions": [{
+            "label": "Manage organizations",
+            "link": "/god/organizations"
+        }]
+    }
+}
