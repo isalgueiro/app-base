@@ -64,6 +64,7 @@ export interface IWidgetSchema {
   type?: 'panel' | 'card' | 'tile';
   image?: string,
   counter?: number;
+  fields?: IField[];
   actions?: IAction[];
 }
 

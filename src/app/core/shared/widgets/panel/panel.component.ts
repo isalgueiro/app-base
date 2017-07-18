@@ -9,7 +9,7 @@ import { IWidgetSchema, IKeyValue } from 'app/core/shared/_data/schema.model';
 export class PanelComponent implements OnInit {
 
   @Input() public schema: IWidgetSchema;
-  @Output() public send = new EventEmitter<IKeyValue>();
+  @Output() send = new EventEmitter<IKeyValue>();
 
   constructor() { }
 
