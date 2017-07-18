@@ -1,4 +1,5 @@
-<section class="columns">
+<section *ngIf="schemas"
+         class="columns">
   <div *ngFor="let widget of schemas"
        class="column col-6 col-md-12">
     <ng-container [ngSwitch]="widget.type">

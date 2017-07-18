@@ -6,7 +6,7 @@
            (create)="onCreate($event)"
            (delete)="onDelete($event)">
 </ab-editor>
-<aside>
+<aside *ngIf="setAdminFormSchema">
   <ab-modal [title]="setAdminFormSchema.title"
             [active]="activeSetAdminModal"
             (close)="onCloseSetAdminModal(null)">

@@ -33,7 +33,7 @@ export class GodOrganizationsComponent implements OnInit {
       .getPageSchema$()
       .takeWhile(() => this.actionSchema == null)
       .subscribe(schemas => {
-        if (schemas) {
+        if (schemas && schemas.actions) {
           this.actionSchema = schemas.actions;
           this.createFormSchema = schemas.create;
           this.reportSchema = schemas.report;
@@ -73,7 +73,6 @@ export class GodOrganizationsComponent implements OnInit {
     this.activeSetAdminModal = false;
   }
   onRowAction(data: IKeyValue) {
-    console.log('onRowAction Receibed', data);
     if (data.key === 'setAdmin') {
       this.onSetAdmin(data.value);
     }
@@ -89,7 +88,6 @@ export class GodOrganizationsComponent implements OnInit {
   }
 
   onCreate(newOrganization) {
-    console.log('onCreate', newOrganization);
     this.activeCreateOrganizationModal = false;
     if (newOrganization) {
       this.godData
@@ -103,7 +101,6 @@ export class GodOrganizationsComponent implements OnInit {
 
 
   onDelete(oldOrganization) {
-    console.log('onDelete', oldOrganization);
     this.activeDeleteOrganizationModal = false;
     this.godData
       .deleteOrganization(oldOrganization)
