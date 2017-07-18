@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
@@ -49,11 +48,22 @@ export class GodDataService {
   }
 
   getOrganizationAdmin(organizationId: number): Observable<any> {
-    const search = new URLSearchParams();
-    search.set('role', ROLE.ADMIN.toString());
+    const params = new HttpParams();
+    params.set('role', ROLE.ADMIN.toString());
     return this.http
-      .get<any>(`${this.organizationsUrl}/${organizationId}/users?${search.toString()}`);
+      .get<any>(`${this.organizationsUrl}/${organizationId}/users`, { params });
   }
+
+  /**
+   *disponiblesPorCanales(filter: string): Observable<any> {
+  const params = new HttpParams();
+  params.set('FiltroTexto', filter);
+  params.set('ElementosporPagina', '40');
+  params.set('Pagina', '1');
+
+  return this.http.get(`${this.baseUrl}/disponiblesPorCanalesUsuario`, { params });
+  }
+   * / */
 
   setOrganizationAdmin(newAdmin) {
     newAdmin.role = ROLE.ADMIN;
