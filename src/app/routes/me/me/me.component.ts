@@ -13,16 +13,17 @@ import { IOrganization, MeService } from 'app/routes/me/_data/me.service';
   styles: []
 })
 export class MeComponent implements OnInit {
+  private schema;
+  public widgetsSchema: IWidgetSchema[] = [];
+
   public user: IUser = null;
   public logOutActive: Boolean;
   public changePasswordActive: Boolean;
-  public schemas: IWidgetSchema[] = [];
-  public userSchema;
+
   public changePasswordSchema;
   public logoutSchema;
-  public organizationsSchema;
   public organization: IOrganization = null;
-  public godSchema;
+
   constructor(
     private security: SecurityService,
     private me: MeService,
@@ -33,14 +34,10 @@ export class MeComponent implements OnInit {
   ngOnInit() {
     this.bus
       .getPageSchema$()
-      .takeWhile(() => this.userSchema == null)
-      .subscribe(schemas => {
-        if (schemas && schemas.userSchema) {
-          this.userSchema = schemas.userSchema;
-          this.godSchema = schemas.godSchema;
-          this.organizationsSchema = schemas.organizationsSchema;
-          this.changePasswordSchema = schemas.changePassword;
-          this.logoutSchema = schemas.logoutSchema;
+      .takeWhile(() => this.schema == null)
+      .subscribe(schema => {
+        if (schema && schema.userSchema) {
+          this.schema = schema;
           this.getMe();
         }
       });
@@ -52,42 +49,36 @@ export class MeComponent implements OnInit {
       .subscribe(user => {
         this.user = user;
         if (this.user) {
-          this.userSchema.header.title = this.user.name;
-          this.userSchema.header.subtitle = this.user.email;
-          this.schemas.push(this.userSchema);
-          this.configureDashBoard(this.user.roles[0].toString());
+          this.widgetsSchema.push(this.schema.userSchema);
+          this.widgetsSchema[0].header.title = this.user.name;
+          this.widgetsSchema[0].header.subtitle = this.user.email;
+          const userRole = this.user.roles[0].toString().toLowerCase();
+          const roleSchema = this.schema[userRole];
+          this.configureRoleSchema(userRole, roleSchema);
+          this.widgetsSchema = this.widgetsSchema.concat(roleSchema);
         }
       });
   }
 
-  configureDashBoard(role: string) {
-    if (role === ROLE.GOD) {
-      this.configureDashBoardForGod();
-    } else if (role === ROLE.ADMIN) {
-      this.configureDashBoardForAdmin();
+
+
+  configureRoleSchema(userRole, roleSchema) {
+    if (userRole === ROLE.GOD.toString().toLowerCase()) {
+      this.me.getOrganizationsCount()
+        .subscribe(count => roleSchema[0].header.title = count + ' ' + roleSchema[0].header.title);
+      this.me.getUsersCount()
+        .subscribe(count => roleSchema[1].header.title = count + ' ' + roleSchema[1].header.title);
+    } else {
+      this.me.getAdministratedOrganization(this.user.organizationId)
+        .subscribe(organization => {
+          this.organization = organization;
+          if (this.organization) {
+            roleSchema.header.title = this.organization.name;
+            roleSchema.header.subtitle = this.organization.description;
+            roleSchema.actions[0].link = `/organization/${this.organization.slug}`;
+          }
+        });
     }
-  }
-
-  configureDashBoardForGod() {
-    this.schemas.push(this.godSchema);
-    this.me.getOrganizationsCount()
-      .subscribe(count => this.organizationsSchema.header.title = count + ' ' + this.organizationsSchema.header.title);
-    this.me.getUsersCount()
-      .subscribe(count => this.userSchema.header.title = count + ' ' + this.userSchema.header.title);
-  }
-
-  configureDashBoardForAdmin() {
-    this.me.getAdministratedOrganization(this.user.organizationId).subscribe(organization => {
-      this.organization = organization;
-      if (this.organization) {
-        // this.schemaService.populateDefaultValues(this.organizationsSchema, organization);
-        this.organizationsSchema.header.title = this.organization.name;
-        this.organizationsSchema.header.subtitle = this.organization.description;
-        this.organizationsSchema.actions[0].link = `/organization/${this.organization.slug}`;
-        this.schemas.push(this.organizationsSchema);
-      }
-
-    });
   }
 
   onSend(event) {
