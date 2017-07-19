@@ -101,8 +101,8 @@
       },
       "actions": [
         {
-          "label": "Manage organizations",
-          "link": "/god/organizations"
+          "label": "Manage users",
+          "link": "/god/users"
         }
       ]
     }

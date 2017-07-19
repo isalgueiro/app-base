@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'users',
     component: GodUsersComponent,
-    data: { title: 'Users' }
+    data: { name: 'god_users', title: 'Users' }
   }
 ];
 
