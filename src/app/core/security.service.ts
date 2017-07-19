@@ -47,7 +47,11 @@ export class SecurityService {
   }
   checkMe() {
     if (this.getUserFromLocalStorage()) {
-      this.getMe().subscribe();
+      this.getMe().subscribe(user => {
+        if (!user) {
+          this.logOutUser();
+        }
+      });
     }
   }
 
