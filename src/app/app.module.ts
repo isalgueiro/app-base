@@ -1,4 +1,3 @@
-import { Interceptor, JWTInterceptor, ErrorInterceptor } from './core/interceptor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Http, XHRBackend, RequestOptions, HttpModule } from '@angular/http';
@@ -9,6 +8,7 @@ import { LayoutModule } from 'app/core/layout/layout.module';
 import { SharedModule } from 'app/core/shared/shared.module';
 import { BusService } from 'app/core/bus.service';
 import { SecurityService } from 'app/core/security.service';
+import { Interceptor, JWTInterceptor, ErrorInterceptor } from 'app/core/interceptor.service';
 
 @NgModule({
   declarations: [
