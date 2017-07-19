@@ -5,7 +5,7 @@ import { HomeComponent } from 'app/routes/home/home/home.component';
 const routes: Routes = [{
   path: '',
   component: HomeComponent,
-  data: { title: 'App Base' }
+  data: { name: 'home', title: 'App Base' }
 }];
 
 @NgModule({

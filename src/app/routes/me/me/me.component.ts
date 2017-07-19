@@ -35,7 +35,7 @@ export class MeComponent implements OnInit {
       .takeWhile(() => this.schema == null)
       .subscribe(schema => {
         if (schema && schema.userSchema) {
-          this.schema = Object.assign({}, schema);
+          this.schema = JSON.parse(JSON.stringify(schema));
           this.getMe();
         }
       });
