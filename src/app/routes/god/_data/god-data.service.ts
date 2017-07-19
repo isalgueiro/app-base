@@ -31,18 +31,11 @@ export class GodDataService {
   }
 
   getOrganizationAdmin(organizationId: number): Observable<any> {
-    return this.http
-      .get<any>(`${this.organizationsUrl}/${organizationId}/users?role=ADMIN`);
+    const params = new HttpParams().set('role', 'ADMIN');
+    const url = `${this.organizationsUrl}/${organizationId}/users`;
+    return this.http.get<any>(url, { params });
   }
 
-  /**
-const params = new HttpParams();
-    params.set('role', 'ADMIN');
-    const options = { params: params };
-    console.log(options);
-    return this.http
-      .get<any>(`${this.organizationsUrl}/${organizationId}/users`, options);
-   * / */
 
   setOrganizationAdmin(newAdmin) {
     newAdmin.role = ROLE.ADMIN;
