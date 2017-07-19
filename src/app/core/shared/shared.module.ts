@@ -42,6 +42,7 @@ import { CardComponent } from './widgets/card/card.component';
   ],
   exports: [
     ActionComponent,
+    CardComponent,
     ControlErrorComponent,
     CounterComponent,
     DashboardComponent,

@@ -13,15 +13,13 @@ import { IOrganization, MeService } from 'app/routes/me/_data/me.service';
   styles: []
 })
 export class MeComponent implements OnInit {
-  private schema;
+  public schema;
   public widgetsSchema: IWidgetSchema[];
 
   public user: IUser = null;
   public logOutActive: Boolean;
   public changePasswordActive: Boolean;
 
-  public changePasswordSchema;
-  public logoutSchema;
   public organization: IOrganization = null;
 
   constructor(
@@ -87,7 +85,6 @@ export class MeComponent implements OnInit {
   }
 
   onSend(event) {
-    console.log('onSend', event);
     if (event.key === 'logout') {
       this.logOutActive = true;
     } else if (event.key === 'change_password') {

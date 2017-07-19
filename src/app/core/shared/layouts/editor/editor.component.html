@@ -22,7 +22,9 @@
           [active]="deleteModalActive"
           (close)="onCancelDelete()">
   <modal-content>
-    {{ selectedItem | json }}
+    <ab-card [data]="selectedItem"
+             [schema]="cardSchema">
+    </ab-card>
   </modal-content>
   <modal-footer>
     <button (click)="onCancelDelete()"
