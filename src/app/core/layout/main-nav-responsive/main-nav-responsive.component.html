@@ -1,11 +1,6 @@
-<ul class="menu">
-  <header>
-    <li class="divider"
-        [attr.data-content]="title">
-    </li>
-  </header>
-  <main>
-    <li class="menu-item">
+<div [ngClass]="{'sidebar-responsive': true, 'sidebar-responsive-visible': showResponsive}">
+  <ul class="nav">
+    <li>
       <a *ngIf="user"
          routerLink="me">
         <i class="icon icon-people mr-5"></i> {{user.name}}
@@ -17,7 +12,7 @@
     </li>
     <li class="divider"></li>
     <ng-container *ngFor="let menuLink of menuLinks">
-      <li class="menu-item">
+      <li>
         <a [routerLink]="menuLink.link">
         <i [class]="'icon mr-5 ' + menuLink.icon "></i>
         {{ menuLink.label }}
@@ -25,13 +20,14 @@
       </li>
     </ng-container>
     <li class="divider"></li>
-    <li class="menu-item">
-      <div class="menu-badge">
-        <label class="label label-primary">2</label>
-      </div>
+    <li>
       <a href="#">
-        <i class="icon icon-mail mr-5"></i> Messages
+        <span class="badge"
+            data-badge="8">
+        <i class="icon icon-mail mr-5"></i>
+        Messages
+      </span>
       </a>
     </li>
-  </main>
-</ul>
+  </ul>
+</div>

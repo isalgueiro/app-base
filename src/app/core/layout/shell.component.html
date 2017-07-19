@@ -18,10 +18,17 @@
   <main class="columns">
     <div class="column col-8 col-lg-12 centered">
       <div class="columns">
-        <ab-main-nav [user]="user"
-                     [menuLinks]="menuLinks"
-                     [showResponsive]="showResponsive"></ab-main-nav>
-        <div class="column col-9 col-xl-8 col-md-12">
+        <div class="column col-3 col-xl-4 hide-lg">
+          <ab-main-nav [user]="user"
+                       [menuLinks]="menuLinks"></ab-main-nav>
+        </div>
+        <div *ngIf="showResponsive"
+             class="column col-3 col-xl-4 show-lg">
+          <ab-main-nav-responsive [user]="user"
+                                  [menuLinks]="menuLinks"
+                                  [showResponsive]="showResponsive"></ab-main-nav-responsive>
+        </div>
+        <div class="column col-9 col-xl-8 col-lg-12">
           <ab-main-content [loadedMetadata]="loadedMetadata"></ab-main-content>
         </div>
       </div>

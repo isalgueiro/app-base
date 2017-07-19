@@ -3,16 +3,15 @@ import { IUser } from 'app/core/shared/_data/user.model';
 import { IAction } from 'app/core/shared/_data/schema.model';
 
 @Component({
-  selector: 'ab-main-nav',
-  templateUrl: './main-nav.component.html',
-  styleUrls: ['./main-nav.component.css']
+  selector: 'ab-main-nav-responsive',
+  templateUrl: './main-nav-responsive.component.html',
+  styleUrls: ['./main-nav-responsive.component.css']
 })
-export class MainNavComponent implements OnInit {
+export class MainNavResponsiveComponent implements OnInit {
 
   @Input() public user: IUser = null;
   @Input() menuLinks: IAction[];
-
-  title = 'Menú';
+  @Input() showResponsive: boolean;
 
   constructor() { }
 

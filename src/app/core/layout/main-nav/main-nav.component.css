@@ -1,27 +1,4 @@
-.sidebar-responsive {
-  height: 100%;
-  width: 200px;
-  background-color: #f8f9fa;
-  margin-top: -20px;
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  position: fixed!important;
-  z-index: 9999;
-  overflow: auto;
-  display: none;
+.menu {
+  min-width: 0 !important;
 }
 
-.sidebar-responsive-visible {
-  display: block;
-}
-
-@media only screen and (min-width: 840px) {
-  .sidebar-responsive {
-    display: none;
-  }
-}
-
-a:hover {
-  text-decoration: none;
-}
