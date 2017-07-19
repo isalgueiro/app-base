@@ -37,7 +37,6 @@ export class MeComponent implements OnInit {
       .takeWhile(() => this.schema == null)
       .subscribe(schema => {
         if (schema && schema.userSchema) {
-          console.log('getPageSchema', schema);
           this.schema = null;
           this.schema = Object.assign({}, schema);
           this.getMe();
@@ -50,7 +49,6 @@ export class MeComponent implements OnInit {
       .getMe()
       .subscribe(user => {
         if (user) {
-          console.log('getMe', user);
           this.user = user;
           this.widgetsSchema = [];
           const userSchema = this.schema.userSchema;
@@ -59,10 +57,8 @@ export class MeComponent implements OnInit {
           this.widgetsSchema.push(userSchema);
           const userRole = this.user.roles[0].toString().toLowerCase();
           const roleSchema = this.schema[userRole];
-          console.log('roleSchema', roleSchema);
           this.configureRoleSchema(userRole, roleSchema);
           this.widgetsSchema = this.widgetsSchema.concat(roleSchema);
-          console.log('widgetsSchema', this.widgetsSchema);
         }
       });
   }
@@ -73,7 +69,6 @@ export class MeComponent implements OnInit {
     if (userRole === ROLE.GOD.toString().toLowerCase()) {
       this.me.getOrganizationsCount()
         .subscribe(count => {
-          console.log('getOrganizationsCount', roleSchema[0].header.title);
           roleSchema[0].header.title = count + ' ' + roleSchema[0].header.title;
         });
       this.me.getUsersCount()
