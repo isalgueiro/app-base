@@ -9,8 +9,8 @@
       <div *ngIf="data && schema.fields"
            class="card-body">
         <dl *ngFor="let field of schema.fields">
-          <dt>{{ field.label }}</dt>
-          <dd>{{ valueByPath(data,field?.key) }}</dd>
+          <dt class="inline">{{ field.label }} :</dt>
+          <dd class="inline ml-5">{{ valueByPath(data,field?.key) }}</dd>
         </dl>
       </div>
       <div *ngIf="schema.image"

@@ -7,14 +7,14 @@ export interface IFormSchema {
   controls: IFormControl[];
 }
 
-export interface IFormControl {
+export interface IFormControl extends IField {
   key: string;
   type: 'email' | 'password' | 'radio' | 'select' | 'switch' | 'text' | 'textarea';
   label: string;
   actions?: IAction[];
   placeholder?: string;
   defaultValue?: any;
-  validators: IValidator[];
+  validators?: IValidator[];
 }
 
 export interface IAction extends IKeyValue {

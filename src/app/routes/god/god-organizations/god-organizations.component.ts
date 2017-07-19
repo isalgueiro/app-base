@@ -23,6 +23,8 @@ export class GodOrganizationsComponent implements OnInit {
   public actionSchema: IWidgetSchema;
   public reportSchema: IReportSchema;
   public setAdminFormSchema: IFormSchema;
+  public cardSchema: IWidgetSchema;
+
   public name = 'organizations';
   constructor(
     private godData: GodDataService,
@@ -38,6 +40,7 @@ export class GodOrganizationsComponent implements OnInit {
           this.createFormSchema = schemas.create;
           this.reportSchema = schemas.report;
           this.setAdminFormSchema = schemas.setAdmin;
+          this.cardSchema = { header: { title: '' }, fields: this.createFormSchema.controls };
           this.getOrganizations();
         }
       });

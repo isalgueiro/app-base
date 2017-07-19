@@ -11,6 +11,7 @@ export class EditorComponent implements OnInit {
   @Input() public reportSchema: IReportSchema;
   @Input() public tableData: IWidgetSchema;
   @Input() public createFormSchema: IFormSchema;
+  @Input() public cardSchema: IWidgetSchema;
 
   @Output() public create = new EventEmitter<IKeyValue>();
   @Output() public delete = new EventEmitter<IKeyValue>();
