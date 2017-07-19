@@ -1,13 +1,13 @@
 <ab-dashboard [schemas]="widgetsSchema"
               (send)="onSend($event)">
 </ab-dashboard>
-<aside>
+<aside *ngIf="schema">
   <ab-modal [title]="user?.name"
             [active]="logOutActive"
             (close)="logOutActive=false">
     <modal-content>
       <ab-card [data]="user"
-               [schema]="schema.card">
+               [schema]="schema?.card">
       </ab-card>
     </modal-content>
     <modal-footer>
@@ -24,7 +24,7 @@
             [active]="changePasswordActive"
             (close)="changePasswordActive=false">
     <modal-content>
-      <ab-form [formSchema]="schema.changePassword"
+      <ab-form [formSchema]="schema?.changePassword"
                (send)="onChangePasswordClick($event)">
       </ab-form>
     </modal-content>

@@ -1,4 +1,3 @@
-import { SchemaService } from '../../../core/shared/_data/schema.service';
 import { Component, OnInit } from '@angular/core';
 import { IUser, ROLE } from 'app/core/shared/_data/user.model';
 import { SecurityService } from 'app/core/security.service';
@@ -6,6 +5,7 @@ import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 import { BusService } from 'app/core/bus.service';
 import 'rxjs/add/operator/takeWhile';
 import { IOrganization, MeService } from 'app/routes/me/_data/me.service';
+import { SchemaService } from 'app/core/shared/_data/schema.service';
 
 @Component({
   selector: 'ab-me',
@@ -66,9 +66,7 @@ export class MeComponent implements OnInit {
   configureRoleSchema(userRole, roleSchema) {
     if (userRole === ROLE.GOD.toString().toLowerCase()) {
       this.me.getOrganizationsCount()
-        .subscribe(count => {
-          roleSchema[0].header.title = count + ' ' + roleSchema[0].header.title;
-        });
+        .subscribe(count => roleSchema[0].header.title = count + ' ' + roleSchema[0].header.title);
       this.me.getUsersCount()
         .subscribe(count => roleSchema[1].header.title = count + ' ' + roleSchema[1].header.title);
     } else {
