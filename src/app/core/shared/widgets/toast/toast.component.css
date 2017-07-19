@@ -1,0 +1,10 @@
+.toast {
+  width: 60%;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 999999;
+  bottom: 30px;
+  word-wrap: break-word;
+}

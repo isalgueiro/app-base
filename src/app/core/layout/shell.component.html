@@ -6,15 +6,6 @@
                   (showResponsiveMenu)="showResponsive = $event"></ab-top-bar>
     </div>
   </nav>
-  <aside class="columns"
-         [style.display]="show ? 'block' : 'none'">
-    <div class="column col-8 col-lg-12 centered">
-      <ab-toast [show]="show"
-                [text]="text"
-                [level]="level"
-                (close)="show = false"></ab-toast>
-    </div>
-  </aside>
   <main class="columns">
     <div class="column col-8 col-lg-12 centered">
       <div class="columns">
@@ -34,4 +25,13 @@
       </div>
     </div>
   </main>
+  <aside class="columns"
+         [style.display]="show ? 'block' : 'none'">
+    <div class="column col-8 col-lg-12 centered">
+      <ab-toast [show]="show"
+                [text]="text"
+                [level]="level"
+                (close)="show = false"></ab-toast>
+    </div>
+  </aside>
 </section>

@@ -4,7 +4,7 @@ import { Level } from 'app/core/shared/_data/message.model';
 @Component({
   selector: 'ab-toast',
   templateUrl: './toast.component.html',
-  styles: []
+  styleUrls: ['./toast.component.css']
 })
 export class ToastComponent implements OnInit, OnChanges {
 
