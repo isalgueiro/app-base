@@ -43,7 +43,12 @@ export class SecurityService {
   checkBigbang() {
     this.http
       .get(`${this.url}/bigbang`)
-      .subscribe(r => console.warn(r));
+      .subscribe(r => this.checkMe());
+  }
+  checkMe() {
+    if (this.getUserFromLocalStorage()) {
+      this.getMe().subscribe();
+    }
   }
 
   public getMe(): Observable<IUser> {
