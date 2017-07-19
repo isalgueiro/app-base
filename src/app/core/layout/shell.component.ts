@@ -23,6 +23,7 @@ export class ShellComponent implements OnInit {
   public level: Level;
   public menuLinks: IAction[];
   public loadedMetadata: boolean;
+  public showResponsive = false;
 
   constructor(
     private bus: BusService,
