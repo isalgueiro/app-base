@@ -27,7 +27,8 @@ export class HomeComponent implements OnInit {
       const organizationPanel: IWidgetSchema = {
         header: {
           title: organization.name,
-          subtitle: organization.address
+          subtitle: organization.address,
+          icon: 'icon-flag'
         },
         actions: [
           {

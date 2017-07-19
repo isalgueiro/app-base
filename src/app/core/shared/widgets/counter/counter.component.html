@@ -1,8 +1,0 @@
-<ab-tile [schema]="schema"
-         icon="icon-flag">
-  <ng-container *ngFor="let action of schema.actions">
-    <ab-action class="ml-10 float-right"
-               [schema]="action"
-               (action)="onClick($event)"></ab-action>
-  </ng-container>
-</ab-tile>

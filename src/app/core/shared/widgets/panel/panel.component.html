@@ -2,14 +2,17 @@
          *ngIf="schema">
   <header *ngIf="schema.header"
           class="panel-header">
-    <div *ngIf="schema.header.title"
-         class="panel-title text-center">
+    <section class="panel-title text-center">
       <i *ngIf="schema.header.icon"
          [class]="'mr-10 icon ' + schema.header.icon"></i>
-      <span>{{ schema.header.title }}</span>
-    </div>
-    <div *ngIf="schema.header.subtitle"
-         class="panel-subtitle text-center">{{ schema.header.subtitle }}</div>
+      <strong *ngIf="schema.header.counter"
+              class="label">{{ schema.header.counter }}
+      </strong>
+      <span *ngIf="schema.header.title">{{ schema.header.title }}</span>
+    </section>
+    <section *ngIf="schema.header.subtitle"
+             class="panel-subtitle text-center">{{ schema.header.subtitle }}
+    </section>
   </header>
   <main class="panel-body">
     <ng-content select="panel-body"></ng-content>

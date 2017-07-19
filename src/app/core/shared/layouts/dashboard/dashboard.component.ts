@@ -16,4 +16,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClick(keyValue) {
+    this.send.emit(keyValue);
+  }
 }

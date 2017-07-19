@@ -35,7 +35,6 @@ export class MeComponent implements OnInit {
       .takeWhile(() => this.schema == null)
       .subscribe(schema => {
         if (schema && schema.userSchema) {
-          this.schema = null;
           this.schema = Object.assign({}, schema);
           this.getMe();
         }
@@ -68,9 +67,9 @@ export class MeComponent implements OnInit {
   configureRoleSchema(userRole, roleSchema) {
     if (userRole === ROLE.GOD.toString().toLowerCase()) {
       this.me.getOrganizationsCount()
-        .subscribe(count => roleSchema[0].header.title = count + ' ' + roleSchema[0].header.title);
+        .subscribe(count => roleSchema[0].header.counter = count);
       this.me.getUsersCount()
-        .subscribe(count => roleSchema[1].header.title = count + ' ' + roleSchema[1].header.title);
+        .subscribe(count => roleSchema[1].header.counter = count);
     } else {
       this.me.getAdministratedOrganization(this.user.organizationId)
         .subscribe(organization => {
