@@ -14,7 +14,7 @@ import { IOrganization, MeService } from 'app/routes/me/_data/me.service';
 })
 export class MeComponent implements OnInit {
   private schema;
-  public widgetsSchema: IWidgetSchema[] = [];
+  public widgetsSchema: IWidgetSchema[];
 
   public user: IUser = null;
   public logOutActive: Boolean;
@@ -37,7 +37,9 @@ export class MeComponent implements OnInit {
       .takeWhile(() => this.schema == null)
       .subscribe(schema => {
         if (schema && schema.userSchema) {
-          this.schema = schema;
+          console.log('getPageSchema', schema);
+          this.schema = null;
+          this.schema = Object.assign({}, schema);
           this.getMe();
         }
       });
@@ -47,15 +49,20 @@ export class MeComponent implements OnInit {
     this.security
       .getMe()
       .subscribe(user => {
-        this.user = user;
-        if (this.user) {
-          this.widgetsSchema.push(this.schema.userSchema);
-          this.widgetsSchema[0].header.title = this.user.name;
-          this.widgetsSchema[0].header.subtitle = this.user.email;
+        if (user) {
+          console.log('getMe', user);
+          this.user = user;
+          this.widgetsSchema = [];
+          const userSchema = this.schema.userSchema;
+          userSchema.header.title = this.user.name;
+          userSchema.header.subtitle = this.user.email;
+          this.widgetsSchema.push(userSchema);
           const userRole = this.user.roles[0].toString().toLowerCase();
           const roleSchema = this.schema[userRole];
+          console.log('roleSchema', roleSchema);
           this.configureRoleSchema(userRole, roleSchema);
           this.widgetsSchema = this.widgetsSchema.concat(roleSchema);
+          console.log('widgetsSchema', this.widgetsSchema);
         }
       });
   }
@@ -65,7 +72,10 @@ export class MeComponent implements OnInit {
   configureRoleSchema(userRole, roleSchema) {
     if (userRole === ROLE.GOD.toString().toLowerCase()) {
       this.me.getOrganizationsCount()
-        .subscribe(count => roleSchema[0].header.title = count + ' ' + roleSchema[0].header.title);
+        .subscribe(count => {
+          console.log('getOrganizationsCount', roleSchema[0].header.title);
+          roleSchema[0].header.title = count + ' ' + roleSchema[0].header.title;
+        });
       this.me.getUsersCount()
         .subscribe(count => roleSchema[1].header.title = count + ' ' + roleSchema[1].header.title);
     } else {
