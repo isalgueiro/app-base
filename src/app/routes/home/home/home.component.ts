@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
       .getPageSchema$()
       .takeWhile(() => this.schema == null)
       .subscribe(schema => {
-        if (schema) {
+        if (schema && schema.header) {
           this.schema = schema;
           this.organizationsService
             .getAll()
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
   }
 
   pupulateWidget(widget, target) {
-    // To Do: autopopulate using reflection...
+    // To Do: autopopulate using reflection...)
     widget.header.title = this.schemaService.valueByPath(target, 'name');
     widget.header.subtitle = this.schemaService.valueByPath(target, 'address');
     widget.actions[0].label = `edit ${this.schemaService.valueByPath(target, 'name')}`;
