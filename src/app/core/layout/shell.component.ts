@@ -24,6 +24,7 @@ export class ShellComponent implements OnInit {
   public menuLinks: IAction[];
   public loadedMetadata: boolean;
   public showResponsive = false;
+  public numMessages: number;
   private menuSchema;
 
   constructor(
@@ -86,11 +87,18 @@ export class ShellComponent implements OnInit {
   }
 
   onMessages() {
+    this.numMessages = 0;
+    const messages = JSON.parse(localStorage.getItem('messages'));
+    if (messages) {
+      this.numMessages = messages.length;
+    }
+
     this.bus
       .getMessage$()
       .subscribe((message: IMessage) => {
         this.text = message.text;
         this.level = message.level;
+        this.numMessages++;
         this.show = true;
       });
   }

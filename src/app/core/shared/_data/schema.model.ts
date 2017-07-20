@@ -75,7 +75,7 @@ export interface ILoadEmptyStateSchema {
   action?: IAction;
 }
 
-interface IEvent {
+export interface IEvent {
   label: string;
   date?: Date;
   icon?: string;

@@ -1,6 +1,7 @@
 export interface IMessage {
   level: Level;
   text: string;
+  timestamp?: Date;
 }
 
 export enum Level {

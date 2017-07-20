@@ -10,6 +10,7 @@ import { IAction } from 'app/core/shared/_data/schema.model';
 export class MainNavComponent implements OnInit {
 
   @Input() public user: IUser = null;
+  @Input() public numMessages: number;
   @Input() menuLinks: IAction[];
 
   title = 'Menú';

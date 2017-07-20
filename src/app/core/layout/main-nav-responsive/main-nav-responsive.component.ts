@@ -12,6 +12,7 @@ export class MainNavResponsiveComponent implements OnInit {
   @Input() public user: IUser = null;
   @Input() menuLinks: IAction[];
   @Input() showResponsive: boolean;
+  @Input() public numMessages: number;
 
   constructor() { }
 
