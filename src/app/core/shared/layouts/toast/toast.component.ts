@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, SimpleChanges, OnChanges } from '@angular/core';
 import { Level } from 'app/core/shared/_data/message.model';
+import { MessagesService } from 'app/core/messages.service';
 
 @Component({
   selector: 'ab-toast',
@@ -15,7 +16,9 @@ export class ToastComponent implements OnInit, OnChanges {
 
   @Output() close = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(
+    private messagesService: MessagesService
+  ) { }
 
   ngOnInit() { }
 
@@ -45,21 +48,9 @@ export class ToastComponent implements OnInit, OnChanges {
   }
 
   getLevelClass(): string {
-    let levelClass = 'toast-primary';
-    switch (this.level) {
-      case Level.PRIMARY:
-        levelClass = 'toast-primary';
-        break;
-      case Level.SUCCESS:
-        levelClass = 'toast-success';
-        break;
-      case Level.WARNING:
-        levelClass = 'toast-warning';
-        break;
-      case Level.ERROR:
-        levelClass = 'toast-error';
-        break;
-    }
+    const levelClass = 'toast-' +
+      this.messagesService
+        .getClassByLevel(this.level);
     return levelClass;
   }
 

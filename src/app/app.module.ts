@@ -9,6 +9,7 @@ import { SharedModule } from 'app/core/shared/shared.module';
 import { BusService } from 'app/core/bus.service';
 import { SecurityService } from 'app/core/security.service';
 import { Interceptor, JWTInterceptor, ErrorInterceptor } from 'app/core/interceptor.service';
+import { MessagesService } from 'app/core/messages.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { Interceptor, JWTInterceptor, ErrorInterceptor } from 'app/core/intercep
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    MessagesService,
     SecurityService
   ],
   bootstrap: [AppComponent]
