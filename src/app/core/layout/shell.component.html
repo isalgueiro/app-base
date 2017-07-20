@@ -11,12 +11,14 @@
       <div class="columns">
         <div class="column col-2 col-xl-3 hide-lg">
           <ab-main-nav [user]="user"
+                       [numMessages]="numMessages"
                        [menuLinks]="menuLinks"></ab-main-nav>
         </div>
         <div *ngIf="showResponsive"
              class="column col-2 col-xl-3 show-lg">
           <ab-main-nav-responsive [user]="user"
                                   [menuLinks]="menuLinks"
+                                  [numMessages]="numMessages"
                                   [showResponsive]="showResponsive"></ab-main-nav-responsive>
         </div>
         <div class="column col-10 col-xl-9 col-lg-12">

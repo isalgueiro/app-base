@@ -15,7 +15,7 @@
       <section class="timeline-content">
         <div class="tile">
           <div class="tile-content">
-            <p class="tile-subtitle">{{ event.date + ' ' + event.label}}</p>
+            <p class="tile-subtitle">{{ event.date | date:'medium' }} {{event.label}}</p>
             <ab-tile *ngFor="let item of event.items"
                      [schema]=item>
             </ab-tile>

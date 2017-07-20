@@ -8,65 +8,6 @@
         "title": "Sample for an events timeline"
       }
     },
-    "events": [
-      {
-        "label": "Meal",
-        "date": "25/07/2017",
-        "icon": "icon-time",
-        "action": {
-          "label": "Book",
-          "link": ""
-        },
-        "items": [
-          {
-            "header": {
-              "title": "Meat",
-              "icon": "icon-forward"
-            }
-          },
-          {
-            "header": {
-              "title": "Potatoes",
-              "icon": "icon-forward"
-            }
-          },
-          {
-            "header": {
-              "title": "Pie",
-              "icon": "icon-forward"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Dinner",
-        "date": "25/07/2017",
-        "icon": "icon-time",
-        "action": {
-          "label": "Book",
-          "link": ""
-        },
-        "items": [
-          {
-            "header": {
-              "title": "Soup",
-              "icon": "icon-forward"
-            }
-          },
-          {
-            "header": {
-              "title": "Fish",
-              "icon": "icon-forward"
-            }
-          },
-          {
-            "header": {
-              "title": "Muffins",
-              "icon": "icon-forward"
-            }
-          }
-        ]
-      }
-    ]
+    "events": []
   }
 }

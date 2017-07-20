@@ -35,6 +35,13 @@ export class BusService {
   }
 
   emit(message: IMessage) {
+    message.timestamp = new Date();
+    let messages = JSON.parse(localStorage.getItem('messages'));
+    if (!messages) {
+      messages = [];
+    }
+    messages.push(message);
+    localStorage.setItem('messages', JSON.stringify(messages));
     this.message$.next(message);
   }
   emitHttpError(error) {
