@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: routeBase + 'me/me.module#MeModule'
   },
   {
+    path: 'messages',
+    loadChildren: routeBase + 'messages/messages.module#MessagesModule'
+  },
+  {
     path: 'organization/:id',
     loadChildren: routeBase + 'organization/organization.module#OrganizationModule'
   }

@@ -1,29 +1,37 @@
 <div class="timeline">
-  <ng-container *ngFor="let item of schema.items">
-    <div class="timeline-item">
-      <div class="timeline-left">
+  <ab-panel [schema]=schema.title>
+  </ab-panel>
+  <div class="divider"></div>
+  <ng-container *ngFor="let event of schema.events">
+    <article class="timeline-item">
+      <section class="timeline-left">
         <a href="#timeline-example-2"
            class="timeline-icon icon-lg tooltip"
-           [attr.data-tooltip]="item.subtitle">
-            <i *ngIf="!item.icon" class="icon icon-check"></i>
-            <i *ngIf="item.icon" [class]="'icon ' + item.icon"></i>
+           [attr.data-tooltip]="event.label">
+            <i *ngIf="!event.icon" class="icon icon-check"></i>
+            <i *ngIf="event.icon" [class]="'icon ' + event.icon"></i>
         </a>
-      </div>
-      <div class="timeline-content">
+      </section>
+      <section class="timeline-content">
         <div class="tile">
           <div class="tile-content">
-            <p class="tile-subtitle">{{ item.subtitle }}</p>
-            <p *ngFor="let textLine of item.textLines"
-               class="tile-title">{{ textLine }}</p>
+            <header class="tile-subtitle">
+              <span *ngIf="event.date"
+                    class="mr-5">{{ event.date }}</span>
+              <span *ngIf="event.label">{{ event.label }}</span>
+            </header>
+            <ab-tile *ngFor="let item of event.items"
+                     [schema]=item>
+            </ab-tile>
           </div>
-          <div *ngIf="item.action"
+          <div *ngIf="event.action"
                class="tile-action">
             <ab-action class="ml-10 float-right "
-                       [schema]="item.action"
+                       [schema]="event.action"
                        (action)="onClick($event)"></ab-action>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </article>
   </ng-container>
 </div>

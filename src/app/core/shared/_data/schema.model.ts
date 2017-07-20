@@ -75,13 +75,15 @@ export interface ILoadEmptyStateSchema {
   action?: IAction;
 }
 
-interface ITimelineItem {
-  subtitle: string;
+interface IEvent {
+  label: string;
+  date?: Date;
   icon?: string;
   action?: IAction;
-  textLines: string[];
+  items: IWidgetSchema[];
 }
 
 export interface ITimelineSchema {
-  items: ITimelineItem[];
+  title: IWidgetSchema,
+  events: IEvent[];
 }
