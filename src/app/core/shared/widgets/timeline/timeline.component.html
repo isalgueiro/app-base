@@ -15,11 +15,7 @@
       <section class="timeline-content">
         <div class="tile">
           <div class="tile-content">
-            <header class="tile-subtitle">
-              <span *ngIf="event.date"
-                    class="mr-5">{{ event.date }}</span>
-              <span *ngIf="event.label">{{ event.label }}</span>
-            </header>
+            <p class="tile-subtitle">{{ event.date + ' ' + event.label}}</p>
             <ab-tile *ngFor="let item of event.items"
                      [schema]=item>
             </ab-tile>
