@@ -2,7 +2,13 @@
   <div class="column col-12">
     <header class="navbar">
       <section class="navbar-section">
-        <button class="btn btn-lg btn-link btn-action show-lg"
+        <button *ngIf="showResponsive"
+                class="btn btn-lg btn-link btn-action show-lg"
+                (click)="onHideResponsive()">
+          <i class="icon icon-cross"></i>
+        </button>
+        <button *ngIf="!showResponsive"
+                class="btn btn-lg btn-link btn-action show-lg"
                 (click)="onShowResponsive()">
           <i class="icon icon-menu"></i>
         </button>

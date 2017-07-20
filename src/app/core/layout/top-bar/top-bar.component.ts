@@ -23,7 +23,12 @@ export class TopBarComponent implements OnInit {
   }
 
   onShowResponsive() {
-    this.showResponsive = !this.showResponsive;
+    this.showResponsive = true;
+    this.showResponsiveMenu.emit(this.showResponsive);
+  }
+
+  onHideResponsive() {
+    this.showResponsive = false;
     this.showResponsiveMenu.emit(this.showResponsive);
   }
 
