@@ -1,3 +1,4 @@
+import { observable } from 'rxjs/symbol/observable';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
@@ -49,6 +50,11 @@ export class MeService {
 
   changePassword(password: any): Observable<any> {
     return this.http.patch(`${this.credentialsUrl}/newPassword`, password);
+  }
+
+getAdministratedUsers(): Observable<any> {
+    return this.http
+      .get<any>(`${this.usersUrl}/administratedUsers`);
   }
 }
 
