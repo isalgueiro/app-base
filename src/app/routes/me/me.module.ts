@@ -8,6 +8,7 @@ import { SharedModule } from 'app/core/shared/shared.module';
 import { MeRegisterComponent } from './me-register/me-register.component';
 import { MeRoutingModule } from 'app/routes/me/me.routing';
 import { MeService } from 'app/routes/me/_data/me.service';
+import { UsersComponent } from 'app/routes/me/users/users.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { MeService } from 'app/routes/me/_data/me.service';
     MeRoutingModule,
     SharedModule
   ],
-  declarations: [MeComponent, MeRegisterComponent],
+  declarations: [MeComponent, MeRegisterComponent, UsersComponent],
   providers: [MeService],
   schemas: [NO_ERRORS_SCHEMA]
 })

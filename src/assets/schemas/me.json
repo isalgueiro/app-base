@@ -1,113 +1,109 @@
 {
-  "metadata": {
-    "name": "me"
-  },
-  "userSchema": {
-    "header": {
-      "title": "this.user.name",
-      "subtitle": "this.user.email"
+    "metada": {
+        "name": "me"
     },
-    "actions": [
-      {
-        "label": "Log Out",
-        "key": "logout",
-        "icon": "icon-shutdown"
-      },
-      {
-        "label": "Change Password",
-        "key": "change_password",
-        "icon": "icon-people"
-      }
-    ]
-  },
-  "logoutSchema": {
-    "title": "logout"
-  },
-  "card": {
-    "header": {
-      "title": ""
-    },
-    "fields": [
-      {
-        "label": "Name",
-        "key": "name"
-      },
-      {
-        "label": "E-mail",
-        "key": "email"
-      }
-    ]
-  },
-  "changePassword": {
-    "title": "Change your password",
-    "submitLabel": "Send",
-    "buttonBlock": true,
-    "controls": [
-      {
-        "key": "password",
-        "type": "password",
-        "label": "New Password",
-        "validators": [
-          {
-            "key": "required",
-            "errorMessage": "New Password is required"
-          }
+    "userSchema": {
+        "header": {
+            "title": "this.user.name",
+            "subtitle": "this.user.email"
+        },
+        "actions": [{
+                "label": "Log Out",
+                "key": "logout",
+                "icon": "icon-shutdown"
+            },
+            {
+                "label": "Change Password",
+                "key": "change_password",
+                "icon": "icon-people"
+            }
         ]
-      },
-      {
-        "key": "passwordBis",
-        "type": "password",
-        "label": "Repeat Password",
-        "validators": [
-          {
-            "key": "required",
-            "errorMessage": "Password repetition is required"
-          }
-        ]
-      }
-    ]
-  },
-  "admin": [
-    {
-      "header": {
-        "title": "Your Organization",
-        "subtitle": "",
-        "icon": "icon-flag"
-      },
-      "actions": [
-        {
-          "label": "Manage",
-          "link": "/organization/"
-        }
-      ]
-    }
-  ],
-  "god": [
-    {
-      "header": {
-        "title": "Organizations",
-        "subtitle": "Entities with an administrator",
-        "icon": "icon-flag"
-      },
-      "actions": [
-        {
-          "label": "Manage organizations",
-          "link": "/god/organizations"
-        }
-      ]
     },
-    {
-      "header": {
-        "title": "Users",
-        "subtitle": "Users, statuses and roles",
-        "icon": "icon-people"
-      },
-      "actions": [
+    "logoutSchema": {
+        "title": "logout"
+    },
+    "card": {
+        "header": {
+            "title": ""
+        },
+        "fields": [{
+                "label": "Name",
+                "key": "name"
+            },
+            {
+                "label": "E-mail",
+                "key": "email"
+            }
+        ]
+    },
+    "changePassword": {
+        "title": "Change your password",
+        "submitLabel": "Send",
+        "buttonBlock": true,
+        "controls": [{
+                "key": "password",
+                "type": "password",
+                "label": "New Password",
+                "validators": [{
+                    "key": "required",
+                    "errorMessage": "New Password is required"
+                }]
+            },
+            {
+                "key": "passwordBis",
+                "type": "password",
+                "label": "Repeat Password",
+                "validators": [{
+                    "key": "required",
+                    "errorMessage": "Password repetition is required"
+                }]
+            }
+        ]
+    },
+    "admin": [{
+            "header": {
+                "title": "Your Organization",
+                "subtitle": "",
+                "icon": "icon-flag"
+            },
+            "actions": [{
+                "label": "Manage",
+                "link": "/organization/"
+            }]
+        },
         {
-          "label": "Manage users",
-          "link": "/god/users"
+            "header": {
+                "title": "Users",
+                "subtitle": "Users, statuses and roles",
+                "icon": "icon-people"
+            },
+            "actions": [{
+                "label": "Manage users",
+                "link": "/me/users"
+            }]
         }
-      ]
-    }
-  ]
+    ],
+    "god": [{
+            "header": {
+                "title": "Organizations",
+                "subtitle": "Entities with an administrator",
+                "icon": "icon-flag"
+            },
+            "actions": [{
+                "label": "Manage organizations",
+                "link": "/god/organizations"
+            }]
+        },
+        {
+            "header": {
+                "title": "Users",
+                "subtitle": "Users, statuses and roles",
+                "icon": "icon-people"
+            },
+            "actions": [{
+                "label": "Manage users",
+                "link": "/god/users"
+            }]
+        }
+    ]
 }

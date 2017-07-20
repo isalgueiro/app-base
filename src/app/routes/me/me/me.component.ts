@@ -54,7 +54,7 @@ export class MeComponent implements OnInit {
           this.widgetsSchema.push(userSchema);
           const userRole = this.user.roles[0].toString().toLowerCase();
           const roleSchema = this.schema[userRole];
-          this.configureRoleSchema(userRole, roleSchema);
+          this.configureRoleSchemas(userRole, roleSchema);
           this.widgetsSchema = this.widgetsSchema.concat(roleSchema);
         } else {
           this.security.logOutUser();
@@ -62,9 +62,7 @@ export class MeComponent implements OnInit {
       });
   }
 
-
-
-  configureRoleSchema(userRole, roleSchema) {
+  configureRoleSchemas(userRole, roleSchema) {
     if (userRole === ROLE.GOD.toString().toLowerCase()) {
       this.me.getOrganizationsCount()
         .subscribe(count => roleSchema[0].header.counter = count);
@@ -75,11 +73,13 @@ export class MeComponent implements OnInit {
         .subscribe(organization => {
           this.organization = organization;
           if (this.organization) {
-            roleSchema.header.title = this.organization.name;
-            roleSchema.header.subtitle = this.organization.description;
-            roleSchema.actions[0].link = `/organization/${this.organization.slug}`;
+            roleSchema[0].header.title = this.organization.name;
+            roleSchema[0].header.subtitle = this.organization.description;
+            roleSchema[0].actions[0].link = `/organization/${this.organization.slug}`;
           }
         });
+        this.me.getUsersCount()
+        .subscribe(count => roleSchema[1].header.counter = count);
     }
   }
 
