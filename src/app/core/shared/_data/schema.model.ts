@@ -74,3 +74,14 @@ export interface ILoadEmptyStateSchema {
   empty: boolean;
   action?: IAction;
 }
+
+interface ITimelineItem {
+  subtitle: string;
+  icon?: string;
+  action?: IAction;
+  textLines: string[];
+}
+
+export interface ITimelineSchema {
+  items: ITimelineItem[];
+}

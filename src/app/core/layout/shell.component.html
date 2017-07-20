@@ -1,4 +1,4 @@
-<section class="container">
+<section [ngClass]="{'container': true, 'overlay': showResponsive}">
   <nav class="columns header-bg">
     <div class="column col-10 col-lg-12 centered">
       <ab-top-bar [user]="user"
