@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IOrganization } from 'app/routes/home/_data/models/organization.model';
 import { OrganizationsService } from 'app/routes/home/_data/organizations.service';
-import { IWidgetSchema, IAction, ILoadEmptyStateSchema } from 'app/core/shared/_data/schema.model';
+import { IWidgetSchema, IAction, ILoadEmptyStateSchema, ITimelineSchema } from 'app/core/shared/_data/schema.model';
 import { BusService } from 'app/core/bus.service';
 import 'rxjs/add/operator/takeWhile';
 import { SchemaService } from 'app/core/shared/_data/schema.service';
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
       .getPageSchema$()
       .takeWhile(() => this.schema == null)
       .subscribe(schema => {
-        if (schema && schema.header) {
+        if (schema && schema.metadata && schema.metadata.name === 'home') {
           this.schema = schema;
           this.organizationsService
             .getAll()

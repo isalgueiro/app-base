@@ -74,3 +74,16 @@ export interface ILoadEmptyStateSchema {
   empty: boolean;
   action?: IAction;
 }
+
+interface IEvent {
+  label: string;
+  date?: Date;
+  icon?: string;
+  action?: IAction;
+  items: IWidgetSchema[];
+}
+
+export interface ITimelineSchema {
+  title: IWidgetSchema,
+  events: IEvent[];
+}

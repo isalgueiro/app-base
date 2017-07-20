@@ -1,4 +1,7 @@
 {
+  "metadata": {
+    "name": "home"
+  },
   "header": {
     "title": "$.organization.name",
     "subtitle": "$.organization.address",

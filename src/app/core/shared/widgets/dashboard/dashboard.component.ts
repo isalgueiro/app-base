@@ -4,7 +4,7 @@ import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 @Component({
   selector: 'ab-dashboard',
   templateUrl: './dashboard.component.html',
-  styles: []
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
 

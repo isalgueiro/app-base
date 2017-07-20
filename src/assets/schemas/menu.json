@@ -1,0 +1,22 @@
+{
+  "common": [
+    {
+      "icon": "icon-apps",
+      "label": "Home",
+      "link": ""
+    }
+  ],
+  "god": [
+    {
+      "icon": "icon-flag",
+      "label": "Organizations",
+      "link": "/god/organizations/"
+    },
+    {
+      "icon": "icon-people",
+      "label": "Users",
+      "link": "/god/users/"
+    }
+  ],
+  "admin": []
+}

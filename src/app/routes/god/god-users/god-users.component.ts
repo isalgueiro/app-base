@@ -20,7 +20,7 @@ export class GodUsersComponent implements OnInit {
       .getPageSchema$()
       .takeWhile(() => this.actionSchema == null)
       .subscribe(schemas => {
-        if (schemas && schemas.actions) {
+        if (schemas && schemas.metadata && schemas.metadata.name === 'god_users') {
           this.actionSchema = schemas.actions;
           this.createFormSchema = schemas.create;
           this.reportSchema = schemas.report;

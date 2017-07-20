@@ -34,7 +34,7 @@ export class MeComponent implements OnInit {
       .getPageSchema$()
       .takeWhile(() => this.schema == null)
       .subscribe(schema => {
-        if (schema && schema.userSchema) {
+        if (schema && schema.metadata && schema.metadata.name === 'me') {
           this.schema = JSON.parse(JSON.stringify(schema));
           this.getMe();
         }

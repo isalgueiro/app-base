@@ -1,3 +1,2 @@
-<p>
-  users works!
-</p>
+<ab-editor [actionSchema]="actionSchema" [tableData]="users" [reportSchema]="reportSchema" (rowAction)="onRowAction($event)" [createFormSchema]="createFormSchema" (create)="onCreate($event)" (delete)="onDelete($event)">
+</ab-editor>

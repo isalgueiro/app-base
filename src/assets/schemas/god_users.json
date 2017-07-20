@@ -1,4 +1,7 @@
 {
+  "metadata": {
+    "name": "god_users"
+  },
   "actions": {
     "header": {
       "title": "Users",
