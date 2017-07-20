@@ -1,4 +1,7 @@
 {
+  "metadata": {
+    "name": "me"
+  },
   "userSchema": {
     "header": {
       "title": "this.user.name",

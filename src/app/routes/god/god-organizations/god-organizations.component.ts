@@ -35,7 +35,7 @@ export class GodOrganizationsComponent implements OnInit {
       .getPageSchema$()
       .takeWhile(() => this.actionSchema == null)
       .subscribe(schemas => {
-        if (schemas && schemas.actions) {
+        if (schemas && schemas.metadata && schemas.metadata.name === 'god_organizations') {
           this.actionSchema = schemas.actions;
           this.createFormSchema = schemas.create;
           this.reportSchema = schemas.report;
