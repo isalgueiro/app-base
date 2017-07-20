@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
       .getPageSchema$()
       .takeWhile(() => this.schema == null)
       .subscribe(schema => {
-        if (schema && schema.header) {
+        if (schema && schema.metadata && schema.metadata.name === 'home') {
           this.schema = schema;
           this.organizationsService
             .getAll()

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       .getPageSchema$()
       .takeWhile(() => this.formSchema == null)
       .subscribe(schemas => {
-        if (schemas && schemas.form) {
+        if (schemas && schemas.metadata && schemas.metadata.name === 'login') {
           this.formSchema = schemas.form;
         }
       });

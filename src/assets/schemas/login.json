@@ -1,4 +1,7 @@
 {
+  "metadata": {
+    "name": "login"
+  },
   "panel": {
     "header": {
       "title": "Log In",

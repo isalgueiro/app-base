@@ -24,6 +24,7 @@ export class ShellComponent implements OnInit {
   public menuLinks: IAction[];
   public loadedMetadata: boolean;
   public showResponsive = false;
+  private menuSchema;
 
   constructor(
     private bus: BusService,
@@ -69,19 +70,19 @@ export class ShellComponent implements OnInit {
     this.schemaService
       .getSchema(pageName)
       .subscribe(schemas => {
+        console.log('pageName', pageName);
         this.bus.emitPageSchema(schemas);
         this.loadedMetadata = true;
       });
   }
 
   loadMenu() {
-    this.menuLinks = [
-      {
-        icon: 'icon-apps',
-        label: 'Home',
-        link: ''
-      }
-    ];
+    this.schemaService
+      .getSchema('menu')
+      .subscribe(schema => {
+        this.menuSchema = schema;
+        this.menuByUserRole();
+      });
   }
 
   onMessages() {
@@ -99,6 +100,23 @@ export class ShellComponent implements OnInit {
       .getUser$()
       .subscribe((user: IUser) => {
         this.user = user;
+        this.menuByUserRole();
       });
+  }
+
+  menuByUserRole() {
+    this.menuLinks = [];
+    if (this.menuSchema) {
+      this.menuLinks = this.menuLinks.concat(this.menuSchema.common);
+      if (this.user) {
+        const userRole = this.user.roles[0];
+        if (userRole) {
+          const menuRole = this.menuSchema[userRole.toLowerCase()];
+          if (menuRole) {
+            this.menuLinks = this.menuLinks.concat(menuRole);
+          }
+        }
+      }
+    }
   }
 }
