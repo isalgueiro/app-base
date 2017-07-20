@@ -1,9 +1,9 @@
 export const environment = {
-  production: true,
+  production: false,
   appName: 'AppBase',
   appTitle: 'App Base',
   apiUrl: 'http://beta.appbase.agorabinaria.com/api/',
-  assetsUrl: 'http://beta.appbase.agorabinaria.com/',
+  assetsUrl: 'http://localhost:4200/',
   secret: 'secret',
   godEmail: 'admin@agorabinaria.com'
 };

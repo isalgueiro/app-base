@@ -22,6 +22,7 @@ import { EditorComponent } from './layouts/editor/editor.component';
 import { ActionComponent } from './layouts/action/action.component';
 import { SchemaService } from 'app/core/shared/_data/schema.service';
 import { CardComponent } from './widgets/card/card.component';
+import { TimelineComponent } from './widgets/timeline/timeline.component';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { CardComponent } from './widgets/card/card.component';
     DashboardComponent, SelectComponent,
     RadioComponent, SwitchComponent,
     TextareaComponent, LoadEmptyStateComponent,
-    EditorComponent, ActionComponent, CardComponent
+    EditorComponent, ActionComponent, CardComponent, TimelineComponent
   ],
   exports: [
     ActionComponent,
@@ -55,7 +56,8 @@ import { CardComponent } from './widgets/card/card.component';
     ReactiveFormsModule,
     TableComponent,
     ToastComponent,
-    TileComponent],
+    TileComponent,
+    TimelineComponent],
   providers: [FormToolsService, SchemaService],
   schemas: [NO_ERRORS_SCHEMA]
 })

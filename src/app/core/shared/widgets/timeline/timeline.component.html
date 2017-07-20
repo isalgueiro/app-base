@@ -1,0 +1,29 @@
+<div class="timeline">
+  <ng-container *ngFor="let item of schema.items">
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <a href="#timeline-example-2"
+           class="timeline-icon icon-lg tooltip"
+           [attr.data-tooltip]="item.subtitle">
+            <i *ngIf="!item.icon" class="icon icon-check"></i>
+            <i *ngIf="item.icon" [class]="'icon ' + item.icon"></i>
+        </a>
+      </div>
+      <div class="timeline-content">
+        <div class="tile">
+          <div class="tile-content">
+            <p class="tile-subtitle">{{ item.subtitle }}</p>
+            <p *ngFor="let textLine of item.textLines"
+               class="tile-title">{{ textLine }}</p>
+          </div>
+          <div *ngIf="item.action"
+               class="tile-action">
+            <ab-action class="ml-10 float-right "
+                       [schema]="item.action"
+                       (action)="onClick($event)"></ab-action>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
