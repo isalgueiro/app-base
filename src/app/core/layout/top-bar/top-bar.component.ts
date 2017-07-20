@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { IUser } from 'app/core/shared/_data/user.model';
 import { environment } from 'environments/environment';
 
@@ -30,6 +30,17 @@ export class TopBarComponent implements OnInit {
   onHideResponsive() {
     this.showResponsive = false;
     this.showResponsiveMenu.emit(this.showResponsive);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth > 960) {
+      if (this.showResponsive) {
+        this.showResponsive = false;
+        this.showResponsiveMenu.emit(this.showResponsive);
+      }
+    }
+    console.log('Width: ' + event.target.innerWidth);
   }
 
 }
