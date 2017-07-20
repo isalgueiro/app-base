@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IWidgetSchema, IReportSchema, IFormSchema } from 'app/core/shared/_data/schema.model';
+import { BusService } from 'app/core/bus.service';
+import { ROLE, STATUS } from 'app/core/shared/_data/user.model';
 
 @Component({
   selector: 'ab-god-users',
@@ -11,101 +13,40 @@ export class GodUsersComponent implements OnInit {
   reportSchema: IReportSchema;
   createFormSchema: IFormSchema;
   users: any[];
-  constructor() { }
+  constructor(private bus: BusService) { }
 
   ngOnInit() {
-    this.actionSchema = {
-      header: {
-        title: 'Users',
-        subtitle: 'Users, statuses and roles',
-        icon: 'icon-people'
-      },
-      actions: [
-        {
-          label: 'Create New',
-          key: 'create_new'
+    this.bus
+      .getPageSchema$()
+      .takeWhile(() => this.actionSchema == null)
+      .subscribe(schemas => {
+        if (schemas && schemas.actions) {
+          this.actionSchema = schemas.actions;
+          this.createFormSchema = schemas.create;
+          this.reportSchema = schemas.report;
+          this.getUsers();
         }
-      ]
-    };
-    this.reportSchema = {
-      header: {
-        title: 'List of Users'
-      },
-      emptyMessage: 'There aren\'t any users to display :(',
-      fields: [
-        {
-          label: 'User',
-          key: 'name',
-          type: 'string'
-        },
-        {
-          label: 'Email',
-          key: 'email',
-          type: 'string'
-        },
-        ,
-        {
-          label: 'Status',
-          key: 'status',
-          type: 'string'
-        },
-        ,
-        {
-          label: 'Roles',
-          key: 'roles',
-          type: 'string'
-        }
-      ], actions: [
-        {
-          label: 'In',
-          key: 'aprobe',
-          icon: 'icon-check'
-        },
-        {
-          label: 'Out',
-          key: 'reject',
-          icon: 'icon-cross'
-        },
-        {
-          label: 'Del',
-          key: 'delete',
-          icon: 'icon-delete'
-        },
-      ]
-    };
-    this.createFormSchema = {
-      title: 'New User',
-      submitLabel: 'Save User',
-      controls: [
-        {
-          key: 'name',
-          type: 'text',
-          label: 'Name',
-          validators: [{ key: 'required', errorMessage: 'Name is required' }]
-        },
-        {
-          key: 'phone',
-          type: 'text',
-          label: 'Phone',
-          validators: []
-        }
-        ,
-        {
-          key: 'email',
-          type: 'email',
-          label: 'Email',
-          validators: [{ key: 'required', errorMessage: 'Email is required' }]
-        },
-      ]
-    };
-    this.users = [
-      // {
-      //   name: 'pepe perez',
-      //   email: 'pp@per.es'
-      // }
-    ]
+      });
   }
 
+  getUsers() {
+    this.users = [
+      {
+        name: 'pepe perez',
+        email: 'pp@per.es',
+        phone: '345345765',
+        status: STATUS.PENDING,
+        roles: [ROLE.ADMIN]
+      },
+      {
+        name: 'jhon doe',
+        email: 'j@do.es',
+        phone: '98734556',
+        status: STATUS.ACTIVE,
+        roles: [ROLE.GOD]
+      }
+    ]
+  }
   onCreate(data) {
     console.log('creating user: ', data);
   }

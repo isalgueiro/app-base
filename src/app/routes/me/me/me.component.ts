@@ -1,4 +1,3 @@
-import { SchemaService } from '../../../core/shared/_data/schema.service';
 import { Component, OnInit } from '@angular/core';
 import { IUser, ROLE } from 'app/core/shared/_data/user.model';
 import { SecurityService } from 'app/core/security.service';
@@ -6,6 +5,7 @@ import { IWidgetSchema } from 'app/core/shared/_data/schema.model';
 import { BusService } from 'app/core/bus.service';
 import 'rxjs/add/operator/takeWhile';
 import { IOrganization, MeService } from 'app/routes/me/_data/me.service';
+import { SchemaService } from 'app/core/shared/_data/schema.service';
 
 @Component({
   selector: 'ab-me',
@@ -35,8 +35,7 @@ export class MeComponent implements OnInit {
       .takeWhile(() => this.schema == null)
       .subscribe(schema => {
         if (schema && schema.userSchema) {
-          this.schema = null;
-          this.schema = Object.assign({}, schema);
+          this.schema = JSON.parse(JSON.stringify(schema));
           this.getMe();
         }
       });
@@ -57,6 +56,8 @@ export class MeComponent implements OnInit {
           const roleSchema = this.schema[userRole];
           this.configureRoleSchema(userRole, roleSchema);
           this.widgetsSchema = this.widgetsSchema.concat(roleSchema);
+        } else {
+          this.security.logOutUser();
         }
       });
   }
@@ -66,11 +67,9 @@ export class MeComponent implements OnInit {
   configureRoleSchema(userRole, roleSchema) {
     if (userRole === ROLE.GOD.toString().toLowerCase()) {
       this.me.getOrganizationsCount()
-        .subscribe(count => {
-          roleSchema[0].header.title = count + ' ' + roleSchema[0].header.title;
-        });
+        .subscribe(count => roleSchema[0].header.counter = count);
       this.me.getUsersCount()
-        .subscribe(count => roleSchema[1].header.title = count + ' ' + roleSchema[1].header.title);
+        .subscribe(count => roleSchema[1].header.counter = count);
     } else {
       this.me.getAdministratedOrganization(this.user.organizationId)
         .subscribe(organization => {

@@ -57,6 +57,7 @@ export interface IHeader {
   title: string;
   subtitle?: string;
   icon?: string;
+  counter?: number;
 }
 
 export interface IWidgetSchema {

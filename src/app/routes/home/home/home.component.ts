@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IOrganization } from 'app/routes/home/_data/models/organization.model';
 import { OrganizationsService } from 'app/routes/home/_data/organizations.service';
 import { IWidgetSchema, IAction, ILoadEmptyStateSchema, ITimelineSchema } from 'app/core/shared/_data/schema.model';
+import { BusService } from 'app/core/bus.service';
+import 'rxjs/add/operator/takeWhile';
+import { SchemaService } from 'app/core/shared/_data/schema.service';
 
 @Component({
   selector: 'ab-home',
@@ -9,39 +12,44 @@ import { IWidgetSchema, IAction, ILoadEmptyStateSchema, ITimelineSchema } from '
   styles: []
 })
 export class HomeComponent implements OnInit {
+  public schema: IWidgetSchema
+  public widgets: IWidgetSchema[] = [];
 
-  public schemas: IWidgetSchema[] = [];
-
-  constructor(private organizationsService: OrganizationsService) { }
+  constructor(
+    private bus: BusService,
+    private organizationsService: OrganizationsService,
+    private schemaService: SchemaService
+  ) { }
 
   ngOnInit() {
-    this.organizationsService
-      .getAll()
-      .subscribe(data => this.schemas = this.transformData(data));
+    this.bus
+      .getPageSchema$()
+      .takeWhile(() => this.schema == null)
+      .subscribe(schema => {
+        if (schema && schema.header) {
+          this.schema = schema;
+          this.organizationsService
+            .getAll()
+            .subscribe(data => this.createWidgets(data));
+        }
+      });
   }
 
-  transformData(organizations: IOrganization[]): IWidgetSchema[] {
-    const panels: IWidgetSchema[] = [];
-
+  createWidgets(organizations: IOrganization[]) {
+    this.widgets = [];
     organizations.forEach(organization => {
-      const organizationPanel: IWidgetSchema = {
-        header: {
-          title: organization.name,
-          subtitle: organization.address
-        },
-        actions: [
-          {
-            label: 'Ver centro',
-            icon: 'icon-search',
-            link: `/organization/${organization.slug}`
-          }
-        ]
-      };
-
-      panels.push(organizationPanel);
+      const organizationWidget: IWidgetSchema = JSON.parse(JSON.stringify(this.schema));
+      this.pupulateWidget(organizationWidget, organization);
+      this.widgets.push(organizationWidget);
     });
+  }
 
-    return panels;
+  pupulateWidget(widget, target) {
+    // To Do: autopopulate using reflection...)
+    widget.header.title = this.schemaService.valueByPath(target, 'name');
+    widget.header.subtitle = this.schemaService.valueByPath(target, 'address');
+    widget.actions[0].label = `edit ${this.schemaService.valueByPath(target, 'name')}`;
+    widget.actions[0].link = `/organization/${this.schemaService.valueByPath(target, 'slug')}`;
   }
 
 }

@@ -1,8 +1,12 @@
 <article *ngIf="schema"
          class="tile">
-  <header *ngIf="schema.header.icon"
+  <header *ngIf="schema.header"
           class="tile-icon">
-    <i [class]="'icon centered ' + schema.header.icon"></i>
+    <i *ngIf="schema.header.icon"
+       [class]="'icon centered ' + schema.header.icon"></i>
+    <strong *ngIf="schema.header.counter"
+            class=" label-primary">{{ schema.header.counter }}
+    </strong>
   </header>
   <main class="tile-content">
     <p class="tile-title">{{schema.header.title}}</p>

@@ -4,17 +4,20 @@
        class="column col-6 col-md-12">
     <ng-container [ngSwitch]="widget.type">
       <ab-panel *ngSwitchCase="'panel'"
-                [schema]="widget">
+                [schema]="widget"
+                (send)=" onClick($event)">
       </ab-panel>
       <ab-tile *ngSwitchCase="'tile'"
-               [schema]="widget">
+               [schema]="widget"
+               (send)=" onClick($event)">
       </ab-tile>
-      <ab-tile *ngSwitchCase="'card'"
-               [schema]="widget">
-      </ab-tile>
+      <ab-card *ngSwitchCase="'card'"
+               [schema]="widget"
+               (send)=" onClick($event)">
+      </ab-card>
       <ab-panel *ngSwitchDefault
                 [schema]="widget"
-                (send)="send.emit($event)">
+                (send)=" onClick($event)">
       </ab-panel>
     </ng-container>
   </div>
