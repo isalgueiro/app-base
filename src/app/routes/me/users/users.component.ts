@@ -38,4 +38,13 @@ export class UsersComponent implements OnInit {
       users => this.users = users);
   }
 
+  onCreate(data) {
+    console.log('creating user: ', data);
+  }
+  onDelete(data) {
+    console.log('deleting user: ', data);
+  }
+  onRowAction(data) {
+    console.log('action over user: ', data);
+  }
 }

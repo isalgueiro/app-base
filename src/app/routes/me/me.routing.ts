@@ -11,13 +11,13 @@ const routes: Routes = [
     data: { name: 'me', title: 'My profile' }
   },
   {
-    path: ':hash',
-    component: MeRegisterComponent
-  },
-  {
     path: 'users',
     component: UsersComponent,
     data: { name: 'users', title: 'Users' }
+  },
+  {
+    path: ':hash',
+    component: MeRegisterComponent
   }
 ];
 
