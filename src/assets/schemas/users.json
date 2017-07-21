@@ -1,4 +1,7 @@
 {
+    "metadata": {
+        "name": "users"
+    },
     "actions": {
         "header": {
             "title": "Users",
