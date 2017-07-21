@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IWidgetSchema, IReportSchema, IFormSchema } from 'app/core/shared/_data/schema.model';
 import { BusService } from 'app/core/bus.service';
 import { ROLE, STATUS } from 'app/core/shared/_data/user.model';
+import { GodDataService } from 'app/routes/god/_data/god-data.service';
 
 @Component({
   selector: 'ab-god-users',
@@ -13,7 +14,7 @@ export class GodUsersComponent implements OnInit {
   reportSchema: IReportSchema;
   createFormSchema: IFormSchema;
   users: any[];
-  constructor(private bus: BusService) { }
+  constructor(private bus: BusService, private godData: GodDataService) { }
 
   ngOnInit() {
     this.bus
@@ -30,22 +31,9 @@ export class GodUsersComponent implements OnInit {
   }
 
   getUsers() {
-    this.users = [
-      {
-        name: 'pepe perez',
-        email: 'pp@per.es',
-        phone: '345345765',
-        status: STATUS.PENDING,
-        roles: [ROLE.ADMIN]
-      },
-      {
-        name: 'jhon doe',
-        email: 'j@do.es',
-        phone: '98734556',
-        status: STATUS.ACTIVE,
-        roles: [ROLE.GOD]
-      }
-    ]
+    this.godData
+      .getUsers()
+      .subscribe(users => this.users = users);
   }
   onCreate(data) {
     console.log('creating user: ', data);

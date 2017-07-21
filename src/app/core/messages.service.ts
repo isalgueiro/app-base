@@ -35,9 +35,9 @@ export class MessagesService {
 
   populateEventsFromMessages() {
     const events = [];
-    const messages = JSON.parse(localStorage.getItem('messages'));
+    const messages: IMessage[] = JSON.parse(localStorage.getItem('messages'));
     if (messages) {
-      messages.forEach((message: IMessage) => {
+      messages.reverse().forEach((message: IMessage) => {
         const event: IEvent = {
           label: '',
           date: message.timestamp,

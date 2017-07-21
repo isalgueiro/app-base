@@ -10,7 +10,7 @@ import { ROLE, STATUS } from 'app/core/shared/_data/user.model';
   styles: []
 })
 export class UsersComponent implements OnInit {
-actionSchema: IWidgetSchema;
+  actionSchema: IWidgetSchema;
   reportSchema: IReportSchema;
   createFormSchema: IFormSchema;
   users: any[];
@@ -32,7 +32,16 @@ actionSchema: IWidgetSchema;
 
   getUsers() {
     this.me.getAdministratedUsers().subscribe(
-      users=> this.users=users);
+      users => this.users = users);
   }
 
+  onCreate(data) {
+    console.log('creating user: ', data);
+  }
+  onDelete(data) {
+    console.log('deleting user: ', data);
+  }
+  onRowAction(data) {
+    console.log('action over user: ', data);
+  }
 }

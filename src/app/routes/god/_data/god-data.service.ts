@@ -12,6 +12,7 @@ import { ROLE } from 'app/core/shared/_data/user.model';
 export class GodDataService {
   private organizationsUrl = 'organizations';
   private credentialsUrl = 'credentials';
+  private usersUrl = 'users';
 
   constructor(private http: HttpClient, private bus: BusService, private security: SecurityService) { }
 
@@ -51,5 +52,10 @@ export class GodDataService {
   deleteOrganization(oldOrganization) {
     return this.http
       .delete(`${this.organizationsUrl}/${oldOrganization._id}`);
+  }
+
+  getUsers(): Observable<any[]> {
+    return this.http
+      .get<any>(this.usersUrl);
   }
 }
