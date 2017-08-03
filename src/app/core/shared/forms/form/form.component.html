@@ -1,0 +1,37 @@
+<form *ngIf="formSchema"
+      [formGroup]="form.group"
+      class="container">
+  <fieldset class="form-group"
+            *ngFor="let control of form.schema.controls">
+    <ng-container [ngSwitch]="control.type">
+      <ab-select *ngSwitchCase="'select'"
+                 [form]="form"
+                 [control]="control">
+      </ab-select>
+      <ab-radio *ngSwitchCase="'radio'"
+                [form]="form"
+                [control]="control">
+      </ab-radio>
+      <ab-switch *ngSwitchCase="'switch'"
+                 [form]="form"
+                 [control]="control">
+      </ab-switch>
+      <ab-textarea *ngSwitchCase="'textarea'"
+                   [form]="form"
+                   [control]="control">
+      </ab-textarea>
+      <ab-input *ngSwitchDefault
+                [form]="form"
+                [control]="control">
+      </ab-input>
+    </ng-container>
+  </fieldset>
+  <footer class="form-group">
+    <button [ngClass]="{'btn btn-primary float-right': true, 'btn-block': formSchema.buttonBlock}"
+            type="submit"
+            (click)="onClick(); form.group.reset();"
+            [disabled]="form.group.invalid">
+      {{ form.schema.submitLabel}}
+    </button>
+  </footer>
+</form>

@@ -1,0 +1,33 @@
+<div class="timeline">
+  <ab-panel [schema]=schema.title>
+  </ab-panel>
+  <div class="divider"></div>
+  <ng-container *ngFor="let event of schema.events">
+    <article class="timeline-item">
+      <section class="timeline-left">
+        <a href="#timeline-example-2"
+           class="timeline-icon icon-lg tooltip"
+           [attr.data-tooltip]="event.label">
+            <i *ngIf="!event.icon" class="icon icon-check"></i>
+            <i *ngIf="event.icon" [class]="'icon ' + event.icon"></i>
+        </a>
+      </section>
+      <section class="timeline-content">
+        <div class="tile">
+          <div class="tile-content">
+            <p class="tile-subtitle">{{ event.date | date:'medium' }} {{event.label}}</p>
+            <ab-tile *ngFor="let item of event.items"
+                     [schema]=item>
+            </ab-tile>
+          </div>
+          <div *ngIf="event.action"
+               class="tile-action">
+            <ab-action class="ml-10 float-right "
+                       [schema]="event.action"
+                       (action)="onClick($event)"></ab-action>
+          </div>
+        </div>
+      </section>
+    </article>
+  </ng-container>
+</div>

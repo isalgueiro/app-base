@@ -1,0 +1,96 @@
+{
+    "metadata": {
+        "name": "users"
+    },
+    "actions": {
+        "header": {
+            "title": "Users",
+            "subtitle": "Users, statuses and roles",
+            "icon": "icon-people"
+        },
+        "actions": [{
+            "label": "Create New",
+            "key": "create_new"
+        }]
+    },
+    "create": {
+        "title": "New User",
+        "submitLabel": "Save User",
+        "controls": [{
+                "key": "name",
+                "type": "text",
+                "label": "User Name",
+                "validators": [{
+                    "key": "required",
+                    "errorMessage": "Name of the user is required"
+                }]
+            },
+            {
+                "key": "email",
+                "type": "email",
+                "label": "User e-mail",
+                "validators": [{
+                    "key": "required",
+                    "errorMessage": "E-mail address of the user is required"
+                }]
+            },
+            {
+                "key": "phone",
+                "type": "text",
+                "label": "Phone Number",
+                "validators": []
+            }
+        ]
+    },
+    "report": {
+        "header": {
+            "title": "List of Users"
+        },
+        "emptyMessage": "There aren't any users to display :(",
+        "fields": [{
+                "label": "User",
+                "key": "name",
+                "type": "string"
+            },
+            {
+                "label": "Email",
+                "key": "email",
+                "type": "string"
+            },
+            {
+                "label": "Phone",
+                "key": "phone",
+                "type": "string"
+            },
+            {
+                "label": "Status",
+                "key": "status",
+                "type": "string"
+            },
+            {
+                "label": "Roles",
+                "key": "roles",
+                "type": "string"
+            }
+        ],
+        "actions": [{
+                "label": "",
+                "key": "aprobe",
+                "icon": "icon-check",
+                "title": "In"
+            },
+            {
+                "label": "",
+                "key": "reject",
+                "icon": "icon-cross",
+                "title": "Out"
+            },
+            {
+                "label": "",
+                "key": "delete",
+                "icon": "icon-delete",
+                "title": "Del"
+            }
+        ]
+    }
+}

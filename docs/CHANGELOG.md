@@ -2,6 +2,8 @@
 
 The change log is a living document...
 
+>> Moved to Releases
+
 ## [0.7.0] (19-06-2017)
 - Docs updated and project management
 - Select Control

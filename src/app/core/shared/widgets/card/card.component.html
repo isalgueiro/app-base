@@ -1,0 +1,32 @@
+<div *ngIf="schema"
+     class="column col-6 col-xs-12">
+  <div class="card">
+    <header *ngIf="schema.header"
+            class="card-header">
+      <div class="card-title">{{schema.header.title}}</div>
+      <div class="card-subtitle">{{schema.header.subtitle}}</div>
+    </header>
+    <main>
+      <div *ngIf="data && schema.fields"
+           class="card-body">
+        <dl *ngFor="let field of schema.fields">
+          <dt class="inline">{{ field.label }} :</dt>
+          <dd class="inline ml-5">{{ valueByPath(data,field?.key) }}</dd>
+        </dl>
+      </div>
+      <div *ngIf="schema.image"
+           class="card-image">
+        <img class="img-responsive"
+             [src]="schema.image" />
+      </div>
+    </main>
+    <footer *ngIf="schema.actions"
+            class="card-footer">
+      <ng-container *ngFor="let action of schema.actions">
+        <ab-action class="ml-10 float-right "
+                   [schema]="action"
+                   (action)="onClick($event)"></ab-action>
+      </ng-container>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<section *ngIf="organization">
+  <ab-panel *ngIf="!showEdition"
+            [schema]="viewSchema"
+            (send)="onSend($event)">
+  </ab-panel>
+  <ab-form [formSchema]="formSchema"
+           (send)="onSend($event)"
+           *ngIf="showEdition">
+  </ab-form>
+</section>

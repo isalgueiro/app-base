@@ -1,0 +1,20 @@
+<ab-editor [actionSchema]="actionSchema"
+           [tableData]="organizations"
+           [reportSchema]="reportSchema"
+           (rowAction)="onRowAction($event)"
+           [createFormSchema]="createFormSchema"
+           [cardSchema]="cardSchema"
+           (create)="onCreate($event)"
+           (delete)="onDelete($event)">
+</ab-editor>
+<aside *ngIf="setAdminFormSchema">
+  <ab-modal [title]="setAdminFormSchema.title"
+            [active]="activeSetAdminModal"
+            (close)="onCloseSetAdminModal(null)">
+    <modal-content>
+      <ab-form [formSchema]="setAdminFormSchema"
+               (send)="onCloseSetAdminModal($event)">
+      </ab-form>
+    </modal-content>
+  </ab-modal>
+</aside>

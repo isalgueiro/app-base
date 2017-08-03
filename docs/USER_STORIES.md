@@ -26,7 +26,7 @@
   ## **When** I go to ['/user']() page
   - Clicking on Organizations edit link
   ## **Then** I can manage my profile
-  - [ ] Log Out
+  - [x] Log Out
   - [ ] Remove my account
   - [ ] Change my password
   ## **Given** I forgot my password
@@ -35,6 +35,6 @@
   - Entering my email
   ## **Then** I can manage receibe a password by email
   - [ ] forgotpassword form page
-  - [ ] send email witha recovery hash or temp password
+  - [ ] send email with a recovery hash or temp password
   - [ ] Change my password
   

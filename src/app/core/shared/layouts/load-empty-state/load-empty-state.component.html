@@ -1,0 +1,17 @@
+<aside class="empty">
+  <div class="empty-icon">
+    <div *ngIf="schema.loading"
+         class="loading"></div>
+    <i *ngIf="!schema.loading && schema.empty"
+       class="icon icon-stop"></i>
+  </div>
+  <h4 *ngIf="schema.loading"
+      class="empty-title">Loading, please wait....</h4>
+  <h4 *ngIf="!schema.loading && schema.empty"
+      class="empty-title">No data yet!!!</h4>
+  <div *ngIf="schema.action"
+       class="empty-action">
+    <p class="empty-subtitle">Click to start.</p>
+    <ab-action [schema]="schema.action"></ab-action>
+  </div>
+</aside>

@@ -1,0 +1,22 @@
+<article *ngIf="schema"
+         class="tile">
+  <header *ngIf="schema.header"
+          class="tile-icon">
+    <i *ngIf="schema.header.icon"
+       [class]="'icon centered ' + schema.header.icon"></i>
+    <strong *ngIf="schema.header.counter"
+            class=" label-primary">{{ schema.header.counter }}
+    </strong>
+  </header>
+  <main class="tile-content">
+    <p class="tile-title">{{schema.header.title}}</p>
+    <p class="tile-subtitle">{{schema.header.subtitle}}</p>
+  </main>
+  <footer class="tile-action">
+    <ng-container *ngFor="let action of schema.actions">
+      <ab-action class="ml-10 float-right"
+                 [schema]="action"
+                 (action)="onClick($event)"></ab-action>
+    </ng-container>
+  </footer>
+</article>

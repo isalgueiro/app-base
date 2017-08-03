@@ -1,0 +1,7 @@
+<section *ngIf="loadedMetadata;else loading">
+  <router-outlet></router-outlet>
+</section>
+<ng-template #loading>
+  <ab-load-empty-state [schema]="{loading: true,empty: false}">
+  </ab-load-empty-state>
+</ng-template>

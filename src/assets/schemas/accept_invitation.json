@@ -1,0 +1,32 @@
+{
+    "panel": {
+        "header": {
+            "title": "Welcome",
+            "subtitle": "Please,set your password to log in into the application"
+        }
+    },
+    "form": {
+        "title": "Register",
+        "submitLabel": "Send",
+        "buttonBlock": true,
+        "controls": [{
+                "key": "password",
+                "type": "password",
+                "label": "Password",
+                "validators": [{
+                    "key": "required",
+                    "errorMessage": "Password is required"
+                }]
+            },
+            {
+                "key": "passwordBis",
+                "type": "password",
+                "label": "Repeat Password",
+                "validators": [{
+                    "key": "required",
+                    "errorMessage": "Password repetition is required"
+                }]
+            }
+        ]
+    }
+}

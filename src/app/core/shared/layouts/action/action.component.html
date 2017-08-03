@@ -1,0 +1,11 @@
+<a *ngIf="schema.link"
+   [routerLink]="schema.link">
+  <i *ngIf="schema.icon" [class]="'icon ' + schema.icon"></i>
+  <span *ngIf="schema.label" [ngClass]="{'ml-10': schema.icon}">{{ schema.label }}</span>
+</a>
+<button *ngIf="!schema.link"
+        (click)="onClick()"
+        [class]=" 'btn ' + btnClass">
+  <i *ngIf="schema.icon" [class]="'icon ' + schema.icon"></i>
+  <span *ngIf="schema.label" [ngClass]="{'ml-10': schema.icon}">{{ schema.label }}</span>
+</button>

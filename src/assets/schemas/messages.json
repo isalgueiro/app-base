@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "name": "messages"
+  },
+  "timeline": {
+    "title": {
+      "header": {
+        "title": "Sample for an events timeline"
+      }
+    },
+    "events": []
+  }
+}

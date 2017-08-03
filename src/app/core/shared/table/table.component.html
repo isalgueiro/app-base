@@ -1,0 +1,34 @@
+<section *ngIf="schema?.fields && data?.length > 0; else empty "
+         class="table-container">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th *ngFor="let field of schema.fields">
+          <ab-action btnClass='btn-link'
+                     [schema]="{label:field.label, icon:'icon-arrow-up'}"
+                     (action)="onHeaderClick(field)"></ab-action>
+        </th>
+        <th *ngFor="let action of schema.actions">{{ action?.title }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data"
+          (click)="onRowClick(row)">
+        <td *ngFor="let field of schema.fields">
+          {{ valueByPath(row,field?.key) }}
+        </td>
+        <td *ngFor="let action of schema.actions">
+          <ab-action class="centered"
+                     btnClass='btn-action'
+                     noLabel="true"
+                     [schema]="action"
+                     (action)="onActionClick($event, row)"></ab-action>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<ng-template #empty>
+  <ab-load-empty-state [schema]="{ loading: false, empty: true }">
+  </ab-load-empty-state>
+</ng-template>

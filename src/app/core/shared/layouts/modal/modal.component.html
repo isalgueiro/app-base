@@ -1,0 +1,23 @@
+<aside class="modal"
+       [ngClass]="{active:active}"
+       (window:keyup.escape)="onClose()">
+  <div class="modal-overlay"></div>
+  <div class="modal-container">
+    <header class="modal-header">
+      <button class="btn btn-clear float-right"
+              (click)="onClose()"></button>
+      <div class="modal-title">{{ title }}</div>
+    </header>
+    <div class="divider"></div>
+    <main class="modal-body">
+      <div class="content">
+        <ng-content select="modal-content"></ng-content>
+      </div>
+    </main>
+    <footer #contentWrapper
+            [hidden]="contentWrapper.children.length === 0"
+            class="modal-footer">
+      <ng-content select="modal-footer"></ng-content>
+    </footer>
+  </div>
+</aside>

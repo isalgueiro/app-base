@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Server",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/server/index.js",
+      "cwd": "${workspaceRoot}/server",
+      "env": {
+        "NODE_ENV": "dev"
+      }
+    },
+    {
+      "name": "Client",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200/",
+      "preLaunchTask": "start client",
+      "webRoot": "${workspaceRoot}/client",
+      "sourceMaps": true
+      // "trace": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Server/Client",
+      "configurations": [
+        "Server",
+        "Client"
+      ]
+    }
+  ]
+}

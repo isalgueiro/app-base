@@ -1,0 +1,37 @@
+<ab-dashboard [schemas]="widgetsSchema"
+              (send)="onSend($event)">
+</ab-dashboard>
+<aside *ngIf="schema">
+  <ab-modal [title]="user?.name"
+            [active]="logOutActive"
+            (close)="logOutActive=false">
+    <modal-content>
+      <ab-card [data]="user"
+               [schema]="schema?.card">
+      </ab-card>
+    </modal-content>
+    <modal-footer>
+      <ab-action [schema]="{label:'Remain logged in'}"
+                 btnClass="btn-link"
+                 (action)="logOutActive=false"></ab-action>
+      <ab-action [schema]="{label:'Log Out.'}"
+                 (action)="onLogOutClick()"></ab-action>
+    </modal-footer>
+  </ab-modal>
+</aside>
+<aside>
+  <ab-modal [title]="user?.name"
+            [active]="changePasswordActive"
+            (close)="changePasswordActive=false">
+    <modal-content>
+      <ab-form [formSchema]="schema?.changePassword"
+               (send)="onChangePasswordClick($event)">
+      </ab-form>
+    </modal-content>
+    <modal-footer>
+      <ab-action [schema]="{label:'Remain same password'}"
+                 btnClass="btn-link"
+                 (action)="changePasswordActive=false"></ab-action>
+    </modal-footer>
+  </ab-modal>
+</aside>

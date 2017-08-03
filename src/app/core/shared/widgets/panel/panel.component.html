@@ -1,0 +1,27 @@
+<article class="panel"
+         *ngIf="schema">
+  <header *ngIf="schema.header"
+          class="panel-header">
+    <section class="panel-title text-center">
+      <i *ngIf="schema.header.icon"
+         [class]="'mr-10 icon ' + schema.header.icon"></i>
+      <strong *ngIf="schema.header.counter"
+              class="label label-primary">{{ schema.header.counter }}
+      </strong>
+      <span *ngIf="schema.header.title">{{ schema.header.title }}</span>
+    </section>
+    <section *ngIf="schema.header.subtitle"
+             class="panel-subtitle text-center">{{ schema.header.subtitle }}
+    </section>
+  </header>
+  <main class="panel-body">
+    <ng-content select="panel-body"></ng-content>
+  </main>
+  <footer class="panel-footer">
+    <ng-container *ngFor="let action of schema.actions">
+      <ab-action class="ml-10 float-right "
+                 [schema]="action"
+                 (action)="onClick($event)"></ab-action>
+    </ng-container>
+  </footer>
+</article>

@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "name": "god_organizations"
+  },
+  "actions": {
+    "header": {
+      "title": "Organizations",
+      "subtitle": "Manage your organizations and its administrators",
+      "icon": "icon-flag"
+    },
+    "actions": [
+      {
+        "label": "Create New",
+        "key": "create_new"
+      }
+    ]
+  },
+  "create": {
+    "title": "New Organization",
+    "submitLabel": "Save Organization",
+    "controls": [
+      {
+        "key": "name",
+        "type": "text",
+        "label": "Organization Name",
+        "validators": [
+          {
+            "key": "required",
+            "errorMessage": "Name of organization is required"
+          }
+        ]
+      }
+    ]
+  },
+  "report": {
+    "header": {
+      "title": "List of Organizations"
+    },
+    "emptyMessage": "There aren't any organizations to display :(",
+    "fields": [
+      {
+        "label": "Organization",
+        "key": "name",
+        "type": "string"
+      },
+      {
+        "label": "Administrator",
+        "key": "admin.name",
+        "type": "string"
+      },
+      {
+        "label": "Email",
+        "key": "admin.email",
+        "type": "string"
+      }
+    ],
+    "actions": [
+      {
+        "label": "",
+        "key": "setAdmin",
+        "icon": "icon-people",
+        "title": "Adm"
+      },
+      {
+        "label": "",
+        "key": "delete",
+        "icon": "icon-delete",
+        "title": "Del"
+      }
+    ]
+  },
+  "setAdmin": {
+    "title": "Invite Administrator",
+    "submitLabel": "Send invitation",
+    "controls": [
+      {
+        "key": "name",
+        "type": "text",
+        "label": "Administrator Name",
+        "validators": [
+          {
+            "key": "required",
+            "errorMessage": "Name of the administrator is required"
+          }
+        ]
+      },
+      {
+        "key": "email",
+        "type": "email",
+        "label": "Administrator Email",
+        "validators": [
+          {
+            "key": "required",
+            "errorMessage": "Email for send invitation is required"
+          }
+        ]
+      }
+    ]
+  }
+}

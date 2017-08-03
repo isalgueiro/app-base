@@ -1,0 +1,35 @@
+<ab-tile *ngIf="actionSchema"
+         [schema]="actionSchema"
+         (send)="onAction($event)">
+</ab-tile>
+<ab-table *ngIf="reportSchema"
+          [data]="tableData"
+          [schema]="reportSchema"
+          (rowAction)="onRowAction($event)">
+</ab-table>
+<ab-modal *ngIf="createFormSchema"
+          [title]="createFormSchema.title"
+          [active]="createModalActive"
+          (close)="onCancelCreate()">
+  <modal-content>
+    <ab-form [formSchema]="createFormSchema"
+             (send)="onCreate($event)">
+    </ab-form>
+  </modal-content>
+</ab-modal>
+<ab-modal *ngIf="actionSchema"
+          title="{{ 'Delete ' + actionSchema.header.title }}"
+          [active]="deleteModalActive"
+          (close)="onCancelDelete()">
+  <modal-content>
+    <ab-card [data]="selectedItem"
+             [schema]="cardSchema">
+    </ab-card>
+  </modal-content>
+  <modal-footer>
+    <button (click)="onCancelDelete()"
+            class="btn btn-link">No, leave it</button>
+    <button (click)="onDelete(selectedItem)"
+            class="btn btn-primary">Yes, delete.</button>
+  </modal-footer>
+</ab-modal>
